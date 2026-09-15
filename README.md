@@ -1,6 +1,6 @@
 # The Computational Anatomy of a National Competency Standard
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22763642.svg)](https://doi.org/10.5281/zenodo.22763642)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22764688.svg)](https://doi.org/10.5281/zenodo.22764688)
 
 Code, aggregate results, and manuscripts for **"The Computational Anatomy of a National Competency Standard: Regularity, Redundancy, and Terminological Fragmentation in Korea's NCS"** (Jinsu Chung & Han-Cheol Ryu, Sahmyook University; manuscript v1.5, September 2026, prepared for *Information Processing & Management*).
 
@@ -62,4 +62,4 @@ Every number in the paper and in these outputs is tagged by how it was obtained:
 
 ## Citation
 
-See `CITATION.cff`. Until the article appears, please cite the manuscript and the Zenodo archive of this repository: concept DOI [10.5281/zenodo.22763641](https://doi.org/10.5281/zenodo.22763641) (all versions) · version DOI [10.5281/zenodo.22763642](https://doi.org/10.5281/zenodo.22763642) (v1.4).
+See `CITATION.cff`. Until the article appears, please cite the manuscript and the Zenodo archive of this repository: concept DOI [10.5281/zenodo.22763641](https://doi.org/10.5281/zenodo.22763641) (all versions) · version DOI [10.5281/zenodo.22764688](https://doi.org/10.5281/zenodo.22764688) (v1.5).

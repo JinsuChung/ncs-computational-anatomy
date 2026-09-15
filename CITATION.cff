@@ -11,14 +11,14 @@ authors:
 version: "1.5"
 date-released: "2026-09-15"
 repository-code: "https://github.com/JinsuChung/ncs-computational-anatomy"
-doi: 10.5281/zenodo.22763642
+doi: 10.5281/zenodo.22764688
 identifiers:
   - type: doi
     value: 10.5281/zenodo.22763641
     description: "Concept DOI (all versions)"
   - type: doi
-    value: 10.5281/zenodo.22763642
-    description: "Version DOI (v1.4; v1.5 archived as a new version under the concept DOI)"
+    value: 10.5281/zenodo.22764688
+    description: "Version DOI (v1.5)"
 license: MIT
 preferred-citation:
   type: article
