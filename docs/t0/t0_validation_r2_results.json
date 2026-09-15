@@ -1,0 +1,159 @@
+{
+  "n_rows_r2": 220,
+  "per_rater": {
+    "EV-6": 54,
+    "EV-7": 54,
+    "EV-8": 56,
+    "EV-9": 56
+  },
+  "expected_per_rater": {
+    "EV-6": 54,
+    "EV-7": 54,
+    "EV-8": 56,
+    "EV-9": 56
+  },
+  "transitive_by_stratum": {
+    "21-100": {
+      "n_items": 30,
+      "n_judgments": 90,
+      "strict": 0.4111111111111111,
+      "lenient": 0.8555555555555555,
+      "strict_ci95": [
+        0.2777777777777778,
+        0.5444444444444444
+      ],
+      "lenient_ci95": [
+        0.7666666666666667,
+        0.9444444444444444
+      ],
+      "item_majority": {
+        "same": 0.36666666666666664,
+        "hierarchy": 0.43333333333333335,
+        "related": 0.1,
+        "unrelated": 0.0,
+        "unsure": 0.0,
+        "tie": 0.1
+      },
+      "verdict_dist": {
+        "same": 0.4111111111111111,
+        "hierarchy": 0.4444444444444444,
+        "related": 0.1111111111111111,
+        "unrelated": 0.03333333333333333,
+        "unsure": 0.0
+      }
+    },
+    "100+": {
+      "n_items": 30,
+      "n_judgments": 90,
+      "strict": 0.4222222222222222,
+      "lenient": 0.7555555555555555,
+      "strict_ci95": [
+        0.3,
+        0.5555555555555556
+      ],
+      "lenient_ci95": [
+        0.6555555555555556,
+        0.8444444444444444
+      ],
+      "item_majority": {
+        "same": 0.4666666666666667,
+        "hierarchy": 0.26666666666666666,
+        "related": 0.13333333333333333,
+        "unrelated": 0.0,
+        "unsure": 0.0,
+        "tie": 0.13333333333333333
+      },
+      "verdict_dist": {
+        "same": 0.4222222222222222,
+        "hierarchy": 0.3333333333333333,
+        "related": 0.2222222222222222,
+        "unrelated": 0.022222222222222223,
+        "unsure": 0.0
+      }
+    }
+  },
+  "transitive_21plus_pooled": {
+    "n_items": 60,
+    "n_judgments": 180,
+    "strict": 0.4166666666666667,
+    "lenient": 0.8055555555555556,
+    "strict_ci95": [
+      0.32222222222222224,
+      0.5055555555555555
+    ],
+    "lenient_ci95": [
+      0.7388888888888889,
+      0.8722222222222222
+    ],
+    "item_majority": {
+      "same": 0.4166666666666667,
+      "hierarchy": 0.35,
+      "related": 0.11666666666666667,
+      "unrelated": 0.0,
+      "unsure": 0.0,
+      "tie": 0.11666666666666667
+    },
+    "verdict_dist": {
+      "same": 0.4166666666666667,
+      "hierarchy": 0.3888888888888889,
+      "related": 0.16666666666666666,
+      "unrelated": 0.027777777777777776,
+      "unsure": 0.0
+    }
+  },
+  "calibration": {
+    "n_anchor_items": 10,
+    "new_raters": {
+      "n": 40,
+      "strict": 0.45,
+      "lenient": 0.85,
+      "verdict_dist": {
+        "same": 0.45,
+        "hierarchy": 0.4,
+        "related": 0.15,
+        "unrelated": 0.0,
+        "unsure": 0.0
+      }
+    },
+    "r1_raters_same_items": {
+      "n": 80,
+      "strict": 0.5,
+      "lenient": 0.75,
+      "verdict_dist": {
+        "same": 0.5,
+        "hierarchy": 0.25,
+        "related": 0.1875,
+        "unrelated": 0.0125,
+        "unsure": 0.05
+      }
+    },
+    "majority_agreement_5way": 0.6666666666666666,
+    "majority_agreement_merge": 0.6666666666666666,
+    "n_common_decided": 6
+  },
+  "alpha_new_raters": {
+    "five_way": 0.17435715666688123,
+    "five_way_ci": [
+      0.07477996207099126,
+      0.27004890998931425
+    ],
+    "merge": 0.2583185166370333,
+    "merge_ci": [
+      0.11107317073170736,
+      0.39036359666069187
+    ],
+    "n_items": 70
+  },
+  "verified_recovery_updated": {
+    "strict": {
+      "embedding_verified_pp": 0.10986545584264679,
+      "combined_verified": 0.19220388521968565,
+      "r1_combined_verified": 0.17796096752583582
+    },
+    "lenient": {
+      "embedding_verified_pp": 0.1538053803911035,
+      "combined_verified": 0.23614380976814237,
+      "r1_combined_verified": 0.2112851672233076
+    }
+  }
+}

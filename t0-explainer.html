@@ -1,0 +1,649 @@
+<title>T0 해설집</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{--ground:#FBFBF7;--paper:#FFFFFF;--ink:#1F2A2E;--muted:#5C6B6E;--faint:#8C9899;--line:#DEE4DF;
+    --teal:#0E6E6D;--teal-deep:#0A5352;--teal-wash:#EAF3F1;--amber:#B07A18;--amber-deep:#8A5E0E;--amber-wash:#FBF3DF;
+    --red:#B23A3A;--red-wash:#F6EAEA;
+    --serif:"Gowun Batang",Georgia,serif;--sans:"IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#14181A;--paper:#1B2124;--ink:#E6E9E4;--muted:#9FAAA9;--faint:#6F7C7C;--line:#2C3538;
+    --teal:#46A8A4;--teal-deep:#6BC2BE;--teal-wash:#1E2E2D;--amber:#D9A94B;--amber-deep:#E3C36A;--amber-wash:#33290F;--red:#E08A8A;--red-wash:#3A2222}}
+  :root[data-theme="dark"]{--ground:#14181A;--paper:#1B2124;--ink:#E6E9E4;--muted:#9FAAA9;--faint:#6F7C7C;--line:#2C3538;
+    --teal:#46A8A4;--teal-deep:#6BC2BE;--teal-wash:#1E2E2D;--amber:#D9A94B;--amber-deep:#E3C36A;--amber-wash:#33290F;--red:#E08A8A;--red-wash:#3A2222}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .page{max-width:900px;margin:0 auto;padding:52px 26px 140px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
+  h1{font-family:var(--serif);font-weight:700;font-size:32px;line-height:1.35;margin:10px 0 8px;text-wrap:balance}
+  h2{font-family:var(--serif);font-size:23px;margin:56px 0 12px;padding-top:18px;border-top:2px solid var(--ink)}
+  h2 .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--amber-deep);display:block;margin-bottom:4px}
+  h3{font-size:17px;margin:30px 0 8px}
+  h4{font-size:15px;margin:22px 0 6px;color:var(--teal-deep)}
+  p{margin:9px 0;max-width:72ch}
+  .meta{font-size:13px;color:var(--muted)}
+  .lede{font-size:17px;font-family:var(--serif);line-height:1.8}
+  .box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 20px;margin:16px 0}
+  .box p{max-width:none}
+  .box.t{border-left:4px solid var(--teal)} .box.a{border-left:4px solid var(--amber)} .box.r{border-left:4px solid var(--red)}
+  .term{background:var(--paper);border:1px dashed var(--line);border-radius:10px;padding:10px 16px;margin:12px 0;font-size:13.5px}
+  .term b{color:var(--teal-deep)}
+  .crit{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:16px 0;overflow:hidden}
+  .crit header{display:flex;gap:10px;align-items:baseline;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--red-wash)}
+  .crit header .sev{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border-radius:99px;padding:1px 9px;color:#fff;background:var(--red)}
+  .crit header .sev.mid{background:var(--amber)} .crit header .sev.low{background:var(--teal)} .crit header .sev.done{background:var(--teal-deep);text-decoration:line-through}
+  .crit header h4{margin:0;color:var(--ink);font-size:14.5px}
+  .crit .b{padding:8px 18px 12px}
+  .crit .b p{max-width:none;margin:6px 0}
+  .crit .q{font-family:var(--serif);color:var(--muted);border-left:3px solid var(--line);padding-left:12px;margin:8px 0}
+  .table-wrap{overflow-x:auto;margin:12px 0}
+  table{border-collapse:collapse;width:100%;font-size:13px;background:var(--paper)}
+  th{text-align:left;font-size:11.5px;letter-spacing:.04em;color:var(--faint);font-weight:700;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:7px 10px}
+  td{border-bottom:1px solid var(--line);padding:7px 10px;vertical-align:top;line-height:1.55}
+  td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  tbody tr:last-child td{border-bottom:2px solid var(--ink)}
+  code{font-family:var(--mono);font-size:.85em;background:var(--teal-wash);color:var(--teal-deep);padding:1px 5px;border-radius:4px}
+  ul,ol{max-width:72ch} li{margin:5px 0}
+  .toc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 22px;margin:24px 0;font-size:14px;columns:2;column-gap:28px}
+  .toc a{color:var(--teal-deep);text-decoration:none} .toc a:hover{text-decoration:underline}
+  .toc div{break-inside:avoid;margin:3px 0}
+  .pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;border-radius:99px;padding:1px 8px;vertical-align:1px;margin-left:4px}
+  .pill.m{background:var(--teal-wash);color:var(--teal-deep);border:1px solid var(--teal)}
+  .pill.p{background:var(--amber-wash);color:var(--amber-deep);border:1px solid var(--amber)}
+  .qa{border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:10px 0;background:var(--paper)}
+  .qa b.q{display:block;color:var(--teal-deep)}
+  .qa p{max-width:none;margin:5px 0;font-size:14px}
+  .footnote{margin-top:60px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+  @media (max-width:700px){.toc{columns:1}}
+</style>
+
+<div class="page">
+<header>
+  <div class="eyebrow">Study Guide · T0 · 2026-09-10</div>
+  <h1>T0 해설집 — NCS의 계산적 해부, 처음부터 끝까지</h1>
+  <div class="meta">대상 논문: <i>The Computational Anatomy of a National Competency Standard</i> (paper-draft-t0a.html v0.3) · 근거: 사전 등록(3c60a2e 동결) · 확증 결과 · 수동 검증 집계 · 이 문서는 연구자가 자기 연구를 남에게 설명하고 방어할 수 있을 때까지 읽는 학습용 해설이다</div>
+</header>
+
+<p class="lede">이 논문은 "국가직무능력표준을 온톨로지로 바꾸겠다"는 큰 프로그램의 첫 논문이다. 그런데 온톨로지를 만들지 않는다. 대신 그 재료를 <b>잰다</b>. 재료의 성질을 모른 채 도구부터 고르는 관행에 맞서, 규칙이 어디까지 닿고 모델이 어디서 필요하며 사람이 어디서 개입해야 하는지를 전수 데이터와 사전 등록 실험으로 확정한다. 이 문서는 그 논문의 의도·기여·방법·결과를 낱낱이 풀고, 마지막에는 우호적이지 않은 심사자의 눈으로 다시 본다.</p>
+
+<div class="toc">
+  <div><a href="#s0">0. 읽는 법과 표기 규약</a></div>
+  <div><a href="#s1">1. 한 페이지 요약</a></div>
+  <div><a href="#s2">2. 연구의 의도 — 왜 이 논문이 먼저인가</a></div>
+  <div><a href="#s3">3. 연구 질문과 기여 — 누가 왜 쓰는가</a></div>
+  <div><a href="#s4">4. 데이터 — NCS를 데이터로 읽기</a></div>
+  <div><a href="#s5">5. 방법론 상세</a></div>
+  <div><a href="#s5-1">&nbsp;&nbsp;5.1 사전 등록과 추론 규율</a></div>
+  <div><a href="#s5-2">&nbsp;&nbsp;5.2 통계 도구 해설</a></div>
+  <div><a href="#s5-3">&nbsp;&nbsp;5.3 가설별 방법·결과·해석</a></div>
+  <div><a href="#s5-4">&nbsp;&nbsp;5.4 H3 심층 — 파편화 3단계</a></div>
+  <div><a href="#s5-5">&nbsp;&nbsp;5.5 H4 심층 — 직무 그래프</a></div>
+  <div><a href="#s5-6">&nbsp;&nbsp;5.6 그림 3종 읽는 법</a></div>
+  <div><a href="#s5-7">&nbsp;&nbsp;5.7 ESCO 재현 — 일반성의 경계</a></div>
+  <div><a href="#s6">6. 통합 해석 — 논문이 말하는 세 교훈</a></div>
+  <div><a href="#s7">7. 비판자적 평가</a></div>
+  <div><a href="#s8">8. 발표·질의 대비 Q&amp;A</a></div>
+  <div><a href="#s9">9. 용어 사전</a></div>
+  <div><a href="#s10">10. 부록 — 숫자 한 장·파일 지도</a></div>
+</div>
+
+<!-- ═══════════════════════════ 0 ═══════════════════════════ -->
+<h2 id="s0"><span class="k">0 · HOW TO READ</span>읽는 법과 표기 규약</h2>
+<p>순서대로 읽으면 논문의 논리를 따라가고, 7장부터 읽으면 약점부터 본다. 발표 직전이라면 1장·6장·8장만 읽어도 된다. 방법을 손에 넣고 싶으면 5장을 스크립트를 열어 놓고 읽는다.</p>
+<div class="term"><b>수치 표기.</b> 이 문서의 모든 숫자는 실측이다 — T1·T3 초안과 달리 예측치가 없다. 다만 층이 있다. <b>원천 실측</b>은 표준 자체의 사실(모델 개입 없음)이고, <b>모델 보조</b>는 임베딩이 개입한 단계(H3 2단계)이며, <b>사람 판정</b>은 8인 판정자의 집계다(H3 3단계). 논문은 이 셋을 섞지 않는다. 이 문서도 필요한 곳에 층을 밝힌다.</div>
+<div class="term"><b>파일 참조.</b> <code>docs/t0-preregistration.html</code>(사전 등록) · <code>docs/t0-results-2026-09-09.html</code>(확증 결과) · <code>docs/t0/t0_validation_report.md</code>(판정 집계) · <code>paper-draft-t0a.html</code>(초안) · 스크립트는 <code>scripts/t0_*.py</code>. 부록 10장에 지도가 있다.</div>
+
+<!-- ═══════════════════════════ 1 ═══════════════════════════ -->
+<h2 id="s1"><span class="k">1 · ONE PAGE</span>한 페이지 요약</h2>
+<p><b>문제.</b> 국가 역량 표준은 요즘 스킬 택소노미·지식 그래프·LLM 교육 시스템의 원료로 쓰인다. 그런데 파이프라인을 짓기 전에 원료의 성질 — 문장이 얼마나 규칙적인지, 얼마나 중복인지, 한 개념이 몇 가지 표기로 갈라져 있는지, 공식 분류와 별개로 데이터 안에 어떤 구조가 있는지 — 를 재는 일은 거의 없다. 그래서 규칙과 모델 사이의 선택이 증거가 아니라 유행으로 정해진다.</p>
+<p><b>한 것.</b> 한국 NCS 전수(직무 1,109 · 능력단위 13,435 · 수행준거 196,658 · KSA 2,457,556)를 다섯 축으로 쟀다. 가설 9개를 확증 검정 전에 등록했고, 검정은 세분류(n=1,109) 단위, 대분류 안 무작위 반분 재현, Benjamini–Hochberg FDR 5%로 했다. 9개 중 5개는 기대대로, 4개는 기대와 다르게 나왔고 전부 실었다.</p>
+<p><b>찾은 것.</b> ① 수행준거는 99.56%가 "~할 수 있다" 템플릿이고 이탈의 절반이 26개 직무에 몰려 있다 — 문장 구조는 규칙으로 끝난다. ② KSA는 16%만 고유 문장인데, 그 중복은 규모의 착시가 아니라 산업의 작성 관행이다(규모 통제 후 효과가 커짐). ③ 표기 파편화는 규칙으로 8.2%밖에 못 고친다. 임베딩이 28.1%까지 <i>제안</i>하지만, 외부 8인이 200쌍을 판정한 결과 직접 연결 쌍은 72%가 옳고 전이적으로만 묶인 쌍은 30~42%만 옳아, 검증된 회수는 19.2~23.6%다. 사전 등록한 임계값 .90이 정밀도의 무릎임이 실증됐다. ④ 공유 KSA만으로 만든 직무 군집은 공식 분류를 부분적으로 재현한다(NMI .329, 무작위 .041). ⑤ 수준·개정 연도·디지털 어휘의 산업 간 격차는 실재하지만 대분류 평균이 암시하는 것보다 세분류 단위에서는 작다.</p>
+<p><b>말하는 것.</b> <i>구조는 규칙에, 개념은 모델에, 판정은 사람에.</i> 그리고 집계 회수율은 정렬 품질의 신호가 아니다 — 연쇄 병합은 회수의 양이 아니라 구성을 망가뜨리며, 그것은 사람이 봐야만 드러난다.</p>
+<p><b>일반적인가.</b> 유럽 ESCO(v1.2.1, 영어)에 같은 코드를 돌려 확인했다(§5.7). 규칙 천장 ~9%, .90 무릎, 전이 병합 30%와 크기 기울기, 연쇄 거대 성분, 부분 NMI는 정답 기준으로 재현됐고, 99.56% 템플릿과 회수율의 절대 수준은 NCS 고유로 판명됐다. 설계 규칙은 이식되고, 수준은 코퍼스마다 다시 잰다.</p>
+<p><b>왜 지금 투고 가능한가.</b> 기술 통계이므로 전문가 골드도 LLM 판정도 전제하지 않는다. 프로그램 안에서 검증 의존성이 없는 유일한 논문이다.</p>
+
+<!-- ═══════════════════════════ 2 ═══════════════════════════ -->
+<h2><span class="n">1½ · MAP</span>취지와 경과, 그리고 한 장의 지도</h2>
+<p><b>취지.</b> NCS를 온톨로지·지식 그래프·LLM 보조 시스템의 재료로 쓰기 전에, 그 텍스트가 어떤 재료인지를 전수로 잰다. 관점은 하나 — 지식 자원을 지으려는 사람의 자리 — 이고, 표준을 평가하거나 노동시장을 주장하지 않는다. 지도교수의 세 말씀(NCS 자체를 먼저, 가설을 세분화해서, 가설마다 공학적 기여를 분명히)이 설계 원칙이다.</p>
+<p><b>경과.</b> 9월 9일 사전 등록을 동결하고 전수 확증 분석(가설 9개, 5 충족·4 미충족)을 했다. 9~10일에 사람 판정 1차(8인·200쌍), ESCO 재현, 규칙·군집 민감도, 두 번째 인코더를 마쳤고, 11일에 판정 2차(4인·60쌍)와 다운스트림 시연을 더해 첫 보고를 냈다. 12~14일에 관점을 명시하고 국문본을 만들고 외부 심사 1·2회차(15항목)를 반영했다. 15일에 판정 3차(교외 박사 2인)로 전문가 천장을 4인으로 넓히고, 설계를 다시 뜯어 재현성 결함 하나와 해석 교란 하나를 고쳤으며, 외부 심사 3·4·5회차를 반영하고, IP&amp;M 투고 요건에 맞추고, 임베딩 단계 후보 파일을 공개 자산으로 만들고, 재현용 공개 저장소를 준비했다. 초안은 v1.3이다.</p>
+<p><b>지도.</b> 아래 그림은 논문의 뼈대다. 가지는 논문이 답하는 질문의 순서(왜·무엇·어떻게·결과·함의·사람 판정·자산)이고, 잎은 각 절의 한 줄 요약이다. 본문 §5·§6이 잎 하나하나를 푼다.</p>
+<figure style="margin:14px 0;background:#fff;border:1px solid #DCE2DD;border-radius:8px;padding:10px;overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 860" width="100%" role="img" aria-label="논문 마인드맵" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<rect width="1180" height="860" fill="#FFFFFF"/>
+<path d="M590.0,430.0 Q590.0,304.5 590.0,215.0" stroke="#0E6E6D" stroke-width="3" fill="none" opacity=".85"/>
+<path d="M590.0,215.0 Q517.4,133.5 444.8,51.9" stroke="#0E6E6D" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="360.8" y="31.9" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#0E6E6D" stroke-width="1.2"/>
+<text x="444.8" y="45.2" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">표준을 지식 자원으로 지으려면</text>
+<text x="444.8" y="58.7" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">재료를 먼저 재야 한다</text>
+<path d="M590.0,215.0 Q590.0,120.0 590.0,25.0" stroke="#0E6E6D" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="506.0" y="5.0" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#0E6E6D" stroke-width="1.2"/>
+<text x="590.0" y="18.2" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">규칙 vs 모델의 경계는</text>
+<text x="590.0" y="31.8" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">유행이 아니라 측정으로</text>
+<path d="M590.0,215.0 Q662.6,133.5 735.2,51.9" stroke="#0E6E6D" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="651.2" y="31.9" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#0E6E6D" stroke-width="1.2"/>
+<text x="735.2" y="45.2" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">구축 관점 하나만 취한다</text>
+<text x="735.2" y="58.7" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">(평가·정책 주장 없음)</text>
+<rect x="524.0" y="198.0" width="132" height="34" rx="17" fill="#0E6E6D"/>
+<text x="590.0" y="215.0" font-size="12.5" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">왜 — 문제의식</text>
+<path d="M590.0,430.0 Q674.0,345.0 758.1,295.9" stroke="#2E6F9E" stroke-width="3" fill="none" opacity=".85"/>
+<path d="M758.1,295.9 Q776.6,188.4 795.1,80.8" stroke="#2E6F9E" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="711.1" y="60.8" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#2E6F9E" stroke-width="1.2"/>
+<text x="795.1" y="74.0" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">NCS 전수: 직무 1,109</text>
+<text x="795.1" y="87.5" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">수행준거 196,658 · KSA 246만</text>
+<path d="M758.1,295.9 Q832.4,236.7 906.6,177.5" stroke="#2E6F9E" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="822.6" y="157.5" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#2E6F9E" stroke-width="1.2"/>
+<text x="906.6" y="170.7" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">ESCO v1.2.1 재현</text>
+<text x="906.6" y="184.2" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">(대체 라벨 = 정답)</text>
+<path d="M758.1,295.9 Q867.1,301.9 976.1,307.8" stroke="#2E6F9E" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="892.1" y="287.8" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#2E6F9E" stroke-width="1.2"/>
+<text x="976.1" y="301.0" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">사전 등록 가설 9개</text>
+<text x="976.1" y="314.5" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">PEEK/CLEAN 표시</text>
+<rect x="692.1" y="278.9" width="132" height="34" rx="17" fill="#2E6F9E"/>
+<text x="758.1" y="295.9" font-size="12.5" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">무엇 — 데이터</text>
+<path d="M590.0,430.0 Q694.8,435.9 799.6,477.8" stroke="#7A5A1E" stroke-width="3" fill="none" opacity=".85"/>
+<path d="M799.6,477.8 Q895.3,425.2 990.9,372.6" stroke="#7A5A1E" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="906.9" y="352.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#7A5A1E" stroke-width="1.2"/>
+<text x="990.9" y="365.8" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">세분류 단위 검정</text>
+<text x="990.9" y="379.3" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">반분 재현 · BH-FDR</text>
+<path d="M799.6,477.8 Q892.2,499.0 984.8,520.1" stroke="#7A5A1E" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="900.8" y="500.1" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#7A5A1E" stroke-width="1.2"/>
+<text x="984.8" y="513.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">정규화 키 → bge-m3 임베딩</text>
+<text x="984.8" y="526.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">→ Louvain (cos ≥ .90)</text>
+<path d="M799.6,477.8 Q862.9,566.8 926.3,655.7" stroke="#7A5A1E" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="842.3" y="635.7" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#7A5A1E" stroke-width="1.2"/>
+<text x="926.3" y="648.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">외부 판정자 14인</text>
+<text x="926.3" y="662.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">3차례 960판정 · α</text>
+<rect x="733.6" y="460.8" width="132" height="34" rx="17" fill="#7A5A1E"/>
+<text x="799.6" y="477.8" font-size="12.5" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">어떻게 — 방법</text>
+<path d="M590.0,430.0 Q636.6,508.9 683.3,623.7" stroke="#8A3B5C" stroke-width="3" fill="none" opacity=".85"/>
+<path d="M683.3,623.7 Q784.1,665.7 884.9,707.6" stroke="#8A3B5C" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="800.9" y="687.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#8A3B5C" stroke-width="1.2"/>
+<text x="884.9" y="700.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">문장은 규칙으로 끝난다</text>
+<text x="884.9" y="714.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">99.56%, 잔여는 26직무에</text>
+<path d="M683.3,623.7 Q746.1,697.2 808.9,770.7" stroke="#8A3B5C" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="724.9" y="750.7" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#8A3B5C" stroke-width="1.2"/>
+<text x="808.9" y="764.0" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">중복은 산업 속성</text>
+<text x="808.9" y="777.5" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">(규모 통제 후 ε² 커짐)</text>
+<path d="M683.3,623.7 Q701.6,718.7 719.9,813.6" stroke="#8A3B5C" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="635.9" y="793.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#8A3B5C" stroke-width="1.2"/>
+<text x="719.9" y="806.8" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">파편화: 규칙 8.2% →</text>
+<text x="719.9" y="820.3" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">임베딩 28.1% → 검증 19~24%</text>
+<path d="M683.3,623.7 Q653.3,728.7 623.2,833.6" stroke="#8A3B5C" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="539.2" y="813.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#8A3B5C" stroke-width="1.2"/>
+<text x="623.2" y="826.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">공유 어휘가 분류를</text>
+<text x="623.2" y="840.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">부분 복원 (NMI .33 vs .04)</text>
+<rect x="617.3" y="606.7" width="132" height="34" rx="17" fill="#8A3B5C"/>
+<text x="683.3" y="623.7" font-size="12.5" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">결과 — 네 발견</text>
+<path d="M590.0,430.0 Q543.4,508.9 496.7,623.7" stroke="#3E7A3A" stroke-width="3" fill="none" opacity=".85"/>
+<path d="M496.7,623.7 Q526.7,728.7 556.8,833.6" stroke="#3E7A3A" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="472.8" y="813.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#3E7A3A" stroke-width="1.2"/>
+<text x="556.8" y="826.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">구조는 규칙에</text>
+<text x="556.8" y="840.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">개념은 모델에</text>
+<path d="M496.7,623.7 Q478.4,718.7 460.1,813.6" stroke="#3E7A3A" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="376.1" y="793.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#3E7A3A" stroke-width="1.2"/>
+<text x="460.1" y="806.8" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">연쇄 아인공물: 집계는</text>
+<text x="460.1" y="820.3" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">같고 내용만 망가진다</text>
+<path d="M496.7,623.7 Q433.9,697.2 371.1,770.7" stroke="#3E7A3A" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="287.1" y="750.7" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#3E7A3A" stroke-width="1.2"/>
+<text x="371.1" y="764.0" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">전이 동반은 약한 신호</text>
+<text x="371.1" y="777.5" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">(코사인에 평평 ~30%)</text>
+<path d="M496.7,623.7 Q395.9,665.7 295.1,707.6" stroke="#3E7A3A" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="211.1" y="687.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#3E7A3A" stroke-width="1.2"/>
+<text x="295.1" y="700.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">같은 직무 안 병합 금지</text>
+<text x="295.1" y="714.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">교차 직무는 직접 엣지만</text>
+<rect x="430.7" y="606.7" width="132" height="34" rx="17" fill="#3E7A3A"/>
+<text x="496.7" y="623.7" font-size="12.5" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">함의 — 설계 규칙</text>
+<path d="M590.0,430.0 Q485.2,435.9 380.4,477.8" stroke="#9C4A1A" stroke-width="3" fill="none" opacity=".85"/>
+<path d="M380.4,477.8 Q317.1,566.8 253.7,655.7" stroke="#9C4A1A" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="169.7" y="635.7" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#9C4A1A" stroke-width="1.2"/>
+<text x="253.7" y="648.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">전문가 4인 α .41/.50</text>
+<text x="253.7" y="662.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">(원래 쌍이 최고였다)</text>
+<path d="M380.4,477.8 Q287.8,499.0 195.2,520.1" stroke="#9C4A1A" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="111.2" y="500.1" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#9C4A1A" stroke-width="1.2"/>
+<text x="195.2" y="513.4" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">경계 하나에서 갈린다</text>
+<text x="195.2" y="526.9" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">같음 28~48% / 관련 62~66%</text>
+<path d="M380.4,477.8 Q284.7,425.2 189.1,372.6" stroke="#9C4A1A" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="105.1" y="352.6" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#9C4A1A" stroke-width="1.2"/>
+<text x="189.1" y="365.8" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">엄격을 헤드라인으로</text>
+<text x="189.1" y="379.3" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">(병합은 비가역)</text>
+<rect x="314.4" y="460.8" width="132" height="34" rx="17" fill="#9C4A1A"/>
+<text x="380.4" y="477.8" font-size="12.5" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">사람 판정</text>
+<path d="M590.0,430.0 Q506.0,345.0 421.9,295.9" stroke="#555" stroke-width="3" fill="none" opacity=".85"/>
+<path d="M421.9,295.9 Q312.9,301.9 203.9,307.8" stroke="#555" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="119.9" y="287.8" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#555" stroke-width="1.2"/>
+<text x="203.9" y="301.0" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">별칭 사전 19,881</text>
+<text x="203.9" y="314.5" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">(규칙 단계)</text>
+<path d="M421.9,295.9 Q347.6,236.7 273.4,177.5" stroke="#555" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="189.4" y="157.5" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#555" stroke-width="1.2"/>
+<text x="273.4" y="170.7" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">임베딩 후보 27,721군집</text>
+<text x="273.4" y="184.2" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">경로·기대 정밀도·판정 표시</text>
+<path d="M421.9,295.9 Q403.4,188.4 384.9,80.8" stroke="#555" stroke-width="1.6" fill="none" opacity=".6"/>
+<rect x="300.9" y="60.8" width="168" height="40" rx="6" fill="#FFFFFF" stroke="#555" stroke-width="1.2"/>
+<text x="384.9" y="74.0" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">직무별 지표 · 코드</text>
+<text x="384.9" y="87.5" font-size="10.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" dominant-baseline="middle">· ESCO 재현 · 사전 등록</text>
+<rect x="355.9" y="278.9" width="132" height="34" rx="17" fill="#555"/>
+<text x="421.9" y="295.9" font-size="12.5" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">공개 자산</text>
+<circle cx="590.0" cy="430.0" r="62" fill="#0E6E6D"/>
+<text x="590.0" y="422.0" font-size="13" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">NCS의 계산적 해부</text>
+<text x="590.0" y="438.0" font-size="13" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">(T0-a)</text>
+<text x="1168" y="848" font-size="10" fill="#8A9698" text-anchor="end">가지 = 논문의 뼈대 · 잎 = 한 줄 요약 · 수치는 v1.3 기준 (2026-09-15)</text>
+</svg>
+<figcaption style="font-size:12.5px;color:#5D6B6E;margin-top:6px">그림 M. 「NCS의 계산적 해부」 마인드맵 — 수치는 v1.3(2026-09-15) 기준.</figcaption>
+</figure>
+<h2 id="s2"><span class="k">2 · INTENT</span>연구의 의도 — 왜 이 논문이 먼저인가</h2>
+<h3>2.1 프로그램 안에서의 자리</h3>
+<p>이 연구 프로그램은 세 논문으로 짜여 있다. <b>T0</b>는 재료(NCS)를 데이터로 재고, <b>T1</b>은 그 재료에서 온톨로지 후보를 만들어 여러 LLM의 합의로 신뢰도를 매기며(전문가 골드로 앵커), <b>T3</b>는 그렇게 만든 구조가 콘텐츠 생성에 실제로 도움이 되는지를 블라인드 인간 평가로 잰다. 세미나에서 받은 피드백은 "NCS 자체를 먼저 분석하라, 가설을 세분화하라, 가설마다 공학적 기여를 분명히 하라"였고, T0는 그 셋에 대한 직접 응답이다.</p>
+<p>이 자리는 전략적이기도 하다. 대학에서 일하는 연구자가 NCS라는 공공 자산의 <b>"데이터를 가장 잘 아는 사람"</b>이 되는 첫 걸음이 T0다. 이후 T1·T3가 스코프를 정하거나 비용을 추정할 때 T0의 수치를 인용하게 되고, 그것이 곧 연구자의 전문성 서사가 된다.</p>
+<h3>2.2 문제의식 — 측정 없이 짓는 관행</h3>
+<p>LLM이 추출을 값싸게 만든 뒤로, 문서 뭉치를 온톨로지나 지식 그래프로 바꾸는 시도는 흔해졌다. 관찰되는 관행은 "일단 모델로 뽑고 나서 본다"이다. 이 관행의 문제는 두 가지다. 첫째, 규칙으로 될 일에 모델을 쓰면 비용과 비결정성을 공짜로 떠안는다. 둘째, 모델로도 안 될 일(예: 개념 동일성의 경계 판단)을 모델에 맡기고 결과를 믿는다. T0는 이 둘을 가르는 선을 <b>데이터에서 측정</b>하려 한다. "규칙은 문장 구조를 99.56% 처리하지만 개념 파편화는 8.2%밖에 못 고친다"는 문장이 바로 그 선이다.</p>
+<h3>2.3 검증 의존성과 T0의 예외성</h3>
+<p>프로그램에는 <b>검증 의존성</b>이라는 원칙이 있다(<code>docs/validation-dependency.md</code>): LLM이 만든 것의 가치는 사람이 검증하기 전까지 주장할 수 없다. 이 원칙은 T1·T3를 골드 스탠더드와 인간 평가에 묶는다. T0는 그 원칙의 <b>바깥</b>에 있다 — 기술 통계는 LLM 산출물이 아니라 표준 자체의 사실이기 때문이다. 유일하게 모델이 개입하는 H3 2단계(임베딩)조차 결국 사람 판정(3단계)으로 닫았다. 그래서 T0는 프로그램에서 가장 먼저 투고 가능하고, 실제로 초안에 남은 노란 표시가 설계 결정·서지뿐이다.</p>
+<h3>2.4 무엇을 주장하지 않는가</h3>
+<p><b>관점 선언(2026-09-11 확정).</b> 이 논문은 NCS를 <b>한 방향에서만</b> 본다 — 지식 자원을 지으려는 사람의 자리에서, 표준을 <i>입력 재료</i>로. 연구 질문 다섯 개가 전부 "규칙이 파싱할 수 있나, 중복 제거가 얼마를 덜어 주나, 정렬이 얼마를 고쳐야 하나, 구조가 얼마나 잠재해 있나"인 이유가 그것이다. 텍스트를 <i>재되</i> 표준을 <i>평가하지</i> 않는다. 이 관점은 기존 프로그램(T1·T3)의 도구가 만든 관성이기도 하지만, 논문 §1에 "Perspective and scope" 문단으로 명시해 둔 <b>의도적 선택</b>이다 — 관점 하나를 분명히 세워야 숫자가 설계 규칙으로 쓰이고, 심사자가 노동시장·저작 과정·정책 함의를 요구하는 오해를 막을 수 있다. 같은 데이터를 정책 도구나 제도적 글쓰기 장르로 읽는 관점은 가치 있지만 다른 증거가 필요하며 별도 논문(T0-b)의 몫으로 남긴다. 다만 §5 말미에 "측정이 입력 자체에 대해 말하는 것" 한 절을 두어, 산업별 저작 관행·태도 층의 가짜 특수성·ESCO와의 설계 대비·유지관리자용 감사 목록을 <i>구축 관점의 언어로</i> 정리했다.</p>
+<ul>
+  <li>온톨로지를 만들었다고 주장하지 않는다. 후보 공간의 크기와 성질을 잰다.</li>
+  <li>표준을 평가하지 않는다. 노동시장·저작 위원회·정책에 대해 주장하지 않는다 — 분포를 보고하고 멈춘다.</li>
+  <li>임베딩 정렬이 "좋다"고 주장하지 않는다. 임계값별 정밀도와 검증 회수율을 보고한다.</li>
+  <li>산업 간 격차가 "불평등"이라고 주장하지 않는다. 분포를 보고하고, 사회적 해석은 외부 자료가 결합되는 후속(T0-b)으로 미룬다.</li>
+  <li>NCS의 품질을 평가하지 않는다. 다만 기계 처리 관점의 이탈·중복·파편화를 목록으로 만들어 관리 기관에 제공할 수 있다.</li>
+</ul>
+
+<!-- ═══════════════════════════ 3 ═══════════════════════════ -->
+<h2 id="s3"><span class="k">3 · QUESTIONS &amp; CONTRIBUTIONS</span>연구 질문과 기여 — 누가 왜 쓰는가</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>연구 질문</th><th>한 줄 답</th><th>그 답을 누가 쓰는가</th></tr></thead>
+  <tbody>
+    <tr><td><b>RQ1</b> 수행준거는 얼마나 규칙적인가, 잔여는 어디 있나</td><td>99.56% 템플릿, 이탈 절반이 26개 직무</td><td>규칙 파서 설계자 — 모델이 필요한 곳을 <i>주소</i>로 안다</td></tr>
+    <tr><td><b>RQ2</b> KSA 중복은 규모 탓인가 산업 탓인가</td><td>산업 탓 (통제 후 ε² .158→.191)</td><td>비용 추정자 — 중복 제거 계수가 산업별로 예측된다</td></tr>
+    <tr><td><b>RQ3</b> 파편화는 얼마나 심하고, 규칙과 임베딩이 각각 얼마나 고치나</td><td>규칙 8.2%, 임베딩 제안 28.1%, 검증 17.8~21.1%</td><td>정렬 단계 설계자 — 임계값과 군집 크기 상한의 근거</td></tr>
+    <tr><td><b>RQ4</b> 공식 분류가 데이터에서 얼마나 되살아나는가</td><td>부분적 (NMI .329 vs 무작위 .041)</td><td>분류 개편 논의·전직 경로 서비스 — LLM 없는 유사도 층</td></tr>
+    <tr><td><b>RQ5</b> 수준·개정·디지털은 산업 간에 어떻게 분포하나</td><td>격차 실재, 세분류에서는 대분류 평균보다 작음</td><td>정책 분석·표준 관리 — 집계 해상도의 경고</td></tr>
+  </tbody>
+</table></div>
+<h3>기여 네 가지를 심사자 언어로</h3>
+<p><b>(1) 전수 프로파일 + 사전 등록.</b> 신규성은 "NCS를 이렇게 잰 사람이 없다"에 있고, 방법론적 가치는 "탐색과 확증을 분리해 놓고 미충족을 그대로 실었다"에 있다. 심사자가 신뢰를 주는 지점은 후자다.</p>
+<p><b>(2) 규칙/모델 경계의 정량화.</b> 이 논문의 판매 문장이다. "취향이 아니라 측정"이라는 프레임이 공학 저널 심사자에게 잘 먹힌다. 다만 7장에서 보듯 "그래서 일반화되는가"가 공격점이다.</p>
+<p><b>(3) 측정된 방법론적 경고.</b> 단일연결 연쇄 병합과, 전이 병합의 낮은 정밀도. 문헌에서 알려진 실패 모드를 코퍼스 규모에서 사람 판정과 함께 정량화했다는 점이 새롭다.</p>
+<p><b>(4) 공개 자산.</b> 별칭 사전(19,881행), 세분류 전 지표, 유지관리자용 감사 목록, 코드. NCS 원천이 <b>공공누리 제1유형(출처표시)</b>으로 확인되어(2026-09-15) 파생물 재배포가 가능하다 — 출처표시만 이행하면 된다.</p>
+
+<!-- ═══════════════════════════ 4 ═══════════════════════════ -->
+<h2 id="s4"><span class="k">4 · DATA</span>데이터 — NCS를 데이터로 읽기</h2>
+<h3>4.1 8단 구조와 규모</h3>
+<p>NCS는 8단 트리다. 위 4단(대분류 24 → 중분류 81 → 소분류 274 → 세분류 1,109)은 <b>분류</b>이고 이미 데이터베이스 모양이다. 아래 4단(능력단위 13,435 → 요소 47,620 → 수행준거 196,658 → 지식·기술·태도 2,457,556)은 <b>내용</b>이고 문장이다. 논문의 모든 질문은 "아래 4단을 위 4단처럼 계산 가능하게 만들 수 있는가"의 변주다.</p>
+<p>결정적 사실 하나: KSA 246만 건 중 <b>고유 문장은 355,896개(14.5%)</b>다. "문서 작성 능력" 같은 문장이 수천 곳에 복제돼 있다. 이것이 규칙 기반 접근(빈도)이 가능했던 이유이자, 표기 정규화가 본질적 병목인 이유다.</p>
+<h3>4.2 코드 체계와 "개정 연도"를 믿어도 되는 이유</h3>
+<p>능력단위 코드는 <code>0202030101_22v2</code> 꼴이다. 접미 <code>_22</code>는 연도, <code>v2</code>는 버전이다. 문제는 그 연도가 <i>최초 개발</i> 시점인지 <i>마지막 개정</i> 시점인지였다(H5의 해석이 여기에 걸린다). 두 경로로 확인했다.</p>
+<ul>
+  <li><b>공식 정의.</b> NCS 분류번호 체계에서 이 자리는 「개발·개선연도」다. 개선 시 갱신되는 자리라는 뜻이다.</li>
+  <li><b>데이터 내부 검증 — 이쪽이 결정적이다.</b> 버전이 오를수록 연도가 단조 상승한다: v1 2017.2 · v2 2018.4 · v3 2020.7 · v4 2021.9 · v5 2022.5 · v6 2023.1 · v7 2023.3 (n=13,435, r=.47). 만약 연도가 최초 개발에 고정된다면, 개정을 많이 거친 단위(높은 v)일수록 <i>오래된</i> 연도를 가져야 한다. 관찰은 정반대다. 또 연도가 2013–2025에 고르게 퍼져 있어 "코드 체계 일괄 재발행" 가설도 배제된다.</li>
+</ul>
+<div class="box a"><p><b>남는 한계를 분명히.</b> 연도는 "마지막으로 손댄 시점"이지 "얼마나 바꿨는지"가 아니다. 논문은 이를 recency of attention으로 정의하고, 개정의 크기는 측정하지 않았다고 명시한다. 심사자가 "신선도"라는 단어를 물으면 이 구분으로 답한다.</p></div>
+<h3>4.3 직업기초능력</h3>
+<p>NCS와 별도로 모든 직무 공통 소프트스킬 표준(7 영역 → 21 하위 → 63 요소)이 있다. T0에서는 적재만 되어 있고 분석 대상은 아니다. T1의 판정 유형 중 "직업기초능력 연결"이 이것을 쓴다.</p>
+
+<!-- ═══════════════════════════ 5 ═══════════════════════════ -->
+<h2 id="s5"><span class="k">5 · METHOD</span>방법론 상세</h2>
+
+<h3 id="s5-1">5.1 사전 등록과 추론 규율 — 각 장치가 막는 오류</h3>
+<p>이 논문의 방법론적 신뢰는 "무엇을 쟀는가"보다 "어떻게 스스로를 속이지 않았는가"에서 온다. 장치는 여섯이고, 각각이 막는 오류가 다르다.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>장치</th><th>무엇을 했나</th><th>막는 오류</th></tr></thead>
+  <tbody>
+    <tr><td><b>탐색 기록(EA11)</b></td><td>대분류 24 수준 집계를 먼저 계산하고 날짜와 함께 기록(2026-09-09)</td><td>"처음부터 그 가설이었다"는 사후 서사(HARKing). 탐색이 있었음을 숨기지 않는다</td></tr>
+    <tr><td><b>PEEK / CLEAN 라벨</b></td><td>탐색을 본 뒤 세운 가설(PEEK: H1 H2 H5 H6 S1 S2)과 탐색에서 계산하지 않은 지표의 가설(CLEAN: H3 지수 H4 H6교호 S3 S4)을 구분해 표에 실음</td><td>사후 가설을 사전 가설로 위장하는 것. 심사자가 신뢰도를 가설별로 조정할 수 있게 한다</td></tr>
+    <tr><td><b>해상도 이동</b></td><td>탐색은 대분류(24), 확증은 세분류(1,109)에서. 대분류 안 분산은 탐색이 보지 못했다</td><td>본 데이터로 본 가설을 검정하는 순환. 정보량을 보존한다</td></tr>
+    <tr><td><b>반분 재현</b></td><td>대분류 안에서 세분류를 시드 고정 무작위로 A/B 반분, 두 반에서 부호·유의성이 일치할 때만 "재현"</td><td>우연한 유의성. H1 보조검정·H6이 여기서 불일치했고 그대로 보고했다</td></tr>
+    <tr><td><b>FDR 5%</b></td><td>9개 주 검정의 p를 한 가설군으로 Benjamini–Hochberg</td><td>여러 검정 중 하나는 우연히 유의해지는 다중비교 오류. S4만 탈락</td></tr>
+    <tr><td><b>효과 크기 우선</b></td><td>ε², ρ, V, W를 주 수치로, p는 보조</td><td>n=1,109에서는 사소한 차이도 유의하다는 착시</td></tr>
+  </tbody>
+</table></div>
+<p><b>왜 이렇게까지 하나.</b> 코퍼스 기술 통계는 "돌려보고 좋은 것만 보고"의 유혹이 가장 큰 연구 유형이다. 가설 아홉 개 중 넷이 기대와 다르게 나왔는데도 논문의 논지가 서는 이유는, 미충족이 논지를 약화시키는 게 아니라 <i>방법이 작동했다는 증거</i>가 되도록 설계했기 때문이다.</p>
+<div class="box t"><p><b>코드 수정 3건의 기록.</b> 결과를 본 뒤 코드를 고친 일이 세 번 있었고 전부 결과 문서 §4에 남겼다. ① H3의 기대 충족 판정이 사전 등록 문구 중 "회수율 50~70%" 조건을 검사하지 않고 있어 문구대로 고쳤다 — 판정이 충족→부분 기각으로 <i>불리하게</i> 바뀌었다. ② H1 주 검정을 대분류 간 Kruskal에서 주장에 맞는 이항검정으로 바꿨다. ③ H6 민감도 어휘 중심화 버그를 고쳤고 결론은 불변이었다. 가설을 데이터에 맞춘 게 아니라 코드를 사전 등록에 맞춘 방향임이 핵심이다.</p></div>
+
+<h3 id="s5-2">5.2 통계 도구 해설 — 왜 이걸 골랐나</h3>
+<div class="term">
+  <p><b>Kruskal–Wallis H와 ε².</b> 24개 대분류 집단 간 분포 차이의 비모수 검정. 정규성을 가정하지 않아 비율·연도 같은 비대칭 분포에 안전하다. H 자체는 표본 크기에 민감하므로 효과 크기 ε² = (H − k + 1)/(n − k)를 함께 낸다. 대략 .01 작음, .06 중간, .14 큼으로 읽는다(Tomczak &amp; Tomczak 2014). H2·H5·S1·H6분포에 사용.</p>
+  <p><b>단측 이항검정.</b> H1 "전체 준수율 ≥ 99%"처럼 주장이 하나의 비율에 대한 것일 때. 195,799/196,658이 0.99를 넘는지 검정한다. 처음엔 대분류 간 차이로 검정했다가 주장과 어긋나 바꿨다(5.1).</p>
+  <p><b>공변량 회귀 후 잔차 검정(H2).</b> 고유 비율은 집합이 클수록 기계적으로 낮아진다. 그래서 <code>unique_rate ~ log(KSA 수) + log(능력단위 수)</code>로 규모를 빼고 남은 잔차에 대분류 효과가 있는지 본다. 효과가 통제 후 오히려 커졌다(.158→.191)는 것은 규모가 산업 효과를 <i>가리고</i> 있었다는 뜻이다.</p>
+  <p><b>Spearman ρ.</b> 순위 상관. H3의 빈도–파편화(ρ=.539), H6의 연도–디지털(ρ=.077)에 사용. 선형성을 가정하지 않는다.</p>
+  <p><b>순열 검정(H4).</b> NMI가 "무작위보다 높은가"를 묻기 위해 대분류 라벨을 1,000번 섞어 영분포를 만든다. 관찰 .329 vs 영분포 .041±.004. 분포 가정 없이 우연 수준을 잰다.</p>
+  <p><b>문항 단위 부트스트랩(3단계 판정).</b> 같은 쌍을 여러 판정자가 봤으므로 판정 640건은 독립이 아니다. 판정을 그냥 이항 CI로 계산하면 과신이다. 문항 200개를 복원 추출하고 그 문항의 판정을 전부 가져오는 방식으로 2,000번 재표집해 CI를 만든다.</p>
+  <p><b>Krippendorff's α.</b> 판정자 수·결측·범주 종류에 무관하게 쓸 수 있는 일치도. κ가 두 명·완전 자료용인 것과 다르다. 5범주(명목)와 병합 여부(이진) 두 버전을 낸 이유: 세분 판정은 노이즈가 크지만 <i>결정 관련</i> 구분(합칠 것인가)은 더 안정적일 수 있어서다. 실제로 박사 2인 .569 vs .683.</p>
+  <p><b>Cohen's κ.</b> 저자 vs 외부 다수결처럼 딱 두 판정 열을 비교할 때.</p>
+  <p><b>Kendall's W.</b> 여러 순위 열(S4의 세 축)이 얼마나 일치하는지. .449는 중간이지만 대분류 24개로는 유의에 못 미쳤다(p=.123).</p>
+  <p><b>지니 계수(H5).</b> 개정 연도가 산업 간에 얼마나 불균등한지의 단일 지표. .314.</p>
+  <p><b>Benjamini–Hochberg.</b> p값 9개를 정렬해 i번째가 0.05·i/9 이하인 마지막 지점까지 유의로 인정. Bonferroni보다 검정력이 높고, 탐색 성격의 가설군에 표준이다.</p>
+</div>
+
+<h3 id="s5-3">5.3 가설별 방법·결과·해석</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>ID</th><th>가설(요약)</th><th>지표·검정</th><th>결과</th><th>기대</th><th>해석 한 줄</th></tr></thead>
+  <tbody>
+    <tr><td>H1 <span class="pill p">PEEK</span></td><td>템플릿 ≥99%, 이탈 국지적</td><td>이항(≥.99); 이탈 50% 담는 최소 세분류 수</td><td>99.563% [99.534, 99.592]; 이탈 859건의 절반이 26개 직무(2.3%); 환경미화 0%</td><td>충족</td><td>문장 구조는 규칙으로 끝난다. 모델이 필요한 곳은 26개 주소</td></tr>
+    <tr><td>H2 <span class="pill p">PEEK</span></td><td>중복이 산업 특성이다</td><td>규모 통제 후 잔차 Kruskal</td><td>고유 16.07%; ε² .158→.191, R² .369; 반분 일치</td><td>충족</td><td>중복은 복제 작성 관행. 산업별 5~10× 압축 계수 예측 가능</td></tr>
+    <tr><td>H3 <span class="pill m">CLEAN</span></td><td>파편화가 빈도와 함께 크고, 규칙이 50~70% 회수</td><td>Spearman; 규칙 병합 비율</td><td>ρ=.539 지지; 규칙 회수 8.2% — 기각</td><td>부분 기각</td><td>규칙은 어간이 다른 동의 표기를 못 합친다 → 임베딩 필수 (5.4)</td></tr>
+    <tr><td>H4 <span class="pill m">CLEAN</span></td><td>군집이 분류와 부분 일치</td><td>Louvain → NMI, 순열</td><td>NMI .329 (무작위 .041), ARI .108, IDF 변형 .341</td><td>충족</td><td>공유 어휘에 구조가 있다. 사업관리는 데이터에서 해체</td></tr>
+    <tr><td>H5 <span class="pill p">PEEK</span></td><td>개정 연도 격차 ε² ≥ .30</td><td>Kruskal, 지니</td><td>ε² .175, 지니 .314; 2021.7 vs 2015.3</td><td>미충족</td><td>격차는 실재하나 대분류 평균이 부풀렸다</td></tr>
+    <tr><td>H6 <span class="pill p">PEEK</span>/<span class="pill m">CLEAN</span></td><td>대분류 안에서 최근일수록 디지털 ↑ (ρ&gt;.2)</td><td>중심화 후 Spearman</td><td>ρ .077 (p=.010), 반분 불일치; 분포 ε² .208</td><td>미충족</td><td>디지털 어휘의 양은 개정 시점이 아니라 산업이 정한다</td></tr>
+    <tr><td>S1 <span class="pill p">PEEK</span></td><td>수준 사다리 산업차</td><td>Kruskal</td><td>ε² .242; L5+ 71.6%(금융) ~ 7.3%(경비·청소)</td><td>충족</td><td>표준이 산업별 경력 천장을 <i>반영</i>한다 — 재생산은 쓰지 않음</td></tr>
+    <tr><td>S2 <span class="pill p">PEEK</span>/<span class="pill m">CLEAN</span></td><td>태도 어휘의 1위는 준수</td><td>코드북 → χ², V</td><td>의지·노력 38.5%, 준수 20.4%; V=.125</td><td>미충족</td><td>측정 단위의 반전: 직무 커버리지로는 준수, 항목 질량으로는 의지</td></tr>
+    <tr><td>S4 <span class="pill m">CLEAN</span></td><td>저수준·저신선·저디지털이 겹친다</td><td>Kendall's W</td><td>W .449, p=.123 (FDR 탈락)</td><td>미충족</td><td>겹침 인상은 대분류 평균의 착시. 24개로는 검정력 부족</td></tr>
+  </tbody>
+</table></div>
+<h4>H2 — "규모 통제"가 왜 논문의 좋은 대목인가</h4>
+<p>심사자가 가장 먼저 의심하는 게 "큰 직무는 당연히 중복이 많지 않나"다. 그 의심을 회귀로 먼저 빼고, 남은 잔차에서 산업 효과가 <i>커졌다</i>는 결과를 보이면 의심이 오히려 논거가 된다. 잔차 고유 비율이 낮은 산업(금융·보험, 기계, 식품가공)과 높은 산업(영업판매, 사업관리, 섬유·의복)이 직관과 맞는지도 확인할 만하다 — 금융·보험이 낮은 건 정형 문구가 많아서고, 영업판매가 높은 건 직무마다 서술이 다르기 때문이다.</p>
+<h4>H5·H6·S4 — "미충족"이 논문에서 하는 일</h4>
+<p>세 가설은 모두 "탐색에서 극적이던 패턴이 세분류에서 줄었다"는 같은 이야기다. 대분류 평균은 24개 점이고, 세분류는 1,109개 점이다. 평균 사이의 차이가 분포 사이의 차이보다 커 보이는 건 산술적으로 당연한데, 국가 표준을 논하는 정책 문서는 대부분 대분류 평균으로 말한다. 논문 Discussion 두 번째 단락이 이 점을 "집계 해상도의 경고"로 승격시킨다. 미충족이 그냥 실패가 아니라 <i>발견</i>이 되는 전형이다.</p>
+<h4>S2 — 측정 단위가 결론을 뒤집는 사례</h4>
+<p>탐색 때 "안전사항 준수"(172개 직무)·"안전수칙 준수"(134개)가 1~3위였다. 확증에서는 항목 수 기준으로 의지·노력이 38.5%로 1위, 준수는 20.4%다. 모순이 아니다 — 앞은 <b>폭</b>(몇 개 직무에 퍼졌나), 뒤는 <b>질량</b>(항목이 몇 개나)이다. 준수 어휘는 소수 문장이 거의 모든 직무에 복제되어 있고, 의지·노력 어휘는 직무마다 새로 쓰인다. "표준이 안전을 공통 규범으로, 태도를 직무 고유 서술로 다룬다"는 해석은 여기서 나온다. 발표에서 이 반전을 설명하면 "측정 단위를 정직하게 다룬다"는 인상을 준다.</p>
+
+<h3 id="s5-4">5.4 H3 심층 — 파편화 3단계</h3>
+<p>H3는 논문의 심장이고, 세 단계가 각각 다른 질문에 답한다. 1단계는 "규칙이 얼마나 고치나", 2단계는 "임베딩이 얼마나 더 <i>제안</i>하나", 3단계는 "그 제안이 얼마나 <i>옳나</i>".</p>
+<h4>1단계 — 규칙 정규화 키가 하는 일과 못 하는 일</h4>
+<p><code>normalize_key</code>는 NFKC 정규화 → 역할 접미사 제거(지식/기술/능력/방법/이해/역량…, "~에 대한 지식" 포함) → 공백·구두점 제거 → 소문자. 그래서 "통계 분석 지식", "통계분석기법", "통계 분석 능력"은 모두 <code>통계분석</code>이 된다. 하지만 "안전사항 준수"와 "안전수칙 준수"는 <code>안전사항준수</code> / <code>안전수칙준수</code>로 남는다 — 어간이 다르기 때문이다. 결과: 표면형 355,896 → 키 326,592, 병합 8.2%. 사전 등록은 50~70%를 기대했고 이것이 기각됐다. 기각이 곧 2단계의 존재 이유다.</p>
+<p>부산물 둘. 빈도–파편화 상관 ρ=.539 — 널리 쓰이는 개념일수록 더 갈라진다(통계분석 25표기/101직무). 유형 불일치 6,310키(1.9%) — 같은 개념이 한 직무에서는 지식, 다른 직무에서는 기술로 분류된다. 이것은 D2 품질 감사 리포트의 항목이 된다.</p>
+<h4>2단계 — 임베딩: 설계를 두 번 바꾼 이야기</h4>
+<p><b>왜 전수인가.</b> 처음 설계는 롱테일(1직무 전용 키 30만 개)을 표본으로 추정하려 했다. 300개를 뽑아 표본 안에서 클러스터링했더니 회수 0.0%였다. 당연하다 — 어떤 키의 진짜 동의어는 표본 밖 30만 개 중에 있으니, 표본 안에서만 비교하면 만날 수가 없다. 표본 설계를 버리고 326,592개를 전부 임베딩했다(bge-m3, 로컬 MPS, API 비용 0). 쌍 비교는 블록 행렬곱으로, cos≥.85인 쌍 586,498개를 한 번 모아 두고 임계값 세 개를 재사용했다.</p>
+<p><b>단일연결 사건.</b> 처음엔 전이 폐포(union-find)로 묶었다. cos≥.90에서 최대 성분이 <b>17,118개 키·1,106개 직무</b>를 삼켰고, 내용을 보니 "data처리및분석"과 "hw요구사항을명확히정의하고자하는자세"가 한 덩어리였다. A~B, B~C가 각각 .90을 넘으면 A와 C가 무관해도 이어지는 사슬 문제다. cos≥.85에서는 전체 키의 29.9%가 한 성분이 됐다. 유사도 그래프에 Louvain(모듈성 최적화)을 적용하자 최대 클러스터가 1,084로 떨어졌는데, <b>총 회수율은 28.2%→28.1%로 사실상 그대로</b>였다. 이 관찰이 논문의 방법론적 경고 하나를 낳는다: 연쇄는 회수의 <i>양</i>이 아니라 <i>구성</i>을 망가뜨리므로, 집계 회수율만으로는 정렬 품질을 알 수 없다.</p>
+<p><b>임계값 3종.</b> .95 → 13.6%(최대 183, 보수적), .90 → 28.1%(최대 1,084, 개념 계열), .85 → 51.3%(최대 5,860, 과병합). 층 교차 병합 6,339건 — 단일 직무 전용 키가 빈출 개념에 흡수된 경우로, 온톨로지 관점에서 가장 값진 회수다.</p>
+<p><b>태도 쏠림 검사.</b> 큰 클러스터들이 전부 태도 문장이라 "회수가 태도에 쏠린 것 아니냐"를 미리 쟀다. 유형별 병합 참여율 태도 38.2% · 기술 28.6% · 지식 27.9% — 태도가 다소 높지만 병합 키의 약 70%는 지식·기술이다. 다만 "~하려는 자세/의지" 템플릿이 통사적 유사도를 끌어올릴 가능성은 한계로 남겼다.</p>
+<h4>3단계 — 사람 검증: 설계의 이유들</h4>
+<p><b>왜 필요한가.</b> 28.1%는 제안의 양이다. 심사자는 반드시 "그게 맞는 병합인가"를 묻고, 특히 논문이 스스로 연쇄 병합 문제를 제기했으니 고친 결과의 품질을 안 재면 자기 질문에 답을 안 한 꼴이 된다.</p>
+<p><b>두 팔.</b> A(120쌍)는 직접 연결된 쌍을 코사인 대역별로 40쌍씩 — 유사도 신호 자체의 정밀도이자 임계값 선택의 실증 근거. B(80쌍)는 같은 Louvain 군집이지만 직접 연결이 없는 쌍 — 전이 병합의 정밀도, 즉 "군집 소속이 개념 동일성을 함의하는가".</p>
+<p><b>앵커 + 블록.</b> 200쌍을 5명에게 겹침 없이 쪼개면 일치도를 잴 수 없고, 일치도 없는 정밀도는 방어되지 않는다. 그래서 전원이 보는 앵커 50쌍 + 각자 30쌍 블록(층 구성 동일: 대역 6/6/6 + 전이 12). 1인 80쌍 ≈ 20분. 학생 3인을 직원 블록에 겹쳐 블록 3·4·5는 2인 판정이 됐다.</p>
+<p><b>앵커링 차단.</b> 유사도·군집 크기·팔을 판정 중 보이지 않게 했다. 이 프로젝트가 LLM 판정에 쓰는 원칙(내부 점수 은닉)을 사람에게 그대로 적용한 것이다.</p>
+<p><b>5범주와 엄격/관대.</b> 같은 개념 / 상하위 / 관련되나 다름 / 무관 / 애매. 상하위는 온톨로지에서 병합이 아니라 <i>관계</i>로 표현해야 하므로, "같은 개념"만 세는 엄격 정밀도와 상하위까지 인정하는 관대 정밀도를 분리했다.</p>
+<p><b>판정자 구성 — 전문성 사다리.</b> 교육공학 박사 2 · 교직원 3(기획 평가·정보시스템·법학) · 타 전공 학생 3. 박사 2인의 앵커 일치도를 이 과제의 <b>천장</b>으로 미리 정의했다. 천장이 높으면 비전문가 판정의 타당성을 논할 수 있고, 낮으면 "개념 동일성은 전문가에게도 다투어진다"가 정직한 한계가 된다. 저자는 200쌍 전부를 판정했지만 주 추정치에서 빼고 편향 점검에만 썼다.</p>
+<h4>3단계 결과와 정밀도 보정 계산</h4>
+<div class="table-wrap"><table>
+  <thead><tr><th>층</th><th class="num">판정</th><th class="num">엄격</th><th class="num">95% CI</th><th class="num">관대</th></tr></thead>
+  <tbody>
+    <tr><td>직접 .85–.90</td><td class="num">128</td><td class="num">43.8%</td><td class="num">[31.5, 56.9]</td><td class="num">59.4%</td></tr>
+    <tr><td>직접 .90–.95</td><td class="num">128</td><td class="num">71.1%</td><td class="num">[57.6, 83.5]</td><td class="num">82.8%</td></tr>
+    <tr><td>직접 .95–1.0</td><td class="num">128</td><td class="num">73.4%</td><td class="num">[58.9, 84.4]</td><td class="num">87.5%</td></tr>
+    <tr><td>전이 동반</td><td class="num">256</td><td class="num"><b>30.1%</b></td><td class="num">[21.5, 39.7]</td><td class="num">53.5%</td></tr>
+  </tbody>
+</table></div>
+<p><b>임계값 무릎.</b> 누적으로 ≥.85 62.8% → ≥.90 72.3% → ≥.95 73.4%. .90→.95는 정밀도 +1.1%p에 회수 절반 손실, .90→.85는 정밀도 −9.5%p. 사전 등록한 .90이 맞았다.</p>
+<p><b>보정 계산의 논리.</b> 군집 안의 쌍은 직접 엣지거나 전이다. 크기 2 군집은 직접 엣지 100%, 3–5는 67%, 6–20은 31%, 21–100은 8%, 100+는 1.4%다. 구간별로 직접 정밀도(72.3%)와 전이 정밀도(구간별: 32.9 / 26.5 / 41.1 / 42.2% — 21+ 두 구간은 2차 60문항 실측)를 그 비율로 가중해 "그 구간에서 흡수된 키가 옳을 확률"을 만들고, 흡수 키 수(20,788 / 17,048 / 10,159 / 6,034 / 16,840)로 가중해 합친다. 결과: 병합 정밀도 전체 48%(엄격)·65%(관대), <b>검증 회수 17.8% / 21.1%</b>. 21+ 구간은 판정 문항이 8개라 합산값을 적용했음을 밝힌다.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>채택 정책</th><th class="num">흡수 키</th><th class="num">제안 회수</th><th class="num">정밀도</th><th class="num">검증 회수(엄격)</th></tr></thead>
+  <tbody>
+    <tr><td>크기 2만</td><td class="num">20,788</td><td class="num">14.1%</td><td class="num">72%</td><td class="num">12.5%</td></tr>
+    <tr><td><b>크기 ≤5</b></td><td class="num">37,836</td><td class="num">18.9%</td><td class="num">66%</td><td class="num"><b>15.3%</b></td></tr>
+    <tr><td>크기 ≤20</td><td class="num">47,995</td><td class="num">21.7%</td><td class="num">61%</td><td class="num">16.5%</td></tr>
+    <tr><td>전부</td><td class="num">70,869</td><td class="num">28.1%</td><td class="num">55%</td><td class="num">19.2%</td></tr>
+  </tbody>
+</table></div>
+<p><b>권고.</b> 자동 병합은 군집 크기 ≤5까지. 검증 회수의 80%를 지키면서 오병합을 절반 이하로 줄이고, 큰 군집은 판정 후보로 넘긴다. 이 문장이 T0가 T1에게 건네는 규칙이다.</p>
+<p><b>일치도.</b> 박사 <b>4인 .408/.503</b>(3차 반영 — 1차 쌍만은 .569/.683이었고 그 쌍이 6쌍 중 최고였다) · 직원 .422/.575 · 학생 .289/.437 · 외부 8인 .315/.487 · 2차 새 4인(경험 없음) .174/.258(5범주/병합이진). 천장이 중간 수준이다. 함의: 판정은 다수결과 기권 허용을 전제로 설계해야 한다 — T1의 k=3 다수결과 Q9 기권 규칙이 이미 그렇다. 도메인 경험에 따라 일치도가 오르는 것은 <i>도구 특성</i>으로 보고하고 판정자 집단에 대한 발견으로 쓰지 않는다(윤리 절차).</p>
+<p><b>저자 편향 점검.</b> 저자 엄격 55.5% [48.5, 62.0] vs 외부 49.7% [42.6, 56.7]로 CI 겹침. 외부 다수결과 병합 여부 일치 74.3%(κ=.475). 불일치는 대칭(18 vs 21). 자기 방법에 관대했다는 신호가 없다.</p>
+<p><b>정성.</b> 갈린 쌍은 진짜 어려운 근접 오답이다 — whole genome vs whole exome, 3D 모델링 vs 3D 분석용. 반대로 <i>ISO/IEC 27009(인증섹터)</i> vs <i>(인증센터)</i>는 3인 전원 「같은 개념」 — 표준의 오타를 임베딩이 찾고 사람이 확인한 사례다.</p>
+
+<h3 id="s5-5">5.5 H4 심층 — 직무 그래프</h3>
+<p><b>구성.</b> 규칙 키 중 2개 이상 직무에 등장하는 25,078개로 세분류×키 이분 그래프를 만들고, 세분류 쌍의 Jaccard(교집합/합집합)를 가중치로 직무 그래프를 만든다(1,107 노드, 190,355 엣지). Louvain으로 11개 군집. 공식 대분류(24)·중분류(81)와 NMI/ARI. 영분포는 대분류 라벨 순열 1,000회.</p>
+<p><b>왜 Jaccard·Louvain·NMI인가.</b> Jaccard는 집합 크기가 다른 직무 쌍을 공정하게 비교한다. Louvain은 군집 수를 미리 정하지 않고 모듈성으로 찾아, "몇 개로 나눠야 하나"를 연구자가 정하는 자의성을 피한다. NMI는 군집 수가 달라도(11 vs 24) 비교 가능하고 순열 영분포로 우연 수준을 보정할 수 있다. ARI(.108)가 낮은 것은 군집 수 불일치의 영향이 크므로 NMI를 주 지표로 쓴다.</p>
+<p><b>민감도.</b> 전체 직무의 10% 이상에 등장하는 범용 키("안전사항 준수"류)를 빼도 NMI .341 — 일치도는 범용 어휘의 인공물이 아니다.</p>
+<p><b>해석.</b> 정보통신은 75%가 한 군집(C5), 금융·보험은 100%(C0), 경영·회계·사무 93%(C0). 반면 사업관리는 대분류로서 해체된다 — 프로젝트관리는 정보통신 군집으로, 공적개발원조사업관리·산학협력관리·해외법인설립관리는 문화·예술·방송 군집으로. 그림 2가 이 분포를 행별로 보여준다. "불일치 직무 66.5%"라는 숫자는 군집 11 vs 대분류 24라는 구조에서 오는 것이므로 그 자체로 해석하지 않는다.</p>
+
+<h3 id="s5-6">5.6 그림 3종 읽는 법</h3>
+<p><b>그림 1 (3축 지도).</b> x=평균 개정 연도, y=L5+ 비율, 버블=디지털 어휘. 왼쪽 위(금융·보험: 오래됐고 높은 수준, 큰 버블)와 오른쪽 아래(음식서비스·경비·청소: 최근 개정 또는 낮은 수준, 작은 버블)가 대비된다. H5·H6·S1·S4의 재료가 한 장에 있다. 발표에서 "괴리 위험"(디지털 요구 높음 × 오래됨)을 가리킬 때 쓴다.</p>
+<p><b>그림 2 (대분류 × 군집 히트맵).</b> 행이 한 열에 몰릴수록 공식 분류와 데이터가 일치한다. 1,107 노드 네트워크 그림 대신 이 형식을 고른 이유: NMI 서사(어디가 일치하고 어디가 흩어지나)를 직접 읽을 수 있고, 저널 지면에서 재현 가능하다.</p>
+<p><b>그림 3 (구조화 가능성 지도).</b> 대분류 × (템플릿 준수, 고유 비율, 파편화 지수, 유형 불일치). 진한 셀이 규칙 처리에 유리. 고유 비율은 <i>낮을수록</i> 진하다 — 중복이 많아야 빈도 기반 규칙이 먹히기 때문. 파편화 지수 상위는 식품가공(1.141)·경비·청소(1.119)·화학·바이오(1.100), 하위는 운전·운송·사업관리·보건·의료(1.04대).</p>
+
+<h3 id="s5-7">5.7 ESCO 재현 — 일반성의 경계를 재다</h3>
+<p><b>왜 했나.</b> 7장 심사 시뮬레이션의 요구 1순위는 "결과가 NCS 한 코퍼스에 국한된다"였다. 답은 주장이 아니라 제2 코퍼스의 표 한 장이어야 한다. 유럽 ESCO v1.2.1 영문 공식 CSV(스킬 13,960 · 직업 3,039 · ISCO 그룹 619)에 H3·H4와 H1의 유사물을 <i>같은 코드</i>로 돌렸다. 버전은 공식 변경 로그(v1.2.0→1.2.1 delta)와 대조해 확인했다 — 추가된 영문 대체 라벨 1,105건 전부 존재, 제거된 라벨 1,182건 중 38건 잔존.</p>
+<p><b>ESCO가 특별한 이유 — 정답이 있다.</b> ESCO는 한 스킬 개념(URI) 아래 선호 라벨과 대체 라벨(영문 86,690개)을 등록한다. 그러므로 "두 표면형이 같은 개념인가"의 정답이 정의상 존재한다 — 같은 URI의 라벨이면 같은 개념. NCS에서 200쌍을 뽑아 8인이 판정해 추정했던 정밀도가 ESCO에서는 <b>26만 쌍 전수·정답</b>으로 나온다. NCS 판정치가 얼마나 보수적이었는지도 이걸로 가늠한다.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>지표</th><th class="num">NCS</th><th class="num">ESCO</th><th>이식</th></tr></thead>
+  <tbody>
+    <tr><td>템플릿 규칙성</td><td class="num">99.56% "~할 수 있다"</td><td class="num">동사 초두 79.9% · 지식 명사 초두 92.3%</td><td>✗ NCS 고유</td></tr>
+    <tr><td>규칙 정규화 회수</td><td class="num">8.2%</td><td class="num">R0 0.9% · R1(굴절 제거) 9.3%, 정밀도 98~99%</td><td>✓ ~9% 천장</td></tr>
+    <tr><td>직접 쌍 정밀도 .85–.90 / .90–.95 / ≥.95</td><td class="num">43.8 / 71.1 / 73.4% (사람·엄격)</td><td class="num">57.0 / 88.6 / 98.7% (정답)</td><td>✓ .90 무릎</td></tr>
+    <tr><td>Louvain@.90 제안 · 병합 정밀도 · 검증 회수</td><td class="num">28.1% · 55% · 19.2%</td><td class="num">62.7% · 95.0% · 59.5%</td><td>✗ 코퍼스 수준</td></tr>
+    <tr><td>전이 쌍 정밀도 @.90</td><td class="num">30.1%</td><td class="num">29.2%</td><td>✓</td></tr>
+    <tr><td>전이 정밀도 크기별 3–5 / 6–20 / 21–100 / 100+</td><td class="num">32.9 / 26.5 / 41.1 / 42.2%</td><td class="num">90.0 / 60.3 / 11.2 / 1.7%</td><td>✗ 붕괴는 ESCO 고유</td></tr>
+    <tr><td>단일연결 @.85 거대 성분</td><td class="num">29.9%</td><td class="num">34.0%</td><td>✓</td></tr>
+    <tr><td>직무 그래프 NMI (영분포)</td><td class="num">.329 대분류 · .356 중분류 (.041)</td><td class="num">.263 ISCO-1 · .401 ISCO-2 (.008)</td><td>✓ 부분 일치</td></tr>
+  </tbody>
+</table></div>
+<p><b>읽는 법.</b> 표의 두 열은 <i>수준</i>이 아니라 <i>모양</i>으로 비교해야 한다. ESCO 정밀도는 정답이고 NCS는 판정 추정치이며, ESCO는 설계상 개념당 7.2개 라벨로 훨씬 파편화돼 있다. 그래서 회수율·병합 정밀도의 절대값은 옮겨 가지 않는다(✗). 옮겨 가는 것은 구조다: 규칙은 두 언어 모두 9% 근처가 천장이고, .90에서 정밀도가 꺾이고, 전이적으로만 묶인 쌍은 30%만 옳고 군집이 클수록 나빠지고(ESCO는 20 초과에서 11%·2%로 붕괴), 단일연결 .85는 코퍼스의 1/3을 한 성분에 삼키고, 공유 어휘만으로도 공식 분류가 부분 회수된다. <b>크기 ≤5 자동 병합 정책은 NCS 편의가 아니라 일반 규칙</b>이라는 것이 여기서 확정된다.</p>
+<p><b>재현되지 않은 것이 더 중요할 수 있다.</b> 99.56% 템플릿은 ESCO에 없다(79.9%). 즉 "문장은 규칙으로 끝난다"는 결론은 NCS의 <i>작성 방식</i>에서 온 것이지 역량 텍스트 일반의 성질이 아니다. 논문은 이것을 숨기지 않고 "NCS-specific"으로 표시한다 — 일반화의 경계를 그은 것이 일반화 주장보다 심사자에게 더 설득력 있다.</p>
+<p><b>두 가지 보정.</b> ① ESCO 정답 정밀도는 NCS 엄격 판정치보다 대역마다 13~25%p 높고 NCS <i>관대</i> 판정치(59.4 / 82.8 / 87.5)에 가깝다. ESCO 대체 라벨은 큐레이션된 바꿔 말하기이고 NCS 표면형은 독립 문장이라 판정자가 「관련」·「상하위」로 정당하게 분류한 것이 많다 — NCS 엄격치는 보수적이지 판정자가 가혹했던 게 아니다. ② 정답이 있는 ESCO에서도 cos≥.90은 진짜 동의어 쌍의 <b>34.8%만</b> 찾는다. 정밀도가 높은 곳에서조차 등록된 동의성의 2/3는 임베딩에 보이지 않는다 — 남는 파편화가 "보정 문제가 아니라 개념 층의 일"이라는 6.1의 결론에 두 코퍼스가 일치한다.</p>
+<p class="meta">한계: ESCO에는 수행준거가 없어 H1은 약한 유사물(라벨 초두 품사, 범용 태거)로만 봤고 H2·H5·H6·S 계열은 대응물이 없다. IDF 변형은 ESCO에서 불변인데 이유가 다르다 — 10% 이상 직업에 쓰이는 스킬이 하나도 없다(최다 261/3,039). O*NET 미실시. 원본 CSV·변환 JSON·임베딩 캐시는 비추적, 집계만 추적. 출처 문구 의무: "This publication uses the ESCO classification of the European Commission."</p>
+
+<!-- ═══════════════════════════ 6 ═══════════════════════════ -->
+<h2 id="s6"><span class="k">6 · SYNTHESIS</span>통합 해석 — 논문이 말하는 세 교훈</h2>
+<h3>6.1 구조는 규칙에, 개념은 모델에, 판정은 사람에</h3>
+<p>H1·H2가 앞부분을, H3가 뒷부분을 말한다. 문장 구조는 99.56% 규칙적이고 잔여가 26개 직무에 갇혀 있으니 규칙이 처리한다. 개념 파편화는 규칙이 8.2%밖에 못 고치고 임베딩이 17.8~21.1%까지 검증 회수하지만, 직접 연결을 넘어선 병합은 30%만 옳으니 사람(또는 판정 패널)이 정한다. 이 세 문장이 T1 파이프라인의 층 구조를 데이터로 정당화한다.</p>
+<h3>6.2 해상도의 착시</h3>
+<p>대분류 평균으로 본 격차(개정 연도, 디지털, 세 축 겹침)는 세분류로 내려오면 줄었다. 정책 분석이 흔히 대분류 요약으로 말한다는 점에서, 이것은 NCS 논문을 넘어서는 경고다. 논문은 이를 미충족 결과의 <i>공통 원인</i>으로 승격시켜 Discussion에 배치했다.</p>
+<h3>6.3 집계 회수율은 품질 신호가 아니다</h3>
+<p>단일연결에서 Louvain으로 바꿔도 28.2→28.1%였다. 전이 병합 정밀도는 30%였다. 두 사실을 합치면 "회수율이 높다"는 문장은 정렬의 품질에 대해 거의 아무것도 말하지 않는다. 클러스터 크기 분포와 사람 정밀도를 함께 보고해야 한다는 것이 이 논문의 방법론적 주장이다.</p>
+<h3>6.4 T1·T3로의 되먹임</h3>
+<ul>
+  <li>T1 정렬 단계: 임계값 .90 유지, 자동 병합은 군집 크기 ≤5, 큰 군집은 판정 후보. 판정은 k=3 다수결·기권 허용 — 사람도 α .57~.68이니 모델에게 단독 판결을 기대하지 않는다.</li>
+  <li>T1 스코프·비용: 산업별 중복 제거 계수(5~10×)와 26개 이탈 직무 목록.</li>
+  <li>T3 스코프 선정: 희소·저구조화 직무 후보(그림 3 상단)와 괴리 위험 산업(그림 1 왼쪽 위).</li>
+  <li>D2 품질 감사: 유형 불일치 6,310키, 템플릿 이탈 859건, 오타 사례(인증섹터/센터).</li>
+</ul>
+
+<!-- ═══════════════════════════ 7 ═══════════════════════════ -->
+<h2 id="s7"><span class="k">7 · CRITICAL REVIEW</span>비판자적 평가 — 중립에 가까운 심사자 시각</h2>
+<p>아래는 우호적이지 않은, 그러나 공정한 심사자가 쓸 법한 코멘트다. 각 항목에 <b>심사자의 문장</b>, <b>현재 답변 가능 수준</b>, <b>보강 방법</b>을 붙였다. 심각도는 게재 여부에 미치는 영향 기준이다.</p>
+
+<h3>7.1 먼저 인정할 강점</h3>
+<ul>
+  <li><b>사전 등록과 정직한 미충족 보고.</b> 9개 중 4개 미충족을 그대로 실었고, PEEK/CLEAN 라벨로 사후 가설을 숨기지 않았다. 코퍼스 연구에서 드문 규율이다.</li>
+  <li><b>검증 단계의 구조.</b> 규칙 → 임베딩 → 사람으로 닫고, 헤드라인 수치(28.1%)를 사람 판정으로 스스로 깎았다(19.2~23.6%). 심사자가 요구하기 전에 했다.</li>
+  <li><b>방법론적 경고의 실측.</b> 연쇄 병합과 전이 정밀도를 문헌의 일반론이 아니라 이 코퍼스의 숫자로 보였다.</li>
+  <li><b>저자 편향 점검.</b> 저자 판정을 분리하고 대칭성을 보고했다.</li>
+  <li><b>재현 가능한 파이프라인.</b> 시드 고정, 캐시, 스크립트 공개, 비용 0.</li>
+</ul>
+
+<h3>7.2 약점과 위협</h3>
+
+<div class="crit"><header><span class="sev done">HIGH</span><h4>기여의 성격 — "프로파일링"은 논문인가 <span style="font-weight:400;color:var(--teal-deep)">→ ESCO 재현으로 해소 (2026-09-10)</span></h4></header><div class="b">
+  <p class="q">"이 원고는 잘 수행된 기술 통계이지만, 방법이나 이론에 대한 기여가 무엇인지 분명하지 않다. 결과가 NCS라는 한 코퍼스에 국한되는데, 독자는 왜 관심을 가져야 하는가?"</p>
+  <p><b>원래 답변.</b> 기여 (2)(3)이 답이다 — 규칙/모델 경계의 정량화 방법과, 연쇄 병합·전이 정밀도라는 일반적 실패 모드의 측정. "NCS가 아니라 <i>방법</i>이 이식된다"고 말해야 한다.</p>
+  <p><b>보강 — 실행함.</b> ESCO v1.2.1 영문 공식 CSV에 같은 코드로 H3·H4를 재현했다(§5.7). ESCO는 한 개념의 대체 라벨을 URI 아래 등록하므로 정밀도가 표본·판정이 아니라 <b>전수·정답</b>이다. 결과: 규칙 천장 ~9%(9.3%), .90 무릎(57.0→88.6%), 전이 정밀도 30%(29.2% vs 30.1%)와 크기 기울기, 단일연결 .85 거대 성분(34.0% vs 29.9%), 부분 NMI(.26~.40)가 <b>전부 재현</b>됐고, 99.56% 템플릿과 회수율의 절대 수준은 <b>재현되지 않았다</b>. 이제 논문은 "일반화 가능하다"가 아니라 "어느 것이 일반적이고 어느 것이 NCS 고유인지 쟀다"고 말한다. 심사자가 이 항목으로 거부하기는 어려워졌다. 남는 반론은 "ESCO도 하나의 코퍼스"(O*NET 미실시)와 "정답의 구성이 다르다"(등록 라벨 vs 5범주 판정) — 둘 다 Threats에 썼다.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev">HIGH</span><h4>사후 가설 — 9개 중 6개가 PEEK</h4></header><div class="b">
+  <p class="q">"저자들은 대분류 집계를 본 뒤 가설을 세웠다고 인정한다. 해상도를 바꾸고 반분을 했다지만, 방향은 이미 관찰에서 왔다. 이것은 사전 등록이라기보다 사후 등록이다."</p>
+  <p><b>현재 답변.</b> 맞다, 그래서 라벨을 붙였다. 세분류 해상도는 탐색이 보지 못한 분산을 담고 있고, 반분은 우연 유의를 거르며, CLEAN 가설 3개는 완전히 독립이다. 그리고 PEEK 6개 중 3개가 미충족이었다 — 관찰에서 온 방향이 확증에서 깨졌다는 것 자체가 절차가 형식이 아니었다는 증거다.</p>
+  <p><b>보강.</b> "완전 블라인드 사전 등록보다 약하다"를 Threats에 이미 썼다. 더 할 수 있는 것: 다음 릴리스(개정판)가 나오면 <i>그 데이터로 같은 가설을 재검정</i>하는 것이 진짜 사전 등록이 된다. 논문에 "후속 릴리스 재검정 계획"을 한 문장 넣으면 방어가 강해진다.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev">HIGH</span><h4>정밀도 검증의 규모와 신뢰도 <span style="font-weight:400;color:var(--teal-deep)">→ 부분 해소 (2026-09-11)</span></h4></header><div class="b">
+  <p class="q">"200쌍, 판정자 8인, 그리고 전문가 사이 α가 .57에 불과하다. 이 정도 일치도로 산출한 정밀도 72%나 30%에 얼마나 무게를 실을 수 있는가? 특히 크기 21 이상 군집의 전이 정밀도는 문항 8개에 근거한다."</p>
+  <p><b>현재 답변.</b> CI를 문항 단위 부트스트랩으로 정직하게 넓혔고(대역별 ±13~15%p), 결론은 CI가 겹치지 않는 대비(직접 72% vs 전이 30%; .85 대역 44% vs .90 이상 72%)에만 기댄다. α .57은 5범주 세분이고, 결정 관련 이진 판단은 .68이다. 21+ 구간은 합산값 적용을 명시했다.</p>
+  <p><b>보강 — 일부 실행함(2026-09-11).</b> 가장 얇은 다리였던 <b>크기 21+ 군집 전이 정밀도</b>를 2차로 채웠다: 1차 미참여 4인(학생 2·직원 2)이 21–100 / 100+ 각 30쌍을 문항당 3인 판정 + 1차 앵커 10 보정. 결과 41.7% [32.2, 50.6](8문항 19% → 60문항), 두 층 41.1 / 42.2%로 NCS의 크기 기울기는 평평하다. 검증 회수는 17.8/21.1 → <b>19.2/23.6%</b>로 소폭 상승. 그러나 새 4인의 α는 .17/.26으로 더 낮아(전원 경험 없음) "일치도가 낮다"는 지적은 오히려 강화됐다 — 논문은 이 구간을 합의 라벨이 아니라 ±9%p 합산 비율로 명시한다. 남은 보강: 400쌍 확장과 박사 2인(또는 제3 전문가) adjudication은 미실시.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev done">MID</span><h4>규칙 정규화의 자의성과 규칙 단계 정밀도 미측정 <span style="font-weight:400;color:var(--teal-deep)">→ 민감도 해소, 정밀도는 ESCO 참조 (2026-09-10)</span></h4></header><div class="b">
+  <p class="q">"8.2%라는 규칙 회수율은 저자들이 고른 접미사 목록의 함수다. 목록을 늘리면 오르고 줄이면 내린다. 게다가 규칙 병합 자체의 정밀도는 재지 않았다 — 8.2%가 전부 옳다고 가정한 셈이다."</p>
+  <p><b>보강 — 실행함(M9).</b> 접미사 목록을 다섯 가지로 바꿔 돌렸다: 공백·구두점만 <b>3.5%</b> → "에 대한 X" 구문만 4.8% → 사전 등록 <b>8.2%</b> → 이해도·숙지·파악·활용능력 추가 8.5% → 태도 접미(~하려는 자세·의지·노력)까지 9.0%. 목록을 공격적으로 늘려도 <b>9%에서 포화</b>하고, 그 마지막 1%p는 '설문조사'↔'설문 조사 의지' 같은 의심스러운 병합과 유형 불일치 증가(0.3→2.1%)를 대가로 산다. 심사자의 "목록을 늘리면 오른다"는 맞지만 오르는 폭이 1%p 미만이라는 것이 답이다. 규칙 정밀도는 NCS에서 여전히 미측정이나, 정답이 있는 ESCO에서 같은 종류의 규칙이 97.8~98.9%였다는 참조를 병기했다. NCS 100쌍 판정은 남겨 둔 선택지다.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev done">MID</span><h4>임베딩 단일 모델과 통사 유사도 혼입 <span style="font-weight:400;color:var(--teal-deep)">→ 해소 (2026-09-11)</span></h4></header><div class="b">
+  <p class="q">"bge-m3 하나로 얻은 결과다. 다른 인코더에서 무릎이 .90이 아닐 수 있다. 그리고 가장 큰 군집이 전부 태도 문장이라는 것은 모델이 '~하려는 자세'라는 틀을 개념으로 오인한 증거 아닌가."</p>
+  <p><b>보강 — 실행함(논문 §4.8, Table 8).</b> 계열이 다르고 크기가 비슷한 <code>multilingual-e5-large</code>로 판정 200쌍·ESCO 전수·NCS 전수를 다시 임베딩했다. 코사인 척도가 달라서(e5는 .83–.999로 압축) 절대 임계값이 아니라 <b>쌍 수 일치</b>로 비교했다. 결과: ESCO 정답 정밀도·재현율이 세 임계값 모두 0.5%p 안에서 일치, 대역 정밀도 57.7/88.7/99.0 vs 57.0/88.6/98.7, 전이 정밀도 크기 기울기 동일, NCS 회수 28.4 vs 28.1%, <b>태도 쏠림 38.7 vs 38.2%로 불변</b>(bge 인공물이 아니라 코퍼스의 성질), 판정 80쌍 정밀도 70.4 vs 72.3%. 심사자의 첫 문장은 반쯤 맞다 — 무릎이 ".90"이 아닐 수는 있지만(e5는 .958) <i>같은 자리</i>에 있다. 논문은 이제 "cos .90"이 아니라 "인코더별로 찾은 정밀도 무릎"을 권고한다. 부산물로, 두 모델이 고른 쌍은 절반~3/4만 겹치고(Jaccard ESCO .73, NCS .50) 둘 다 고른 쌍은 .85 대역에서 83%(단일 76%), 한쪽만 고른 쌍은 42~45% — <b>두 인코더 합의</b>가 싼 정밀도 지렛대다. 태도 접미 제거 변형은 M9에서 만들었고(회수 9.0%) 임베딩 재실행은 남은 선택지.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev done">MID</span><h4>H4의 해석과 민감도 <span style="font-weight:400;color:var(--teal-deep)">→ 해소 (2026-09-10)</span></h4></header><div class="b">
+  <p class="q">"NMI .329가 '부분 일치'의 어느 지점인지 기준이 없다. Louvain 해상도 1.0은 임의이며 군집 수 11은 그 결과다. Jaccard 대신 TF-IDF 코사인을 쓰면 달라지지 않는가? '불일치 66.5%'는 군집 수가 적어서 나온 수치라고 저자 스스로 인정한다."</p>
+  <p><b>보강 — 실행함(M-T0-5).</b> 유사도 {Jaccard, TF-IDF 코사인} × 해상도 {0.5, 1.0, 2.0} 6칸에 우연 보정 AMI와 칸별 순열 영분포를 붙였다(논문 Table 3). 해상도 0.5는 퇴화. 비퇴화 4칸에서 NMI <b>.33~.56</b>(전부 사전 등록 구간 안), AMI <b>.30~.51</b>, ARI ≤ .29. 해상도를 올리면 NMI가 오르지만 영분포도 오르므로(.04→.12) AMI 증가는 작고, IDF 가중은 AMI를 약 .08 올린다(범용 어휘는 일치를 만들지 않고 흐린다). 심사자의 "해상도 1.0은 임의"는 맞고, 그래서 논문은 이제 .329 한 값이 아니라 <b>범위</b>를 요약으로 쓴다. 불일치 정의도 바꿨다: 군집 수와 무관한 '끌려간' 직무(타 대분류와의 평균 유사도 &gt; 자기 대분류) <b>447개(40.4%)</b>, 상위 사례는 해석 가능(아이돌봄→경비·청소, 염생산→식품가공).</p>
+</div></div>
+
+<div class="crit"><header><span class="sev mid">MID</span><h4>S-계열 — 외부 자료 없는 사회적 서술</h4></header><div class="b">
+  <p class="q">"'표준이 산업별 경력 천장을 부호화한다'는 문장은 노동시장 자료 없이는 검증할 수 없다. 태도 코드북은 규칙 코딩이고 신뢰도(κ)가 없다. 이 절은 관찰 보고에 그쳐야 한다."</p>
+  <p><b>현재 답변 — 축소 반영(2026-09-10).</b> §4.5에서 "durable condition" 류의 해석 문장을 지우고, 마지막에 "이 분포는 파이프라인이 기대해야 할 코퍼스 성질로 보고하며, 노동시장을 반영하는지 형성하는지는 표준만으로 판단할 수 없어 별도 연구로 남긴다"는 범위 선언을 넣었다. 요약표의 S1 문구도 "Level ceilings"에서 "Level distributions"로 바꿨다. 코드북 κ는 M8로 미수행 표시. S3는 아예 수행하지 않았다.</p>
+  <p><b>남은 보강.</b> 코드북 300건 이중 코딩(두 저자 두 시간). 사회적 주장은 T0-b(외부 자료 결합)로 완전히 분리 — M-T0-1에서 두 편 분리를 권하는 이유다.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev done">MID</span><h4>재현성과 공개 — 라이선스 <span style="font-weight:400;color:var(--teal-deep)">→ 해소 (2026-09-15)</span></h4></header><div class="b">
+  <p class="q">"공개한다는 별칭 사전과 세분류 지표는 NCS 파생물이다. 재배포 조건이 확인되지 않았다면 '공개'는 약속이 아니라 희망이다. 데이터 없이 코드만 공개되면 재현은 불가능하다."</p>
+  <p><b>현재 답변.</b> M2로 등록되어 있고 저장소는 비공개다.</p>
+  <p><b>보강 — 확인함.</b> NCS 원천은 <b>공공누리 제1유형(출처표시)</b>이다 — 공공데이터포털 「한국산업인력공단_국가직무능력표준 정보」의 이용허락범위와 ncs.go.kr 저작권 정책이 일치한다. 제1유형은 변경·2차 저작·상업적 이용을 모두 허용하므로 <b>별칭 사전과 지표 테이블을 그대로 공개할 수 있고</b>, 의무는 출처표시뿐이다. 대체 서사(재구성 가능성)를 쓸 필요가 없어졌다. 한 가지 예외: <b>학습모듈은 제2유형(출처표시–비영리)</b>이라 T3가 학습모듈을 원천으로 쓰면 그때 다시 따져야 한다. 남은 것은 저장소 공개 전환 시점과 실명 명단(판정 계획 §9) 제거뿐이다.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev low">LOW</span><h4>H5 개정의 크기, H6 어휘 다의성</h4></header><div class="b">
+  <p class="q">"코드 연도는 손댄 시점일 뿐이다. '프로그램'은 교육 프로그램일 수 있다."</p>
+  <p><b>현재 답변.</b> 둘 다 Threats에 명시. 어휘 A/B 민감도는 결론 일치.</p>
+  <p><b>보강.</b> 무작위 100건 수동 검토로 어휘 정밀도를 보고(한 시간). 개정 크기는 과거 릴리스 확보 시 본문 diff — 범위 밖으로 두되 후속으로 언급.</p>
+</div></div>
+
+<div class="crit"><header><span class="sev done">LOW</span><h4>단일 릴리스·언어·프레임워크 <span style="font-weight:400;color:var(--teal-deep)">→ 부분 해소</span></h4></header><div class="b">
+  <p class="q">"결과가 2026-02 릴리스의 한국어 NCS에 한정된다."</p>
+  <p><b>현재 답변.</b> ESCO 재현으로 언어·프레임워크 축은 해소됐다(H3·H4에 한해). 남는 것은 <i>릴리스</i> 축 — 다음 NCS 개정판으로 재검정하는 것이 진짜 사전 등록이 된다(위 PEEK 항목과 같은 처방). H1·H2·H5·H6·S 계열은 ESCO에 대응물이 없어 여전히 NCS 한 코퍼스의 결과다.</p>
+</div></div>
+
+<h3>7.2b 외부 심사 의견(2026-09-14)과 대응</h3>
+<p>저자 외 심사자가 초안 v0.9를 읽고 여덟 항목을 지적했다. 여섯은 그대로 받아들여 반영했고, 둘(②·④)은 근거를 더해 부분 반박했다.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>지적</th><th>판단</th><th>대응 (논문 위치)</th></tr></thead>
+  <tbody>
+    <tr><td>① 숫자가 어떤 결정을 바꿨는지 시연이 없다</td><td>동의 — 최대 약점</td><td>§4.9 신설. NCS 직무 유사 검색·분류 복원 × 개념층 6정책: <b>무제한 병합은 규칙만보다 나쁘고</b>(NMI .17 vs .31) 상한 병합은 개선(≤20 NMI .36, P@5 +3.6%p). ESCO 스킬 라벨 검색(정답): 직접 이웃 확장 F1 74.8·정밀도 94%, ≤5 상한은 커버리지 32%. 설계 규칙 "병합은 보수적으로, 질의 시 확장은 직접 엣지로"</td></tr>
+    <tr><td>② α .17 판정이 흡수 키 22,874개를 떠받친다</td><td>부분 반박</td><td>§4.6 경계 계산: 그 구간 정밀도를 0~100%로 놓아도 검증 회수 16.6~22.8%, CI로는 18.4~20.1%. 합산 비율은 α가 낮아도 편향되지 않음</td></tr>
+    <tr><td>③ Table 5에 CI가 없다</td><td>동의</td><td>문항 부트스트랩 4,000회 전파: 전체 19.2% [18.1, 20.3] · ≤5 15.3% [14.4, 16.1]</td></tr>
+    <tr><td>④ RQ4는 반증 불가능에 가깝다</td><td>부분 동의</td><td>§4.4: 사전 등록 구간이 관대했음을 인정하고 두 단측 기각(영분포 .04 초과 · 완전 복원 NMI .56/ARI .29 미만)으로 재서술</td></tr>
+    <tr><td>⑤ RQ1은 동어반복</td><td>동의</td><td>초록·기여·§4.1·결론을 "잔여물의 국소성"으로 재프레이밍; 99.56%는 지침 준수율로 기술 통계에 강등</td></tr>
+    <tr><td>⑥ §4.5가 논문을 흐린다</td><td>동의(단서)</td><td>요약 한 문단만 본문에, 상세·그림 1은 부록 A로 — 사전 등록 가설을 논문에서 지우면 선택적 보고가 되므로 삭제 대신 이관</td></tr>
+    <tr><td>⑦ 어휘 B는 A의 상위집합</td><td>동의</td><td>다의어를 뺀 어휘 C 추가: ε² .256, ρ .098 — 결론 불변</td></tr>
+    <tr><td>⑧ 초록의 pre-registered 과주장</td><td>동의</td><td>초록에 "9개 중 6개는 탐색 집계를 본 뒤" 절 삽입</td></tr>
+    <tr><td>투고처</td><td>동의</td><td>IP&amp;M 1순위, DKE 위험, GIQ 부적합. LREC-COLING 리소스 트랙은 라이선스 확인(제1유형)으로 <b>가능해짐</b></td></tr>
+    <tr><td>표 7·8 PDF 깨짐, 그림 한글 라벨</td><td>사실</td><td>인쇄 CSS 추가, 그림 1–3 영문 라벨 재생성(대분류 영문명 공식 표기 확인 M11)</td></tr>
+  </tbody>
+</table></div>
+<p><b>2차 의견(같은 날)과 대응.</b> ① §4.9의 NCS 과제가 순환적(§4.4에서 부분적이라 논증한 공식 분류를 정답으로 씀) → ESCO를 주 증거로 앞세우고 NCS는 "공식 분류와의 정합"으로만 표기. ② 붕괴가 정책 문제인지 비가중 Jaccard의 편재 노드 취약성인지 → <b>TF-IDF 패널을 추가했더니 붕괴가 사라졌다</b>(전부 병합 NMI .391 vs 규칙 .393; P@5 33.5 vs 31.2%). 붕괴는 가중치의 인공물이었고, 권고를 "크기 상한"에서 "범용 개념 다운웨이팅 + 병합 비용에 따른 상한 + 직접 엣지 확장"으로 고쳤다 — 첫 결론을 스스로 뒤집은 것이며 그대로 썼다. ③ 표 9·10에 질의·직무 부트스트랩 CI와 Louvain 시드 10개 범위. ④ "문자열 일치 = 0"은 허수아비 → 문자 3-gram TF-IDF 코사인 베이스라인 추가(스킬 적중 91~94%지만 정밀도 30~54%; 임베딩 직접 이웃 F1 74.2 vs 58.2). ⑤ 상한 5(정밀도 최적)와 20(과제 최적)의 불일치를 "병합 정밀도는 다운스트림 효용의 대리변수가 아니다"라는 세 번째 방법론적 교훈으로 명시. ⑥ 쌍 재현율 34.8% vs 질의 응답 78%의 분모 차이를 한 문장으로. ⑦ H4 두 단측 기각을 사후 정밀화로 명시 표기. 초록을 약 250단어로 축약.</p>
+
+<p><b>외부 심사 3·4·5회차(2026-09-15)와 대응.</b> ① 상한 권고가 자기 권고를 무력화한다는 지적 → 상한을 성능 레버가 아니라 <b>공개 자산의 품질 기준</b>으로 옮기고, 별칭 사전이 규칙 단계만 담는다는 사실을 명시하고 임베딩 단계를 후보 파일로 따로 공개. ② ESCO 최선 정책이 개념층을 우회한다 → 지속되는 층이 질의 시점 kNN 대신 주는 것을 §4.9에 명시. ③ 엄격 추정치를 헤드라인으로 쓰는 근거 → 관대 쪽이 더 안정적임을 인정하고 비가역성으로 정당화. ④ §4.4와 Table 10의 NMI 불일치 → 재현 실패가 아니라 입력 차이(공유 키 25,078 vs 전체 키 326,592)임을 캡션에 명시. ⑤ 단일 직무 키 흡수 분해 → 이득 전부가 단일 키에서 오고(정규화 키의 92.3%가 단일 직무), 그중 84%는 "다른 직무의 단일 키끼리 붙어 새 공유 개념이 생기는" 경로 — 권고를 "같은 직무 안 병합 금지·교차 직무는 직접 엣지에서만·상한"으로 구체화. 심사자 서술 중 "가중 후 임베딩 단계 무효"는 절반만 맞아(NMI 무효, P@5 +2.6점은 유의) 정확히 고쳐 적었다.</p>
+<h3>7.3 심사 시뮬레이션</h3>
+<p><b>예상 판정.</b> 정보·데이터 공학 계열 저널(IP&amp;M, DKE)에서 <b>major revision</b>이 가장 그럴듯하다. ESCO 재현 전에는 "기여의 일반성"(7.2 첫 항목)이 유일한 거부 사유였는데, 재현 후에는 거부 사유로 남는 항목이 없고 나머지는 revision에서 처리 가능한 요구다 — 판정 등급은 같아도 <i>거부 위험</i>은 뚜렷이 줄었다. Government Information Quarterly 계열은 방법론보다 정책 함의를 보므로 S-계열이 약한 현재 초안은 핏이 떨어진다 — T0-b가 그쪽이다. 국내 KCI(정보과학·정보관리)는 신규성 기준이 다르고 NCS 자체가 관심사라 accept 가능성이 높지만, 프로그램의 첫 국제 논문으로서의 가치는 줄어든다.</p>
+<p><b>내가 심사자라면 요구할 다섯 가지 (우선순위순).</b></p>
+<ol>
+  <li><s><b>제2 코퍼스(ESCO) 재현</b> — 기여의 일반성을 결과로 바꾼다. 가장 비용 대비 효과가 크다.</s> <b>완료 2026-09-10</b> — §5.7. 규칙 천장·.90 무릎·전이 30%·연쇄·부분 NMI 재현, 템플릿·절대 회수율은 NCS 고유로 판명.</li>
+  <li><b>정밀도 검증 확장</b> — 400쌍, 21+ 군집 층 보강, 박사 2인 adjudication 라운드.</li>
+  <li><s><b>H4 민감도 표</b> — 해상도 × 유사도 2×3. 몇 분.</s> <b>완료 2026-09-10</b> — NMI .33~.56 · AMI .30~.51, 대안 불일치 40.4%.</li>
+  <li><s><b>규칙 단계 정밀도·접미사 민감도</b> — "가정"을 "측정"으로.</s> <b>완료 2026-09-10</b> — 접미사 5변형 3.5~9.0%, 9% 포화. 정밀도는 ESCO 참조(97.8~98.9%), NCS 100쌍 판정은 선택지.</li>
+  <li><s><b>S-계열 축소</b> — 해석 문장 제거, T0-b로 분리 선언.</s> <b>완료 2026-09-10</b> — §4.5 해석 문장 삭제, 범위 선언 추가.</li>
+</ol>
+<p>다섯 중 1·3·4·5는 끝났다(2026-09-10). 7.2의 MID "단일 모델" 항목도 e5-large 재현으로 끝났다(2026-09-11). 2는 부분 완료(2026-09-11) — 21+ 군집 층은 새 판정자 4인으로 60문항을 채웠고, 400쌍 확장과 adjudication은 남았다. 남은 부분은 판정자를 또 모아야 하므로 심사자가 요구할 때 revision에서 처리한다.</p>
+
+<h3>7.4 중립적 총평</h3>
+<p>방법론적 규율은 이 유형의 논문에서 보기 드물게 높고, 헤드라인 수치를 스스로 깎아 내린 §4.6은 신뢰를 산다. 재현 전의 약점은 결과의 <i>의미</i>가 아니라 <i>범위</i>에 있었다 — 한 코퍼스의 한 릴리스에서 얻은 경계값이 얼마나 일반적인가에 대해 주장만 있고 증거가 없었다. ESCO 재현이 그 자리를 채웠고, 더 좋은 방식으로 채웠다: 무엇이 옮겨 가고(규칙 천장·.90 무릎·전이 30%·연쇄·부분 NMI) 무엇이 옮겨 가지 않는지(템플릿·절대 회수율)를 갈라 보였기 때문에, "일반화된다"는 주장보다 "일반성의 경계를 쟀다"는 결과가 됐다. 초안은 이제 "잘 만든 프로파일"에서 "측정된 설계 규칙"으로 넘어갔다. 남은 약점은 정밀도 검증의 규모(200쌍, α .57)와 사후 가설이며, 둘 다 revision 범위의 요구다.</p>
+
+<!-- ═══════════════════════════ 8 ═══════════════════════════ -->
+<h2 id="s8"><span class="k">8 · Q&amp;A</span>발표·질의 대비</h2>
+<div class="qa"><b class="q">Q. 온톨로지를 만든 게 아니면 이 논문의 결과물은 뭔가요?</b><p>측정값과 그 측정이 정한 설계 규칙입니다. "문장은 규칙, 개념은 임베딩 ≤크기 5 자동 병합, 나머지는 판정"이라는 규칙과, 별칭 사전·직무 지표·이탈 목록이라는 자산입니다. 만들기 전에 재는 것이 이 논문의 전부이고, 그게 드물다는 게 기여입니다.</p></div>
+<div class="qa"><b class="q">Q. 28.1%라고 했다가 19.2%라고 하는 이유는?</b><p>28.1%는 임베딩이 <i>제안</i>한 병합의 양이고, 19.2%는 사람이 옳다고 확인한 몫만 센 값입니다(1차 판정만으로는 17.8%, 큰 군집을 2차로 더 판정해 19.2%). 둘을 구분하지 않으면 정렬 품질을 과장하게 되고, 그 과장이 흔하다는 것이 논문의 경고 중 하나입니다.</p></div>
+<div class="qa"><b class="q">Q. 사람 판정자들끼리도 α .57밖에 안 되는데 그 판정을 믿어도 됩니까?</b><p>5범주 세분은 .57이지만 "합칠 것인가"라는 결정 판단은 전문가 사이 .68입니다. 그리고 결론은 CI가 겹치지 않는 큰 대비(직접 72% vs 전이 30%)에만 기댑니다. 낮은 일치도 자체가 발견입니다 — 개념 동일성은 다투어지는 판단이며, 그래서 판정 설계에 다수결과 기권이 필요합니다.</p></div>
+<div class="qa"><b class="q">Q. 왜 .90입니까? .95가 더 안전하지 않나요?</b><p>누적 정밀도가 .90에서 72.3%, .95에서 73.4%입니다. 1.1%p를 얻으려고 회수 절반을 버리는 건 손해입니다. 반대로 .85로 내리면 정밀도가 9.5%p 떨어집니다. .90이 무릎이고, 이건 데이터를 보기 전에 등록한 값입니다.</p></div>
+<div class="qa"><b class="q">Q. 가설 9개 중 4개가 틀렸다는 건 설계가 나빴다는 뜻 아닌가요?</b><p>기대와 다른 결과를 그대로 싣는 것이 사전 등록의 목적입니다. 미충족 넷 중 셋은 공통 원인(대분류 평균의 착시)이 있고 그것이 Discussion의 교훈이 됐습니다. 전부 충족됐다면 오히려 의심받았을 겁니다.</p></div>
+<div class="qa"><b class="q">Q. 코드 연도가 개정 연도라는 걸 어떻게 확신합니까?</b><p>공식 정의가 "개발·개선연도"이고, 버전이 오를수록 연도가 단조 상승합니다(v1 2017 → v7 2023). 연도가 최초 개발에 고정됐다면 개정을 많이 한 단위일수록 오래된 연도를 가져야 하는데 정반대입니다. 다만 개정의 <i>크기</i>는 모릅니다 — 논문에 그렇게 썼습니다.</p></div>
+<div class="qa"><b class="q">Q. NCS에만 해당하는 결과 아닙니까?</b><p>절반은 그렇고 절반은 아닙니다 — 그리고 어느 절반인지 쟀습니다. ESCO에 같은 코드를 돌렸더니 규칙 천장(9%), .90 무릎, 전이 병합 30%, 연쇄 거대 성분, 부분 NMI는 그대로 나왔고, 99.56% 템플릿과 회수율의 절대 수준은 안 나왔습니다. 그러니까 "구조는 규칙, 개념은 모델, 큰 군집은 판정"이라는 설계 규칙은 이식되고, 각 코퍼스의 수준은 다시 재야 합니다. 그 재는 비용이 몇 시간이라는 것까지 보였습니다.</p></div>
+<div class="qa"><b class="q">Q. 판정자가 학생·직원인데 전문가 판정이 아니지 않나요?</b><p>그래서 전문가(교육공학 박사 2인)의 일치도를 천장으로 따로 냈고, 비전문가 일치도가 그 아래에 층을 이룹니다. 주 정밀도는 8인 합산이지만 대비 결론은 어느 집단에서도 같은 방향입니다. 그리고 이건 사람에 대한 발견이 아니라 과제가 도메인 지식을 요구한다는 도구 특성으로 보고합니다.</p></div>
+<div class="qa"><b class="q">Q. 저자가 직접 판정한 건 편향 아닙니까?</b><p>저자 판정은 주 추정치에서 뺐고 비교용으로만 썼습니다. 저자 55.5% vs 외부 49.7%로 CI가 겹치고 불일치가 대칭(18 vs 21)이라 관대했다는 신호가 없습니다.</p></div>
+<div class="qa"><b class="q">Q. 사업관리 대분류가 해체된다는 건 분류가 틀렸다는 뜻인가요?</b><p>"틀렸다"가 아니라 "공유 어휘로 보면 다른 곳에 가깝다"입니다. 프로젝트관리는 정보통신과, 공적개발원조·산학협력은 문화·예술·방송과 어휘를 공유합니다. 분류 개편의 근거 자료이지 판정은 아닙니다.</p></div>
+<div class="qa"><b class="q">Q. 오타를 찾았다는 건 무슨 의미입니까?</b><p>ISO/IEC 27009 "인증섹터"와 "인증센터"가 코사인 .907로 묶였고 판정자 3인 전원이 같은 개념이라 했습니다. 표준 원문의 오타입니다. 임베딩 정렬이 온톨로지 구축뿐 아니라 표준 품질 감사에도 쓰인다는 사례입니다.</p></div>
+<div class="qa"><b class="q">Q. 이 논문의 가장 약한 고리는?</b><p>범위입니다. 한 코퍼스, 한 릴리스, 한 인코더, 200쌍 판정. 결과의 방향은 튼튼하지만 수치의 일반성은 증명되지 않았습니다. 제2 코퍼스 재현이 답입니다.</p></div>
+
+<!-- ═══════════════════════════ 9 ═══════════════════════════ -->
+<h2 id="s9"><span class="k">9 · GLOSSARY</span>용어 사전</h2>
+<div class="term">
+  <p><b>표면형(surface form)</b> — 원문에 실제로 적힌 문자열. "통계 분석 지식", "통계분석기법"은 서로 다른 표면형.</p>
+  <p><b>정규화 키(normalization key)</b> — 규칙으로 표면형을 정규화한 문자열. 같은 키 = 규칙이 같은 개념으로 본 것.</p>
+  <p><b>파편화 지수(fragmentation index)</b> — 표면형 수 / 키(또는 클러스터) 수. 1이면 파편화 없음.</p>
+  <p><b>결합 회수율(combined recovery)</b> — (표면형 − 최종 클러스터) / 표면형. 규칙과 임베딩이 합쳐 없앤 중복 표기의 비율.</p>
+  <p><b>제안 회수율 vs 검증 회수율</b> — 기계가 합친 양 vs 사람이 옳다고 확인한 몫만 센 양.</p>
+  <p><b>직접 엣지 / 전이 동반</b> — 두 키가 코사인 임계값 이상으로 직접 연결됨 / 같은 군집이지만 직접 연결 없이 사슬로 이어짐.</p>
+  <p><b>단일 연결(single linkage)·전이 폐포</b> — 연결된 것은 전부 한 군집. 사슬(chaining) 문제의 원인.</p>
+  <p><b>Louvain</b> — 모듈성(군집 내부 연결 밀도)을 최적화하는 커뮤니티 탐지. 군집 수를 미리 정하지 않는다.</p>
+  <p><b>NMI / ARI</b> — 두 군집화의 일치도. NMI는 정보량 기반(0~1), ARI는 쌍 일치 기반(우연 보정). 군집 수가 다르면 ARI가 낮게 나오기 쉽다.</p>
+  <p><b>순열 영분포</b> — 라벨을 무작위로 섞어 "우연이면 얼마나 나오는가"를 만든 분포.</p>
+  <p><b>ε² (epsilon squared)</b> — Kruskal–Wallis의 효과 크기. 집단 차이가 전체 분산의 몇 %인지에 가깝다.</p>
+  <p><b>Krippendorff's α</b> — 판정자 수·결측·척도 종류에 무관한 일치도. 0 = 우연, 1 = 완전 일치. .67 이상을 잠정 수용, .80 이상을 신뢰로 보는 관행이 있다.</p>
+  <p><b>문항 단위 부트스트랩</b> — 판정이 아니라 문항을 재표집하는 신뢰구간. 같은 문항의 여러 판정이 독립이 아님을 반영.</p>
+  <p><b>PEEK / CLEAN</b> — 탐색 집계를 본 뒤 세운 가설 / 탐색에서 계산하지 않은 지표의 가설.</p>
+  <p><b>반분(split-half)</b> — 표본을 무작위로 둘로 나눠 두 번 검정, 둘 다 같은 결론일 때만 재현으로 인정.</p>
+  <p><b>BH-FDR</b> — 여러 검정에서 거짓 발견의 기대 비율을 5%로 통제하는 절차.</p>
+  <p><b>앵커링</b> — 먼저 본 숫자에 판단이 끌려가는 편향. 판정 화면에서 유사도를 숨기는 이유.</p>
+  <p><b>엄격 / 관대 정밀도</b> — 「같은 개념」만 / 「같은 개념 + 상하위」를 옳은 병합으로 셈.</p>
+  <p><b>앵커 집합 / 블록</b> — 판정자 전원이 보는 공통 문항 / 각자 맡는 고유 문항.</p>
+  <p><b>검증 의존성</b> — LLM 산출물의 가치는 사람 검증 전까지 주장하지 않는다는 프로그램 원칙. T0는 그 바깥.</p>
+  <p><b>bge-m3</b> — 다국어 오픈웨이트 문장 임베딩 모델. 로컬 실행 가능, API 비용 0.</p>
+</div>
+
+<!-- ═══════════════════════════ 10 ═══════════════════════════ -->
+<h2 id="s10"><span class="k">10 · APPENDIX</span>부록 — 숫자 한 장·파일 지도</h2>
+<h3>숫자 한 장</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>항목</th><th class="num">값</th><th>층</th></tr></thead>
+  <tbody>
+    <tr><td>대분류 / 중 / 소 / 세분류</td><td class="num">24 / 81 / 274 / 1,109</td><td>원천</td></tr>
+    <tr><td>능력단위 / 요소 / 수행준거 / KSA</td><td class="num">13,435 / 47,620 / 196,658 / 2,457,556</td><td>원천</td></tr>
+    <tr><td>KSA 고유 표면형</td><td class="num">355,896 (14.5%)</td><td>원천</td></tr>
+    <tr><td>H1 템플릿 준수 · 이탈 · 집중</td><td class="num">99.563% · 859 · 26직무(2.3%)</td><td>원천</td></tr>
+    <tr><td>H2 고유 비율 · ε² 통제 전/후</td><td class="num">16.07% · .158 / .191</td><td>원천</td></tr>
+    <tr><td>H3 규칙 키 · 회수 · ρ · 유형 불일치</td><td class="num">326,592 · 8.2% · .539 · 6,310(1.9%)</td><td>원천</td></tr>
+    <tr><td>H3 임베딩 회수 .95/.90/.85</td><td class="num">13.6 / 28.1 / 51.3%</td><td>모델 보조</td></tr>
+    <tr><td>H3 최대 군집 단일연결→Louvain (.90)</td><td class="num">17,118 → 1,084</td><td>모델 보조</td></tr>
+    <tr><td>H3 정밀도 직접 .85–.90/.90–.95/.95+ · 전이</td><td class="num">43.8 / 71.1 / 73.4 · 30.1%</td><td>사람 판정</td></tr>
+    <tr><td>H3 α 박사 4인 / 외부8인 (5범주 / 이진)</td><td class="num">.408/.503 · .315/.487</td><td>사람 판정</td></tr>
+    <tr><td>H3 전문가 쌍 6개 α 범위 · 원래 쌍</td><td class="num">.335–.569 (중앙 .396) · .569 = 최고</td><td>사람 판정</td></tr>
+    <tr><td>H3 검증 회수 엄격 / 관대 · 권고 정책</td><td class="num">19.2 / 23.6% (1차만 17.8 / 21.1) · 크기≤5 → 15.3%(66%)</td><td>보정</td></tr>
+    <tr><td>H3 2차 21–100 / 100+ 전이 정밀도 엄격 · 새 4인 α</td><td class="num">41.1 / 42.2% [32.2, 50.6 합산] · .174/.258</td><td>사람 판정</td></tr>
+    <tr><td>H4 NMI · 영분포 · IDF 변형 · 군집 수</td><td class="num">.329 · .041±.004 · .341 · 11</td><td>원천</td></tr>
+    <tr><td>H4 격자 NMI / AMI 범위 (비퇴화 4칸) · 끌려간 직무</td><td class="num">.33–.56 / .30–.51 · 447 (40.4%)</td><td>원천</td></tr>
+    <tr><td>H3 규칙 접미사 5변형 회수</td><td class="num">3.5 / 4.8 / 8.2 / 8.5 / 9.0%</td><td>원천</td></tr>
+    <tr><td>인코더 e5 일치 cut .85/.90/.95 · ESCO 정밀도 · NCS 회수 · 태도 참여</td><td class="num">.936/.958/.982 · 76.5/93.0/99.0% · 28.4% · 38.7%</td><td>모델 보조</td></tr>
+    <tr><td>두 인코더 교집합 정밀도 ESCO .85/.90 (단일)</td><td class="num">83.1 (76) / 95.1% (92.8)</td><td>정답(URI)</td></tr>
+    <tr><td>H5 ε² · 지니 · 최신/최구</td><td class="num">.175 · .314 · 2021.7 / 2015.3</td><td>원천</td></tr>
+    <tr><td>H6 교호 ρ · 분포 ε²</td><td class="num">.077 · .208</td><td>원천</td></tr>
+    <tr><td>S1 ε² · L5+ 최고/최저</td><td class="num">.242 · 71.6 / 7.3%</td><td>원천</td></tr>
+    <tr><td>S2 1위 / 2위 · V</td><td class="num">의지 38.5 / 준수 20.4 · .125</td><td>원천</td></tr>
+    <tr><td>S2 정정 — 자세·마음·태도 제외 시</td><td class="num">의지 20.6 / 준수 20.4 (동률)</td><td>원천</td></tr>
+    <tr><td>S4 W · p</td><td class="num">.449 · .123</td><td>원천</td></tr>
+    <tr><td>사전 등록 충족 / FDR 유의</td><td class="num">5/9 · 8/9</td><td>—</td></tr>
+    <tr><td>ESCO v1.2.1 스킬 / 직업 / 표면형 / 개념</td><td class="num">13,960 / 3,039 / 99,676 / 13,939</td><td>원천(ESCO)</td></tr>
+    <tr><td>ESCO 동사 초두 · 규칙 R0 / R1 회수</td><td class="num">79.9% · 0.9 / 9.3% (정밀도 98~99%)</td><td>원천(ESCO)</td></tr>
+    <tr><td>ESCO 직접 정밀도 .85–.90/.90–.95/.95+ · 전이</td><td class="num">57.0 / 88.6 / 98.7 · 29.2%</td><td>정답(URI)</td></tr>
+    <tr><td>ESCO Louvain@.90 제안 / 검증 / 병합 정밀도 · 단일연결@.85 거대</td><td class="num">62.7 / 59.5 / 95.0% · 34.0%</td><td>정답(URI)</td></tr>
+    <tr><td>ESCO NMI ISCO-1 / ISCO-2 · 영분포</td><td class="num">.263 / .401 · .008±.001</td><td>원천(ESCO)</td></tr>
+  </tbody>
+</table></div>
+<h3>파일 지도</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>단계</th><th>파일</th><th>역할</th></tr></thead>
+  <tbody>
+    <tr><td>탐색</td><td><code>scripts/ncs_corpus_stats_ea11.sql</code> · <code>docs/ea11/</code></td><td>대분류 집계 7종, EA11 기록</td></tr>
+    <tr><td>사전 등록</td><td><code>docs/t0-preregistration.html</code></td><td>가설·지표·검정·결정 항목 (3c60a2e 동결)</td></tr>
+    <tr><td>확증</td><td><code>scripts/t0_analysis.py</code> → <code>docs/t0/t0_results.json</code>, <code>t0_report.md</code></td><td>H1–H6·S1·S2·S4, 반분·FDR</td></tr>
+    <tr><td>H3 2단계</td><td><code>scripts/t0_embed_recovery.py</code> → <code>t0_h3_embedding.json</code></td><td>전수 임베딩·쌍 캐시·단일연결/Louvain</td></tr>
+    <tr><td>H3 3단계</td><td><code>t0_build_validation_sample.py</code> · <code>t0_assign_validation_blocks.py</code> · <code>templates/t0_validation_ui.html</code> · <code>vercel-validation/</code></td><td>표본·배정·판정 UI·수집 API</td></tr>
+    <tr><td>H3 집계</td><td><code>t0_analyze_validation.py</code> · <code>t0_verified_recovery.py</code></td><td>정밀도·α·저자 비교 · 보정 회수율</td></tr>
+    <tr><td>그림</td><td><code>t0_figures.py</code> · <code>t0_inline_figures.py</code> → <code>docs/t0/figures/</code></td><td>F1–F3 SVG, 논문 인라인</td></tr>
+    <tr><td>민감도</td><td><code>t0_sensitivity.py</code> → <code>docs/t0/t0_sensitivity.json</code></td><td>M9 접미사 5변형 · H4 2×3 격자 + AMI · 끌려간 직무</td></tr>
+    <tr><td>다운스트림</td><td><code>t0_downstream_ncs.py</code> · <code>t0_downstream_esco.py</code> → <code>docs/t0/t0_downstream_ncs.json</code> · <code>docs/esco/esco_downstream.json</code></td><td>개념층 정책 × 과제 (§4.9)</td></tr>
+    <tr><td>CI·어휘</td><td><code>t0_verified_recovery_ci.py</code> · <code>t0_lexicon_c.py</code></td><td>Table 5 CI 전파·경계 · 어휘 C</td></tr>
+    <tr><td>인코더</td><td><code>t0_encoder_sensitivity.py</code> → <code>docs/t0/t0_encoder_sensitivity.json</code></td><td>e5-large 쌍 수 일치 비교(A 판정 200쌍 · B ESCO · C NCS · D 두 모델 합의). 캐시 npz 비추적</td></tr>
+    <tr><td>ESCO 재현</td><td><code>esco_load_csv.py</code> · <code>esco_version_check.py</code> · <code>esco_replication.py</code> → <code>docs/esco/esco_replication.json</code></td><td>공식 CSV 변환 · delta 대조 버전 확인 · E-H1~E-H4 (원본·캐시 비추적)</td></tr>
+    <tr><td>문서</td><td><code>docs/t0-results-2026-09-09.html</code> · <code>docs/t0-validation-plan.md</code> · <code>paper-draft-t0a.html</code></td><td>결과(§5 ESCO 포함) · 판정 계획·윤리 · 초안 v1.3(IP&amp;M 투고 요건 정렬) — 공개본은 https://github.com/JinsuChung/ncs-computational-anatomy</td></tr>
+  </tbody>
+</table></div>
+<h3>남은 결정 (M-T0)</h3>
+<ul>
+  <li><b>M-T0-1</b> 한 편 vs 두 편 — 두 편을 권한다(T0-a 구축 관점, T0-b 문서편 또는 사회·정책편). <b>지도교수 결정 대기.</b></li>
+  <li><s><b>M-T0-2</b> 공개 자산 라이선스</s> — 해소. 공공누리 제1유형, 파생물 공개 가능. 판정 계획의 실명 제거 완료(2026-09-15).</li>
+  <li><s><b>M-T0-4</b> 저널</s> — <b>Information Processing &amp; Management 확정</b>(2026-09-15). 요건 정렬 완료: 초록 249단어 · Highlights 5 · CRediT · 선언 4종 · 참고문헌 27건 DOI 전수.</li>
+  <li><s><b>M-T0-5</b> H4 해상도 민감도</s> — 완료 2026-09-10 (논문 Table 3).</li>
+  <li><b>M12</b> 공개 저장소 — <a href="https://github.com/JinsuChung/ncs-computational-anatomy">https://github.com/JinsuChung/ncs-computational-anatomy</a>: 재현용 코드·집계·원고만 담은 새 저장소(깨끗한 히스토리). Zenodo DOI는 계정이 필요해 미발급.</li>
+  <li><b>M13</b> IRB 비해당 확인 — <b>소속 기관 회신 대기.</b> IP&amp;M 은 인간 판정자가 있으면 반드시 묻는다.</li>
+</ul>
+
+<div class="footnote">
+  <p>· 모든 수치는 2026-09-09~15 실행 결과이며 원천/모델 보조/사람 판정 층을 본문에 표시했다. 예측치는 없다.</p>
+  <p>· 7장의 심사자 문장은 저자가 스스로에게 가한 것이며, 실제 심사와 다를 수 있다. 열거된 요구 다섯 가지 중 첫째(ESCO 재현)는 2026-09-10 처리했고, 둘째(정밀도 검증 확장)는 2·3차 판정(총 14인·960판정)으로 2026-09-11·15 처리했다.</p>
+  <p>· ESCO 수치는 European Commission의 ESCO v1.2.1 분류를 사용했다. "This publication uses the ESCO classification of the European Commission."</p>
+</div>
+</div>

@@ -1,0 +1,294 @@
+{
+  "n_anchor_items": 50,
+  "judgments_per_rater": {
+    "EV-1": 50,
+    "EV-10": 50,
+    "EV-11": 50,
+    "EV-2": 50
+  },
+  "alpha": {
+    "four_phd": {
+      "label": "교육공학 박사 4인 (새 천장)",
+      "n_raters": 4,
+      "raters": [
+        "EV-1",
+        "EV-2",
+        "EV-10",
+        "EV-11"
+      ],
+      "five_way": 0.4078670440525437,
+      "five_way_ci": [
+        0.28493931252027177,
+        0.5204362706707755
+      ],
+      "merge": 0.5027276246788441,
+      "merge_ci": [
+        0.35243350311262023,
+        0.6351095058718292
+      ]
+    },
+    "old_pair": {
+      "label": "1차 박사 2인 (기존 천장)",
+      "n_raters": 2,
+      "raters": [
+        "EV-1",
+        "EV-2"
+      ],
+      "five_way": 0.568895800933126,
+      "five_way_ci": [
+        0.3734041903727489,
+        0.7411800935379751
+      ],
+      "merge": 0.6826923076923077,
+      "merge_ci": [
+        0.474734544909916,
+        0.8726511415036005
+      ]
+    },
+    "new_pair": {
+      "label": "3차 박사 2인 (교외)",
+      "n_raters": 2,
+      "raters": [
+        "EV-10",
+        "EV-11"
+      ],
+      "five_way": 0.40138209041174777,
+      "five_way_ci": [
+        0.21091959125169868,
+        0.5847906271537118
+      ],
+      "merge": 0.47110247693054885,
+      "merge_ci": [
+        0.18257425033211444,
+        0.7204968944099379
+      ]
+    }
+  },
+  "alpha_pairwise": {
+    "EV-1×EV-2": {
+      "label": "EV-1×EV-2",
+      "n_raters": 2,
+      "raters": [
+        "EV-1",
+        "EV-2"
+      ],
+      "five_way": 0.568895800933126,
+      "five_way_ci": [
+        0.3734041903727489,
+        0.7411800935379751
+      ],
+      "merge": 0.6826923076923077,
+      "merge_ci": [
+        0.474734544909916,
+        0.8726511415036005
+      ]
+    },
+    "EV-1×EV-10": {
+      "label": "EV-1×EV-10",
+      "n_raters": 2,
+      "raters": [
+        "EV-1",
+        "EV-10"
+      ],
+      "five_way": 0.3944072240023304,
+      "five_way_ci": [
+        0.20255362208961059,
+        0.5726739347665691
+      ],
+      "merge": 0.459016393442623,
+      "merge_ci": [
+        0.2093316519546028,
+        0.6955675675675674
+      ]
+    },
+    "EV-1×EV-11": {
+      "label": "EV-1×EV-11",
+      "n_raters": 2,
+      "raters": [
+        "EV-1",
+        "EV-11"
+      ],
+      "five_way": 0.33479404031551274,
+      "five_way_ci": [
+        0.12928735214492063,
+        0.5310074847955496
+      ],
+      "merge": 0.49575551782682514,
+      "merge_ci": [
+        0.24363327674023771,
+        0.7274011948529409
+      ]
+    },
+    "EV-2×EV-10": {
+      "label": "EV-2×EV-10",
+      "n_raters": 2,
+      "raters": [
+        "EV-2",
+        "EV-10"
+      ],
+      "five_way": 0.3426674364896074,
+      "five_way_ci": [
+        0.13937365350937983,
+        0.5292741792734127
+      ],
+      "merge": 0.3757881462799496,
+      "merge_ci": [
+        0.10810810810810811,
+        0.6254728877679698
+      ]
+    },
+    "EV-2×EV-11": {
+      "label": "EV-2×EV-11",
+      "n_raters": 2,
+      "raters": [
+        "EV-2",
+        "EV-11"
+      ],
+      "five_way": 0.39756592292089243,
+      "five_way_ci": [
+        0.18456707651024512,
+        0.5821933283901929
+      ],
+      "merge": 0.49575551782682514,
+      "merge_ci": [
+        0.23849988339552233,
+        0.7201755514705881
+      ]
+    },
+    "EV-10×EV-11": {
+      "label": "EV-10×EV-11",
+      "n_raters": 2,
+      "raters": [
+        "EV-10",
+        "EV-11"
+      ],
+      "five_way": 0.40138209041174777,
+      "five_way_ci": [
+        0.21091959125169868,
+        0.5847906271537118
+      ],
+      "merge": 0.47110247693054885,
+      "merge_ci": [
+        0.18257425033211444,
+        0.7204968944099379
+      ]
+    }
+  },
+  "per_rater": {
+    "EV-1": {
+      "n": 50,
+      "strict_rate": 0.48,
+      "lenient_rate": 0.62,
+      "dist": {
+        "same": 0.48,
+        "hierarchy": 0.14,
+        "related": 0.34,
+        "unrelated": 0.02,
+        "unsure": 0.02
+      }
+    },
+    "EV-10": {
+      "n": 50,
+      "strict_rate": 0.3,
+      "lenient_rate": 0.64,
+      "dist": {
+        "same": 0.3,
+        "hierarchy": 0.34,
+        "related": 0.3,
+        "unrelated": 0.04,
+        "unsure": 0.02
+      }
+    },
+    "EV-11": {
+      "n": 50,
+      "strict_rate": 0.28,
+      "lenient_rate": 0.66,
+      "dist": {
+        "same": 0.28,
+        "hierarchy": 0.38,
+        "related": 0.3,
+        "unrelated": 0.04
+      }
+    },
+    "EV-2": {
+      "n": 50,
+      "strict_rate": 0.48,
+      "lenient_rate": 0.64,
+      "dist": {
+        "same": 0.48,
+        "hierarchy": 0.16,
+        "related": 0.3,
+        "unrelated": 0.06
+      }
+    }
+  },
+  "group_rates": {
+    "old_pair": {
+      "n": 100,
+      "strict": 0.48,
+      "lenient": 0.63,
+      "dist": {
+        "same": 0.48,
+        "hierarchy": 0.15,
+        "related": 0.32,
+        "unrelated": 0.04,
+        "unsure": 0.01
+      }
+    },
+    "new_pair": {
+      "n": 100,
+      "strict": 0.29,
+      "lenient": 0.65,
+      "dist": {
+        "same": 0.29,
+        "hierarchy": 0.36,
+        "related": 0.3,
+        "unrelated": 0.04,
+        "unsure": 0.01
+      }
+    },
+    "four_phd": {
+      "n": 200,
+      "strict": 0.385,
+      "lenient": 0.64,
+      "dist": {
+        "same": 0.385,
+        "hierarchy": 0.255,
+        "related": 0.31,
+        "unrelated": 0.04,
+        "unsure": 0.01
+      }
+    }
+  },
+  "phd4_precision_by_band": {
+    "0.85-0.90": {
+      "n_judgments": 40,
+      "n_items": 10,
+      "strict": 0.3,
+      "lenient": 0.625
+    },
+    "0.90-0.95": {
+      "n_judgments": 40,
+      "n_items": 10,
+      "strict": 0.6,
+      "lenient": 0.825
+    },
+    "0.95-1.01": {
+      "n_judgments": 40,
+      "n_items": 10,
+      "strict": 0.65,
+      "lenient": 0.825
+    },
+    "transitive": {
+      "n_judgments": 80,
+      "n_items": 20,
+      "strict": 0.1875,
+      "lenient": 0.4625
+    }
+  },
+  "item_agreement_four": {
+    "3-1": 21,
+    "unanimous": 16,
+    "2-2 또는 분산": 13
+  }
+}

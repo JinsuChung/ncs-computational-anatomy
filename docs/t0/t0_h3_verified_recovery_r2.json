@@ -1,0 +1,158 @@
+{
+  "n_surface_forms": 355896,
+  "keys_absorbed_at_090": 70869,
+  "stage1_rule_recovery": 0.08233842937703886,
+  "embedding_raw_contribution_pp": 0.19912839705981522,
+  "p_direct_edge_cos_ge_090": {
+    "strict": 0.72265625,
+    "lenient": 0.8515625,
+    "n": 256
+  },
+  "p_transitive_by_cluster_size": {
+    "3-5": {
+      "n": 167,
+      "strict": 0.32934131736526945,
+      "lenient": 0.5688622754491018
+    },
+    "6-20": {
+      "n": 68,
+      "strict": 0.2647058823529412,
+      "lenient": 0.5
+    },
+    "21-100": {
+      "n": 90,
+      "strict": 0.4111111111111111,
+      "lenient": 0.8555555555555555,
+      "strict_ci95": [
+        0.2777777777777778,
+        0.5444444444444444
+      ],
+      "lenient_ci95": [
+        0.7666666666666667,
+        0.9444444444444444
+      ],
+      "note": "2차(R2) 층별 실측 — 문항 30, 판정자 3인"
+    },
+    "100+": {
+      "n": 90,
+      "strict": 0.4222222222222222,
+      "lenient": 0.7555555555555555,
+      "strict_ci95": [
+        0.3,
+        0.5555555555555556
+      ],
+      "lenient_ci95": [
+        0.6555555555555556,
+        0.8444444444444444
+      ],
+      "note": "2차(R2) 층별 실측 — 문항 30, 판정자 3인"
+    },
+    "21+": {
+      "n": 21,
+      "strict": 0.19047619047619047,
+      "lenient": 0.38095238095238093
+    }
+  },
+  "per_bucket": {
+    "2": {
+      "keys_absorbed": 20788,
+      "clusters": 20788,
+      "direct_edge_share": 1.0,
+      "precision_strict": 0.72265625,
+      "precision_lenient": 0.8515625,
+      "verified_keys_strict": 15022.578125,
+      "verified_keys_lenient": 17702.28125
+    },
+    "3-5": {
+      "keys_absorbed": 17048,
+      "clusters": 6933,
+      "direct_edge_share": 0.6744073847737287,
+      "precision_strict": 0.5945958124759134,
+      "precision_lenient": 0.7595173945634189,
+      "verified_keys_strict": 10136.669411089371,
+      "verified_keys_lenient": 12948.252542517166
+    },
+    "6-20": {
+      "keys_absorbed": 10159,
+      "clusters": 1317,
+      "direct_edge_share": 0.30844515214478513,
+      "precision_strict": 0.4059584531765985,
+      "precision_lenient": 0.6084377488009011,
+      "verified_keys_strict": 4124.131925821064,
+      "verified_keys_lenient": 6181.119090068354
+    },
+    "21-100": {
+      "keys_absorbed": 6034,
+      "clusters": 160,
+      "direct_edge_share": 0.08205372952633909,
+      "precision_strict": 0.4366745516727457,
+      "precision_lenient": 0.8552279104550163,
+      "verified_keys_strict": 2634.8942447933478,
+      "verified_keys_lenient": 5160.445211685568
+    },
+    "100+": {
+      "keys_absorbed": 16840,
+      "clusters": 48,
+      "direct_edge_share": 0.014266838268291955,
+      "precision_strict": 0.4265084659068193,
+      "precision_lenient": 0.7569252711045773,
+      "verified_keys_strict": 7182.402565870837,
+      "verified_keys_lenient": 12746.621565401081
+    }
+  },
+  "overall": {
+    "precision_strict": 0.5517317342219394,
+    "precision_lenient": 0.7723930020131816,
+    "verified_pp_strict": 0.10986545584264679,
+    "verified_pp_lenient": 0.1538053803911035,
+    "combined_verified_strict": 0.19220388521968565,
+    "combined_verified_lenient": 0.23614380976814237
+  },
+  "policies": {
+    "size2_only(직접 엣지만)": {
+      "keys_absorbed": 20788,
+      "raw_recovery_pp": 0.058410322116573384,
+      "precision_strict": 0.72265625,
+      "precision_lenient": 0.8515625,
+      "verified_recovery_pp_strict": 0.042210584342054984,
+      "verified_recovery_pp_lenient": 0.04974003992739452,
+      "combined_verified_strict": 0.12454901371909385,
+      "combined_verified_lenient": 0.1320784693044334,
+      "combined_raw": 0.14074875149361224
+    },
+    "size<=5": {
+      "keys_absorbed": 37836,
+      "raw_recovery_pp": 0.10631195630184098,
+      "precision_strict": 0.6649552684239711,
+      "precision_lenient": 0.8100891688475834,
+      "verified_recovery_pp_strict": 0.07069269543936817,
+      "verified_recovery_pp_lenient": 0.08612216431911897,
+      "combined_verified_strict": 0.15303112481640702,
+      "combined_verified_lenient": 0.16846059369615785,
+      "combined_raw": 0.18865038567887984
+    },
+    "size<=20": {
+      "keys_absorbed": 47995,
+      "raw_recovery_pp": 0.13485681210241193,
+      "precision_strict": 0.610133961077413,
+      "precision_lenient": 0.7674060398496827,
+      "verified_recovery_pp_strict": 0.08228072094631701,
+      "verified_recovery_pp_lenient": 0.1034899321222647,
+      "combined_verified_strict": 0.1646191503233559,
+      "combined_verified_lenient": 0.18582836149930357,
+      "combined_raw": 0.2171952414794508
+    },
+    "all(전부)": {
+      "keys_absorbed": 70869,
+      "raw_recovery_pp": 0.19912839705981522,
+      "precision_strict": 0.5517317342219394,
+      "precision_lenient": 0.7723930020131816,
+      "verified_recovery_pp_strict": 0.10986545584264679,
+      "verified_recovery_pp_lenient": 0.1538053803911035,
+      "combined_verified_strict": 0.19220388521968565,
+      "combined_verified_lenient": 0.23614380976814237,
+      "combined_raw": 0.28146682643685406
+    }
+  },
+  "note": "21-100/100+ 전이 정밀도는 2차(R2, 2026-09-11) 층별 실측(각 문항 30, 3인 판정)으로 대체. 나머지는 1차와 동일."
+}

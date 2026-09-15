@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ontological-ncs-postgres
+    environment:
+      POSTGRES_DB: ncs
+      POSTGRES_USER: ncs
+      POSTGRES_PASSWORD: ncs
+    ports:
+      # 호스트의 5432/5433/5434는 다른 프로젝트가 사용 중이라 멀리 떨어진 55432를 쓴다.
+      # 변경 시 .env / .env.example / README의 DATABASE_URL도 함께 맞출 것.
+      - "55432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ncs -d ncs"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  postgres_data:

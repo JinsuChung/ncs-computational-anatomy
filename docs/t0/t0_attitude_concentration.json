@@ -1,0 +1,210 @@
+{
+  "n_distinct_attitude_sentences": 82700,
+  "n_attitude_units": 95237,
+  "by_keyword": {
+    "준수": {
+      "n_distinct_sentences": 10502,
+      "n_units": 13481,
+      "share_of_all_attitude_units": 0.1416,
+      "units_per_sentence": 1.28,
+      "top5_concentration": 0.0395,
+      "top_sentence": "안전사항 준수",
+      "top_sentence_jobs": 172,
+      "examples_top3": [
+        {
+          "text": "안전사항 준수",
+          "jobs": 172
+        },
+        {
+          "text": "안전수칙 준수",
+          "jobs": 134
+        },
+        {
+          "text": "기술기준 준수",
+          "jobs": 111
+        }
+      ]
+    },
+    "안전": {
+      "n_distinct_sentences": 5097,
+      "n_units": 6813,
+      "share_of_all_attitude_units": 0.0715,
+      "units_per_sentence": 1.34,
+      "top5_concentration": 0.0687,
+      "top_sentence": "안전사항 준수",
+      "top_sentence_jobs": 172,
+      "examples_top3": [
+        {
+          "text": "안전사항 준수",
+          "jobs": 172
+        },
+        {
+          "text": "안전수칙 준수",
+          "jobs": 134
+        },
+        {
+          "text": "안전수칙 준수 의지",
+          "jobs": 60
+        }
+      ]
+    },
+    "규정": {
+      "n_distinct_sentences": 1690,
+      "n_units": 1992,
+      "share_of_all_attitude_units": 0.0209,
+      "units_per_sentence": 1.18,
+      "top5_concentration": 0.0392,
+      "top_sentence": "안전규정 준수",
+      "top_sentence_jobs": 31,
+      "examples_top3": [
+        {
+          "text": "안전규정 준수",
+          "jobs": 31
+        },
+        {
+          "text": "안전규정을 준수하려는 태도",
+          "jobs": 19
+        },
+        {
+          "text": "규정을 준수하는 태도",
+          "jobs": 10
+        }
+      ]
+    },
+    "지침": {
+      "n_distinct_sentences": 728,
+      "n_units": 822,
+      "share_of_all_attitude_units": 0.0086,
+      "units_per_sentence": 1.13,
+      "top5_concentration": 0.0292,
+      "top_sentence": "환경관리지침 준수 태도",
+      "top_sentence_jobs": 6,
+      "examples_top3": [
+        {
+          "text": "환경관리지침 준수 태도",
+          "jobs": 6
+        },
+        {
+          "text": "법규, 조례, 지침의 개정과 동향을 지속적으로 파악하려는 태도",
+          "jobs": 5
+        },
+        {
+          "text": "자료수집 시 대인관계 지침 준수",
+          "jobs": 5
+        }
+      ]
+    },
+    "의지": {
+      "n_distinct_sentences": 11683,
+      "n_units": 13826,
+      "share_of_all_attitude_units": 0.1452,
+      "units_per_sentence": 1.18,
+      "top5_concentration": 0.0163,
+      "top_sentence": "원활한 커뮤니케이션 창출을 위한 의지",
+      "top_sentence_jobs": 63,
+      "examples_top3": [
+        {
+          "text": "원활한 커뮤니케이션 창출을 위한 의지",
+          "jobs": 63
+        },
+        {
+          "text": "안전수칙 준수 의지",
+          "jobs": 60
+        },
+        {
+          "text": "안전사항 준수 의지",
+          "jobs": 56
+        }
+      ]
+    },
+    "노력": {
+      "n_distinct_sentences": 12079,
+      "n_units": 13131,
+      "share_of_all_attitude_units": 0.1379,
+      "units_per_sentence": 1.09,
+      "top5_concentration": 0.0088,
+      "top_sentence": "기술적 위험에 적극적으로 대비하려는 노력",
+      "top_sentence_jobs": 71,
+      "examples_top3": [
+        {
+          "text": "기술적 위험에 적극적으로 대비하려는 노력",
+          "jobs": 71
+        },
+        {
+          "text": "인증 심사에 대한 철저한 대비 노력",
+          "jobs": 13
+        },
+        {
+          "text": "위험에 적극적으로 대비하려는 노력",
+          "jobs": 12
+        }
+      ]
+    },
+    "적극": {
+      "n_distinct_sentences": 8500,
+      "n_units": 9888,
+      "share_of_all_attitude_units": 0.1038,
+      "units_per_sentence": 1.16,
+      "top5_concentration": 0.0152,
+      "top_sentence": "기술적 위험에 적극적으로 대비하려는 노력",
+      "top_sentence_jobs": 71,
+      "examples_top3": [
+        {
+          "text": "기술적 위험에 적극적으로 대비하려는 노력",
+          "jobs": 71
+        },
+        {
+          "text": "고객의 요청 적극적인 수용",
+          "jobs": 26
+        },
+        {
+          "text": "고객의 요청을 적극적으로 수용하려는 태도",
+          "jobs": 22
+        }
+      ]
+    }
+  },
+  "top_sentences_by_breadth": [
+    {
+      "text": "안전사항 준수",
+      "jobs": 172
+    },
+    {
+      "text": "안전수칙 준수",
+      "jobs": 134
+    },
+    {
+      "text": "기술기준 준수",
+      "jobs": 111
+    },
+    {
+      "text": "기술적 위험에 적극적으로 대비하려는 노력",
+      "jobs": 71
+    },
+    {
+      "text": "원활한 커뮤니케이션 창출을 위한 의지",
+      "jobs": 63
+    },
+    {
+      "text": "안전수칙 준수 의지",
+      "jobs": 60
+    },
+    {
+      "text": "안전사항 준수 의지",
+      "jobs": 56
+    },
+    {
+      "text": "분석적 사고",
+      "jobs": 53
+    },
+    {
+      "text": "기술 기준 준수",
+      "jobs": 47
+    },
+    {
+      "text": "안전 수칙 준수",
+      "jobs": 46
+    }
+  ],
+  "note": "단위는 S2 와 같다 — 직무별 고유 태도 문장(직무 × 문장). 범주 배정을 쓰지 않는다."
+}

@@ -1,0 +1,244 @@
+<title>T0 사전 등록 — NCS의 계산적 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root { --ground:#FBFBF7; --paper:#FFFFFF; --ink:#1F2A2E; --muted:#5C6B6E; --faint:#8C9899; --line:#DEE4DF;
+    --teal:#0E6E6D; --teal-deep:#0A5352; --teal-wash:#EAF3F1; --amber:#B07A18; --amber-deep:#8A5E0E; --amber-wash:#FBF3DF;
+    --red:#B23A3A; --red-wash:#F5E8E8;
+    --serif:"Gowun Batang",Georgia,serif; --sans:"IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ground:#14181A; --paper:#1B2124; --ink:#E6E9E4; --muted:#9FAAA9; --faint:#6F7C7C; --line:#2C3538;
+    --teal:#46A8A4; --teal-deep:#6BC2BE; --teal-wash:#1E2E2D; --amber:#D9A94B; --amber-deep:#E3C36A; --amber-wash:#33290F; --red:#E08A8A; --red-wash:#3A2222; } }
+  :root[data-theme="dark"] { --ground:#14181A; --paper:#1B2124; --ink:#E6E9E4; --muted:#9FAAA9; --faint:#6F7C7C; --line:#2C3538;
+    --teal:#46A8A4; --teal-deep:#6BC2BE; --teal-wash:#1E2E2D; --amber:#D9A94B; --amber-deep:#E3C36A; --amber-wash:#33290F; --red:#E08A8A; --red-wash:#3A2222; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+  .page { max-width:920px; margin:0 auto; padding:52px 26px 120px; }
+  .eyebrow { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; color:var(--teal); text-transform:uppercase; }
+  h1 { font-family:var(--serif); font-weight:700; font-size:30px; line-height:1.4; margin:10px 0 8px; text-wrap:balance; }
+  h2 { font-family:var(--serif); font-size:21px; margin:48px 0 10px; padding-top:16px; border-top:2px solid var(--ink); }
+  h2 .k { font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--faint); display:block; margin-bottom:4px; }
+  h3 { font-size:16px; margin:26px 0 8px; }
+  p { margin:8px 0; max-width:72ch; }
+  .meta { font-size:13px; color:var(--muted); }
+  .status { border:2px solid var(--amber); background:var(--amber-wash); color:var(--amber-deep); border-radius:10px; padding:12px 18px; margin:20px 0; font-size:13.5px; font-weight:500; }
+  .box { background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 20px; margin:14px 0; }
+  .box.t { border-left:4px solid var(--teal); } .box.a { border-left:4px solid var(--amber); } .box.r { border-left:4px solid var(--red); }
+  .hyp { background:var(--paper); border:1px solid var(--line); border-radius:12px; margin:18px 0; overflow:hidden; }
+  .hyp > header { display:flex; gap:12px; align-items:baseline; padding:12px 20px; border-bottom:1px solid var(--line); }
+  .hyp > header .id { font-family:var(--mono); font-weight:600; color:var(--paper); background:var(--teal); border-radius:6px; padding:2px 10px; font-size:12px; white-space:nowrap; }
+  .hyp > header .id.s { background:var(--amber); }
+  .hyp > header h3 { margin:0; font-size:15.5px; flex:1; }
+  .hyp .body { padding:4px 20px 14px; }
+  dl.spec { display:grid; grid-template-columns:130px 1fr; gap:4px 14px; margin:8px 0; font-size:13.8px; }
+  dl.spec dt { font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--faint); padding-top:4px; }
+  dl.spec dd { margin:0; }
+  .tag { display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.06em; border-radius:99px; padding:1px 8px; vertical-align:1px; margin-left:4px; }
+  .tag.peek { background:var(--amber-wash); color:var(--amber-deep); border:1px solid var(--amber); }
+  .tag.clean { background:var(--teal-wash); color:var(--teal-deep); border:1px solid var(--teal); }
+  .tag.fact { background:var(--paper); color:var(--muted); border:1px solid var(--line); }
+  .table-wrap { overflow-x:auto; margin:12px 0; }
+  table { border-collapse:collapse; width:100%; font-size:13px; background:var(--paper); }
+  th { text-align:left; font-size:11.5px; letter-spacing:.04em; color:var(--faint); border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); padding:7px 10px; }
+  td { border-bottom:1px solid var(--line); padding:7px 10px; vertical-align:top; line-height:1.55; }
+  td.num { text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:2px solid var(--ink); }
+  code { font-family:var(--mono); font-size:.85em; background:var(--teal-wash); color:var(--teal-deep); padding:1px 5px; border-radius:4px; }
+  ul { max-width:72ch; } li { margin:4px 0; }
+  .footnote { margin-top:56px; padding-top:14px; border-top:1px solid var(--line); font-size:12.5px; color:var(--faint); }
+</style>
+
+<div class="page">
+<header>
+  <div class="eyebrow">Pre-registration · T0 · Computational Anatomy of NCS</div>
+  <h1>T0 사전 등록 — NCS의 계산적 해부</h1>
+  <div class="meta">연구진 정진수(제1) · 류한철(교신) · 등록 초안 v0.1 · 2026-09-09 · 확증 분석 착수 전 · 데이터: NCS 릴리스 2026-02 전수(ncs 스키마) + 직업기초능력</div>
+</header>
+
+<div class="status">상태: <b>등록 초안(협의용)</b>. 이 문서가 커밋되는 시점의 해시가 가설 동결 시점이다. 이후 변경은 §9 수정 이력에 날짜와 사유를 남기며, 확증 분석은 동결 후에만 시작한다. <b>모든 수치 관찰은 EA11(2026-09-09) 탐색에서 온 것이며, 이 문서의 가설은 그 탐색을 본 뒤 형성됐다</b> — §2가 그 처리 규칙이다.</div>
+
+<h2><span class="k">0 · POSITION</span>이 논문의 자리 — 연구 프로그램의 앵커</h2>
+<p>2026-09-09 세미나에서 지도교수는 세 가지를 요청했다: NCS 자체를 먼저 분석할 것, 가설을 세분화할 것, 가설마다 공학적 기여를 분명히 할 것. T0는 그 응답이다. 프로그램은 <b>T0(데이터를 아는가) → T1(후보를 만들고 믿게 하는가) → T3(구조가 쓸모 있는가) → T6(사회적 함의)</b>로 재배열되며, T0는 앞선 두 논문이 의존하는 사실을 확정한다: 규칙이 어디까지 닿고 LLM이 어디서 필요한지, 정규화로 물량이 얼마나 주는지, 표준의 어느 부분이 낡았는지.</p>
+<div class="box t"><b>T0의 결정적 성질.</b> 기술 통계이므로 <b>전문가 골드도, LLM 판정도 필요 없다.</b> 검증 의존성(docs/validation-dependency.md) 밖에 있는 유일한 논문이며, 따라서 프로그램에서 가장 먼저 투고 가능하다. 수치의 계층 라벨은 '원천 실측(data fact)'이고, 모델이 개입하는 유일한 지점(H3 임베딩 정렬)은 별도 표기와 민감도 분석으로 다룬다.</div>
+
+<h2><span class="k">1 · QUESTIONS &amp; CONTRIBUTIONS</span>연구 질문과 기여</h2>
+<p><b>RQ-A(공학).</b> 국가 역량 표준은 데이터로서 어떤 규칙성·중복·파편화·구조를 갖는가, 그리고 그 성질은 기계 처리(규칙 vs 모델)의 경계와 비용을 어떻게 결정하는가?<br>
+<b>RQ-B(사회).</b> 표준의 수준 구조·개정 신선도·태도 어휘·디지털 어휘는 산업 간에 어떻게 분포하며, 그 분포는 무엇을 부호화하는가?</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>기여</th><th>산출물</th><th>누가 쓰는가</th></tr></thead>
+  <tbody>
+    <tr><td>규칙/모델 경계의 정량화</td><td>구조화 가능성 지도(대분류×지표), 잔여 문장 유형 분류</td><td>T1 파이프라인 설계, 유사 표준(ESCO·O*NET) 처리자</td></tr>
+    <tr><td>정규화 사전</td><td>KSA 별칭 사전(CSV, 정규화 키·임베딩 클러스터·유형 불일치 표기)</td><td>T1 정렬기, NCS 검색·매칭 서비스</td></tr>
+    <tr><td>표준 품질 감사</td><td>중복·파편화·템플릿 이탈·유형 불일치 목록 — 대분류별 리포트</td><td>표준 관리 기관(공단), 개정 실무</td></tr>
+    <tr><td>데이터 기반 분류 대조</td><td>공유 KSA 기반 직무 유사도 그래프와 공식 분류의 일치도, 불일치 목록</td><td>분류 체계 개편 논의, 전직 경로 서비스</td></tr>
+    <tr><td>신선도·격차 지도</td><td>대분류·세분류별 개정 연도, 수준, 디지털 어휘의 결합 지수</td><td>정책 연구, T6, 추출 우선순위</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="k">2 · HONESTY PROTOCOL</span>탐색–확증 분리 규칙</h2>
+<p>EA11에서 대분류(24) 수준의 집계를 먼저 보았다. 따라서 이 문서의 가설 일부는 사후 형성이다. 처리 규칙:</p>
+<ul>
+  <li><b>라벨.</b> 각 가설에 <span class="tag peek">PEEK</span>(대분류 집계를 본 뒤 형성 — 방향은 관찰에서 옴) 또는 <span class="tag clean">CLEAN</span>(탐색에서 계산하지 않은 지표 — 방향은 이론·선행 관찰에서 옴)을 단다. 논문 방법 절에 이 구분을 그대로 싣는다.</li>
+  <li><b>분석 단위 이동.</b> 확증 검정은 탐색이 보지 않은 해상도인 <b>세분류(n=1,109)</b>에서 수행한다. 대분류 내 분산은 미관찰이므로 검정의 정보량이 보존된다.</li>
+  <li><b>반분.</b> 세분류를 대분류 내에서 시드 고정(<code>seed=20260909</code>) 무작위 반분해 A/B 두 번 검정하고, 부호와 유의성이 일치할 때만 "지지"로 보고한다. 불일치는 그대로 보고.</li>
+  <li><b>다중 비교.</b> H1~H6·S1~S4를 하나의 가설군으로 두고 Benjamini–Hochberg FDR 5%를 적용한다.</li>
+  <li><b>효과 크기 우선.</b> n=1,109에서는 사소한 차이도 유의하므로, 보고의 중심은 효과 크기(ε², Cliff's δ, 상관계수)와 구간이며 p값은 보조다.</li>
+  <li><b>평범한 설명 배제(§7).</b> 사회적 해석(S-계열)은 대안 설명을 배제한 뒤에만 서술한다.</li>
+</ul>
+
+<h2><span class="k">3 · DATA</span>데이터와 분석 단위</h2>
+<dl class="spec">
+  <dt>원천</dt><dd>NCS 공개 릴리스(2026-02) 전수: 대분류 24 · 중분류 81 · 소분류 274 · 세분류 1,109 · 능력단위 13,435 · 요소 47,620 · 수행준거 196,658 · KSA 2,457,556. 직업기초능력 7 영역/21 하위/63 요소. 적재 스키마 <code>ncs</code>, <code>common_ability</code>.</dd>
+  <dt>1차 단위</dt><dd>세분류(직무), n=1,109. 대분류는 층(strata)이자 기술 통계의 보고 단위.</dd>
+  <dt>2차 단위</dt><dd>능력단위 13,435(개정 연도·수준), 수행준거 196,658(템플릿), KSA 고유 문장 355,898(정규화·파편화).</dd>
+  <dt>제외</dt><dd>사전 제외 없음. 코드 접미(<code>_YYvN</code>) 파싱 실패 건은 개수와 함께 보고하고 H5에서만 제외.</dd>
+  <dt>재현</dt><dd>탐색 SQL <code>scripts/ncs_corpus_stats_ea11.sql</code>, 확증 분석 <code>scripts/t0_analysis.py</code>(작성 예정, 시드·버전 고정), 산출 <code>docs/t0/</code>.</dd>
+</dl>
+
+<h2><span class="k">4 · HYPOTHESES — ENGINEERING</span>공학 가설 H1–H6</h2>
+
+<div class="hyp"><header><span class="id">H1</span><h3>수행준거 문장은 단일 통사 템플릿에 거의 완전히 순응하며, 이탈은 국지적이다</h3><span class="tag peek">PEEK</span></header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>템플릿 준수율 = "~수 있다"(공백·마침표 변형 허용)로 끝나는 수행준거 비율. 이탈 문장은 종결 형식별로 유형화(명사형 종결, 복수 절, 오타·잘림 등).</dd>
+    <dt>단위·검정</dt><dd>세분류별 준수율. 전체 비율의 95% 신뢰구간; 대분류 간 Kruskal–Wallis + ε². 이탈 집중도: 이탈의 50%를 담는 최소 세분류 수(로렌츠 집중).</dd>
+    <dt>사전 기대</dt><dd>전체 ≥ 99%; 이탈의 절반 이상이 소수 세분류(≤ 5%)에 집중. EA11 관찰: 대분류 22/24가 99.3~99.8%, 경비·청소 86.6%.</dd>
+    <dt>공학적 기여</dt><dd>규칙 파서의 커버 범위 확정과 잔여 유형 목록 → "규칙이 끝나고 모델이 필요한 경계"의 위치·크기. T1 수행준거 분해(T4)의 사전 커버리지.</dd>
+    <dt>대안 설명</dt><dd>이탈이 특정 개발 연도·개발 주체의 작성 지침 차이일 가능성 — H5 연도와 교차표로 확인.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id">H2</span><h3>KSA 중복률은 산업에 따라 체계적으로 다르며, 규모를 통제해도 남는다</h3><span class="tag peek">PEEK</span></header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>고유 문장 비율 = 세분류 내 distinct(KSA description) / count. 보조: 유형(K/S/A)별 비율.</dd>
+    <dt>단위·검정</dt><dd>세분류별. <b>규모 통제 필수</b>: 고유 비율은 집합 크기에 의존하므로 log(KSA 수)를 공변량으로 한 회귀 후 대분류 잔차 효과(ANCOVA/혼합모형). 반분 검정.</dd>
+    <dt>사전 기대</dt><dd>규모 통제 후에도 대분류 효과 유의, 제조·기술 계열이 서비스·경영 계열보다 낮은 고유 비율. EA11: 기계 10.4% ~ 영업판매 22.2%.</dd>
+    <dt>공학적 기여</dt><dd>정규 사전 크기와 산업별 중복 제거 계수(5~10×) → T1 판정 물량·비용의 하한. 작성 관행(템플릿 복제)의 정량 증거.</dd>
+    <dt>대안 설명</dt><dd>세분류당 능력단위 수가 많을수록 중복이 커지는 구조적 효과 — 능력단위 수도 공변량에 포함.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id">H3</span><h3>동일 개념이 다수 표기로 파편화되어 있으며, 파편화는 규칙 정규화만으로 절반 이상 회수된다</h3><span class="tag clean">CLEAN</span> <span class="tag fact">(사례만 관찰)</span></header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>① 규칙 정규화 키(공백 제거, 역할 접미사 '능력/기술/지식/태도/의지/노력/…하려는 태도' 제거, 조사·기호 정리) ② 임베딩 클러스터(bge-m3, cos ≥ 0.90; 민감도 0.85/0.95). <b>파편화 지수</b> = 표면형 수 / 개념 클러스터 수. <b>회수율</b> = 규칙 키만으로 병합되는 표면형 비율 / 임베딩까지 병합되는 비율. <b>유형 불일치율</b> = 같은 정규화 키가 둘 이상의 K/S/A 유형에 등장하는 키의 비율.</dd>
+    <dt>단위·검정</dt><dd>대분류·세분류별 지수. 규칙 회수율 ≥ 50% 검정(단측 이항, 클러스터 단위). 유형 불일치는 비율과 상위 사례 목록.</dd>
+    <dt>사전 기대</dt><dd>고빈도 개념일수록 파편화가 크다(빈도-파편화 양의 순위상관). 규칙 회수율 50~70%, 나머지는 임베딩 필요. 관찰 사례: '안전 준수' 계열 8+ 표기(172/134/60/56/46/33/31개 직무), '보고서 작성 능력'(K, 100) vs '보고서 작성 기술'(S, 44).</dd>
+    <dt>공학적 기여</dt><dd>별칭 사전 산출물, 규칙/임베딩 역할 분담의 정량 근거(EA10 ④ "놓침은 정렬 실패"의 원천 측), 표준 품질 감사 항목.</dd>
+    <dt>모델 개입</dt><dd>임베딩 단계만 모델 의존 — 라벨 '모델 보조', 임계값 민감도 표 필수. 규칙 키 결과는 원천 실측.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id">H4</span><h3>공유 KSA로 계산한 직무 유사도 군집은 공식 분류 체계와 부분적으로만 일치한다</h3><span class="tag clean">CLEAN</span></header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>세분류×정규화 KSA 키 이분 그래프 → 세분류 간 Jaccard(보조: TF-IDF 코사인) → Louvain 군집(해상도 1.0, 시드 고정) → 공식 대분류(24)·중분류(81)와 NMI/ARI. 불일치 직무 목록(자기 대분류보다 타 대분류 군집에 가까운 세분류).</dd>
+    <dt>단위·검정</dt><dd>세분류 전수. 귀무 분포: 세분류 라벨 순열 1,000회로 NMI 영분포. 반분 대신 부트스트랩(KSA 표본 재추출) 안정성.</dd>
+    <dt>사전 기대(이론)</dt><dd>대분류 대비 NMI 0.3~0.6(중간 일치): 안전·문서·소통 같은 범용 KSA가 산업을 가로지르므로 완전 일치는 불가, 그러나 무작위보다 명확히 높음. 불일치는 융합 직무(예: 정보통신×문화·예술, 보건×사회복지)에 집중.</dd>
+    <dt>공학적 기여</dt><dd>LLM 없이 얻는 직무 유사도 네트워크(T6·전직 경로 서비스의 Layer 0.5), 분류 개편 논의의 정량 근거. 범용 KSA를 제거한 변형(IDF 가중)과의 비교로 "범용 역량 층"의 크기 추정.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id">H5</span><h3>표준의 개정 신선도는 산업 간에 크게 불균등하다</h3><span class="tag peek">PEEK</span></header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>능력단위 코드 접미 <code>_YYvN</code> → 최종 개정 연도(2000+YY), 버전 수 N. 세분류별 평균 개정 연도, 2022+ 비율, 평균 버전.</dd>
+    <dt>단위·검정</dt><dd>세분류별. 대분류 간 Kruskal–Wallis + ε²; 연도 분포의 지니 계수. 반분 검정.</dd>
+    <dt>사전 기대</dt><dd>대분류 효과 ε² ≥ 0.3(큰 효과). EA11: 2022+ 비율 65.2%(경영·회계·사무) ~ 0%(경비·청소·사업관리); 금융·보험 평균 ≈ 2015.</dd>
+    <dt>공학적 기여</dt><dd>신선도 가중 추출 우선순위(낡은 표준부터 재추출 → T1 스코프 선정 규칙), 공단 감사 리포트의 핵심 표.</dd>
+    <dt>대안 설명(필수 배제)</dt><dd>접미 연도가 '내용 개정'이 아니라 '코드 체계 개편'이나 '형식 재발행'을 반영할 가능성 — 공단 개정 이력 공지와 표본 대조(세분류 20개 무작위)로 확인 후에만 '신선도'로 해석. 확인 전에는 '코드 연도'로만 보고.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id">H6</span><h3>디지털 어휘의 침투는 산업 간에 불균등하며, 최근 개정된 표준일수록 높다</h3><span class="tag peek">PEEK</span>(분포) · <span class="tag clean">CLEAN</span>(연도 교호)</header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>사전 선언 어휘 A: 디지털·데이터·인공지능·AI·소프트웨어·자동화·프로그램·전산. 민감도 어휘 B(A + IoT·빅데이터·클라우드·정보시스템·온라인·스마트). 세분류별 KSA 중 어휘 포함 비율.</dd>
+    <dt>단위·검정</dt><dd>분포: 대분류 간 Kruskal–Wallis. 교호: 대분류 내 세분류의 (평균 개정 연도 × 디지털 비율) Spearman, 대분류 고정효과 회귀. A·B 두 어휘로 결과 일치 여부 보고.</dd>
+    <dt>사전 기대</dt><dd>분포는 EA11 관찰(정보통신 10.86% ~ 경비·청소 0.24%). 교호는 미관찰: 대분류 내에서 개정 연도가 최근일수록 디지털 비율 높음(ρ &gt; 0.2).</dd>
+    <dt>공학적 기여</dt><dd>H5와 결합한 '표준–현장 괴리 위험 지수'(디지털 요구 높음 × 개정 오래됨 — 예: 금융·보험) → 추출·개정 우선순위 및 T6 입력.</dd>
+    <dt>대안 설명</dt><dd>'프로그램'·'전산'의 다의성(교육 프로그램 등) — 어휘 A/B 민감도와 무작위 100건 수동 검토로 정밀도 보고.</dd>
+  </dl>
+</div></div>
+
+<h2><span class="k">5 · HYPOTHESES — SOCIAL</span>사회 가설 S1–S4 (T0-b, 외부 데이터 결합)</h2>
+<p>S-계열은 같은 데이터에서 출발하지만 해석에 외부 자료가 필요하다. 별도 논문(T0-b)으로 분리할지 T0의 논의 절로 둘지는 M-T0-1(§8).</p>
+
+<div class="hyp"><header><span class="id s">S1</span><h3>표준의 수준 사다리는 산업별 경력 천장을 부호화하며, 외부 노동시장 지표와 상관한다</h3><span class="tag peek">PEEK</span>(분포) · <span class="tag clean">CLEAN</span>(외부 상관)</header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>세분류별 L5+ 능력단위 비율, 평균 수준, 최고 수준. 외부: 대분류→표준산업분류(KSIC) 대응표(작성 필요, M-T0-2) 후 산업별 평균 임금·대졸 비율(고용형태별근로실태조사 등).</dd>
+    <dt>검정</dt><dd>분포: 대분류 간 ε². 외부 상관: 대분류 수준 Spearman(n=24 — 저검정력, 기술적 보고), 세분류 수준은 대응표 해상도에 따라.</dd>
+    <dt>사전 기대</dt><dd>EA11: L5+ 비율 71.2%(금융·보험) ~ 9.1%(경비·청소), 평균 수준 5.03 ~ 3.11. 외부 상관 양(ρ &gt; 0.4).</dd>
+    <dt>해석 경계</dt><dd>"표준이 계층을 반영한다"까지만; "재생산한다"는 인과 주장이므로 서술하지 않는다.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id s">S2</span><h3>국가가 요구하는 노동자의 태도는 '준수'가 지배적이며, 산업에 따라 담론 구성이 다르다</h3><span class="tag peek">PEEK</span>(상위 어휘) · <span class="tag clean">CLEAN</span>(범주 분포)</header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>태도(A) 항목 고유 문장에 사전 선언 코드북 적용: 준수/안전 · 의지·노력 · 인지(분석·전략·주의) · 대인(소통·친절·협력) · 윤리·책임 · 품질·정확 · 기타. 규칙 코딩 후 무작위 300건을 연구진이 이중 코딩(κ 보고).</dd>
+    <dt>검정</dt><dd>대분류×범주 카이제곱 + Cramér's V; 산업별 상위 범주.</dd>
+    <dt>사전 기대</dt><dd>전체 상위 = 준수(EA11: 안전사항·안전수칙·기술기준 준수가 1~3위). 서비스 계열은 대인 범주, 기술 계열은 준수·정확 범주 비중이 높다.</dd>
+    <dt>해석 경계</dt><dd>담론 분석적 서술은 T0-b(직업교육·HRD 저널)에서만; T0-a에서는 분포 보고에 그친다.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id s">S3</span><h3>개정 신선도는 산업 변화 속도보다 표준 개발 체계에 더 의존한다</h3><span class="tag clean">CLEAN</span></header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>H5 개정 연도 vs 산업 변화 속도 대리변수(H6 디지털 비율, 외부: 산업별 고용 증감률). 개발 주체 변수: 공단 공개 자료의 산업별 협의체(ISC/SC) 정보(수집 가능 시).</dd>
+    <dt>검정</dt><dd>대분류 수준 Spearman; 개발 주체 정보가 있으면 주체별 개정 연도 분포 비교.</dd>
+    <dt>사전 기대</dt><dd>변화 속도와의 상관은 약함(|ρ| &lt; 0.3) — 금융·보험(디지털 4.76%, 개정 ≈2015)이 반례의 전형. H5 대안 설명 배제 후에만 해석.</dd>
+  </dl>
+</div></div>
+
+<div class="hyp"><header><span class="id s">S4</span><h3>격차는 겹친다 — 저수준·저디지털·저신선 산업이 동일하다</h3><span class="tag clean">CLEAN</span></header><div class="body">
+  <dl class="spec">
+    <dt>지표</dt><dd>대분류별 z(L5+ 비율)·z(개정 연도)·z(디지털 비율)의 순위 일치(Kendall's W)와 합성 지수.</dd>
+    <dt>사전 기대</dt><dd>W ≥ 0.5; 하위 3~5개 대분류(경비·청소, 음식서비스, 식품가공, 인쇄·목재·가구·공예, 재료)가 세 축 모두 하위. 기술적 보고, 인과 주장 없음.</dd>
+  </dl>
+</div></div>
+
+<h2><span class="k">6 · DELIVERABLES</span>산출물 정의</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>ID</th><th>산출물</th><th>형식</th><th>근거 가설</th></tr></thead>
+  <tbody>
+    <tr><td class="num">F1</td><td>구조화 가능성 지도 — 대분류×(템플릿 준수·고유 비율·파편화·유형 불일치)</td><td>히트맵 + 표</td><td>H1 H2 H3</td></tr>
+    <tr><td class="num">F2</td><td>직무 유사도 네트워크와 공식 분류의 대조 — 군집 색 vs 대분류 색, 불일치 직무 강조</td><td>그래프 그림 + 목록</td><td>H4</td></tr>
+    <tr><td class="num">F3</td><td>신선도·수준·디지털 3축 지도 (대분류 24 산점/순위)</td><td>그림 + 표</td><td>H5 H6 S1 S4</td></tr>
+    <tr><td class="num">D1</td><td>KSA 별칭 사전 — 정규화 키, 표면형 목록, 임베딩 클러스터 ID, 유형 불일치 플래그, 등장 직무 수</td><td>CSV (공개)</td><td>H3</td></tr>
+    <tr><td class="num">D2</td><td>표준 품질 감사 리포트 — 대분류별 중복·파편화·템플릿 이탈·유형 불일치 상위 사례</td><td>문서 (공단 전달용)</td><td>H1 H2 H3</td></tr>
+    <tr><td class="num">D3</td><td>세분류 1,109 × 전 지표 테이블</td><td>CSV (공개)</td><td>전체</td></tr>
+    <tr><td class="num">S</td><td><code>scripts/t0_analysis.py</code> — 지표 계산·검정·그림 생성, 시드·버전 고정</td><td>코드</td><td>전체</td></tr>
+  </tbody>
+</table></div>
+<p><b>라이선스 주의.</b> D1·D3는 NCS 파생물이므로 공공누리 재배포 조건 확인(기존 원칙) 전까지 비공개 저장소에 두고, 논문에는 집계와 사례만 싣는다.</p>
+
+<h2><span class="k">7 · THREATS</span>타당성 위협과 배제 계획</h2>
+<ul>
+  <li><b>코드 연도의 의미(H5·S3·S4의 전제).</b> 공단 개정 공지와 20개 세분류 표본 대조로 '내용 개정' 여부 확인. 확인 실패 시 H5는 '코드 연도 분포'로 격하하고 S3·S4는 보류.</li>
+  <li><b>규모 교란(H2).</b> 집합 크기·능력단위 수 공변량 통제 없이는 보고하지 않는다.</li>
+  <li><b>어휘 다의성(H6).</b> 두 어휘 집합 + 수동 검토 100건.</li>
+  <li><b>정규화 규칙의 자의성(H3).</b> 규칙을 코드로 공개하고, 규칙 변형(접미사 목록 ±) 민감도를 보고.</li>
+  <li><b>대분류 n=24의 저검정력(S1·S3).</b> 대분류 수준 상관은 기술적 보고로 한정, 주 검정은 세분류 수준.</li>
+  <li><b>사후 가설(§2).</b> PEEK 라벨과 반분·단위 이동으로 처리, 방법 절에 명시.</li>
+</ul>
+
+<h2><span class="k">8 · DECISIONS</span>연구진이 정할 것 (M-T0)</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>ID</th><th>결정</th><th>선택지 / 제안</th></tr></thead>
+  <tbody>
+    <tr><td class="num">M-T0-1</td><td>논문 분리</td><td>(a) T0 단일 논문에 S-계열을 논의 절로 / (b) T0-a 공학 + T0-b 사회 두 편. <b>제안 (b)</b> — 저널·심사자·서술 톤이 다르고, (a)는 두 독자 모두를 놓칠 위험.</td></tr>
+    <tr><td class="num">M-T0-2</td><td>외부 노동시장 자료</td><td>대분류→KSIC 대응표 작성 방식과 임금·학력 출처 확정(S1). T0-a에는 불필요 — T0-b 착수 시.</td></tr>
+    <tr><td class="num">M-T0-3</td><td>개정 이력 확인 경로</td><td><b>해결 2026-09-09.</b> ① 공식 정의: 분류번호의 해당 자리는 「개발·개선연도」(ncs.go.kr) — 개선·보완 시점이 반영된다. ② 데이터 검증: 버전↑ → 연도 단조 상승(v1 2017.2 … v7 2023.3, r=.470)이라 '최초 개발 고정' 가설과 모순, 연도 분포가 2013–2025에 고르게 퍼져 '일괄 재발행'도 배제. → H5를 '개정 신선도'로 해석 가능. 잔여 한계: 개정의 <i>크기</i>는 알 수 없음(폭 측정은 과거 릴리스 본문 비교 필요, 현재 범위 밖).</td></tr>
+    <tr><td class="num">M-T0-4</td><td>저널</td><td>T0-a: 정보·데이터 공학 계열(예: Information Processing &amp; Management, Data &amp; Knowledge Engineering, Government Information Quarterly — 공공 표준 데이터 품질 프레임) 또는 국내 KCI(정보과학·정보관리). T0-b: 직업교육·HRD·노동 계열(직업능력개발연구, Journal of Vocational Education &amp; Training). 투고 전 최신 게재 경향 재확인.</td></tr>
+    <tr><td class="num">M-T0-5</td><td>H4 군집 해상도</td><td>Louvain 해상도 1.0 고정(제안) + 0.5/2.0 민감도.</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="k">9 · TIMELINE &amp; LOG</span>일정과 수정 이력</h2>
+<ul>
+  <li><b>동결</b>: 이 문서 커밋 시점(해시는 커밋 메시지·work-log 기록).</li>
+  <li><b>1주</b>: <code>t0_analysis.py</code> 작성 — H1·H2·H5·H6 (SQL만으로 가능), H3 규칙 키, H4 그래프. 반분·FDR 구현. M-T0-3 착수.</li>
+  <li><b>2주</b>: H3 임베딩(bge-m3, 로컬)·민감도, F1~F3 그림, D1~D3 생성.</li>
+  <li><b>3~4주</b>: T0-a 초안(예측 데이터 없이 실측으로 바로 작성 — 이 논문은 치환 레지스트리가 필요 없다).</li>
+  <li><b>수정 이력</b>: v0.1 2026-09-09 등록 초안 작성(EA11 탐색 직후).</li>
+</ul>
+
+<div class="footnote">
+  <p>· 이 문서의 관찰 수치는 EA11(2026-09-09, 대분류 집계, 확증 전)이며 논문 수치는 세분류 수준 확증 분석으로 대체된다. 계층 라벨: 원천 실측(모델 개입 없음), H3 임베딩 단계만 '모델 보조'.</p>
+  <p>· 관련: journal-submission-strategy.html §8 EA11 · scripts/ncs_corpus_stats_ea11.sql · docs/ea11/ · docs/validation-dependency.md</p>
+</div>
+</div>

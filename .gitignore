@@ -1,0 +1,20 @@
+# Source data and row-level NCS derivatives are not distributed here (see README)
+reference/
+*.xlsx
+docs/t0/t0_metrics.csv
+docs/t0/t0_alias_dictionary.csv
+docs/t0/t0_h4_clusters.csv
+docs/t0/t0_judgments*.json
+docs/t0/t0_h3_validation_sample*.json
+docs/t0/t0_embedding_candidates_le*.csv
+docs/t0/t0_key_meta.json
+docs/t0/t0_key_jobs.json
+docs/t0/*.npz
+docs/esco/esco_skills.json
+docs/esco/esco_occupations.json
+docs/esco/*.npz
+docs/t0/raters.local.json
+.env
+.env.*
+__pycache__/
+.venv/

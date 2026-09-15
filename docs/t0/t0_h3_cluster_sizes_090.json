@@ -1,0 +1,47 @@
+{
+  "n_keys": 326592,
+  "n_clusters_total": 255723,
+  "keys_absorbed_total": 70869,
+  "by_bucket": {
+    "2": {
+      "clusters": 20788,
+      "keys_absorbed": 20788,
+      "share_of_absorbed": 0.2933299468032567,
+      "intra_pairs": 20788,
+      "direct_edge_pairs": 20788,
+      "direct_edge_share": 1.0
+    },
+    "3-5": {
+      "clusters": 6933,
+      "keys_absorbed": 17048,
+      "share_of_absorbed": 0.2405565197759246,
+      "intra_pairs": 31091,
+      "direct_edge_pairs": 20968,
+      "direct_edge_share": 0.6744073847737287
+    },
+    "6-20": {
+      "clusters": 1317,
+      "keys_absorbed": 10159,
+      "share_of_absorbed": 0.1433489960349377,
+      "intra_pairs": 51497,
+      "direct_edge_pairs": 15884,
+      "direct_edge_share": 0.30844515214478513
+    },
+    "21-100": {
+      "clusters": 160,
+      "keys_absorbed": 6034,
+      "share_of_absorbed": 0.08514301034302728,
+      "intra_pairs": 144576,
+      "direct_edge_pairs": 11863,
+      "direct_edge_share": 0.08205372952633909
+    },
+    "100+": {
+      "clusters": 48,
+      "keys_absorbed": 16840,
+      "share_of_absorbed": 0.23762152704285372,
+      "intra_pairs": 4721789,
+      "direct_edge_pairs": 67365,
+      "direct_edge_share": 0.014266838268291955
+    }
+  }
+}

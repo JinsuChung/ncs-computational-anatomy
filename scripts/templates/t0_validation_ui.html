@@ -1,0 +1,547 @@
+<title>개념 병합 판정</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#FBFBF7; --paper:#FFFFFF; --ink:#1F2A2E; --muted:#5C6B6E; --faint:#8C9899; --line:#DEE4DF;
+    --teal:#0E6E6D; --teal-deep:#0A5352; --teal-wash:#EAF3F1;
+    --amber:#B07A18; --amber-deep:#8A5E0E; --amber-wash:#FBF3DF;
+    --red:#B23A3A; --red-wash:#F6EAEA; --green:#2E7D4F;
+    --serif:"Gowun Batang",Georgia,serif; --sans:"IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --ground:#14181A; --paper:#1B2124; --ink:#E6E9E4; --muted:#9FAAA9; --faint:#6F7C7C; --line:#2C3538;
+    --teal:#46A8A4; --teal-deep:#6BC2BE; --teal-wash:#1E2E2D;
+    --amber:#D9A94B; --amber-deep:#E3C36A; --amber-wash:#33290F;
+    --red:#E08A8A; --red-wash:#3A2222; --green:#5FBE86; } }
+  :root[data-theme="dark"]{
+    --ground:#14181A; --paper:#1B2124; --ink:#E6E9E4; --muted:#9FAAA9; --faint:#6F7C7C; --line:#2C3538;
+    --teal:#46A8A4; --teal-deep:#6BC2BE; --teal-wash:#1E2E2D;
+    --amber:#D9A94B; --amber-deep:#E3C36A; --amber-wash:#33290F;
+    --red:#E08A8A; --red-wash:#3A2222; --green:#5FBE86; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:26px 20px 110px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
+  h1{font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.35;margin:8px 0 6px;text-wrap:balance}
+  h2{font-family:var(--serif);font-size:19px;margin:30px 0 8px}
+  p{margin:8px 0;max-width:70ch}
+  .muted{color:var(--muted)} .small{font-size:13px}
+  button{font-family:inherit;font-size:14px;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 14px}
+  button:hover{border-color:var(--teal)} button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  button.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+  button.primary:hover{background:var(--teal-deep)}
+  button[disabled]{opacity:.45;cursor:not-allowed}
+  input,select,textarea{font-family:inherit;font-size:14px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:14px 0}
+  .card.t{border-left:4px solid var(--teal)} .card.a{border-left:4px solid var(--amber)}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .grow{flex:1;min-width:180px}
+
+  /* 판정 화면 */
+  .pairgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  @media (max-width:720px){.pairgrid{grid-template-columns:1fr}}
+  .side{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+  .side .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
+  .side .surf{font-size:16px;font-weight:600;line-height:1.5;margin:6px 0;overflow-wrap:anywhere}
+  .side ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  .side li{margin:2px 0;overflow-wrap:anywhere}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .chip{font-family:var(--mono);font-size:10.5px;border-radius:99px;padding:2px 9px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+  .chip.k{background:var(--teal-wash);color:var(--teal-deep);border-color:var(--teal)}
+  .info-zone{border:1px solid var(--line);border-radius:14px;background:var(--ground);padding:14px 16px;margin:14px 0}
+  .info-zone .pairgrid{margin:10px 0 0}
+  .action-zone{border:2px solid var(--teal);border-radius:14px;background:var(--teal-wash);padding:16px;margin:18px 0 12px}
+  .zone-title{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;margin:0}
+  .zone-title .step{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:99px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px}
+  .action-zone .zone-title .step{background:var(--teal);color:#fff}
+  .zone-help{font-size:12.5px;color:var(--muted);margin:4px 0 0 33px}
+  .required{display:inline-block;margin-left:6px;border-radius:99px;background:var(--teal);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;vertical-align:2px}
+  .verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin:12px 0 0}
+  .verdicts button{text-align:left;padding:12px 13px;line-height:1.4;background:var(--paper);border:2px solid var(--line)}
+  .verdicts button b{display:block;font-size:14.5px}
+  .verdicts button span{font-size:12px;color:var(--muted)}
+  .verdicts button kbd{float:right;font-family:var(--mono);font-size:11px;color:var(--faint);border:1px solid var(--line);border-radius:4px;padding:0 5px}
+  .verdicts button:hover{border-color:var(--teal);transform:translateY(-1px)}
+  .verdicts button.sel{border-color:var(--teal);background:var(--paper);box-shadow:0 0 0 2px var(--teal)}
+  .optional-zone{border-top:1px solid var(--line);margin-top:14px;padding-top:12px}
+  .optional-label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:7px}
+  .progress{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:10px 0}
+  .progress i{display:block;height:100%;background:var(--teal);width:0;transition:width .2s}
+  .navbar{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding:10px 18px;display:flex;gap:12px;align-items:center;z-index:9}
+  .navbar .cnt{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+  .status{font-size:12px;font-family:var(--mono);color:var(--faint)}
+  .tabs{display:flex;gap:6px;margin:16px 0 4px;flex-wrap:wrap}
+  .tabs button.on{background:var(--teal-wash);border-color:var(--teal);color:var(--teal-deep);font-weight:600}
+  table{border-collapse:collapse;width:100%;font-size:13px;background:var(--paper)}
+  th{text-align:left;font-size:11px;letter-spacing:.04em;color:var(--faint);border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:6px 9px}
+  td{border-bottom:1px solid var(--line);padding:6px 9px;vertical-align:top}
+  td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .table-wrap{overflow-x:auto;margin:10px 0}
+  .hide{display:none!important}
+  .note{font-size:12.5px;color:var(--muted)}
+  .warn{border:1px dashed var(--amber);background:var(--amber-wash);color:var(--amber-deep);border-radius:10px;padding:10px 14px;font-size:13px;margin:12px 0}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">T0 · H3 · Manual Precision Check</div>
+  <h1>개념 병합 판정</h1>
+  <p class="muted small" id="subtitle">임베딩이 하나로 묶은 표기 쌍이 실제로 같은 개념인지 사람이 판정합니다.</p>
+</header>
+
+<!-- ── 시작 화면 ── -->
+<section id="start">
+  <div class="card t">
+    <h2 style="margin-top:0">무엇을 판정하나</h2>
+    <p>NCS(국가직무능력표준)의 지식·기술·태도 문장에서 뽑은 <b>표기 두 개</b>를 보여드립니다.
+      두 표기가 <b>같은 개념을 가리키는지</b> 판정해 주세요. 기계가 이 둘을 하나로 합쳤는데, 그 판단이 옳았는지 사람이 확인하는 작업입니다.</p>
+    <p class="note">약 <b id="intro-count">80문항 · 20분</b>입니다. 중간에 닫아도 진행 상황은 저장되고, 다음에 같은 코드로 들어오면 이어집니다.</p>
+    <p class="note">공정성을 위해 <b>기계가 매긴 유사도 점수는 판정 중에 보이지 않습니다</b> — 먼저 본 숫자에 판단이 끌려가는 것을 막기 위해서입니다.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">판정 기준</h2>
+    <p class="note" style="margin-top:0">고민되면 <b>애매함</b>을 고르세요. 억지로 정하는 것보다 애매하다고 표시하는 편이 데이터에 훨씬 정확합니다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>판정</th><th>기준</th><th>예</th></tr></thead>
+      <tbody>
+        <tr><td><b>같은 개념</b></td><td>가리키는 대상이 같고 표기·어미만 다르다</td><td>"보고서 작성 능력" ↔ "보고서 작성 기술"</td></tr>
+        <tr><td><b>상하위 관계</b></td><td>한쪽이 다른 쪽을 포함한다(넓다/좁다)</td><td>"안전보건교육" ↔ "안전보건교육 계획 수립"</td></tr>
+        <tr><td><b>관련되나 다른 개념</b></td><td>같은 분야지만 별개의 것을 가리킨다</td><td>"품질관리" ↔ "원가관리"</td></tr>
+        <tr><td><b>무관</b></td><td>서로 상관없다</td><td>"용접 기술" ↔ "고객 응대 태도"</td></tr>
+        <tr><td><b>애매함</b></td><td>배경 지식이 부족하거나 문장만으로 판단이 어렵다</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><b>판단이 갈릴 때의 원칙:</b> 두 표기를 하나로 합쳤을 때 정보가 사라지면 「같은 개념」이 아닙니다.
+      예를 들어 "전송시스템 이론"과 "통신시스템 이론"은 비슷해 보이지만 가리키는 범위가 달라 합치면 구분이 사라지므로 「관련되나 다른 개념」 쪽입니다.</p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <div class="grow">
+        <label class="small muted" for="who">본인을 선택해 주세요</label>
+        <select id="who"></select>
+      </div>
+      <div class="grow hide" id="manualwrap">
+        <label class="small muted" for="rater">코드 직접 입력</label>
+        <input id="rater" placeholder="예: EV-1" autocomplete="off">
+      </div>
+      <div style="min-width:230px">
+        <label class="small muted" for="role">직무분석·역량기반 교육과정을 다뤄본 경험</label>
+        <select id="role">
+          <option value="">선택 안 함</option>
+          <option value="high">업무로 다뤄 봤다</option>
+          <option value="some">접해 본 적은 있다</option>
+          <option value="none">거의 없다</option>
+        </select>
+      </div>
+      <button class="primary" id="begin">시작</button>
+    </div>
+    <p class="note" id="startmsg">전달받은 코드를 그대로 넣어 주세요. 경험 항목은 판정의 옳고 그름과 무관하며,
+      <b>배경에 따라 판단이 갈리는 문항이 있는지</b> 확인하는 데만 씁니다 — 경험이 없다고 판정이 덜 중요하지 않습니다.</p>
+  </div>
+</section>
+
+<!-- ── 연습 화면 ── -->
+<section id="practice" class="hide">
+  <div class="card a">
+    <h2 style="margin-top:0">연습 <span id="pracpos" class="small muted"></span></h2>
+    <p class="note" style="margin-top:0">본 판정 전에 세 문항만 연습합니다. 고르면 바로 해설이 나옵니다. 이 문항은 집계에 들어가지 않습니다.</p>
+  </div>
+  <div class="info-zone">
+    <p class="zone-title"><span class="step">1</span> 두 표기를 읽고 비교하세요</p>
+    <p class="zone-help">아래 내용은 판단을 위한 자료입니다. 이 영역에서는 선택할 것이 없습니다.</p>
+    <div class="pairgrid">
+      <div class="side"><div class="kicker">판단 자료 · 표기 A</div><div class="surf" id="plsurf"></div></div>
+      <div class="side"><div class="kicker">판단 자료 · 표기 B</div><div class="surf" id="prsurf"></div></div>
+    </div>
+  </div>
+  <div class="action-zone">
+    <p class="zone-title"><span class="step">2</span> 두 표기의 관계를 하나 선택하세요 <span class="required">필수 선택</span></p>
+    <p class="zone-help">아래 다섯 버튼 중 가장 알맞은 하나를 누르면 해설이 나옵니다.</p>
+    <div class="verdicts" id="pracverdicts"></div>
+  </div>
+  <div id="pracfeedback"></div>
+</section>
+
+<!-- ── 판정 화면 ── -->
+<section id="judge" class="hide">
+  <div class="progress"><i id="bar"></i></div>
+  <div class="row small muted" style="justify-content:space-between">
+    <span id="pos"></span><span id="saved" class="status"></span>
+  </div>
+
+  <div class="info-zone">
+    <p class="zone-title"><span class="step">1</span> 두 표기를 읽고 비교하세요</p>
+    <p class="zone-help">표기, 다른 표기 예, KTA 유형과 관련 직무 수는 판단 자료입니다. 이 영역에서는 선택할 것이 없습니다.</p>
+    <div class="pairgrid">
+      <div class="side">
+        <div class="kicker">판단 자료 · 표기 A</div>
+        <div class="surf" id="lsurf"></div>
+        <ul id="lalt"></ul>
+        <div class="chips" id="lchips"></div>
+      </div>
+      <div class="side">
+        <div class="kicker">판단 자료 · 표기 B</div>
+        <div class="surf" id="rsurf"></div>
+        <ul id="ralt"></ul>
+        <div class="chips" id="rchips"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-zone">
+    <p class="zone-title"><span class="step">2</span> 두 표기의 관계를 하나 선택하세요 <span class="required">필수 선택</span></p>
+    <p class="zone-help">가장 알맞은 버튼을 누르면 즉시 저장되고 다음 문항으로 넘어갑니다. 모르겠으면 「애매함」을 선택하세요.</p>
+    <div class="verdicts" id="verdicts"></div>
+    <div class="optional-zone">
+      <div class="optional-label">선택 기능 — 필요할 때만 사용</div>
+      <div class="row">
+        <input id="memo" class="grow" placeholder="메모 (선택) — 판단이 애매했던 이유 등" autocomplete="off">
+        <button id="prev">← 이전</button>
+        <button id="skip">건너뛰기</button>
+      </div>
+    </div>
+  </div>
+  <p class="note">단축키: <b>1</b>~<b>5</b> 판정 · <b>←</b> 이전 · <b>Enter</b> 다음 · 판정하면 자동으로 다음 문항으로 넘어갑니다.</p>
+</section>
+
+<!-- ── 집계 화면 ── -->
+<section id="summary" class="hide">
+  <div class="tabs" id="tabs"></div>
+  <div id="sumbody"></div>
+</section>
+
+<div class="navbar hide" id="navbar">
+  <span class="cnt" id="navcnt"></span>
+  <div class="grow"></div>
+  <button id="toJudge">판정 화면</button>
+  <button id="toSummary">집계 보기</button>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var DATA = /*__SAMPLE_JSON__*/null;
+  var ITEMS = (DATA && DATA.items) || [];
+  var META  = (DATA && DATA.meta) || {};
+  // 안내 문구의 문항 수·소요 시간은 표본 메타에서 — 1차 80문항, 2차 54~56문항처럼 표본마다 다르다
+  (function(){
+    var n = META.per_rater_items;
+    if(n && typeof n === "object"){ n = Math.max.apply(null, Object.keys(n).map(function(k){return n[k]})) }
+    if(!n && META.assignment && META.assignment.per_rater_items){ n = META.assignment.per_rater_items }
+    var el = document.getElementById("intro-count");
+    if(n && el){ el.textContent = n + "문항 · " + Math.max(5, Math.round(n*0.2)) + "분" }
+  })();
+
+  var VERDICTS = [
+    {code:"same",      label:"같은 개념",           desc:"표기만 다르고 가리키는 바가 같다", key:"1"},
+    {code:"hierarchy", label:"상하위 관계",         desc:"하나가 다른 하나를 포함한다",       key:"2"},
+    {code:"related",   label:"관련되나 다른 개념",   desc:"같은 영역이지만 별개다",           key:"3"},
+    {code:"unrelated", label:"무관",               desc:"서로 상관없다",                   key:"4"},
+    {code:"unsure",    label:"애매함",             desc:"판단 근거가 부족하다",             key:"5"}
+  ];
+
+  // 연습 문항 — 실제 표본이 아니라 기준 설명을 위해 구성한 예시다(집계 제외).
+  var PRACTICE = [
+    {a:"보고서 작성 능력", b:"보고서 작성 기술", ans:"same",
+     why:"가리키는 대상이 같고 역할 접미사(능력/기술)만 다릅니다. NCS에서 같은 개념이 지식·기술로 갈려 적히는 일이 흔합니다."},
+    {a:"안전보건교육", b:"안전보건교육 계획 수립", ans:"hierarchy",
+     why:"뒤쪽이 앞쪽의 일부입니다. 이런 쌍은 합치면 안 되고 상위–하위 <b>관계</b>로 표현해야 합니다."},
+    {a:"품질관리", b:"원가관리", ans:"related",
+     why:"둘 다 관리 활동이라 문장 형태가 닮았지만 대상이 다릅니다. 형태가 비슷하다고 같은 개념은 아닙니다."}
+  ];
+
+  // 판정자 명단 — 빌드 시 주입. 공개 배포(Vercel)에는 빈 배열을 넣어 이름이 공개되지 않게 하고,
+  // 대신 개인별 링크(?c=CODE)로 자기 몫에 바로 들어가게 한다.
+  var ROSTER = /*__ROSTER_JSON__*/[];
+
+  var rater=null, role="", cur=0, answers={}, shownAt=0, pracIdx=0, MYITEMS=[];
+  var $=function(id){return document.getElementById(id)};
+
+  function lsKey(){ return "t0merge:"+(rater||"anon") }
+  function loadLocal(){ try{ return JSON.parse(localStorage.getItem(lsKey())||"{}") }catch(e){ return {} } }
+  function saveLocal(){ try{ localStorage.setItem(lsKey(), JSON.stringify(answers)) }catch(e){} }
+
+  function setStatus(t, cls){ var el=$("saved"); el.textContent=t||""; el.style.color = cls==="err" ? "var(--red)" : ""; }
+
+  // 저장은 서버 한 곳뿐이다. localStorage 는 저장소가 아니라 전송 실패 시 재시도 버퍼이자
+  // 이어하기용 진행 캐시다 — 기록의 원본은 언제나 서버다.
+  var API = (typeof window !== "undefined" && window.__T0_API__) || "/api/judgments";
+
+  function remoteSave(item, verdict, memo, ms){
+    return fetch(API, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        rater: rater, domain_experience: role, block: String(item.block),
+        pair_id: item.id, verdict: verdict, memo: memo||"", elapsed_ms: ms,
+        left_key: item.left.key, right_key: item.right.key
+      })
+    }).then(function(r){ return r.ok }).catch(function(){ return false });
+  }
+
+  // 미전송분 재전송 — 네트워크가 끊겼다 돌아온 경우를 위해. 시작 시와 버튼으로 호출한다.
+  function resync(){
+    var pending = MYITEMS.filter(function(it){ var a=answers[it.id]; return a && !a.synced });
+    if(!pending.length){ setStatus(""); return Promise.resolve(0); }
+    setStatus("재전송 "+pending.length+"건…");
+    return Promise.all(pending.map(function(it){
+      var a=answers[it.id];
+      return remoteSave(it, a.verdict, a.memo, a.ms).then(function(ok){ if(ok) a.synced=true; return ok });
+    })).then(function(rs){
+      saveLocal();
+      var fail = rs.filter(function(x){return !x}).length;
+      setStatus(fail ? ("미전송 "+fail+"건 — 인터넷 연결을 확인해 주세요") : "", fail?"err":"");
+      return fail;
+    });
+  }
+
+  function renderSide(side, prefix){
+    $(prefix+"surf").textContent = side.surfaces[0] || side.key;
+    var alt=$(prefix+"alt"); alt.innerHTML="";
+    side.surfaces.slice(1).forEach(function(s){
+      var li=document.createElement("li"); li.textContent=s; alt.appendChild(li);
+    });
+    var ch=$(prefix+"chips"); ch.innerHTML="";
+    var chips=[side.kta, side.n_jobs+"개 직무"].concat(side.majors.slice(0,2));
+    chips.forEach(function(c,i){
+      var s=document.createElement("span"); s.className="chip"+(i===0?" k":""); s.textContent=c; ch.appendChild(s);
+    });
+  }
+
+  function renderVerdicts(selected){
+    var box=$("verdicts"); box.innerHTML="";
+    VERDICTS.forEach(function(v){
+      var b=document.createElement("button");
+      b.className = (selected===v.code ? "sel" : "");
+      b.innerHTML = "<b>"+v.label+" <kbd>"+v.key+"</kbd></b><span>"+v.desc+"</span>";
+      b.addEventListener("click", function(){ answer(v.code) });
+      box.appendChild(b);
+    });
+  }
+
+  // 판정자 코드 → 담당 문항. EV-<n> = 공통 앵커 + 블록 n · AU-* = 전체(연구자, 비교용)
+  // EV-3 / EV-3a / EV-3b 는 모두 블록 3 — 한 블록을 두 사람이 맡으면 앵커 밖 문항도 이중 판정된다.
+  function subsetFor(code){
+    var m = /^EV-?(\d+)[A-Za-z]?$/i.exec(code.trim());
+    if(m){
+      var b = parseInt(m[1],10), norm = "EV-"+b;
+      // 2차(R2) 표본: 문항마다 담당 판정자 목록(raters)이 있으면 그것을 따른다 — 3인/4인 교차 배정용
+      if(ITEMS.length && ITEMS[0].raters){
+        return ITEMS.filter(function(it){ return (it.raters||[]).indexOf(norm)>=0 });
+      }
+      return ITEMS.filter(function(it){ return it.block==="anchor" || it.block===b });
+    }
+    return ITEMS.slice();   // AU-* 및 그 밖의 코드는 전체
+  }
+
+  function show(i){
+    if(i<0) i=0;
+    if(i>=MYITEMS.length){ renderSummary(); showSection("summary"); return; }
+    cur=i;
+    var it=MYITEMS[i], a=answers[it.id];
+    renderSide(it.left,"l"); renderSide(it.right,"r");
+    renderVerdicts(a && a.verdict);
+    $("memo").value = (a && a.memo) || "";
+    var done=MYITEMS.filter(function(x){return answers[x.id]}).length;
+    $("pos").textContent = "문항 "+(i+1)+" / "+MYITEMS.length+" · 판정 완료 "+done+"건";
+    $("bar").style.width = (done/MYITEMS.length*100)+"%";
+    $("navcnt").textContent = rater+" · "+done+"/"+MYITEMS.length;
+    shownAt = Date.now();
+  }
+
+  function answer(code){
+    var it=MYITEMS[cur];
+    var ms = Math.max(0, Date.now()-shownAt);
+    var memoTxt = $("memo").value.trim();
+    answers[it.id] = {verdict:code, memo:memoTxt, ms:ms, synced:false};
+    saveLocal(); setStatus("저장 중…");
+    remoteSave(it, code, memoTxt, ms).then(function(ok){
+      answers[it.id].synced = ok; saveLocal();
+      setStatus(ok ? "저장됨" : "로컬에만 저장됨", ok?"":"err");
+    });
+    show(cur+1);
+  }
+
+  function showSection(which){
+    ["start","practice","judge","summary"].forEach(function(s){ $(s).classList.toggle("hide", s!==which) });
+    $("navbar").classList.toggle("hide", which==="start"||which==="practice");
+  }
+
+  // ── 연습
+  function showPractice(){
+    if(pracIdx >= PRACTICE.length){ startJudging(); return; }
+    var p = PRACTICE[pracIdx];
+    $("pracpos").textContent = "("+(pracIdx+1)+" / "+PRACTICE.length+")";
+    $("plsurf").textContent = p.a; $("prsurf").textContent = p.b;
+    $("pracfeedback").innerHTML = "";
+    var box=$("pracverdicts"); box.innerHTML="";
+    VERDICTS.forEach(function(v){
+      var b=document.createElement("button");
+      b.innerHTML = "<b>"+v.label+"</b><span>"+v.desc+"</span>";
+      b.addEventListener("click", function(){ practiceAnswer(v.code) });
+      box.appendChild(b);
+    });
+  }
+  function practiceAnswer(code){
+    var p = PRACTICE[pracIdx];
+    var right = (code === p.ans);
+    var label = (VERDICTS.filter(function(v){return v.code===p.ans})[0]||{}).label;
+    $("pracfeedback").innerHTML =
+      '<div class="card '+(right?'t':'a')+'"><p style="margin:0 0 6px"><b>'+
+      (right ? "맞습니다" : "이 문항의 기준 답은 「"+label+"」입니다")+'</b></p>'+
+      '<p class="note" style="margin:0">'+p.why+'</p>'+
+      '<div class="row" style="margin-top:10px"><button class="primary" id="pracnext">'+
+      (pracIdx+1<PRACTICE.length ? "다음 연습" : "본 판정 시작")+'</button></div></div>';
+    $("pracnext").addEventListener("click", function(){ pracIdx++; showPractice() });
+  }
+  function startJudging(){
+    showSection("judge");
+    var first=0;
+    for(var i=0;i<MYITEMS.length;i++){ if(!answers[MYITEMS[i].id]){ first=i; break } }
+    show(first);
+  }
+
+  // ── 집계
+  function computeStats(){
+    var byArm={}, byBand={}, overall={};
+    MYITEMS.forEach(function(it){
+      var a=answers[it.id]; if(!a) return;
+      var h=it._hidden;
+      [[byArm,h.arm],[byBand,h.band],[overall,"전체"]].forEach(function(p){
+        var bucket=p[0], k=p[1];
+        bucket[k]=bucket[k]||{};
+        bucket[k][a.verdict]=(bucket[k][a.verdict]||0)+1;
+      });
+    });
+    return {byArm:byArm, byBand:byBand, overall:overall};
+  }
+  function precision(counts){
+    var tot=0, same=0, lenient=0;
+    Object.keys(counts).forEach(function(k){
+      tot+=counts[k];
+      if(k==="same") same+=counts[k];
+      if(k==="same"||k==="hierarchy") lenient+=counts[k];
+    });
+    return {n:tot, strict: tot?same/tot:0, lenient: tot?lenient/tot:0};
+  }
+  function tableFor(title, bucket, keyLabel){
+    var keys=Object.keys(bucket).sort();
+    if(!keys.length) return "";
+    var h='<h2>'+title+'</h2><div class="table-wrap"><table><thead><tr><th>'+keyLabel+'</th><th class="num">n</th>'+
+      VERDICTS.map(function(v){return '<th class="num">'+v.label+'</th>'}).join("")+
+      '<th class="num">정밀도(엄격)</th><th class="num">정밀도(관대)</th></tr></thead><tbody>';
+    keys.forEach(function(k){
+      var c=bucket[k], p=precision(c);
+      h+='<tr><td>'+k+'</td><td class="num">'+p.n+'</td>'+
+        VERDICTS.map(function(v){return '<td class="num">'+(c[v.code]||0)+'</td>'}).join("")+
+        '<td class="num">'+(p.strict*100).toFixed(1)+'%</td><td class="num">'+(p.lenient*100).toFixed(1)+'%</td></tr>';
+    });
+    return h+'</tbody></table></div>';
+  }
+
+  function renderSummary(){
+    var done=MYITEMS.filter(function(x){return answers[x.id]}).length;
+    var s=computeStats();
+    var html='<div class="card t"><p style="margin:0"><b>'+rater+'</b> · 판정 '+done+' / '+MYITEMS.length+'건'+
+      (done<MYITEMS.length ? ' — 아직 진행 중입니다. 아래 수치는 판정한 문항만 반영합니다.' : ' — 완료')+'</p></div>';
+    if(!done){ $("sumbody").innerHTML = html+'<p class="muted">아직 판정한 문항이 없습니다.</p>'; return; }
+    html += '<div class="warn"><b>정밀도(엄격)</b> = 「같은 개념」 비율 · <b>정밀도(관대)</b> = 「같은 개념 + 상하위 관계」 비율. '+
+      '온톨로지에서 상하위는 병합이 아니라 <i>관계</i>로 표현해야 하므로 두 수치를 함께 봅니다.</div>';
+    html += tableFor("전체", s.overall, "구분");
+    html += tableFor("유사도 대역별 — 임계값 선택의 근거", s.byBand, "코사인 대역");
+    html += tableFor("표본 종류별", s.byArm, "종류");
+    html += '<p class="note">종류 A = 직접 연결된 쌍(유사도 신호의 정밀도) · 종류 B = 같은 군집이지만 직접 연결은 없는 쌍(전이 병합의 정밀도).</p>';
+    var memos=MYITEMS.filter(function(it){var a=answers[it.id];return a&&a.memo});
+    if(memos.length){
+      html+='<h2>메모</h2><div class="table-wrap"><table><thead><tr><th>표기 A</th><th>표기 B</th><th>판정</th><th>메모</th></tr></thead><tbody>';
+      memos.forEach(function(it){var a=answers[it.id];
+        var lab=(VERDICTS.filter(function(v){return v.code===a.verdict})[0]||{}).label||a.verdict;
+        html+='<tr><td>'+esc(it.left.surfaces[0])+'</td><td>'+esc(it.right.surfaces[0])+'</td><td>'+lab+'</td><td>'+esc(a.memo)+'</td></tr>';
+      });
+      html+='</tbody></table></div>';
+    }
+    // 전송 상태 — 정상이면 조용하고, 남은 게 있을 때만 조치를 안내한다.
+    var unsynced = MYITEMS.filter(function(it){var a=answers[it.id];return a && !a.synced}).length;
+    html += unsynced
+      ? '<div class="warn">서버로 전송되지 않은 판정이 <b>'+unsynced+'건</b> 있습니다. '+
+        '인터넷 연결을 확인하고 <button id="resend">다시 보내기</button> 를 눌러 주세요. '+
+        '이 창을 닫아도 판정은 남아 있으니, 나중에 같은 링크로 들어와 다시 보내셔도 됩니다.</div>'
+      : '<p class="note">판정이 모두 서버에 저장됐습니다. 따로 하실 일은 없습니다.</p>';
+    $("sumbody").innerHTML = html;
+    var rs=$("resend");
+    if(rs){ rs.addEventListener("click", function(){ resync().then(function(){ renderSummary() }) }); }
+  }
+  function esc(s){ return String(s||"").replace(/[&<>"]/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]}) }
+
+  // ── 이벤트
+  // 명단 채우기 — 명단이 비어 있으면(공개 배포) 코드 입력만 노출한다.
+  (function(){
+    var sel=$("who");
+    if(!ROSTER.length){
+      sel.parentNode.classList.add("hide");
+      $("manualwrap").classList.remove("hide");
+      return;
+    }
+    var o=document.createElement("option"); o.value=""; o.textContent="— 선택 —"; sel.appendChild(o);
+    ROSTER.forEach(function(r){
+      var op=document.createElement("option"); op.value=r.code; op.textContent=r.name; sel.appendChild(op);
+    });
+    var om=document.createElement("option"); om.value="__manual__"; om.textContent="명단에 없음 (코드 직접 입력)"; sel.appendChild(om);
+    sel.addEventListener("change", function(){
+      $("manualwrap").classList.toggle("hide", sel.value!=="__manual__");
+    });
+  })();
+
+  // 개인별 링크(?c=EV-3) — 코드를 채워 두고 안내 문구를 바꾼다.
+  (function(){
+    var m=/[?&]c=([^&]+)/.exec(location.search||"");
+    if(!m) return;
+    var code=decodeURIComponent(m[1]).trim();
+    $("rater").value=code;
+    var sel=$("who");
+    if(ROSTER.length && Array.prototype.some.call(sel.options,function(o){return o.value===code})){
+      sel.value=code;
+    } else {
+      sel.parentNode.classList.add("hide");
+      $("manualwrap").classList.remove("hide");
+    }
+    $("startmsg").innerHTML = "배정된 코드 <b>"+esc(code)+"</b> 로 진행합니다.";
+  })();
+
+  $("begin").addEventListener("click", function(){
+    var sel=$("who").value;
+    var v = (sel==="__manual__" || !sel) ? $("rater").value.trim() : sel;
+    if(!v){ $("startmsg").textContent="본인을 선택하거나 코드를 입력해 주세요."; return; }
+    rater=v; role=$("role").value; answers=loadLocal();
+    MYITEMS = subsetFor(v);
+    if(!MYITEMS.length){ $("startmsg").textContent="이 코드에 배정된 문항이 없습니다. 코드를 확인해 주세요."; return; }
+    var done = MYITEMS.filter(function(x){return answers[x.id]}).length;
+    if(done > 0){ resync(); startJudging(); }   // 이어하기 — 연습은 건너뛰고 미전송분부터 밀어 넣는다
+    else { pracIdx=0; showSection("practice"); showPractice(); }
+  });
+  $("prev").addEventListener("click", function(){ show(cur-1) });
+  $("skip").addEventListener("click", function(){ show(cur+1) });
+  $("toJudge").addEventListener("click", function(){ showSection("judge"); show(cur) });
+  $("toSummary").addEventListener("click", function(){ renderSummary(); showSection("summary") });
+  document.addEventListener("keydown", function(e){
+    if($("judge").classList.contains("hide")) return;
+    if(e.target.tagName==="INPUT"&&e.key!=="Enter") return;
+    var v=VERDICTS.filter(function(x){return x.key===e.key})[0];
+    if(v){ e.preventDefault(); answer(v.code); return }
+    if(e.key==="ArrowLeft"){ e.preventDefault(); show(cur-1) }
+    if(e.key==="Enter"){ e.preventDefault(); show(cur+1) }
+  });
+
+  // 초기화 — db 연결은 화면 동작과 독립적으로, 리스너 등록 이후에 시도한다
+    if(!ITEMS.length){
+    $("start").innerHTML='<div class="card"><p>표본이 비어 있습니다. <code>scripts/t0_build_validation_sample.py</code> 를 먼저 실행하세요.</p></div>';
+  } else {
+    $("subtitle").textContent = "임베딩이 하나로 묶은 표기 쌍이 실제로 같은 개념인지 판정합니다.";
+  }
+})();
+</script>

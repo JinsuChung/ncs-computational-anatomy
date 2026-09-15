@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="920" height="560" role="img" aria-label="그림 1. 대분류별 개정 연도·수준·디지털 어휘" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<rect x="0" y="0" width="920" height="560" fill="#FFFFFF"/>
+<line x1="117.64705882352942" y1="40" x2="117.64705882352942" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="117.64705882352942" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2015</text>
+<line x1="212.94117647058823" y1="40" x2="212.94117647058823" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="212.94117647058823" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2016</text>
+<line x1="308.2352941176471" y1="40" x2="308.2352941176471" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="308.2352941176471" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2017</text>
+<line x1="403.52941176470586" y1="40" x2="403.52941176470586" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="403.52941176470586" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2018</text>
+<line x1="498.8235294117647" y1="40" x2="498.8235294117647" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="498.8235294117647" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2019</text>
+<line x1="594.1176470588235" y1="40" x2="594.1176470588235" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="594.1176470588235" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2020</text>
+<line x1="689.4117647058823" y1="40" x2="689.4117647058823" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="689.4117647058823" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2021</text>
+<line x1="784.7058823529411" y1="40" x2="784.7058823529411" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="784.7058823529411" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2022</text>
+<line x1="70" y1="500.0" x2="880" y2="500.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="504.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">0%</text>
+<line x1="70" y1="385.0" x2="880" y2="385.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="389.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20%</text>
+<line x1="70" y1="270.0" x2="880" y2="270.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="274.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">40%</text>
+<line x1="70" y1="155.00000000000006" x2="880" y2="155.00000000000006" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="159.00000000000006" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">60%</text>
+<line x1="70" y1="40.0" x2="880" y2="40.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="44.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">80%</text>
+<text x="475.0" y="542" font-size="12" fill="#5C6B6E" text-anchor="middle" font-weight="normal">평균 개발·개선 연도 (능력단위 코드 접미, 능력단위 수 가중)</text>
+<text x="18" y="270.0" font-size="12" fill="#5C6B6E" text-anchor="middle" font-weight="normal" transform="rotate(-90 18 270.0)">L5 이상 능력단위 비율</text>
+<circle cx="523.6" cy="310.0" r="17.8" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="509.3" cy="285.0" r="20.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="503.0" cy="253.3" r="17.4" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="680.4" cy="133.6" r="28.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="301.2" cy="210.7" r="21.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="425.1" cy="357.9" r="13.2" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="515.1" cy="207.8" r="17.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="565.3" cy="190.5" r="17.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="637.4" cy="429.3" r="12.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="477.7" cy="356.9" r="19.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="256.6" cy="276.5" r="16.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="151.2" cy="90.3" r="20.6" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="437.3" cy="441.0" r="17.8" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="351.6" cy="337.4" r="15.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="537.8" cy="432.8" r="11.4" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="750.6" cy="246.5" r="19.3" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="706.3" cy="170.0" r="19.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="312.3" cy="191.9" r="18.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="388.6" cy="235.0" r="18.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="719.6" cy="444.5" r="9.3" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="618.3" cy="203.1" r="18.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="417.0" cy="138.7" r="19.9" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="238.9" cy="447.7" r="9.3" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="198.0" cy="173.0" r="16.2" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<text x="254.23010770811877" y="451.72727272727275" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">경비·청소</text>
+<text x="704.3137394201885" y="448.48275862068965" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">음식서비스</text>
+<text x="461.17125017783343" y="444.9824046920821" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">인쇄·목재·공예</text>
+<text x="520.4125333364073" y="436.7922077922078" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">식품가공</text>
+<text x="618.7106258505936" y="472.3103448275862" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">재료</text>
+<text x="444.32184984513447" y="361.9065300896287" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">농림어업</text>
+<text x="452.65609915951694" y="360.9377990430622" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">이용·숙박·여행</text>
+<text x="372.6748874241237" y="341.42559523809524" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">섬유·의복</text>
+<text x="499.80594658804677" y="313.9635479951397" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">기계</text>
+<text x="482.84803619198556" y="288.990125082291" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">전기·전자</text>
+<text x="278.60753339926345" y="280.5470297029703" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">운전·운송</text>
+<text x="479.599176414405" y="257.2965194109772" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">건설</text>
+<text x="725.2655545515754" y="250.50537634408605" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">경영·회계·사무</text>
+<text x="412.59235002874243" y="239.04901960784315" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">법률·경찰·소방</text>
+<text x="328.9163910957228" y="214.68268015170673" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">문화·예술·방송</text>
+<text x="491.3088017333547" y="211.79972752043597" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">화학·바이오</text>
+<text x="593.8166190937986" y="233.07377049180332" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">보건·의료</text>
+<text x="337.0767028282737" y="195.86602870813402" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">영업판매</text>
+<text x="541.8586129331698" y="194.5054644808743" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">환경·에너지</text>
+<text x="220.16668529244546" y="177.03921568627453" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">사업관리</text>
+<text x="680.7816580447364" y="174.04219409282706" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">사회복지·종교</text>
+<text x="442.87259841943404" y="142.71681415929208" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">교육·자연·사회</text>
+<text x="646.3687025049211" y="137.63237639553432" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">정보통신</text>
+<text x="177.78494118700576" y="94.34974093264253" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">금융·보험</text>
+<text x="680" y="50" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">버블 크기 = KSA 중 디지털 어휘 비율</text>
+<circle cx="692" cy="76" r="10.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352"/>
+<text x="692" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">0.5%</text>
+<circle cx="750" cy="76" r="17.6" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352"/>
+<text x="750" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3%</text>
+<circle cx="808" cy="76" r="27.1" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352"/>
+<text x="808" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">10%</text>
+<text x="70" y="22" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">그림 1. 대분류 24개의 개정 연도 × 수준 × 디지털 어휘 (원천 실측, 2026-02 릴리스)</text>
+</svg>

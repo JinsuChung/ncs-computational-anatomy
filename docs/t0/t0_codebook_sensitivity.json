@@ -1,0 +1,39 @@
+{
+  "n_attitude_sentences": 95237,
+  "multi_category_rate": 0.4373,
+  "no_category_rate": 0.0487,
+  "distribution_preregistered_order": {
+    "의지·노력": 38.5,
+    "준수·안전": 20.4,
+    "인지·분석": 13.6,
+    "품질·정확": 9.9,
+    "대인·소통": 6.7,
+    "윤리·책임": 6.0,
+    "기타": 4.9
+  },
+  "distribution_reversed_order": {
+    "의지·노력": 79.4,
+    "준수·안전": 6.4,
+    "기타": 4.9,
+    "인지·분석": 3.6,
+    "품질·정확": 2.8,
+    "윤리·책임": 2.1,
+    "대인·소통": 0.8
+  },
+  "distribution_single_match_only": {
+    "의지·노력": 75.0,
+    "준수·안전": 12.5,
+    "인지·분석": 5.7,
+    "품질·정확": 2.8,
+    "윤리·책임": 2.6,
+    "대인·소통": 1.4
+  },
+  "n_single_match": 48949,
+  "permutation_200": {
+    "top_category_counts": {
+      "의지·노력": 200
+    },
+    "volition_over_compliance_rate": 1.0
+  },
+  "note": "사전 등록 우선순위는 준수·안전이 첫째, 의지·노력이 마지막이다. 규칙은 보고된 결론(의지 > 준수)에 불리한 방향으로 편향돼 있다."
+}

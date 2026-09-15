@@ -1,0 +1,37 @@
+{
+  "built_at": "2026-09-15T15:04:10+09:00",
+  "status": "CANDIDATE — embedding-stage merges are proposals, not verified identities",
+  "source": "bge-m3 embeddings of 326,592 normalization keys; pairs cos ≥ .85; Louvain (resolution 1.0, seed 20260909) on the cos ≥ .90 graph",
+  "policy": "communities of size 2..5",
+  "n_candidate_groups": 27721,
+  "n_keys_covered": 65557,
+  "size_distribution": {
+    "2": 20788,
+    "3": 4497,
+    "4": 1690,
+    "5": 746
+  },
+  "validation_tiers": {
+    "candidate": 27641,
+    "human_validated": 80
+  },
+  "merge_paths": {
+    "a_cross_occupation": 8724,
+    "b_same_occupation": 13537,
+    "c_into_shared": 5460
+  },
+  "merge_path_note": "c_into_shared: single-occupation keys join a concept another occupation already holds (judged direct-edge precision 72.5%); a_cross_occupation: single-occupation keys of different occupations merge, creating a new shared concept (61.1%; carries the downstream gain); b_same_occupation: keys of one occupation merge (43.9%; no downstream value) — not recommended. recommended = 1 when the path is not b_same_occupation and every member pair is a direct edge (cos ≥ .90).",
+  "precision_basis": {
+    "direct_edge_cos>=0.90": {
+      "strict": 0.723,
+      "lenient": 0.852
+    },
+    "transitive_size_3_5": {
+      "strict": 0.329,
+      "lenient": 0.569
+    },
+    "note": "expected_*_precision = direct_edge_share × direct + (1 − share) × transitive; both from §4.6 (first-round 8 external raters). Policy-level verified figures for size ≤ 5 are in t0_h3_verified_recovery_ci.json."
+  },
+  "human_verdicts": "majority over all external raters' judgments on member pairs (rounds 1–3); 'same' = strict, 'same_or_hier' = lenient",
+  "license": "Derived from NCS (KOGL Type 1, attribution). Candidate merges carry no claim of correctness; consumers should treat validation_tier='candidate' rows as unreviewed."
+}

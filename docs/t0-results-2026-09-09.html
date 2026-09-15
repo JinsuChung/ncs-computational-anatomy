@@ -1,0 +1,303 @@
+<title>T0 확증 분석 결과</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root { --ground:#FBFBF7; --paper:#FFFFFF; --ink:#1F2A2E; --muted:#5C6B6E; --faint:#8C9899; --line:#DEE4DF;
+    --teal:#0E6E6D; --teal-deep:#0A5352; --teal-wash:#EAF3F1; --amber:#B07A18; --amber-deep:#8A5E0E; --amber-wash:#FBF3DF;
+    --red:#B23A3A; --red-wash:#F6EAEA;
+    --serif:"Gowun Batang",Georgia,serif; --sans:"IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ground:#14181A; --paper:#1B2124; --ink:#E6E9E4; --muted:#9FAAA9; --faint:#6F7C7C; --line:#2C3538;
+    --teal:#46A8A4; --teal-deep:#6BC2BE; --teal-wash:#1E2E2D; --amber:#D9A94B; --amber-deep:#E3C36A; --amber-wash:#33290F; --red:#E08A8A; --red-wash:#3A2222; } }
+  :root[data-theme="dark"] { --ground:#14181A; --paper:#1B2124; --ink:#E6E9E4; --muted:#9FAAA9; --faint:#6F7C7C; --line:#2C3538;
+    --teal:#46A8A4; --teal-deep:#6BC2BE; --teal-wash:#1E2E2D; --amber:#D9A94B; --amber-deep:#E3C36A; --amber-wash:#33290F; --red:#E08A8A; --red-wash:#3A2222; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.78; -webkit-font-smoothing:antialiased; }
+  .page { max-width:940px; margin:0 auto; padding:52px 26px 120px; }
+  .eyebrow { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; color:var(--teal); text-transform:uppercase; }
+  h1 { font-family:var(--serif); font-weight:700; font-size:31px; line-height:1.38; margin:10px 0 8px; text-wrap:balance; }
+  h2 { font-family:var(--serif); font-size:21px; margin:46px 0 10px; padding-top:16px; border-top:2px solid var(--ink); }
+  h2 .k { font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--faint); display:block; margin-bottom:4px; }
+  h3 { font-size:16px; margin:24px 0 6px; }
+  p { margin:8px 0; max-width:74ch; }
+  .meta { font-size:13px; color:var(--muted); }
+  .lede { font-size:16px; }
+  .box { background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 20px; margin:16px 0; }
+  .box.t { border-left:4px solid var(--teal); } .box.a { border-left:4px solid var(--amber); } .box.r { border-left:4px solid var(--red); }
+  .box p { max-width:none; }
+  .table-wrap { overflow-x:auto; margin:14px 0; }
+  table { border-collapse:collapse; width:100%; font-size:13px; background:var(--paper); }
+  th { text-align:left; font-size:11.5px; letter-spacing:.04em; color:var(--faint); font-weight:700; border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); padding:7px 10px; }
+  td { border-bottom:1px solid var(--line); padding:7px 10px; vertical-align:top; line-height:1.55; }
+  td.num, th.num { text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:2px solid var(--ink); }
+  code { font-family:var(--mono); font-size:.85em; background:var(--teal-wash); color:var(--teal-deep); padding:1px 5px; border-radius:4px; }
+  .v { display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; border-radius:99px; padding:1px 9px; white-space:nowrap; }
+  .v.ok { background:var(--teal-wash); color:var(--teal-deep); border:1px solid var(--teal); }
+  .v.no { background:var(--red-wash); color:var(--red); border:1px solid var(--red); }
+  .v.pk { background:var(--amber-wash); color:var(--amber-deep); border:1px solid var(--amber); }
+  .hyp { background:var(--paper); border:1px solid var(--line); border-radius:12px; margin:20px 0; overflow:hidden; }
+  .hyp > header { display:flex; gap:12px; align-items:baseline; padding:12px 20px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .hyp > header .id { font-family:var(--mono); font-weight:600; color:var(--paper); background:var(--teal); border-radius:6px; padding:2px 10px; font-size:12px; }
+  .hyp > header .id.s { background:var(--amber); }
+  .hyp > header h3 { margin:0; font-size:15.5px; flex:1; min-width:280px; }
+  .hyp .body { padding:6px 20px 16px; }
+  .hyp .body p { max-width:none; }
+  .bar { display:flex; align-items:center; gap:10px; margin:5px 0; font-size:12.5px; }
+  .bar .lab { flex:0 0 190px; text-align:right; color:var(--muted); }
+  .bar .track { flex:1; height:16px; background:var(--ground); border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+  .bar .fill { height:100%; background:var(--teal); } .bar .fill.am { background:var(--amber); } .bar .fill.gy { background:#9AA6A4; }
+  .bar .val { flex:0 0 74px; font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  ul { max-width:74ch; } li { margin:4px 0; }
+  .footnote { margin-top:56px; padding-top:14px; border-top:1px solid var(--line); font-size:12.5px; color:var(--faint); }
+</style>
+
+<div class="page">
+<header>
+  <div class="eyebrow">Results · T0 · Confirmatory Analysis</div>
+  <h1>T0 확증 분석 결과 — NCS의 계산적 해부</h1>
+  <div class="meta">사전 등록 docs/t0-preregistration.html (커밋 3c60a2e에서 동결) · 분석 <code>scripts/t0_analysis.py</code> · 실행 2026-09-09 · 세분류 n=1,109 · 시드 20260909 · BH-FDR 5%</div>
+</header>
+
+<p class="lede">사전 등록한 9개 가설 중 <b>5개는 기대대로, 4개는 기대와 다르게</b> 나왔다. 기대와 다른 넷 중 하나(H3)는 이 연구의 엔지니어링 결론을 실제로 바꾼다. 모든 수치는 모델이 개입하지 않은 <b>원천 실측</b>이다(H3의 임베딩 2단계는 미실시).</p>
+
+<div class="box t">
+  <p><b>한 문단 요약.</b> NCS 수행준거는 사실상 완전한 통사 템플릿(99.56%)을 따르고 이탈은 26개 직무에 몰려 있다 — 규칙 파서로 거의 전부 처리 가능하다는 뜻이다. 반면 개념 층은 정반대다: 표기 파편화를 <b>규칙 정규화로는 8.2%밖에 회수하지 못한다</b>(기대 50~70%). 즉 <b>구조는 규칙에게, 개념은 모델에게</b>가 데이터가 말하는 역할 분담이다. 한편 탐색에서 극적으로 보였던 산업 간 격차(개정 연도·디지털)는 세분류 단위로 내려오면 효과 크기가 기대에 못 미쳤다 — 대분류 평균이 만든 착시였다.</p>
+</div>
+
+<h2><span class="k">1 · SUMMARY</span>결과 요약표</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>가설</th><th>라벨</th><th>주 검정</th><th class="num">통계량</th><th class="num">p</th><th class="num">효과크기</th><th>반분</th><th>FDR</th><th>사전 기대</th></tr></thead>
+  <tbody>
+    <tr><td><b>H1</b> 템플릿 규칙성</td><td>PEEK</td><td>이항(≥.99)</td><td class="num">.9956</td><td class="num">&lt;.0001</td><td class="num">—</td><td>불일치*</td><td>○</td><td><span class="v ok">충족</span></td></tr>
+    <tr><td><b>H2</b> 중복률 산업차</td><td>PEEK</td><td>Kruskal(잔차)</td><td class="num">229.9</td><td class="num">&lt;.0001</td><td class="num">ε²=.191</td><td>일치</td><td>○</td><td><span class="v ok">충족</span></td></tr>
+    <tr><td><b>H3</b> 표기 파편화</td><td>CLEAN</td><td>Kruskal(직무별 지수)</td><td class="num">—</td><td class="num">&lt;.0001</td><td class="num">ρ=.539</td><td>일치</td><td>○</td><td><span class="v no">부분 기각</span></td></tr>
+    <tr><td><b>H4</b> 군집 vs 분류</td><td>CLEAN</td><td>순열 NMI</td><td class="num">.329</td><td class="num">.001</td><td class="num">ARI=.108</td><td>—</td><td>○</td><td><span class="v ok">충족</span></td></tr>
+    <tr><td><b>H5</b> 개정 신선도</td><td>PEEK</td><td>Kruskal</td><td class="num">213.2</td><td class="num">&lt;.0001</td><td class="num">ε²=.175</td><td>일치</td><td>○</td><td><span class="v no">미충족</span></td></tr>
+    <tr><td><b>H6</b> 디지털×연도</td><td>PEEK/CLEAN</td><td>Spearman(대분류 내)</td><td class="num">ρ=.077</td><td class="num">.010</td><td class="num">ρ=.077</td><td>불일치</td><td>○</td><td><span class="v no">미충족</span></td></tr>
+    <tr><td><b>S1</b> 수준 사다리</td><td>PEEK</td><td>Kruskal</td><td class="num">—</td><td class="num">&lt;.0001</td><td class="num">큼</td><td>일치</td><td>○</td><td><span class="v ok">충족</span></td></tr>
+    <tr><td><b>S2</b> 태도 어휘</td><td>PEEK/CLEAN</td><td>χ²</td><td class="num">8946.8</td><td class="num">&lt;.0001</td><td class="num">V=.125</td><td>—</td><td>○</td><td><span class="v no">미충족</span></td></tr>
+    <tr><td><b>S4</b> 겹치는 격차</td><td>CLEAN</td><td>Kendall W</td><td class="num">W=.449</td><td class="num">.123</td><td class="num">W=.449</td><td>—</td><td>×</td><td><span class="v no">미충족</span></td></tr>
+  </tbody>
+</table></div>
+<p class="meta">* H1의 반분은 <b>보조</b> 검정(대분류 간 준수율 변이, ε²=.018)의 결과다. 주장 자체(전체 준수율·이탈 집중)는 전수 값이므로 반분 대상이 아니다. S3(개정의 정치경제)와 S1의 외부 상관은 외부 자료가 필요해 미실시(M-T0-2·M-T0-3).</p>
+
+<h2><span class="k">2 · ENGINEERING</span>공학 가설 상세</h2>
+
+<div class="hyp"><header><span class="id">H1</span><h3>수행준거는 단일 통사 템플릿에 거의 완전히 순응하며, 이탈은 국지적이다</h3><span class="v ok">충족</span></header><div class="body">
+  <p>19만 6,658개 수행준거 중 <b>99.563%</b>가 "~할 수 있다"로 끝난다(이탈 859건, 95% CI [.9953, .9960], 단측 이항 p&lt;.0001). 이탈의 절반이 <b>26개 세분류(전체의 2.3%)</b>에 집중돼 사전 기대(≤5%)를 충족했다. 극단값으로 <b>환경미화</b> 직무는 준수율 0% — 한 직무 전체가 다른 작성 규약을 쓴다.</p>
+  <p>이탈 문장의 유형: 평서형 종결 504 · 템플릿 변형(문중에 "수 있다") 245 · 기타 93 · 명사형 종결 17.</p>
+  <div class="box t"><p><b>공학적 함의.</b> 수행준거 파싱은 규칙으로 사실상 전부 처리된다. 모델이 필요한 지점은 "문장 구조"가 아니라 <b>26개 직무라는 특정 위치</b>에 있으며, 그 목록이 확정됐다(<code>docs/t0/t0_metrics.csv</code>). T4(수행준거 프레임 분해)의 규칙 커버리지 상한이 이 수치다.</p></div>
+</div></div>
+
+<div class="hyp"><header><span class="id">H2</span><h3>KSA 중복률은 산업에 따라 다르며, 규모를 통제해도 남는다</h3><span class="v ok">충족</span></header><div class="body">
+  <p>전체 고유 문장 비율 <b>16.07%</b>. 고유 비율은 집합 크기에 의존하므로 <code>unique_rate ~ log(KSA 수) + log(능력단위 수)</code>로 규모를 통제했다(R²=.369). <b>잔차의 대분류 효과는 통제 전보다 오히려 커졌다</b> — ε² .158 → <b>.191</b> (Kruskal H=229.9, p&lt;.0001), 반분 두 쪽 모두 유의·동일 부호.</p>
+  <div class="box t"><p><b>공학적 함의.</b> 중복은 "큰 직무라서 생기는 착시"가 아니라 <b>산업별 작성 관행</b>이다. 정규 사전 크기(35.6만)와 산업별 5~10배 압축 계수가 T1의 판정 물량·비용 하한을 결정한다.</p></div>
+</div></div>
+
+<div class="hyp"><header><span class="id">H3</span><h3>표기 파편화 — 규칙 정규화로 절반 이상 회수된다</h3><span class="v no">핵심 기대 기각</span></header><div class="body">
+  <p>고유 표면형 <b>355,897</b>개 → 규칙 정규화 키 <b>326,592</b>개. 파편화 지수 1.09, <b>병합된 표면형은 8.2%</b>에 그쳤다 — 사전 기대 50~70%에 크게 못 미친다. 반면 가설의 다른 축인 <b>빈도–파편화 상관은 강하게 지지</b>됐다(ρ=.539, p&lt;.0001, n=326,592): 널리 쓰이는 개념일수록 더 많은 표기로 갈라진다.</p>
+  <div class="bar"><span class="lab">통계분석</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="val">25표기 / 101직무</span></div>
+  <div class="bar"><span class="lab">품질관리</span><div class="track"><div class="fill" style="width:96%"></div></div><span class="val">24 / 98</span></div>
+  <div class="bar"><span class="lab">도면해독</span><div class="track"><div class="fill" style="width:92%"></div></div><span class="val">23 / 104</span></div>
+  <p>같은 키가 <b>지식과 기술로 동시에 분류된 경우가 6,310건(1.9%)</b> — 위 세 개념 전부가 여기 해당한다("통계 분석 지식" vs "통계 분석 기술"). 별칭 사전 <b>19,881행</b>을 산출했다(<code>docs/t0/t0_alias_dictionary.csv</code>).</p>
+  <div class="box r"><p><b>왜 8.2%인가 — 그리고 왜 이것이 중요한 발견인가.</b> 규칙 키는 공백·구두점·역할 접미사(지식/기술/능력/방법…)만 흡수한다. 그래서 '통계 분석 지식'과 '통계분석기법'은 합치지만, <b>어간이 다른 동의 표기</b>는 합치지 못한다 — 탐색에서 본 '안전사항 준수'·'안전수칙 준수'·'안전규정 준수'가 그대로 남는다. 즉 <b>임베딩 정렬은 개선 옵션이 아니라 필수 단계</b>다. 이 결과는 EA10 가설④("놓침의 정체는 개념 부재가 아니라 표기 정렬 실패")를 원천 데이터 쪽에서 독립적으로 확인해 준다.</p></div>
+  <p><b>M9 접미사 목록 민감도 <span class="v ok">실행 2026-09-10</span>.</b> 8.2%는 접미사 목록의 산물이 아니다. 목록을 빼고 줄이고 두 방향으로 늘려 다시 돌리면: 공백·구두점만 <b>3.5%</b> → "에 대한 X" 구문만 4.8% → 사전 등록 <b>8.2%</b> → 이해도·숙지·파악·활용능력 추가 <b>8.5%</b> → 태도 접미(~하려는 자세·의지·노력)까지 제거 <b>9.0%</b>. 두 확장은 base 대비 926·2,152개 그룹을 더 합치는데 그중에 '설문조사'↔'설문 조사 의지'처럼 <i>개념과 그 개념에 대한 태도</i>를 합치는 의심스러운 병합이 섞이기 시작하고, 유형 불일치 키 비율은 0.3%(접미사 미제거) → 1.9%(base) → 2.0~2.1%로 오른다. 즉 이 코퍼스에서 규칙은 목록과 무관하게 <b>9% 근처에서 포화</b>하고, 마지막 1%p는 정밀도를 내주고 산다. NCS 규칙 병합 정밀도는 미측정이며 ESCO 정답 기준(§5)으로는 97.8~98.9%다. 산출: <code>scripts/t0_sensitivity.py</code> → <code>docs/t0/t0_sensitivity.json</code>.</p>
+  <p><b>인코더 민감도 <span class="v ok">실행 2026-09-11</span>.</b> .90 무릎이 bge-m3의 보정값인지 과제의 성질인지 보려고, 계열이 다르고 크기가 비슷한 <code>multilingual-e5-large</code>로 판정 200쌍·ESCO 전수·NCS 전수 키를 다시 임베딩했다. e5의 코사인 척도는 압축돼 있어(200쌍 범위 .83–.999 vs bge .45–.997) 절대 임계값 대신 <b>쌍 수 일치</b>(bge의 ≥.85/.90/.95 쌍 수와 같은 수의 상위 쌍; e5 cut .936/.958/.982)로 비교했다. 결과는 집계 수준에서 사실상 동일하다 — ESCO 누적 정밀도(재현율) 76.5(53.8)/93.0(34.9)/99.0%(15.4) vs bge 76.1/92.8/98.7, 대역 정밀도 57.7/88.7/99.0 vs 57.0/88.6/98.7, Louvain@.90 검증 회수 58.6 vs 59.5%, 전이 정밀도 크기 기울기 88.7/57.4/11.4/4.0 vs 90.0/60.3/11.2/1.7; NCS 결합 회수 51.7/28.4/13.7 vs 51.3/28.1/13.6%, 태도/기술/지식 참여 38.7/28.6/29.3 vs 38.2/28.6/27.9(태도 쏠림은 bge 인공물이 아님), 단일연결 .85 거대 성분 29.0 vs 29.9%. 판정 200쌍에서는 두 모델 코사인 상관 Spearman .88, bge ≥.90 직접 쌍 80개와 e5 상위 80개가 90% 겹치고 엄격 정밀도 70.4 vs 72.3%. <b>무릎은 과제의 성질이고, 무릎을 부르는 숫자만 모델 고유</b>(.90 vs .958)다 — 논문의 권고는 "cos .90"이 아니라 "인코더별로 찾은 정밀도 무릎"으로 읽어야 한다.</p>
+  <p><b>부산물 — 두 인코더 합의는 싼 정밀도 지렛대.</b> 집계는 같아도 고른 쌍은 다르다(.90 일치 쌍 집합 Jaccard: ESCO .73, NCS .50). ESCO 정답으로 보면 .85 일치 cut에서 <b>두 모델이 모두 고른 쌍은 83.1%</b>(단일 76%), 한쪽만 고른 쌍은 42~45%(동전 던지기); .90에서는 교집합 95.1%(단일 92.8%, 쌍 15% 손실). NCS 판정 쌍도 같은 방향(둘 다 cut 이상 72.7% vs 한쪽만 50~68%). 가장 약한 .85–.90 대역에서 특히 유효하다. 산출: <code>scripts/t0_encoder_sensitivity.py</code> → <code>docs/t0/t0_encoder_sensitivity.json</code>.</p>
+
+  <h3 style="margin-top:22px">H3 · 2단계 — 임베딩이 얼마나 더 회수하는가 <span class="v ok">실행 2026-09-09</span></h3>
+  <p>규칙 키 <b>326,592개 전부</b>를 bge-m3로 임베딩(로컬 MPS)하고 전역 클러스터링했다. 표본 추정이 아니라 전수다 — 초기 설계는 롱테일을 표본으로 추정하려 했으나, 표본 내부에서만 클러스터링하면 어떤 키의 진짜 동의어(모집단의 다른 30만 개 중에 있음)를 만날 수 없어 회수율이 구조적으로 0에 수렴한다(300개 표본에서 0.0%로 확인). 임계값 이상 쌍은 586,498개.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>단계</th><th class="num">결합 회수율<br><span style="font-weight:400">(표면형 대비)</span></th><th class="num">키 감소</th><th class="num">최대 클러스터</th><th>성격</th></tr></thead>
+    <tbody>
+      <tr><td>1단계 — 규칙 키만</td><td class="num">8.2%</td><td class="num">—</td><td class="num">—</td><td>공백·구두점·역할 접미사만</td></tr>
+      <tr><td>+ 임베딩 cos ≥ .95</td><td class="num"><b>13.6%</b></td><td class="num">5.9%</td><td class="num">183</td><td>보수적 — 사실상 같은 개념</td></tr>
+      <tr><td>+ 임베딩 cos ≥ .90 <span class="v pk">사전 등록 주 임계값</span></td><td class="num"><b>28.1%</b></td><td class="num">21.7%</td><td class="num">1,084</td><td>개념 <i>계열</i> 단위 — 판정 필요</td></tr>
+      <tr><td>+ 임베딩 cos ≥ .85</td><td class="num">51.3%</td><td class="num">47.0%</td><td class="num">5,860</td><td>과병합 — 권장하지 않음</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>주 결과: 8.2% → 28.1%(cos≥.90), 3.4배.</b> 층 교차 병합 6,339건 — 단일 직무 전용 키가 빈출 개념에 흡수된 사례이고, 온톨로지 관점에서 가장 값진 회수다. 층별 병합 참여율은 빈도와 함께 오른다(등장 직무 10개 이상 83.6% · 3–9개 64.5% · 2개 48.8% · 1개 28.7%) — 1단계의 빈도–파편화 상관(ρ=.539)과 같은 방향이다.</p>
+  <div class="box r"><p><b>방법론적 함정 하나를 실제로 밟았고, 고쳤다.</b> 처음에는 전이 폐포(단일 연결)로 묶었는데 <b>연쇄 병합</b>이 일어났다 — cos≥.90에서 최대 성분이 <b>17,118개 키·1,106개 직무</b>를 삼켰고(내용은 "data처리및분석"과 "hw요구사항을명확히정의하고자하는자세"가 한 덩어리), cos≥.85에서는 전체 키의 <b>29.9%</b>가 한 덩어리가 됐다. A~B~C 사슬의 양 끝이 서로 무관해도 이어지기 때문이다. 유사도 그래프의 <b>Louvain 군집</b>으로 바꾸자 최대 클러스터가 17,118 → 1,084로 떨어졌고, <b>총 회수율은 28.2% → 28.1%로 사실상 불변</b>이었다. 즉 사슬은 <i>회수의 양</i>이 아니라 <i>회수의 구성</i>을 망가뜨린다. 논문에는 두 수치를 병기하고 Louvain을 주 추정치로 쓴다.</p></div>
+  <p><b>회수가 '태도' 항목에 쏠린 것 아닌가</b> — 심사자가 물을 질문이라 미리 쟀다. 유형별 병합 참여율은 태도 38.2% · 기술 28.6% · 지식 27.9%로 태도가 다소 높지만 지배적이지 않다. 병합된 키의 <b>약 70%가 지식·기술</b>이다(지식 131,811 · 기술 115,031 · 태도 79,750개 키 기준). 다만 <b>가장 큰 클러스터들은 태도 계열</b>이다 — 상위 6개가 모두 태도 95% 이상으로, "기준·법규 준수"(1,084키/636직무), "개인보호구 착용·안전 준수"(1,016), "객관적 분석"(992) 같은 정형 문구 계열이다. 태도 문장이 "~하려는 자세/의지/노력" 템플릿을 공유해 임베딩이 통사적 유사도를 함께 잡는 효과로 보이며, 한계로 명시한다.</p>
+  <div class="box t"><p><b>공학적 결론(1차) — 임계값은 용도가 정한다.</b> cos≥.95는 자동 병합해도 안전한 구간(13.6%)이고, cos≥.90은 회수는 크지만(28.1%) 산출이 <b>개념 계열</b>이라 병합 여부를 판정해야 한다. 이것이 정확히 T1 판정단의 일거리다 — <b>T0가 후보 공간의 크기를, T1이 그 판정을 맡는</b> 분업이 데이터로 확인된 셈이다. 실행 비용은 로컬 임베딩 32.7만 건 + 그래프 연산으로 API 비용 0. <i>아래 3단계에서 이 결론이 수치로 확정·수정된다.</i></p></div>
+
+  <h3 style="margin-top:22px">H3 · 3단계 — 사람이 본 병합 정밀도 <span class="v ok">1차 2026-09-09~10 · 2차 2026-09-11</span></h3>
+  <p>28.1%는 임베딩이 <b>제안한</b> 병합의 양이다. 그 제안이 옳은지는 사람이 봐야 안다. 200쌍(직접 엣지 120 = 대역 .85–.90/.90–.95/.95–1.0 각 40 · 전이 동반 80)을 <b>외부 판정자 8인</b>(교육공학 박사 2, 교직원 3, 타 전공 학생 3; 각 공통 앵커 50 + 블록 30 = 80쌍)이 판정했고, 저자가 200쌍 전부를 비교용으로 판정했다(총 840건). 유사도·군집 크기·표본 종류는 판정 중 비노출(앵커링 차단). 5범주 판정에서 <b>엄격 정밀도</b> = 「같은 개념」, <b>관대 정밀도</b> = + 「상하위 관계」. 주 추정치는 외부 판정 합산이며 신뢰구간은 문항 단위 부트스트랩이다(같은 문항의 판정은 독립이 아니므로).</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>대역 (외부 8인)</th><th class="num">판정</th><th class="num">문항</th><th class="num">엄격 정밀도</th><th class="num">95% CI</th><th class="num">관대 정밀도</th><th class="num">애매</th></tr></thead>
+    <tbody>
+      <tr><td>직접 엣지 cos .85–.90</td><td class="num">128</td><td class="num">40</td><td class="num">43.8%</td><td class="num">[31.5, 56.9]</td><td class="num">59.4%</td><td class="num">2.3%</td></tr>
+      <tr><td>직접 엣지 cos .90–.95</td><td class="num">128</td><td class="num">40</td><td class="num"><b>71.1%</b></td><td class="num">[57.6, 83.5]</td><td class="num">82.8%</td><td class="num">1.6%</td></tr>
+      <tr><td>직접 엣지 cos .95–1.0</td><td class="num">128</td><td class="num">40</td><td class="num"><b>73.4%</b></td><td class="num">[58.9, 84.4]</td><td class="num">87.5%</td><td class="num">2.3%</td></tr>
+      <tr><td><b>전이 동반</b> (같은 cos≥.90 군집, 직접 연결 없음)</td><td class="num">256</td><td class="num">80</td><td class="num"><b>30.1%</b></td><td class="num">[21.5, 39.7]</td><td class="num">53.5%</td><td class="num">2.7%</td></tr>
+      <tr><td>전체</td><td class="num">640</td><td class="num">200</td><td class="num">49.7%</td><td class="num">[42.6, 56.7]</td><td class="num">67.3%</td><td class="num">2.3%</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>임계값 .90은 정밀도의 무릎(knee)이다 — 사전 등록 선택이 실증됐다.</b> 채택 임계값을 누적으로 보면 cos≥.85 62.8% → <b>cos≥.90 72.3%</b> → cos≥.95 73.4%(엄격). .90에서 .95로 올려도 정밀도는 1.1%p밖에 오르지 않는데 회수는 절반으로 준다(28.1→13.6%). 반면 .85로 내리면 정밀도가 9.5%p 떨어진다.</p>
+  <div class="box r"><p><b>가장 중요한 결과: 전이 병합은 대체로 틀리다.</b> 같은 Louvain 군집에 속하지만 직접 연결이 없는 쌍은 <b>30.1%</b>만 같은 개념이다(관대로 봐도 53.5%). 군집이 클수록 나빠진다 — 크기 3–5는 32.9%, 6–20은 26.5%, 21 이상은 약 21%(표본 8문항, 얇음). 2단계에서 Louvain이 연쇄를 끊었다고 했지만, <b>Louvain 군집 안에서도 전이적으로만 이어진 쌍은 개념 동일성을 보장하지 않는다.</b> 즉 "군집 = 개념"이 아니라 "군집 = 개념 계열"이라는 1차 결론이 사람 판정으로 확정됐다.</p></div>
+
+  <h4 style="margin:18px 0 6px">정밀도 보정 회수율 — 논문에 쓸 수치</h4>
+  <p>cos≥.90에서 흡수된 키 70,869개를 군집 크기 구간으로 나누고, 각 구간의 <i>군집 내 쌍 중 직접 엣지 비율</i>로 직접 엣지 정밀도(72.3%)와 전이 정밀도(구간별)를 가중해 "그 구간에서 흡수된 키가 옳을 확률"을 만든 뒤, 흡수 키 수로 가중했다(<code>scripts/t0_verified_recovery.py</code>).</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>채택 정책 (cos≥.90 Louvain)</th><th class="num">흡수 키</th><th class="num">제안 회수율<br><span style="font-weight:400">(규칙 8.2% 포함)</span></th><th class="num">병합 정밀도<br>(엄격)</th><th class="num"><b>검증 회수율</b><br>엄격</th><th class="num">검증 회수율<br>관대</th></tr></thead>
+    <tbody>
+      <tr><td>규칙 키만 (1단계)</td><td class="num">—</td><td class="num">8.2%</td><td class="num">(미측정)</td><td class="num">8.2%</td><td class="num">8.2%</td></tr>
+      <tr><td>+ 크기 2 군집만 (직접 엣지 쌍)</td><td class="num">20,788</td><td class="num">14.1%</td><td class="num">72%</td><td class="num">12.5%</td><td class="num">13.2%</td></tr>
+      <tr><td>+ 크기 ≤ 5</td><td class="num">37,836</td><td class="num">18.9%</td><td class="num">66%</td><td class="num"><b>15.3%</b></td><td class="num">16.8%</td></tr>
+      <tr><td>+ 크기 ≤ 20</td><td class="num">47,995</td><td class="num">21.7%</td><td class="num">61%</td><td class="num">16.5%</td><td class="num">18.6%</td></tr>
+      <tr><td>+ 전부 (2단계 원 수치)</td><td class="num">70,869</td><td class="num">28.1%</td><td class="num">55%</td><td class="num">19.2%</td><td class="num">23.6%</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>결론.</b> 임베딩 정렬의 정직한 기여는 <b>8.2% → 19.2%(엄격) ~ 23.6%(관대)</b>다 — 28.1%가 아니다(21+ 구간을 1차 합산값 19%로 두면 17.8~21.1%). 그리고 <b>군집 크기 ≤5로 자동 병합을 제한하면 검증 회수 15.3%를 정밀도 66%로 얻고</b>, 나머지 큰 군집(직접 엣지 비율 1~8%, 엄격 정밀도 약 42%)은 자동 병합이 아니라 <i>판정 후보</i>로 넘겨야 한다. 크기 5 상한은 검증 회수의 80%(15.3/19.2)를 지키면서 오병합을 절반 이하로 줄인다.</p>
+  <h4 style="margin:18px 0 6px">2차 판정 — 크기 21+ 군집의 전이 정밀도 <span class="v ok">수집·집계 2026-09-11</span></h4>
+  <p>1차에서 크기 21 이상 군집의 전이 정밀도는 문항 8개(판정 21건)에 기댔다 — 흡수 키가 가장 많은 구간(22,874개)이 가장 얇은 다리 위에 있었다. 그래서 그 구간만 겨냥한 2차를 돌렸다: 크기 21–100과 100 초과 군집에서 전이 쌍 각 30(직접 엣지 없음, 1차 중복 제외, 군집 단위 균등 추출), <b>1차 미참여 4인</b>(학생 2·직원 2, 전원 도메인 경험 없음)이 문항당 3인 판정(180건) + 1차 앵커 10을 전원 판정(엄격도 보정). 1인 54~56문항, 6~19분.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>층</th><th class="num">문항</th><th class="num">판정</th><th class="num">엄격 [95% CI]</th><th class="num">관대 [95% CI]</th><th class="num">3인 전원 「같음」</th></tr></thead>
+    <tbody>
+      <tr><td>크기 21–100</td><td class="num">30</td><td class="num">90</td><td class="num">41.1% [27.8, 54.4]</td><td class="num">85.6% [76.7, 94.4]</td><td class="num">36.7%</td></tr>
+      <tr><td>크기 100+</td><td class="num">30</td><td class="num">90</td><td class="num">42.2% [30.0, 55.6]</td><td class="num">75.6% [65.6, 84.4]</td><td class="num">46.7%</td></tr>
+      <tr><td><b>21+ 합산</b></td><td class="num">60</td><td class="num">180</td><td class="num"><b>41.7% [32.2, 50.6]</b></td><td class="num">80.6% [73.9, 87.2]</td><td class="num">41.7%</td></tr>
+      <tr><td>(1차 21+ 합산, 비교)</td><td class="num">8</td><td class="num">21</td><td class="num">19.0%</td><td class="num">38.1%</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>읽는 법.</b> 크기 21+ 구간의 전이 정밀도는 8문항의 19%가 아니라 60문항의 <b>41.7%</b>이고, 이로써 NCS의 크기 기울기는 <b>평평하다</b>(3–5 32.9 · 6–20 26.5 · 21–100 41.1 · 100+ 42.2%). ESCO의 정답 기울기(90 → 2%)와 정반대 모양이다. 이유는 큰 군집의 내용이 다르기 때문이다 — ESCO의 큰 군집은 공유 단어로 서로 다른 개념이 사슬처럼 이어진 것이고, NCS의 큰 군집은 <b>태도·범용 기술 문장의 바꿔 말하기 계열</b>이다(60쌍 중 태도–태도 20쌍, 엄격 60%; 3인 전원 「같음」 예: '검사 방법 절차' ↔ '테스트 절차', '타 부서와 협동하려는 태도' ↔ '관련 부서간의 협력적 태도'). 전이 쌍은 두 코퍼스 모두 30~40%대로 약한 신호이므로 크기 ≤5 상한 권고는 유지되지만, 그 근거가 ESCO에서는 '붕괴', NCS에서는 '어디서나 낮음'으로 다르다 — 논문 §4.7에 그렇게 고쳐 썼다.</p>
+  <p><b>새 판정자의 엄격도.</b> 앵커 10문항에서 새 4인 엄격 45% / 관대 85% vs 1차 8인(같은 문항) 50% / 75%. 「상하위」를 훨씬 자주 고르지만(판정의 31~50% vs 1차 18%) 「같음」은 더 많이 고르지 않으므로 엄격 41.7%는 관대함의 산물이 아니다. 다만 4인 간 일치도는 α 5범주 .174 [.075, .270] · 병합 여부 .258 [.111, .390]로 1차 학생(.29/.44)보다도 낮다 — 도메인 경험 없음이 일치도를 더 낮춘다는 도구 특성의 재확인. 이 구간 추정치는 합의 라벨이 아니라 ±9%p 구간의 합산 비율로 읽어야 한다. 산출: <code>scripts/t0_analyze_validation_r2.py</code> → <code>docs/t0/t0_validation_r2_results.json</code> · <code>scripts/t0_verified_recovery.py --r2</code> → <code>t0_h3_verified_recovery_r2.json</code>.</p>
+
+  <h4 style="margin:18px 0 6px">판정자 간 일치도 — 이 과제는 전문가에게도 다투어진다</h4>
+  <div class="table-wrap"><table>
+    <thead><tr><th>집단 (앵커 50쌍)</th><th class="num">판정자</th><th class="num">α 5범주</th><th class="num">95% CI</th><th class="num">α 병합 여부(이진)</th><th class="num">95% CI</th></tr></thead>
+    <tbody>
+      <tr><td><b>교육공학 박사 4인 — 천장(3차 반영)</b></td><td class="num">4</td><td class="num"><b>.408</b></td><td class="num">[.285, .520]</td><td class="num"><b>.503</b></td><td class="num">[.352, .635]</td></tr>
+      <tr><td style="padding-left:18px">— 1차 쌍만</td><td class="num">2</td><td class="num">.569</td><td class="num">[.373, .741]</td><td class="num">.683</td><td class="num">[.475, .873]</td></tr>
+      <tr><td style="padding-left:18px">— 3차 쌍만(교외)</td><td class="num">2</td><td class="num">.401</td><td class="num">[.211, .585]</td><td class="num">.471</td><td class="num">[.183, .720]</td></tr>
+      <tr><td>교직원 3인</td><td class="num">3</td><td class="num">.422</td><td class="num">[.281, .554]</td><td class="num">.575</td><td class="num">[.389, .734]</td></tr>
+      <tr><td>학생 3인</td><td class="num">3</td><td class="num">.289</td><td class="num">[.148, .412]</td><td class="num">.437</td><td class="num">[.235, .603]</td></tr>
+      <tr><td>외부 전원</td><td class="num">8</td><td class="num">.315</td><td class="num">[.239, .378]</td><td class="num">.487</td><td class="num">[.363, .596]</td></tr>
+      <tr><td>전 문항 · 외부 전원 (결측 허용)</td><td class="num">8</td><td class="num">.292</td><td class="num">[.218, .363]</td><td class="num">.419</td><td class="num">[.312, .510]</td></tr>
+      <tr><td>2차 새 판정자 4인 (70문항, 결측 허용)</td><td class="num">4</td><td class="num">.174</td><td class="num">[.075, .270]</td><td class="num">.258</td><td class="num">[.111, .390]</td></tr>
+    </tbody>
+  </table></div>
+  <p>사전 계획이 "박사 2인의 앵커 일치도가 이 과제의 천장"이라 했고, 그 천장은 <b>5범주 .57, 병합 여부 .68</b>이다 — 중간 수준. 병합 여부라는 <i>결정 관련</i> 구분은 전문가 사이에서 실질적으로 일치하지만(.68), 5범주 세분(관련 vs 무관, 같은 개념 vs 상하위)은 그렇지 않다. 일치도는 도메인 경험과 함께 오른다(박사 .57 &gt; 교직원 .42 &gt; 학생 .29) — 이는 <b>이 과제가 도메인 지식을 요구한다는 도구 특성</b>이며, 판정자 집단에 대한 발견으로 보고하지 않는다(윤리 절차 §7). 「애매함」은 전체 2.3%로 낮아, 판정자들이 회피하지 않고 답했다.</p>
+  <p><b>저자 편향 점검 — 통과.</b> 저자 200쌍의 엄격 정밀도는 55.5% [48.5, 62.0]로 외부 49.7% [42.6, 56.7]와 신뢰구간이 겹치고, 외부 다수결과의 병합 여부 일치는 74.3%(κ=.475)다. 불일치는 <b>대칭적</b>이다 — 외부가 「같은 개념」인데 저자가 아니라고 한 경우 18, 그 반대 21. 저자가 자기 방법에 관대했다는 신호는 없다. 저자 판정은 주 추정치에 쓰지 않는다.</p>
+  <p><b>정성 — 임베딩이 붙인 것 중 사람이 뗀 것.</b> 다투어진 쌍은 대체로 "비슷하지만 다른" 진짜 어려운 경우다: <i>전체 게놈(whole genome) 염기서열 데이터 분석</i> ↔ <i>전체 진유전체(whole exome)</i>(cos .884, 4인 「관련」·2인 「같음」), <i>3D 모델링 소프트웨어</i> ↔ <i>3D 분석용 소프트웨어</i>(cos .890, 5인 「관련」). 박사 2인이 갈린 문항도 <i>유압실린더의 종류와 취급요령</i> ↔ <i>종류 및 구조</i>(관련 vs 상하위)처럼 경계 사례다. 반대로 <i>ISO/IEC 27009(인증<b>섹터</b>) 표준동향</i> ↔ <i>(인증<b>센터</b>)</i>는 판정자 3인 전원이 「같은 개념」 — <b>표준 원문의 오타</b>를 임베딩이 찾아내고 사람이 확인한 사례로, D2 품질 감사 리포트의 항목이 된다.</p>
+  <div class="box t"><p><b>공학적 결론(확정).</b> ① 임계값 .90은 정밀도의 무릎이다 — 사전 등록이 맞았다. ② 직접 엣지 병합은 72%(엄격)·85%(관대)로 자동화 가능 범위지만, 전이 병합은 30~42%로 판정 없이 쓸 수 없다. ③ 따라서 <b>자동 병합은 군집 크기 ≤5 로 제한</b>하고(검증 회수 15.3%, 정밀도 66%), 큰 군집은 T1 판정단의 후보로 넘긴다. ④ 개념 동일성은 전문가 사이에서도 중간 수준으로만 일치하므로(α .57/.68), 판정 설계는 다수결과 「애매」 허용을 전제해야 한다 — T1의 k=3 다수결·기권 규칙(Q9)과 정합한다. ⑤ 규칙 8.2% → 임베딩 포함 <b>검증 19.2~23.6%</b>(2차 반영; 1차만으로는 17.8~21.1%)가 논문 수치다.</p></div>
+</div></div>
+
+<div class="hyp"><header><span class="id">H4</span><h3>데이터 기반 직무 군집은 공식 분류와 부분적으로만 일치한다</h3><span class="v ok">충족</span></header><div class="body">
+  <p>공유 KSA 키(2개 이상 직무에 등장, 25,078개)로 직무 이분 그래프를 만들고 Jaccard 가중 Louvain 군집화했다: 노드 1,107 · 엣지 190,355 · <b>군집 11개</b>. 공식 대분류(24)와의 <b>NMI = 0.329</b>로 사전 기대 구간(0.3~0.6) 안에 들었고, 순열 영분포(평균 .041, SD .004) 대비 p&lt;.001이다. ARI=.108, 중분류 대비 NMI=.356.</p>
+  <p><b>민감도(IDF 변형).</b> 전체 직무의 10% 이상에 등장하는 범용 키를 제외해도 NMI는 <b>.341</b>로 사실상 불변 — 이 일치도는 '안전 준수'류 범용 어휘가 만든 인공물이 <b>아니다</b>.</p>
+  <p><b>M-T0-5 해상도 × 유사도 격자 <span class="v ok">실행 2026-09-10</span>.</b> NMI는 군집 수에 따라 움직이고 군집 수는 Louvain 해상도가 정하므로, 유사도 {Jaccard, TF-IDF 코사인} × 해상도 {0.5, 1.0, 2.0}의 6칸을 돌리고 우연 보정된 AMI와 칸별 순열 영분포를 함께 냈다.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>유사도 @ 해상도</th><th class="num">군집</th><th class="num">최대</th><th class="num">NMI 대분류 (영분포)</th><th class="num">AMI 대분류</th><th class="num">ARI</th><th class="num">NMI 중분류</th><th class="num">AMI 중분류</th></tr></thead>
+    <tbody>
+      <tr><td>Jaccard @ 0.5</td><td class="num">1</td><td class="num">1,107</td><td class="num">퇴화</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td><b>Jaccard @ 1.0 (사전 등록)</b></td><td class="num">11</td><td class="num">395</td><td class="num">.331 (.042±.004)</td><td class="num">.301</td><td class="num">.102</td><td class="num">.359</td><td class="num">.294</td></tr>
+      <tr><td>Jaccard @ 2.0</td><td class="num">41</td><td class="num">109</td><td class="num">.502 (.120±.005)</td><td class="num">.434</td><td class="num">.231</td><td class="num">.606</td><td class="num">.472</td></tr>
+      <tr><td>TF-IDF @ 0.5</td><td class="num">3</td><td class="num">656</td><td class="num">.197 (.012±.002)</td><td class="num">.188</td><td class="num">.068</td><td class="num">.195</td><td class="num">.173</td></tr>
+      <tr><td>TF-IDF @ 1.0</td><td class="num">12</td><td class="num">332</td><td class="num">.408 (.047±.004)</td><td class="num">.379</td><td class="num">.170</td><td class="num">.436</td><td class="num">.369</td></tr>
+      <tr><td>TF-IDF @ 2.0</td><td class="num">36</td><td class="num">102</td><td class="num">.564 (.113±.005)</td><td class="num">.509</td><td class="num">.286</td><td class="num">.674</td><td class="num">.567</td></tr>
+    </tbody>
+  </table></div>
+  <p>해상도 0.5는 퇴화(군집 1·3개). 비퇴화 4칸에서 대분류 NMI는 <b>.33~.56</b>으로 전부 사전 등록 구간(.3~.6) 안이고, 우연 보정 AMI는 <b>.30~.51</b>, ARI는 최대 .29다. 규칙성 둘: ① 해상도를 올리면 NMI가 오르지만 영분포도 같이 오르므로(.04→.12) AMI 증가폭은 작다(Jaccard .30→.43). ② IDF 가중은 해상도마다 AMI를 약 .08 올린다 — 위의 범용 키 제외 결과와 같은 방향으로, 범용 어휘는 일치를 <i>만들지</i> 않고 살짝 <i>흐린다</i>. 결론 "부분 회수"는 해상도 설정이 아니라 그래프의 성질이지만, .329라는 한 값은 이 범위의 한 점으로 읽어야 한다. Jaccard@1.0 칸은 본 분석과 Louvain 순서 분산 안에서 일치한다(.331 vs .329).</p>
+  <p><b>불일치 직무의 대안 정의.</b> "군집 최빈 대분류 ≠ 자기 대분류" 736개(66.5%)는 군집 수(11) &lt; 대분류 수(24)의 산물이 섞여 있다. 군집 수와 무관한 정의 — 자기 대분류 직무들과의 평균 Jaccard보다 어느 타 대분류와의 평균이 더 큰 '끌려간' 직무 — 로는 <b>447개(40.4%)</b>. 상위 사례는 해석 가능하다: 아이돌봄(사회복지·종교)→경비·청소(가사지원이 있는 곳), 염생산·농산물품질관리(농림어업)→식품가공, 문헌정보관리(문화·예술·디자인·방송)→교육·자연·사회과학, 지능형교통체계 개발(건설)→사업관리.</p>
+  <p>군집의 최빈 대분류와 자기 대분류가 다른 직무가 736개(66.5%)인데, 이는 군집 수(11)가 대분류 수(24)보다 적은 데서 오는 구조적 결과이기도 하다. 내용상 흥미로운 사례는 <b>사업관리 대분류의 해체</b>다 — 프로젝트관리는 정보통신 군집으로, 공적개발원조사업관리·산학협력관리·해외법인설립관리는 문화·예술·디자인·방송 군집으로 간다.</p>
+  <div class="box t"><p><b>공학적 함의.</b> LLM 없이 얻는 직무 유사도 네트워크가 실제로 정보를 담고 있다(무작위 대비 8배 NMI). 전직 경로·직무 매칭의 Layer 0.5로 쓸 수 있고, 분류 개편 논의에는 "어느 직무가 어디로 끌리는가"의 목록(<code>t0_h4_clusters.csv</code>)이 근거가 된다.</p></div>
+</div></div>
+
+<div class="hyp"><header><span class="id">H5</span><h3>표준의 코드 연도는 산업 간 크게 불균등하다</h3><span class="v no">크기 기대 미충족</span></header><div class="body">
+  <p>대분류 효과는 명확히 유의하지만(H=213.2, p&lt;.0001, 반분 일치) <b>ε²=.175로 사전 기대 .30에 못 미쳤다</b>. 지니 계수 .314. 평균 코드 연도는 경영·회계·사무 2021.7 ↔ <b>금융·보험 2015.3</b>(사업관리 2015.9, 경비·청소 2016.4).</p>
+  <div class="box t"><p><b>해석의 전제 — 해결됨(M-T0-3, 2026-09-09).</b> 두 경로가 일치한다. ① <b>공식 정의</b>: NCS 분류번호의 해당 자리는 <b>「개발·개선연도」</b>이며(ncs.go.kr 분류번호 체계), 다른 안내에서는 「개발·보완 연도」로 표기된다 — 즉 최초 개발만이 아니라 <b>개선·보완 시점이 반영되는 자리</b>다. ② <b>데이터 내부 검증</b>: 버전이 오를수록 연도가 단조 상승한다 — v1 2017.2 · v2 2018.4 · v3 2020.7 · v4 2021.9 · v5 2022.5 · v6 2023.1 · v7 2023.3 (n=13,435, r=.470). 연도가 최초 개발 시점에 고정된다면 개정을 많이 거친 단위(높은 v)일수록 <i>오래된</i> 연도를 가져야 하므로 이 패턴은 나올 수 없다. 또한 연도 분포가 2013–2025에 고르게 퍼져 있어(특정 연도 몰림 없음) '코드 체계 일괄 재발행' 가설도 배제된다.</p>
+  <p><b>따라서 이 지표는 '개정 신선도'로 해석할 수 있다.</b> 다만 남는 한계: 연도는 <i>마지막으로 손댄 시점</i>을 말할 뿐 <b>개정의 크기</b>(문구 수정인지 전면 개편인지)는 말해 주지 않는다. 논문에서는 "가장 최근 개발·개선 시점"으로 정의해 쓰고, 개정 폭은 측정하지 않았음을 명시한다.</p></div>
+</div></div>
+
+<div class="hyp"><header><span class="id">H6</span><h3>디지털 어휘는 산업 간 불균등하고, 대분류 안에서는 최근 코드일수록 높다</h3><span class="v no">교호 기대 미충족</span></header><div class="body">
+  <p>분포 차이는 예상대로 크다(탐색과 동일: 정보통신 10.9% ↔ 경비·청소 0.24%). 그러나 <b>핵심 가설인 대분류 내 교호는 사실상 없다</b> — 대분류 평균 중심화 후 Spearman ρ=<b>.077</b>(p=.010, n=1,109)로 사전 기대(ρ&gt;.2)에 크게 못 미치고 <b>반분에서 불일치</b>했다. 어휘 B(빅데이터·클라우드 등 추가)로도 결론은 같다.</p>
+  <p>괴리 위험 지수(z디지털 − z코드연도) 상위: 정보통신 2.47 · <b>금융·보험 2.38</b> · 문화·예술·디자인·방송 1.89 · 전기·전자 1.25 · 사업관리 1.20.</p>
+  <div class="box a"><p><b>함의.</b> "최근 개정될수록 디지털을 더 담는다"는 직관은 데이터가 지지하지 않는다. 디지털 어휘의 양은 <b>개정 시점이 아니라 산업 자체</b>가 결정한다. 이는 오히려 괴리 지수의 의미를 강화한다 — 금융·보험은 디지털 요구가 상위인데 표준은 가장 오래됐고, 최근 개정된다고 그 격차가 자동으로 좁혀지지도 않는다.</p></div>
+</div></div>
+
+<h2><span class="k">3 · SOCIAL</span>사회 가설 상세</h2>
+
+<div class="hyp"><header><span class="id s">S1</span><h3>수준 사다리는 산업별로 크게 다르다</h3><span class="v ok">충족(분포)</span></header><div class="body">
+  <div class="bar"><span class="lab">금융·보험</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="val">71.6%</span></div>
+  <div class="bar"><span class="lab">교육·자연·사회과학</span><div class="track"><div class="fill" style="width:94%"></div></div><span class="val">67.2%</span></div>
+  <div class="bar"><span class="lab">정보통신</span><div class="track"><div class="fill" style="width:91%"></div></div><span class="val">65.4%</span></div>
+  <div class="bar"><span class="lab">식품가공</span><div class="track"><div class="fill gy" style="width:15%"></div></div><span class="val">10.8%</span></div>
+  <div class="bar"><span class="lab">음식서비스</span><div class="track"><div class="fill gy" style="width:12%"></div></div><span class="val">8.6%</span></div>
+  <div class="bar"><span class="lab">경비·청소</span><div class="track"><div class="fill gy" style="width:10%"></div></div><span class="val">7.3%</span></div>
+  <p class="meta">L5 이상 능력단위 비율(대분류 평균). 반분 일치, FDR 통과. <b>외부 임금·학력 상관은 미실시</b> — M-T0-2 확정 후 T0-b에서. 해석은 "표준이 산업별 경력 천장을 반영한다"까지이며, "재생산한다"는 인과 주장은 하지 않는다.</p>
+</div></div>
+
+<div class="hyp"><header><span class="id s">S2</span><h3>국가가 요구하는 태도는 '준수'가 지배적이다</h3><span class="v no">기대 기각 — 측정 단위의 반전</span></header><div class="body">
+  <p>직무별 고유 태도 항목을 사전 코드북으로 분류한 결과 1위는 <b>의지·노력 38.5%</b>였고 준수·안전은 <b>20.4%로 2위</b>였다(인지·분석 13.6 · 품질·정확 9.9 · 대인·소통 6.7 · 윤리·책임 6.0 · 기타 4.9). 산업 간 구성 차이는 유의하나 크기는 작다(χ²=8,946.8, p&lt;.0001, Cramér's V=.125).</p>
+  <div class="box r"><p><b>정정 — 이 순위는 코퍼스가 아니라 도구의 성질이다 <span class="v ok">2026-09-15</span>.</b> 두 가지 민감도를 돌렸다. ① <b>우선순위</b>: 태도 문장의 43.7%가 둘 이상 범주에 걸리는데, 순서를 역순으로 하든 무작위 200회로 섞든 의지·노력이 1위다 — 순서는 원인이 아니다. ② <b>키워드 목록</b>: 여기서 결함이 나왔다. 의지·노력 범주 질량의 <b>46.6%가 '자세'·'마음'·'태도'에만 걸린 문장</b>에서 오는데, 이 셋은 이 코퍼스에서 태도 진술을 쓰는 관용적 종결 어휘이지 의지의 표현이 아니다. 셋을 빼면 <b>의지 20.6% 대 준수 20.4%로 동률</b>이다. 따라서 사전 등록 기대(준수 1위)가 빗나간 이유는 의지가 준수를 밀어냈기 때문이 아니라 <b>어느 범주도 지배적이지 않기</b> 때문이다. 논문은 S2 분포를 사전 등록한 도구의 기술로만 싣고 1위가 무엇인지에 주장을 걸지 않는다. 산출: <code>scripts/t0_codebook_sensitivity.py</code> · <code>t0_attitude_concentration.py</code>.</p></div>
+  <p><b>코드북 없이 본 구조.</b> 범주를 아예 쓰지 않아도 폭·질량의 대비는 보인다. 서로 다른 태도 문장 82,700개(항목 95,237) 중 '준수'를 담은 문장은 10,502개·13,481항목으로 <b>문장당 1.28</b>, 상위 5문장이 4.0%를 가져간다. '노력'은 12,079개·13,131항목으로 <b>문장당 1.09</b>, 상위 5문장 0.9%. '안전'은 문장당 1.34, 상위 5문장 6.9%. 준수 어휘는 적고 널리 복제된 문장이, 의지 어휘는 많고 거의 반복되지 않는 문장이 진다 — 효과는 실재하나 완만하며 38.5 대 20.4가 시사한 것보다 훨씬 작다.</p>
+  <div class="box a"><p><b>왜 탐색과 다른가 — 이것 자체가 발견이다.</b> 탐색에서 '안전사항 준수'(172개 직무)·'안전수칙 준수'(134개)가 1~3위였던 것은 <b>직무 커버리지(폭)</b> 기준이었다. 이번은 <b>항목 수(질량)</b> 기준이다. 두 기준이 갈린다는 것은: <b>준수 어휘는 소수의 문장이 거의 모든 직무에 복제되어 퍼져 있고, 의지·노력 어휘는 직무마다 다른 문장으로 다양하게 쓰인다</b>는 뜻이다. 표준이 안전을 <i>공통 규범</i>으로, 태도를 <i>직무 고유 서술</i>로 다룬다는 해석이 가능하다. T0-b는 두 지표를 나란히 보고해야 한다.</p></div>
+  <p class="meta">규칙 코딩이며 무작위 300건 이중 코딩(κ)은 미실시 — 논문 작성 시 연구진 수행 예정.</p>
+</div></div>
+
+<div class="hyp"><header><span class="id s">S4</span><h3>저수준·저신선·저디지털 산업이 서로 겹친다</h3><span class="v no">기각 (유일한 비유의)</span></header><div class="body">
+  <p>세 축 순위의 일치도 <b>Kendall's W = .449</b>(기대 ≥.50), χ²=31.0, <b>p=.123</b> — 9개 가설 중 유일하게 FDR 5%를 통과하지 못했다. 합성 z 하위 5개는 경비·청소 · 식품가공 · 섬유·의복 · 농림어업 · 운전·운송.</p>
+  <div class="box"><p><b>정직한 결론.</b> "격차가 세 축에서 겹친다"는 인상은 <b>대분류 평균을 눈으로 훑을 때 생긴 것</b>이고, 순위 일치 통계로는 뒷받침되지 않았다. 겹침이 <i>부분적</i>으로 존재하지만(W=.45는 중간 수준) 24개 대분류만으로는 검정력이 부족하다. T0-b에서 다룬다면 세분류 수준 지표와 외부 자료를 결합해야 한다.</p></div>
+</div></div>
+
+<h2><span class="k">4 · INTEGRITY</span>사전 등록 준수 기록</h2>
+<ul>
+  <li><b>가설 변경 없음.</b> 동결(커밋 3c60a2e) 이후 가설·지표·검정을 바꾸지 않았다.</li>
+  <li><b>코드 수정 1건 — 결과를 본 뒤, 판정을 불리하게.</b> H3의 <code>expectation_met</code>이 사전 등록 문구 중 상관 조건만 검사하고 <b>회수율 50~70% 조건을 빠뜨리고 있었다</b>. 결과 확인 후 문구대로 고쳤고, 판정이 <b>충족 → 부분 기각</b>으로 바뀌었다. 가설을 데이터에 맞춘 것이 아니라 코드를 사전 등록에 맞춘 수정이다.</li>
+  <li><b>H1 주 검정 재지정.</b> 초기 구현은 대분류 간 Kruskal을 주 검정으로 삼았으나, 이는 가설의 주장(전체 준수율·이탈 집중)과 어긋나 단측 이항검정으로 바꾸고 Kruskal은 보조로 내렸다. 데이터를 본 뒤의 변경이므로 여기 기록한다.</li>
+  <li><b>H6 민감도 버그 수정.</b> 어휘 B 중심화가 어휘 A의 대분류 평균을 쓰고 있었다 — 수정 후에도 결론 불변.</li>
+  <li><b>미실시(사전 등록 대비).</b> H3 임베딩 2단계, S1 외부 상관, S2 이중 코딩 κ, S3 전체. 각각 M-T0-2·M-T0-3 또는 T0-b 단계.</li>
+</ul>
+
+<h2><span class="k">5 · ESCO</span>제2 코퍼스 재현 — 무엇이 NCS의 성질이고 무엇이 텍스트 유형의 성질인가 <span class="v ok">실행 2026-09-10</span></h2>
+<p>해설집 7장의 심사자 요구 1순위("결과가 NCS 하나에 국한된다")에 대한 답이다. 유럽 ESCO v1.2.1 영문 공식 CSV(스킬 13,960 · 직업 3,039 · ISCO 그룹 619 · 영문 대체 라벨 86,690 · 필수 관계 67,600)에 H3·H4와 H1의 유사물을 같은 코드로 돌렸다. 버전은 공식 v1.2.0→1.2.1 변경 로그와 대조해 확인했다(추가된 영문 대체 라벨 1,105/1,105 존재, 제거된 라벨 38/1,182 잔존). ESCO는 <b>같은 개념의 대체 라벨을 URI 아래 등록</b>하므로, NCS에서 200쌍 표본·사람 판정으로 추정한 정밀도가 여기서는 <b>전수·정답</b>으로 나온다 — 정답 = 같은 스킬 URI의 라벨.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>지표</th><th class="num">NCS (한국어)</th><th class="num">ESCO v1.2.1 (영어)</th><th>이식되는가</th></tr></thead>
+  <tbody>
+    <tr><td>템플릿 규칙성</td><td class="num">99.56% "~할 수 있다"</td><td class="num">동사 초두 79.9% (skill/competence) · 명사 초두 92.3% (knowledge)</td><td><b>아니오</b> — NCS 고유</td></tr>
+    <tr><td>표면형 · 개념</td><td class="num">326,592 규칙 키 · 미지</td><td class="num">99,676 · 13,939 (개념당 7.2 라벨, 다의 표면형 683)</td><td>—</td></tr>
+    <tr><td>규칙 정규화 회수</td><td class="num">8.2% (정밀도 미측정)</td><td class="num">R0 0.9% (97.8%) · R1 굴절 제거 9.3% (98.9%)</td><td><b>예</b> — ~9% 천장</td></tr>
+    <tr><td>직접 쌍 정밀도 .85–.90 / .90–.95 / ≥.95</td><td class="num">43.8 / 71.1 / 73.4% (엄격)</td><td class="num">57.0 / 88.6 / 98.7% (정답)</td><td><b>예</b> — .90 무릎</td></tr>
+    <tr><td>누적 ≥.90 정밀도 (정답 쌍 재현율)</td><td class="num">72.3% (재현율 미지)</td><td class="num">92.8% (34.8%)</td><td>—</td></tr>
+    <tr><td>Louvain@.90 제안 회수 · 병합 정밀도 · 검증 회수</td><td class="num">28.1% · 55% · 19.2%</td><td class="num">62.7% · 95.0% · 59.5%</td><td><b>아니오</b> — 코퍼스 수준</td></tr>
+    <tr><td>전이 쌍 정밀도 @.90</td><td class="num">30.1% [21.5, 39.7]</td><td class="num">29.2% (n=190,756)</td><td><b>예</b></td></tr>
+    <tr><td>전이 정밀도 크기별 3–5 / 6–20 / 21–100 / 100+</td><td class="num">32.9 / 26.5 / 41.1 / 42.2% (21+는 2차 60문항)</td><td class="num">90.0 / 60.3 / 11.2 / 1.7%</td><td><b>아니오</b> — 붕괴는 ESCO 고유, NCS는 평평</td></tr>
+    <tr><td>단일연결 @.85 거대 성분</td><td class="num">29.9%</td><td class="num">34.0% (33,891)</td><td><b>예</b></td></tr>
+    <tr><td>Louvain @.90 최대 군집</td><td class="num">1,084 (0.3%)</td><td class="num">170 (0.2%) — 단일연결과 동일</td><td><b>예</b></td></tr>
+    <tr><td>직무 그래프 NMI (영분포)</td><td class="num">.329 vs 대분류 24 (.041±.004) · .356 vs 중분류 81</td><td class="num">.263 vs ISCO-1 10 (.008±.001) · .401 vs ISCO-2 42</td><td><b>예</b> — 부분 일치</td></tr>
+    <tr><td>IDF 변형(10% 이상 직무에 쓰이는 범용 제외)</td><td class="num">.329 → .341</td><td class="num">불변 — 제외 대상 0 (최다 재사용 스킬 261/3,039 직업)</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<div class="box t"><p><b>이식되는 것 5가지.</b> ① 규칙은 두 언어 모두 <b>9% 안팎이 천장</b>이다 — 영어에서 대소문자·문장부호만으로는 0.9%, 굴절 제거를 더하면 9.3%, 정밀도는 98~99%. 규칙은 안전하지만 얕다. ② <b>.90은 두 코퍼스 모두에서 정밀도의 무릎</b>이다(ESCO 57.0→88.6, NCS 43.8→71.1). ③ 전이 쌍은 두 코퍼스에서 똑같이 <b>30%만 옳고</b>, 군집 크기가 커질수록 떨어진다 — ESCO는 크기 20 초과에서 11%·2%로 붕괴한다. 크기 ≤5 자동 병합 정책은 NCS 편의가 아니라 일반 규칙이다. ④ 단일연결 .85는 두 코퍼스 모두 코퍼스의 <b>1/3을 한 성분</b>에 삼킨다. .90에서는 ESCO의 Louvain과 단일연결이 완전히 같아(최대 170) 연쇄는 코퍼스가 아니라 임계값의 성질이다. ⑤ 공유 어휘만으로 만든 직무 그래프는 공식 분류를 부분 회수한다(NMI .26~.40 vs 영분포 .008).</p></div>
+<div class="box a"><p><b>이식되지 않는 것 2가지.</b> ① <b>99.56% 템플릿은 NCS의 작성 방식</b>이지 역량 텍스트의 성질이 아니다 — ESCO 스킬 라벨은 범용 태거 기준 79.9%만 동사로 시작한다. ② <b>회수율의 절대 수준</b>은 코퍼스 수준이다. ESCO는 설계상 개념당 7.2개 라벨로 훨씬 파편화돼 있어 Louvain@.90이 62.7%를 95% 정밀도로 흡수하는데, NCS는 28.1%를 48%로 흡수한다. 규칙은 옮겨 가고 수준은 다시 재야 한다.</p></div>
+<p><b>NCS 판정치의 보정.</b> ESCO 정답 정밀도는 NCS 엄격 추정치보다 대역마다 13~25%p 높고, NCS <i>관대</i> 추정치(59.4 / 82.8 / 87.5)에 더 가깝다. ESCO의 대체 라벨은 한 개념의 큐레이션된 바꿔 말하기이고 NCS 표면형은 독립적으로 쓰인 문장이라 판정자가 「관련」·「상하위」로 정당하게 분류한 것이 많다는 해석이 가장 그럴듯하다 — NCS 엄격치는 보수적이지 판정자가 가혹했던 게 아니다. 반대 방향의 경계도 하나 나온다: 정답이 있는 ESCO에서도 cos≥.90은 <b>진짜 동의어 쌍의 34.8%만</b> 찾아낸다. 정밀도가 높은 곳에서조차 등록된 동의성의 2/3는 임베딩에 보이지 않는다 — "남는 파편화는 보정 문제가 아니라 개념 층의 일"이라는 결론에 두 코퍼스가 일치한다.</p>
+<p class="meta">한계: ESCO에는 수행준거 층이 없어 H1은 약한 유사물(라벨 초두 품사, 범용 태거의 명령형 오류 미측정)로만 검정했고 H2·H5·H6·S 계열은 대응물이 없다. 정답의 구성(URI 등록 라벨)이 NCS 판정(5범주)과 다른 구성개념이다. O*NET은 미실시. 출처 문구: "This publication uses the ESCO classification of the European Commission." 원본 CSV·변환 JSON·임베딩 캐시(<code>docs/esco/</code>)는 비추적, 집계(<code>esco_replication.json</code>·<code>esco_meta.json</code>)만 추적.</p>
+
+<h2><span class="k">6 · NEXT</span>다음 단계</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>순서</th><th>할 일</th><th>이유</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1</td><td><s>H3 임베딩 2단계 + 수동 정밀도 검증</s> <span class="v ok">완료 2026-09-10</span> — 제안 회수 28.1% → <b>검증 회수 17.8%(엄격)~21.1%(관대)</b>. 외부 8인 640판정 + 저자 200. 임계값 .90 = 정밀도 무릎 확인, 전이 병합 정밀도 30%, 권고 군집 크기 ≤5</td><td>논문 §4.3·§4.6 수치 확정. 남은 것: 판정 원자료 공개 형식(코드만) 결정 — M2와 함께</td></tr>
+    <tr><td class="num">2</td><td><s>M-T0-3 코드 연도 확인</s> <span class="v ok">해결 2026-09-09</span> — 공식 정의(개발·개선연도) + 버전–연도 단조성으로 확인. 남은 선택지: 개정 <i>폭</i>을 보려면 과거 릴리스와의 본문 비교가 필요(범위 밖으로 둘지 결정)</td><td>H5를 '개정 신선도'로 해석 가능해졌다. S3·S4의 전제도 함께 풀림</td></tr>
+    <tr><td class="num">3</td><td>F1~F3 그림 생성</td><td>구조화 가능성 지도 · 직무 네트워크 · 3축 지도</td></tr>
+    <tr><td class="num">4</td><td>M-T0-1 결정(한 편 vs 두 편)</td><td>S2·S4의 결과를 보면 사회 쪽은 외부 자료 없이는 약하다 — 두 편 분리 제안이 강화됨</td></tr>
+    <tr><td class="num">5</td><td>T0-a 초안</td><td>예측 데이터 없이 실측으로 직접 작성(치환 레지스트리 불필요)</td></tr>
+    <tr><td class="num">6</td><td><s>ESCO 재현</s> <span class="v ok">완료 2026-09-10</span> — §5. 논문 §3.5·§4.7 반영</td><td>심사자 요구 1순위 해소</td></tr>
+    <tr><td class="num">7</td><td><s>M9 접미사 민감도 · M-T0-5 H4 격자 · S-계열 축소</s> <span class="v ok">완료 2026-09-10</span> — H3·H4 항목에 반영, 논문 §4.3·§4.4 Table 3·§4.5</td><td>심사자 요구 3·4·5 해소</td></tr>
+    <tr><td class="num">8</td><td><s>인코더 민감도(e5-large)</s> <span class="v ok">완료 2026-09-11</span> — H3 항목, 논문 §4.8 Table 8</td><td>해설집 MID "단일 모델" 해소</td></tr>
+    <tr><td class="num">9</td><td><s>정밀도 검증 2차 — 21+ 군집 60쌍, 새 판정자 4인</s> <span class="v ok">완료 2026-09-11</span> — H3 3단계 2차 표, 논문 §4.6·§4.7·초록</td><td>심사자 요구 2 중 '21+ 구간 8문항' 해소</td></tr>
+    <tr><td class="num">12</td><td><s>전문가 천장 3차 — 교외 박사 2인</s> <span class="v ok">완료 2026-09-15</span> — H3 3단계 α 표, 논문 §4.6·Threats·논의</td><td><b>천장이 내려갔다</b>: 박사 4인 α .408/.503, 쌍 6개 .335–.569(중앙 .396) — 원래 쌍이 최고 일치 쌍이었다. 전문성 사다리도 무너짐(박사 .408 ≈ 직원 .422). 전문가가 더 엄격해(앵커 「같음」 38.5% vs 직원 52.7%) 검증 회수 하한 18.2~16.9% 기록. 미실시: 400쌍 확장</td></tr>
+    <tr><td class="num">10</td><td><s>외부 심사 의견 ①~⑧ 대응</s> <span class="v ok">완료 2026-09-14</span> — 다운스트림 시연 2종(§4.9), Table 5 CI·경계, RQ1·H4·초록 재프레이밍, §4.5 부록 이관·어휘 C, 그림 영문 라벨, 국내 선행 3건</td><td>핵심 결과(2차 심사 후 교정): ESCO 검색은 직접 이웃 확장이 최선(F1 74.2, 정밀도 93.8%; 문자 3-gram 베이스라인 F1 58.2). NCS에서 무제한 병합의 붕괴(비가중 Jaccard NMI .17)는 <b>가중치 인공물</b> — TF-IDF에서는 사라짐(NMI .391 vs 규칙 .393). 권고: 범용 개념 다운웨이팅 + 병합 비용에 따른 상한(5~20) + 직접 엣지 확장. 남은 것: 대분류 영문명(M11)</td></tr>
+    <tr><td class="num">11</td><td><s>국내 선행 연구 재조사(R2)</s> <span class="v ok">종결 2026-09-15</span></td><td>7개 각도로 재검색. 계산적으로 NCS를 쓴 국내 연구 1건 추가 발견(Kim 외 2026, KIIT — 채용공고 284건을 NCS 7개 소분류에 임베딩·LLM 매핑) → 참고문헌 [26]. 그러나 <b>표준 원문</b>의 전수 계산 프로파일은 여전히 없어 §2.1 주장 유지, 범위를 "표준 자신의 텍스트"로 좁혀 확정</td></tr>
+  </tbody>
+</table></div>
+
+<div class="footnote">
+  <p>· 산출물: <code>docs/t0/t0_results.json</code>(전 검정 원자료) · <code>t0_metrics.csv</code>(세분류 1,109 × 19지표) · <code>t0_alias_dictionary.csv</code>(19,881행) · <code>t0_h4_clusters.csv</code>(1,107행) · <code>t0_report.md</code></p>
+  <p>· 민감도: <code>scripts/t0_sensitivity.py</code> → <code>docs/t0/t0_sensitivity.json</code> · <code>t0_sensitivity_report.md</code> · 인코더: <code>scripts/t0_encoder_sensitivity.py</code> → <code>t0_encoder_sensitivity.json</code></p>
+  <p>· ESCO 재현: <code>scripts/esco_load_csv.py</code> · <code>esco_version_check.py</code> · <code>esco_replication.py</code> → <code>docs/esco/esco_replication.json</code> · <code>esco_replication_report.md</code> · <code>esco_meta.json</code></p>
+  <p>· 계층: 전 수치 <b>원천 실측</b>(LLM 미개입). D1·D3는 NCS 파생물이며, 원천이 <b>공공누리 제1유형(출처표시)</b>으로 확인되어(2026-09-15) 출처표시만으로 공개 가능하다 — 저장소 공개 전환 시점만 남았다.</p>
+</div>
+</div>

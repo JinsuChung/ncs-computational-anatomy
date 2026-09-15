@@ -1,0 +1,354 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 612" width="736" height="612" role="img" aria-label="Figure 2. Official major categories × data-driven communities" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<rect x="0" y="0" width="736" height="612" fill="#FFFFFF"/>
+<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 2. Official major categories (rows) × Louvain communities of the shared-KSA graph (columns) — each row is that category's distribution over communities</text>
+<text x="16" y="42" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">NMI (major) = .329 · permutation null .041 ± .004 · 11 communities · 1,107 occupations</text>
+<text x="213.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C6</text>
+<text x="213.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">398</text>
+<text x="259.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C0</text>
+<text x="259.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">343</text>
+<text x="305.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C5</text>
+<text x="305.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">170</text>
+<text x="351.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C2</text>
+<text x="351.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">84</text>
+<text x="397.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C8</text>
+<text x="397.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">37</text>
+<text x="443.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C9</text>
+<text x="443.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">26</text>
+<text x="489.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C4</text>
+<text x="489.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20</text>
+<text x="535.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C3</text>
+<text x="535.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">13</text>
+<text x="581.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C7</text>
+<text x="581.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">11</text>
+<text x="627.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C1</text>
+<text x="627.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3</text>
+<text x="673.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C10</text>
+<text x="673.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2</text>
+<text x="184" y="74" font-size="9" fill="#5C6B6E" text-anchor="end" font-weight="normal">community size</text>
+<text x="182" y="109" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Machinery (142)</text>
+<rect x="190" y="96" width="45" height="18" fill="#528685"/>
+<text x="213.0" y="109" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">68</text>
+<rect x="236" y="96" width="45" height="18" fill="#D7E5E3"/>
+<rect x="282" y="96" width="45" height="18" fill="#D3E3E1"/>
+<rect x="328" y="96" width="45" height="18" fill="#E6F0EE"/>
+<rect x="374" y="96" width="45" height="18" fill="#E8F1EF"/>
+<rect x="420" y="96" width="45" height="18" fill="#CFDFDD"/>
+<rect x="466" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="96" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="128" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Construction (136)</text>
+<rect x="190" y="115" width="45" height="18" fill="#A1BFBD"/>
+<text x="213.0" y="128" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">32</text>
+<rect x="236" y="115" width="45" height="18" fill="#CFE0DE"/>
+<rect x="282" y="115" width="45" height="18" fill="#E0EBE9"/>
+<rect x="328" y="115" width="45" height="18" fill="#8CAFAE"/>
+<text x="351.0" y="128" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">42</text>
+<rect x="374" y="115" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="115" width="45" height="18" fill="#E8F1EF"/>
+<rect x="466" y="115" width="45" height="18" fill="#E8F1EF"/>
+<rect x="512" y="115" width="45" height="18" fill="#D9E7E5"/>
+<rect x="558" y="115" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="115" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="115" width="45" height="18" fill="#E8F1EF"/>
+<text x="182" y="147" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Electricity &amp; Electronics (120)</text>
+<rect x="190" y="134" width="45" height="18" fill="#A4C1BF"/>
+<text x="213.0" y="147" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">31</text>
+<rect x="236" y="134" width="45" height="18" fill="#D1E1DF"/>
+<rect x="282" y="134" width="45" height="18" fill="#85ABA9"/>
+<text x="305.0" y="147" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">45</text>
+<rect x="328" y="134" width="45" height="18" fill="#D7E5E3"/>
+<rect x="374" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="134" width="45" height="18" fill="#E4EFED"/>
+<rect x="558" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="134" width="45" height="18" fill="#E4EFED"/>
+<rect x="650" y="134" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="166" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">ICT (120)</text>
+<rect x="190" y="153" width="45" height="18" fill="#CADCDA"/>
+<rect x="236" y="153" width="45" height="18" fill="#D1E1DF"/>
+<rect x="282" y="153" width="45" height="18" fill="#427B79"/>
+<text x="305.0" y="166" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">75</text>
+<rect x="328" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="153" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="185" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Environment, Energy &amp; Safety (67)</text>
+<rect x="190" y="172" width="45" height="18" fill="#719D9B"/>
+<text x="213.0" y="185" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">54</text>
+<rect x="236" y="172" width="45" height="18" fill="#C8DBD9"/>
+<rect x="282" y="172" width="45" height="18" fill="#E6F0EE"/>
+<rect x="328" y="172" width="45" height="18" fill="#C1D6D4"/>
+<text x="351.0" y="185" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18</text>
+<rect x="374" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="172" width="45" height="18" fill="#D2E2E0"/>
+<rect x="604" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="172" width="45" height="18" fill="#E6F0EE"/>
+<text x="182" y="204" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Culture, Arts &amp; Media (61)</text>
+<rect x="190" y="191" width="45" height="18" fill="#D0E0DE"/>
+<rect x="236" y="191" width="45" height="18" fill="#2B6A69"/>
+<text x="259.0" y="204" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">85</text>
+<rect x="282" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="191" width="45" height="18" fill="#E6F0EE"/>
+<rect x="374" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="191" width="45" height="18" fill="#E6F0EE"/>
+<rect x="512" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="191" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="223" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Chemistry &amp; Bio (55)</text>
+<rect x="190" y="210" width="45" height="18" fill="#367371"/>
+<text x="213.0" y="223" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">80</text>
+<rect x="236" y="210" width="45" height="18" fill="#D9E7E5"/>
+<rect x="282" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="210" width="45" height="18" fill="#D5E4E2"/>
+<rect x="420" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="210" width="45" height="18" fill="#E1EDEB"/>
+<rect x="604" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="210" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="242" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Agri., Forestry &amp; Fisheries (54)</text>
+<rect x="190" y="229" width="45" height="18" fill="#AFC9C7"/>
+<text x="213.0" y="242" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">26</text>
+<rect x="236" y="229" width="45" height="18" fill="#9FBDBC"/>
+<text x="259.0" y="242" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">33</text>
+<rect x="282" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="229" width="45" height="18" fill="#E5F0EE"/>
+<rect x="374" y="229" width="45" height="18" fill="#DDEAE8"/>
+<rect x="420" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="229" width="45" height="18" fill="#9FBDBC"/>
+<text x="489.0" y="242" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">33</text>
+<rect x="512" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="229" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="261" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Materials (48)</text>
+<rect x="190" y="248" width="45" height="18" fill="#387473"/>
+<text x="213.0" y="261" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">79</text>
+<rect x="236" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="282" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="248" width="45" height="18" fill="#DCE9E7"/>
+<rect x="420" y="248" width="45" height="18" fill="#C9DBD9"/>
+<rect x="466" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="248" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="280" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Beauty, Lodging, Travel &amp; Sports (46)</text>
+<rect x="190" y="267" width="45" height="18" fill="#E5EFED"/>
+<rect x="236" y="267" width="45" height="18" fill="#0E5655"/>
+<text x="259.0" y="280" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">98</text>
+<rect x="282" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="267" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="299" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Finance &amp; Insurance (36)</text>
+<rect x="190" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="286" width="45" height="18" fill="#0A5352"/>
+<text x="259.0" y="299" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">100</text>
+<rect x="282" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="286" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="318" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Mgmt., Accounting &amp; Office (30)</text>
+<rect x="190" y="305" width="45" height="18" fill="#DBE8E6"/>
+<rect x="236" y="305" width="45" height="18" fill="#185D5C"/>
+<text x="259.0" y="318" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">93</text>
+<rect x="282" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="305" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="337" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Driving &amp; Transport (30)</text>
+<rect x="190" y="324" width="45" height="18" fill="#7AA3A1"/>
+<text x="213.0" y="337" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">50</text>
+<rect x="236" y="324" width="45" height="18" fill="#90B3B1"/>
+<text x="259.0" y="337" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">40</text>
+<rect x="282" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="324" width="45" height="18" fill="#E2EDEB"/>
+<rect x="466" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="324" width="45" height="18" fill="#DBE8E6"/>
+<rect x="604" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="324" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="356" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Textiles &amp; Apparel (26)</text>
+<rect x="190" y="343" width="45" height="18" fill="#7AA3A1"/>
+<text x="213.0" y="356" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">50</text>
+<rect x="236" y="343" width="45" height="18" fill="#82A9A7"/>
+<text x="259.0" y="356" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">46</text>
+<rect x="282" y="343" width="45" height="18" fill="#E1ECEA"/>
+<rect x="328" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="343" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="375" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Printing, Wood &amp; Crafts (23)</text>
+<rect x="190" y="362" width="45" height="18" fill="#4E8382"/>
+<text x="213.0" y="375" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">70</text>
+<rect x="236" y="362" width="45" height="18" fill="#A5C2C0"/>
+<text x="259.0" y="375" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">30</text>
+<rect x="282" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="362" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="394" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Processing (21)</text>
+<rect x="190" y="381" width="45" height="18" fill="#DFEBE9"/>
+<rect x="236" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="282" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="381" width="45" height="18" fill="#145A59"/>
+<text x="397.0" y="394" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">95</text>
+<rect x="420" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="381" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="413" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Social Welfare &amp; Religion (18)</text>
+<rect x="190" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="400" width="45" height="18" fill="#0A5352"/>
+<text x="259.0" y="413" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">100</text>
+<rect x="282" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="400" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="432" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Sales (18)</text>
+<rect x="190" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="419" width="45" height="18" fill="#165B5A"/>
+<text x="259.0" y="432" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">94</text>
+<rect x="282" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="419" width="45" height="18" fill="#DDEAE8"/>
+<rect x="374" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="419" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="451" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Law, Police, Fire &amp; Defense (16)</text>
+<rect x="190" y="438" width="45" height="18" fill="#6C9997"/>
+<text x="213.0" y="451" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">56</text>
+<rect x="236" y="438" width="45" height="18" fill="#A4C1BF"/>
+<text x="259.0" y="451" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">31</text>
+<rect x="282" y="438" width="45" height="18" fill="#CEDFDD"/>
+<rect x="328" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="438" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="470" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Service (12)</text>
+<rect x="190" y="457" width="45" height="18" fill="#B2CBC9"/>
+<text x="213.0" y="470" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">25</text>
+<rect x="236" y="457" width="45" height="18" fill="#9FBDBC"/>
+<text x="259.0" y="470" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">33</text>
+<rect x="282" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="457" width="45" height="18" fill="#8CB0AE"/>
+<text x="397.0" y="470" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">42</text>
+<rect x="420" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="457" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="489" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Health &amp; Medical (11)</text>
+<rect x="190" y="476" width="45" height="18" fill="#84AAA8"/>
+<text x="213.0" y="489" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">45</text>
+<rect x="236" y="476" width="45" height="18" fill="#6F9B9A"/>
+<text x="259.0" y="489" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">55</text>
+<rect x="282" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="476" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="508" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Education, Nat. &amp; Soc. Sci. (8)</text>
+<rect x="190" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="495" width="45" height="18" fill="#266765"/>
+<text x="259.0" y="508" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">88</text>
+<rect x="282" y="495" width="45" height="18" fill="#CEDFDD"/>
+<rect x="328" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="495" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="527" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Business Management (5)</text>
+<rect x="190" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="514" width="45" height="18" fill="#367371"/>
+<text x="259.0" y="527" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">80</text>
+<rect x="282" y="514" width="45" height="18" fill="#BDD3D1"/>
+<text x="305.0" y="527" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20</text>
+<rect x="328" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="514" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="546" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Security &amp; Cleaning (4)</text>
+<rect x="190" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="533" width="45" height="18" fill="#0A5352"/>
+<text x="259.0" y="546" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">100</text>
+<rect x="282" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="533" width="45" height="18" fill="#EAF3F1"/>
+<text x="16" y="590" font-size="10.5" fill="#5C6B6E" text-anchor="start" font-weight="normal">Cell = share (%) of the category's occupations in that community. The more a row concentrates in one column, the better the official category and the data agree.</text>
+</svg>

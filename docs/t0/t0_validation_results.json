@@ -1,0 +1,1459 @@
+{
+  "meta": {
+    "run_at": "2026-09-15T11:29:12+09:00",
+    "n_judgments": 840,
+    "n_external_judgments": 640,
+    "n_author_judgments": 200,
+    "raters": [
+      "AU-1",
+      "EV-1",
+      "EV-2",
+      "EV-3",
+      "EV-3B",
+      "EV-4",
+      "EV-4B",
+      "EV-5",
+      "EV-5B"
+    ],
+    "n_items": 200,
+    "n_anchor_items": 50,
+    "seed": 20260909,
+    "n_boot": 2000,
+    "estimator": "주 정밀도 = 외부 판정 합산, CI = 문항 단위 부트스트랩; 문항 다수결 병기(동률은 보수적)"
+  },
+  "precision_external": {
+    "overall": {
+      "label": "외부 전체",
+      "n_judgments": 640,
+      "n_items": 200,
+      "n_ties": 48,
+      "pooled": {
+        "strict": 0.496875,
+        "lenient": 0.6734375,
+        "strict_ci95": [
+          0.4275420843188957,
+          0.5644980448316669
+        ],
+        "lenient_ci95": [
+          0.6143343409223342,
+          0.7296917824301363
+        ]
+      },
+      "item_majority": {
+        "strict": 0.43,
+        "lenient": 0.535
+      },
+      "verdict_dist": {
+        "same": 0.496875,
+        "hierarchy": 0.1765625,
+        "related": 0.26875,
+        "unrelated": 0.034375,
+        "unsure": 0.0234375
+      },
+      "unsure_rate": 0.0234375
+    },
+    "by_band": {
+      "0.85-0.90": {
+        "label": "0.85-0.90",
+        "n_judgments": 128,
+        "n_items": 40,
+        "n_ties": 9,
+        "pooled": {
+          "strict": 0.4375,
+          "lenient": 0.59375,
+          "strict_ci95": [
+            0.3135561598785732,
+            0.5714657738095236
+          ],
+          "lenient_ci95": [
+            0.4716942782635374,
+            0.726580255681818
+          ]
+        },
+        "item_majority": {
+          "strict": 0.4,
+          "lenient": 0.475
+        },
+        "verdict_dist": {
+          "same": 0.4375,
+          "hierarchy": 0.15625,
+          "related": 0.3671875,
+          "unrelated": 0.015625,
+          "unsure": 0.0234375
+        },
+        "unsure_rate": 0.0234375
+      },
+      "0.90-0.95": {
+        "label": "0.90-0.95",
+        "n_judgments": 128,
+        "n_items": 40,
+        "n_ties": 9,
+        "pooled": {
+          "strict": 0.7109375,
+          "lenient": 0.828125,
+          "strict_ci95": [
+            0.5713990554899645,
+            0.838999040614007
+          ],
+          "lenient_ci95": [
+            0.7169732704402515,
+            0.9256274869911233
+          ]
+        },
+        "item_majority": {
+          "strict": 0.625,
+          "lenient": 0.675
+        },
+        "verdict_dist": {
+          "same": 0.7109375,
+          "hierarchy": 0.1171875,
+          "related": 0.140625,
+          "unrelated": 0.015625,
+          "unsure": 0.015625
+        },
+        "unsure_rate": 0.015625
+      },
+      "0.95-1.01": {
+        "label": "0.95-1.01",
+        "n_judgments": 128,
+        "n_items": 40,
+        "n_ties": 6,
+        "pooled": {
+          "strict": 0.734375,
+          "lenient": 0.875,
+          "strict_ci95": [
+            0.5964779372674109,
+            0.8467364696457182
+          ],
+          "lenient_ci95": [
+            0.7807017543859649,
+            0.9461158041060735
+          ]
+        },
+        "item_majority": {
+          "strict": 0.625,
+          "lenient": 0.725
+        },
+        "verdict_dist": {
+          "same": 0.734375,
+          "hierarchy": 0.140625,
+          "related": 0.078125,
+          "unrelated": 0.0234375,
+          "unsure": 0.0234375
+        },
+        "unsure_rate": 0.0234375
+      },
+      "transitive": {
+        "label": "transitive",
+        "n_judgments": 256,
+        "n_items": 80,
+        "n_ties": 24,
+        "pooled": {
+          "strict": 0.30078125,
+          "lenient": 0.53515625,
+          "strict_ci95": [
+            0.21276355059208626,
+            0.39313759229132766
+          ],
+          "lenient_ci95": [
+            0.44879438247690406,
+            0.6203783524904214
+          ]
+        },
+        "item_majority": {
+          "strict": 0.25,
+          "lenient": 0.4
+        },
+        "verdict_dist": {
+          "same": 0.30078125,
+          "hierarchy": 0.234375,
+          "related": 0.37890625,
+          "unrelated": 0.05859375,
+          "unsure": 0.02734375
+        },
+        "unsure_rate": 0.02734375
+      }
+    },
+    "by_arm": {
+      "A": {
+        "label": "A",
+        "n_judgments": 384,
+        "n_items": 120,
+        "n_ties": 24,
+        "pooled": {
+          "strict": 0.6276041666666666,
+          "lenient": 0.765625,
+          "strict_ci95": [
+            0.5421745680939172,
+            0.7150084260195482
+          ],
+          "lenient_ci95": [
+            0.6948691860465116,
+            0.8341850598935225
+          ]
+        },
+        "item_majority": {
+          "strict": 0.55,
+          "lenient": 0.625
+        },
+        "verdict_dist": {
+          "same": 0.6276041666666666,
+          "hierarchy": 0.13802083333333334,
+          "related": 0.1953125,
+          "unrelated": 0.018229166666666668,
+          "unsure": 0.020833333333333332
+        },
+        "unsure_rate": 0.020833333333333332
+      },
+      "B": {
+        "label": "B",
+        "n_judgments": 256,
+        "n_items": 80,
+        "n_ties": 24,
+        "pooled": {
+          "strict": 0.30078125,
+          "lenient": 0.53515625,
+          "strict_ci95": [
+            0.21276355059208626,
+            0.39313759229132766
+          ],
+          "lenient_ci95": [
+            0.44879438247690406,
+            0.6203783524904214
+          ]
+        },
+        "item_majority": {
+          "strict": 0.25,
+          "lenient": 0.4
+        },
+        "verdict_dist": {
+          "same": 0.30078125,
+          "hierarchy": 0.234375,
+          "related": 0.37890625,
+          "unrelated": 0.05859375,
+          "unsure": 0.02734375
+        },
+        "unsure_rate": 0.02734375
+      }
+    },
+    "by_group": {
+      "phd": {
+        "label": "phd",
+        "n_judgments": 160,
+        "n_items": 110,
+        "n_ties": 14,
+        "pooled": {
+          "strict": 0.49375,
+          "lenient": 0.64375,
+          "strict_ci95": [
+            0.40236686390532544,
+            0.5833462732919255
+          ],
+          "lenient_ci95": [
+            0.5582492040071445,
+            0.7307812499999999
+          ]
+        },
+        "item_majority": {
+          "strict": 0.4636363636363636,
+          "lenient": 0.5909090909090909
+        },
+        "verdict_dist": {
+          "same": 0.49375,
+          "hierarchy": 0.15,
+          "related": 0.29375,
+          "unrelated": 0.05,
+          "unsure": 0.0125
+        },
+        "unsure_rate": 0.0125
+      },
+      "staff": {
+        "label": "staff",
+        "n_judgments": 240,
+        "n_items": 140,
+        "n_ties": 4,
+        "pooled": {
+          "strict": 0.5666666666666667,
+          "lenient": 0.6458333333333334,
+          "strict_ci95": [
+            0.48257355344883945,
+            0.6487806385533657
+          ],
+          "lenient_ci95": [
+            0.5598039215686275,
+            0.7301587301587301
+          ]
+        },
+        "item_majority": {
+          "strict": 0.6,
+          "lenient": 0.6642857142857143
+        },
+        "verdict_dist": {
+          "same": 0.5666666666666667,
+          "hierarchy": 0.07916666666666666,
+          "related": 0.2708333333333333,
+          "unrelated": 0.041666666666666664,
+          "unsure": 0.041666666666666664
+        },
+        "unsure_rate": 0.041666666666666664
+      },
+      "student": {
+        "label": "student",
+        "n_judgments": 240,
+        "n_items": 140,
+        "n_ties": 7,
+        "pooled": {
+          "strict": 0.42916666666666664,
+          "lenient": 0.7208333333333333,
+          "strict_ci95": [
+            0.35270682424704536,
+            0.5078771653543307
+          ],
+          "lenient_ci95": [
+            0.6585315040650407,
+            0.7851239669421488
+          ]
+        },
+        "item_majority": {
+          "strict": 0.38571428571428573,
+          "lenient": 0.6928571428571428
+        },
+        "verdict_dist": {
+          "same": 0.42916666666666664,
+          "hierarchy": 0.2916666666666667,
+          "related": 0.25,
+          "unrelated": 0.016666666666666666,
+          "unsure": 0.0125
+        },
+        "unsure_rate": 0.0125
+      }
+    }
+  },
+  "precision_author": {
+    "overall": {
+      "label": "저자",
+      "n_judgments": 200,
+      "n_items": 200,
+      "n_ties": 0,
+      "pooled": {
+        "strict": 0.555,
+        "lenient": 0.685,
+        "strict_ci95": [
+          0.485,
+          0.62
+        ],
+        "lenient_ci95": [
+          0.615,
+          0.7451249999999993
+        ]
+      },
+      "item_majority": {
+        "strict": 0.555,
+        "lenient": 0.685
+      },
+      "verdict_dist": {
+        "same": 0.555,
+        "hierarchy": 0.13,
+        "related": 0.23,
+        "unrelated": 0.05,
+        "unsure": 0.035
+      },
+      "unsure_rate": 0.035
+    },
+    "by_band": {
+      "0.85-0.90": {
+        "label": "0.85-0.90",
+        "n_judgments": 40,
+        "n_items": 40,
+        "n_ties": 0,
+        "pooled": {
+          "strict": 0.65,
+          "lenient": 0.775,
+          "strict_ci95": [
+            0.5,
+            0.8
+          ],
+          "lenient_ci95": [
+            0.65,
+            0.9
+          ]
+        },
+        "item_majority": {
+          "strict": 0.65,
+          "lenient": 0.775
+        },
+        "verdict_dist": {
+          "same": 0.65,
+          "hierarchy": 0.125,
+          "related": 0.15,
+          "unrelated": 0.075,
+          "unsure": 0.0
+        },
+        "unsure_rate": 0.0
+      },
+      "0.90-0.95": {
+        "label": "0.90-0.95",
+        "n_judgments": 40,
+        "n_items": 40,
+        "n_ties": 0,
+        "pooled": {
+          "strict": 0.675,
+          "lenient": 0.825,
+          "strict_ci95": [
+            0.525,
+            0.825
+          ],
+          "lenient_ci95": [
+            0.7,
+            0.925
+          ]
+        },
+        "item_majority": {
+          "strict": 0.675,
+          "lenient": 0.825
+        },
+        "verdict_dist": {
+          "same": 0.675,
+          "hierarchy": 0.15,
+          "related": 0.15,
+          "unrelated": 0.025,
+          "unsure": 0.0
+        },
+        "unsure_rate": 0.0
+      },
+      "0.95-1.01": {
+        "label": "0.95-1.01",
+        "n_judgments": 40,
+        "n_items": 40,
+        "n_ties": 0,
+        "pooled": {
+          "strict": 0.725,
+          "lenient": 0.825,
+          "strict_ci95": [
+            0.575,
+            0.85
+          ],
+          "lenient_ci95": [
+            0.7,
+            0.925
+          ]
+        },
+        "item_majority": {
+          "strict": 0.725,
+          "lenient": 0.825
+        },
+        "verdict_dist": {
+          "same": 0.725,
+          "hierarchy": 0.1,
+          "related": 0.15,
+          "unrelated": 0.0,
+          "unsure": 0.025
+        },
+        "unsure_rate": 0.025
+      },
+      "transitive": {
+        "label": "transitive",
+        "n_judgments": 80,
+        "n_items": 80,
+        "n_ties": 0,
+        "pooled": {
+          "strict": 0.3625,
+          "lenient": 0.5,
+          "strict_ci95": [
+            0.2625,
+            0.475
+          ],
+          "lenient_ci95": [
+            0.3875,
+            0.6125
+          ]
+        },
+        "item_majority": {
+          "strict": 0.3625,
+          "lenient": 0.5
+        },
+        "verdict_dist": {
+          "same": 0.3625,
+          "hierarchy": 0.1375,
+          "related": 0.35,
+          "unrelated": 0.075,
+          "unsure": 0.075
+        },
+        "unsure_rate": 0.075
+      }
+    }
+  },
+  "precision_cumulative_by_threshold": {
+    "0.85": {
+      "n_judgments": 384,
+      "strict": 0.6276041666666666,
+      "lenient": 0.765625,
+      "strict_ci95": [
+        0.5421745680939172,
+        0.7150084260195482
+      ]
+    },
+    "0.9": {
+      "n_judgments": 256,
+      "strict": 0.72265625,
+      "lenient": 0.8515625,
+      "strict_ci95": [
+        0.627788626902615,
+        0.8122746762607657
+      ]
+    },
+    "0.95": {
+      "n_judgments": 128,
+      "strict": 0.734375,
+      "lenient": 0.875,
+      "strict_ci95": [
+        0.5964779372674109,
+        0.8467364696457182
+      ]
+    }
+  },
+  "reliability": {
+    "anchor_external_all": {
+      "label": "앵커 · 외부 8인",
+      "n_raters": 8,
+      "n_items": 50,
+      "alpha_5cat": 0.31525938455032965,
+      "alpha_5cat_ci95": [
+        0.23871186926988583,
+        0.3784417782271486
+      ],
+      "alpha_merge_binary": 0.4865378840956861,
+      "alpha_merge_binary_ci95": [
+        0.363398999374609,
+        0.5959494295743747
+      ],
+      "alpha_lenient_binary": 0.36109890109890097,
+      "alpha_3cat_unsure_missing": 0.3666251551544145
+    },
+    "anchor_phd": {
+      "label": "앵커 · 교육공학 박사 2인 (천장)",
+      "n_raters": 2,
+      "n_items": 50,
+      "alpha_5cat": 0.568895800933126,
+      "alpha_5cat_ci95": [
+        0.3734041903727489,
+        0.7411800935379751
+      ],
+      "alpha_merge_binary": 0.6826923076923077,
+      "alpha_merge_binary_ci95": [
+        0.474734544909916,
+        0.8726511415036005
+      ],
+      "alpha_lenient_binary": 0.6177606177606179,
+      "alpha_3cat_unsure_missing": 0.6352136752136752
+    },
+    "anchor_staff": {
+      "label": "앵커 · 직원 3인",
+      "n_raters": 3,
+      "n_items": 50,
+      "alpha_5cat": 0.4218166139695315,
+      "alpha_5cat_ci95": [
+        0.2809244502402137,
+        0.554070636559025
+      ],
+      "alpha_merge_binary": 0.574968800142628,
+      "alpha_merge_binary_ci95": [
+        0.38942244249394675,
+        0.7343637778290791
+      ],
+      "alpha_lenient_binary": 0.6412962962962963,
+      "alpha_3cat_unsure_missing": 0.5425269937488161
+    },
+    "anchor_student": {
+      "label": "앵커 · 학생 3인",
+      "n_raters": 3,
+      "n_items": 50,
+      "alpha_5cat": 0.2890456989247312,
+      "alpha_5cat_ci95": [
+        0.14779945369276157,
+        0.41249366619529826
+      ],
+      "alpha_merge_binary": 0.43733141521309116,
+      "alpha_merge_binary_ci95": [
+        0.23528571626182704,
+        0.6028868318122553
+      ],
+      "alpha_lenient_binary": 0.2227776570310802,
+      "alpha_3cat_unsure_missing": 0.2985781990521327
+    },
+    "anchor_all_incl_author": {
+      "label": "앵커 · 저자 포함 9인",
+      "n_raters": 9,
+      "n_items": 50,
+      "alpha_5cat": 0.2963269092741627,
+      "alpha_5cat_ci95": [
+        0.21990046922264075,
+        0.36107389720734456
+      ],
+      "alpha_merge_binary": 0.4588116738129582,
+      "alpha_merge_binary_ci95": [
+        0.3433596661984051,
+        0.571231822499538
+      ],
+      "alpha_lenient_binary": 0.35710194730813294,
+      "alpha_3cat_unsure_missing": 0.35179013920193736
+    },
+    "all_items_external_missing": {
+      "label": "전 문항 · 외부 8인 (결측 허용)",
+      "n_raters": 8,
+      "n_items": 200,
+      "alpha_5cat": 0.29214543195996656,
+      "alpha_5cat_ci95": [
+        0.21847675147786286,
+        0.3627689869059477
+      ],
+      "alpha_merge_binary": 0.4186756863737753,
+      "alpha_merge_binary_ci95": [
+        0.311621789292341,
+        0.510471044658757
+      ],
+      "alpha_lenient_binary": 0.30044481560740255,
+      "alpha_3cat_unsure_missing": 0.32513960620071125
+    },
+    "pairwise_anchor_agreement": {
+      "AU-1|EV-1": {
+        "n": 50,
+        "agree": 0.48
+      },
+      "AU-1|EV-2": {
+        "n": 50,
+        "agree": 0.5
+      },
+      "AU-1|EV-3": {
+        "n": 50,
+        "agree": 0.58
+      },
+      "AU-1|EV-3B": {
+        "n": 50,
+        "agree": 0.42
+      },
+      "AU-1|EV-4": {
+        "n": 50,
+        "agree": 0.62
+      },
+      "AU-1|EV-4B": {
+        "n": 50,
+        "agree": 0.5
+      },
+      "AU-1|EV-5": {
+        "n": 50,
+        "agree": 0.52
+      },
+      "AU-1|EV-5B": {
+        "n": 50,
+        "agree": 0.46
+      },
+      "EV-1|EV-2": {
+        "n": 50,
+        "agree": 0.72
+      },
+      "EV-1|EV-3": {
+        "n": 50,
+        "agree": 0.56
+      },
+      "EV-1|EV-3B": {
+        "n": 50,
+        "agree": 0.62
+      },
+      "EV-1|EV-4": {
+        "n": 50,
+        "agree": 0.6
+      },
+      "EV-1|EV-4B": {
+        "n": 50,
+        "agree": 0.58
+      },
+      "EV-1|EV-5": {
+        "n": 50,
+        "agree": 0.66
+      },
+      "EV-1|EV-5B": {
+        "n": 50,
+        "agree": 0.6
+      },
+      "EV-2|EV-3": {
+        "n": 50,
+        "agree": 0.48
+      },
+      "EV-2|EV-3B": {
+        "n": 50,
+        "agree": 0.54
+      },
+      "EV-2|EV-4": {
+        "n": 50,
+        "agree": 0.62
+      },
+      "EV-2|EV-4B": {
+        "n": 50,
+        "agree": 0.46
+      },
+      "EV-2|EV-5": {
+        "n": 50,
+        "agree": 0.6
+      },
+      "EV-2|EV-5B": {
+        "n": 50,
+        "agree": 0.58
+      },
+      "EV-3|EV-3B": {
+        "n": 50,
+        "agree": 0.4
+      },
+      "EV-3|EV-4": {
+        "n": 50,
+        "agree": 0.58
+      },
+      "EV-3|EV-4B": {
+        "n": 50,
+        "agree": 0.48
+      },
+      "EV-3|EV-5": {
+        "n": 50,
+        "agree": 0.62
+      },
+      "EV-3|EV-5B": {
+        "n": 50,
+        "agree": 0.46
+      },
+      "EV-3B|EV-4": {
+        "n": 50,
+        "agree": 0.48
+      },
+      "EV-3B|EV-4B": {
+        "n": 50,
+        "agree": 0.52
+      },
+      "EV-3B|EV-5": {
+        "n": 50,
+        "agree": 0.48
+      },
+      "EV-3B|EV-5B": {
+        "n": 50,
+        "agree": 0.5
+      },
+      "EV-4|EV-4B": {
+        "n": 50,
+        "agree": 0.48
+      },
+      "EV-4|EV-5": {
+        "n": 50,
+        "agree": 0.72
+      },
+      "EV-4|EV-5B": {
+        "n": 50,
+        "agree": 0.54
+      },
+      "EV-4B|EV-5": {
+        "n": 50,
+        "agree": 0.56
+      },
+      "EV-4B|EV-5B": {
+        "n": 50,
+        "agree": 0.56
+      },
+      "EV-5|EV-5B": {
+        "n": 50,
+        "agree": 0.5
+      }
+    }
+  },
+  "author_vs_external": {
+    "n_items_compared": 152,
+    "n_ties_excluded": 48,
+    "agreement_5cat": 0.5986842105263158,
+    "kappa_5cat": 0.3267010384140585,
+    "agreement_merge_binary": 0.743421052631579,
+    "kappa_merge_binary": 0.4750265674814027,
+    "author_stricter_count": 18,
+    "author_more_lenient_count": 21
+  },
+  "unsure": {
+    "by_rater": {
+      "AU-1": 0.035,
+      "EV-1": 0.025,
+      "EV-2": 0.0,
+      "EV-3": 0.0,
+      "EV-3B": 0.0,
+      "EV-4": 0.0625,
+      "EV-4B": 0.0375,
+      "EV-5": 0.0625,
+      "EV-5B": 0.0
+    },
+    "by_band_external": {
+      "0.85-0.90": 0.0234375,
+      "0.90-0.95": 0.015625,
+      "0.95-1.01": 0.0234375,
+      "transitive": 0.02734375
+    }
+  },
+  "by_experience_external": {
+    "high": {
+      "n": 160,
+      "raters": [
+        "EV-1",
+        "EV-2"
+      ],
+      "verdict_dist": {
+        "same": 0.49375,
+        "hierarchy": 0.15,
+        "related": 0.29375,
+        "unrelated": 0.05,
+        "unsure": 0.0125
+      },
+      "strict": 0.49375
+    },
+    "none": {
+      "n": 240,
+      "raters": [
+        "EV-3B",
+        "EV-4B",
+        "EV-5"
+      ],
+      "verdict_dist": {
+        "same": 0.44166666666666665,
+        "hierarchy": 0.20833333333333334,
+        "related": 0.2916666666666667,
+        "unrelated": 0.025,
+        "unsure": 0.03333333333333333
+      },
+      "strict": 0.44166666666666665
+    },
+    "some": {
+      "n": 160,
+      "raters": [
+        "EV-3",
+        "EV-4"
+      ],
+      "verdict_dist": {
+        "same": 0.59375,
+        "hierarchy": 0.08125,
+        "related": 0.2625,
+        "unrelated": 0.03125,
+        "unsure": 0.03125
+      },
+      "strict": 0.59375
+    }
+  },
+  "timing": {
+    "AU-1": {
+      "median_s": 9.501,
+      "share_under_2s": 0.01
+    },
+    "EV-1": {
+      "median_s": 8.0045,
+      "share_under_2s": 0.0
+    },
+    "EV-2": {
+      "median_s": 5.7935,
+      "share_under_2s": 0.025
+    },
+    "EV-3": {
+      "median_s": 10.5065,
+      "share_under_2s": 0.0
+    },
+    "EV-3B": {
+      "median_s": 6.7345,
+      "share_under_2s": 0.025
+    },
+    "EV-4": {
+      "median_s": 8.2765,
+      "share_under_2s": 0.1375
+    },
+    "EV-4B": {
+      "median_s": 9.9525,
+      "share_under_2s": 0.025
+    },
+    "EV-5": {
+      "median_s": 30.035,
+      "share_under_2s": 0.0
+    },
+    "EV-5B": {
+      "median_s": 7.4225,
+      "share_under_2s": 0.0
+    }
+  },
+  "qualitative": {
+    "most_contested_anchor": [
+      {
+        "pair_id": "d554098fb3f3",
+        "left": "3D 모델링 소프트웨어 사용 능력",
+        "right": "3D 분석용 소프트웨어 사용 능력",
+        "band": "0.85-0.90",
+        "cosine": 0.89,
+        "verdicts": {
+          "AU-1": "unrelated",
+          "EV-1": "unsure",
+          "EV-2": "related",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "related",
+          "EV-4B": "related",
+          "EV-5": "related",
+          "EV-5B": "same"
+        },
+        "n_distinct": 5
+      },
+      {
+        "pair_id": "e986143f0406",
+        "left": "전체 게놈 염기서열 데이터(whole genome sequencing data) 분석에 대한 지식",
+        "right": "전체 진유전체 염기서열 데이터(whole exome sequencing data) 분석에 대한 지식",
+        "band": "0.85-0.90",
+        "cosine": 0.8837,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "related",
+          "EV-2": "unrelated",
+          "EV-3": "related",
+          "EV-3B": "same",
+          "EV-4": "unsure",
+          "EV-4B": "related",
+          "EV-5": "related",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 5
+      },
+      {
+        "pair_id": "25293ad5fb55",
+        "left": "미생물 품질검사를 위한 분석통계학 기초지식",
+        "right": "반제품 품질검사를 위한 일반미생물학 기초지식",
+        "band": "transitive",
+        "cosine": 0.8349,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "hierarchy",
+          "EV-2": "unrelated",
+          "EV-3": "unrelated",
+          "EV-3B": "same",
+          "EV-4": "related",
+          "EV-4B": "related",
+          "EV-5": "unrelated",
+          "EV-5B": "related"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "33abbe4d95ec",
+        "left": "배양도구 세척장비 운전기술",
+        "right": "배양기 운전기술",
+        "band": "transitive",
+        "cosine": 0.8505,
+        "verdicts": {
+          "AU-1": "unrelated",
+          "EV-1": "hierarchy",
+          "EV-2": "hierarchy",
+          "EV-3": "unrelated",
+          "EV-3B": "related",
+          "EV-4": "unsure",
+          "EV-4B": "related",
+          "EV-5": "related",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "34f4c469f197",
+        "left": "네트워크NMS(Network Management System)사용 지식",
+        "right": "망관리시스템(NMS) 운용",
+        "band": "transitive",
+        "cosine": 0.8771,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "related",
+          "EV-2": "related",
+          "EV-3": "unrelated",
+          "EV-3B": "related",
+          "EV-4": "same",
+          "EV-4B": "hierarchy",
+          "EV-5": "related",
+          "EV-5B": "related"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "3644ecbf5913",
+        "left": "- HMI(Human Machine Interface)",
+        "right": "HMI(Human-Machine Interface) 시스템 이해",
+        "band": "0.95-1.01",
+        "cosine": 0.9544,
+        "verdicts": {
+          "AU-1": "unsure",
+          "EV-1": "hierarchy",
+          "EV-2": "unrelated",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "hierarchy",
+          "EV-5": "hierarchy",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "3b5f68cd75e1",
+        "left": "기초직업상담심리이론",
+        "right": "기초직업심리이론",
+        "band": "0.95-1.01",
+        "cosine": 0.9501,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "related",
+          "EV-2": "related",
+          "EV-3": "related",
+          "EV-3B": "same",
+          "EV-4": "unsure",
+          "EV-4B": "hierarchy",
+          "EV-5": "unsure",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "4fcaa15ac584",
+        "left": "문서양식 및 작성방법",
+        "right": "문서의 양식과 유형",
+        "band": "transitive",
+        "cosine": 0.8966,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "related",
+          "EV-2": "related",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "unsure",
+          "EV-4B": "related",
+          "EV-5": "same",
+          "EV-5B": "related"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "d62e9cc61257",
+        "left": "전기 계통도 파악 능력",
+        "right": "전력케이블 계통도 파악 능력",
+        "band": "transitive",
+        "cosine": 0.8792,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "hierarchy",
+          "EV-2": "hierarchy",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "unsure",
+          "EV-4B": "hierarchy",
+          "EV-5": "unsure",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "1c1caf57a04e",
+        "left": "공구를 안전하게 사용하려는 자세",
+        "right": "도구를 목적에 맞게 사용하는 능력",
+        "band": "transitive",
+        "cosine": 0.771,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "unrelated",
+          "EV-2": "related",
+          "EV-3": "related",
+          "EV-3B": "same",
+          "EV-4": "related",
+          "EV-4B": "unrelated",
+          "EV-5": "unrelated",
+          "EV-5B": "unrelated"
+        },
+        "n_distinct": 3
+      }
+    ],
+    "phd_disagree": [
+      {
+        "pair_id": "08abd540b832",
+        "left": "유압실린더의 종류와 취급요령",
+        "right": "유압실린더의 종류 및 구조",
+        "band": "transitive",
+        "cosine": 0.895,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "related",
+          "EV-2": "hierarchy",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "related",
+          "EV-4B": "related",
+          "EV-5": "related",
+          "EV-5B": "related"
+        },
+        "n_distinct": 2
+      },
+      {
+        "pair_id": "1c1caf57a04e",
+        "left": "공구를 안전하게 사용하려는 자세",
+        "right": "도구를 목적에 맞게 사용하는 능력",
+        "band": "transitive",
+        "cosine": 0.771,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "unrelated",
+          "EV-2": "related",
+          "EV-3": "related",
+          "EV-3B": "same",
+          "EV-4": "related",
+          "EV-4B": "unrelated",
+          "EV-5": "unrelated",
+          "EV-5B": "unrelated"
+        },
+        "n_distinct": 3
+      },
+      {
+        "pair_id": "25293ad5fb55",
+        "left": "미생물 품질검사를 위한 분석통계학 기초지식",
+        "right": "반제품 품질검사를 위한 일반미생물학 기초지식",
+        "band": "transitive",
+        "cosine": 0.8349,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "hierarchy",
+          "EV-2": "unrelated",
+          "EV-3": "unrelated",
+          "EV-3B": "same",
+          "EV-4": "related",
+          "EV-4B": "related",
+          "EV-5": "unrelated",
+          "EV-5B": "related"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "3048d8630bf9",
+        "left": "자료를 세밀하게 검토하는 자세",
+        "right": "자료를 치밀하게 수집하려는 자세",
+        "band": "0.90-0.95",
+        "cosine": 0.9017,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "same",
+          "EV-2": "related",
+          "EV-3": "related",
+          "EV-3B": "same",
+          "EV-4": "related",
+          "EV-4B": "same",
+          "EV-5": "related",
+          "EV-5B": "related"
+        },
+        "n_distinct": 2
+      },
+      {
+        "pair_id": "3644ecbf5913",
+        "left": "- HMI(Human Machine Interface)",
+        "right": "HMI(Human-Machine Interface) 시스템 이해",
+        "band": "0.95-1.01",
+        "cosine": 0.9544,
+        "verdicts": {
+          "AU-1": "unsure",
+          "EV-1": "hierarchy",
+          "EV-2": "unrelated",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "hierarchy",
+          "EV-5": "hierarchy",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 4
+      },
+      {
+        "pair_id": "3913d43bee8b",
+        "left": "업무 절차에 대한 지식",
+        "right": "업무 처리 과정에 대한 이해",
+        "band": "transitive",
+        "cosine": 0.8258,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "related",
+          "EV-2": "same",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "same",
+          "EV-4B": "hierarchy",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 3
+      },
+      {
+        "pair_id": "7ca2bf34226e",
+        "left": "설계검증을 정확하게 하려는 노력",
+        "right": "설계근거를 정확히 확인하고자 하는 노력",
+        "band": "0.85-0.90",
+        "cosine": 0.8904,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "related",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 2
+      },
+      {
+        "pair_id": "7cf29a699e82",
+        "left": "고객의 요구사항 수용 의지",
+        "right": "소비자의 반응 수용 의지",
+        "band": "0.85-0.90",
+        "cosine": 0.8611,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "related",
+          "EV-2": "same",
+          "EV-3": "related",
+          "EV-3B": "related",
+          "EV-4": "same",
+          "EV-4B": "related",
+          "EV-5": "related",
+          "EV-5B": "same"
+        },
+        "n_distinct": 2
+      },
+      {
+        "pair_id": "b0ba990d93aa",
+        "left": "이례사항 발생시 조치방법",
+        "right": "이례사항발생시 조치사항",
+        "band": "0.95-1.01",
+        "cosine": 0.9791,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "hierarchy",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 2
+      },
+      {
+        "pair_id": "b722d648026f",
+        "left": "기상조건 분석",
+        "right": "기상정보 분석 능력",
+        "band": "transitive",
+        "cosine": 0.8539,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "related",
+          "EV-2": "same",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "same",
+          "EV-4B": "hierarchy",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 3
+      },
+      {
+        "pair_id": "b8f3a4ee40a3",
+        "left": "기초 지반 분석에 대한 지식",
+        "right": "기초지반 특성 평가 능력",
+        "band": "0.85-0.90",
+        "cosine": 0.8609,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "related",
+          "EV-2": "same",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "related",
+          "EV-4B": "hierarchy",
+          "EV-5": "related",
+          "EV-5B": "related"
+        },
+        "n_distinct": 3
+      },
+      {
+        "pair_id": "d554098fb3f3",
+        "left": "3D 모델링 소프트웨어 사용 능력",
+        "right": "3D 분석용 소프트웨어 사용 능력",
+        "band": "0.85-0.90",
+        "cosine": 0.89,
+        "verdicts": {
+          "AU-1": "unrelated",
+          "EV-1": "unsure",
+          "EV-2": "related",
+          "EV-3": "related",
+          "EV-3B": "hierarchy",
+          "EV-4": "related",
+          "EV-4B": "related",
+          "EV-5": "related",
+          "EV-5B": "same"
+        },
+        "n_distinct": 5
+      },
+      {
+        "pair_id": "e986143f0406",
+        "left": "전체 게놈 염기서열 데이터(whole genome sequencing data) 분석에 대한 지식",
+        "right": "전체 진유전체 염기서열 데이터(whole exome sequencing data) 분석에 대한 지식",
+        "band": "0.85-0.90",
+        "cosine": 0.8837,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "related",
+          "EV-2": "unrelated",
+          "EV-3": "related",
+          "EV-3B": "same",
+          "EV-4": "unsure",
+          "EV-4B": "related",
+          "EV-5": "related",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 5
+      },
+      {
+        "pair_id": "ef671dd49571",
+        "left": "청소년정책 및 교육정책 이해",
+        "right": "청소년 관련법과 정책에 대한 정보",
+        "band": "transitive",
+        "cosine": 0.8285,
+        "verdicts": {
+          "AU-1": "related",
+          "EV-1": "same",
+          "EV-2": "hierarchy",
+          "EV-3": "related",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "hierarchy",
+          "EV-5": "related",
+          "EV-5B": "hierarchy"
+        },
+        "n_distinct": 3
+      }
+    ],
+    "unanimous_same_examples": [
+      {
+        "pair_id": "0b07e64bd1fc",
+        "left": "고객을 대하려는 배려심",
+        "right": "고객을 세심하게 배려하려는 자세",
+        "band": "0.90-0.95",
+        "cosine": 0.916,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "same",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 1
+      },
+      {
+        "pair_id": "1315e23d696d",
+        "left": "데이터의 객관적인 평가를 위한 공정성",
+        "right": "데이터의 객관적 평가를 위한 공정성",
+        "band": "0.95-1.01",
+        "cosine": 0.9965,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "same",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 1
+      },
+      {
+        "pair_id": "3c0aacac95fe",
+        "left": "자료를 적극적으로 수집하려는 태도",
+        "right": "자료수집의 적극적인 노력",
+        "band": "0.90-0.95",
+        "cosine": 0.9071,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "same",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 1
+      },
+      {
+        "pair_id": "45f3afcaa879",
+        "left": "고객의 요청에 대한 적극적 수용자세",
+        "right": "고객의 요청에 대한 적극적인 수용 자세",
+        "band": "0.95-1.01",
+        "cosine": 0.9834,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "same",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 1
+      },
+      {
+        "pair_id": "4985feca1472",
+        "left": "원활한 소통을 위한 대화 의지",
+        "right": "원활할 커뮤니케이션을 위한 의지",
+        "band": "0.90-0.95",
+        "cosine": 0.9285,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "same",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 1
+      },
+      {
+        "pair_id": "5e10756ec57f",
+        "left": "품질측정에 사용되는 계측기기 활용 능력",
+        "right": "품질 측정용 계측 장비의 활용 능력",
+        "band": "0.90-0.95",
+        "cosine": 0.9436,
+        "verdicts": {
+          "AU-1": "same",
+          "EV-1": "same",
+          "EV-2": "same",
+          "EV-3": "same",
+          "EV-3B": "same",
+          "EV-4": "same",
+          "EV-4B": "same",
+          "EV-5": "same",
+          "EV-5B": "same"
+        },
+        "n_distinct": 1
+      }
+    ],
+    "unanimous_not_same_examples": []
+  }
+}

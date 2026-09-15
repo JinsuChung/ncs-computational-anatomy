@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 604" width="710" height="604" role="img" aria-label="그림 3. 구조화 가능성 지도" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<rect x="0" y="0" width="710" height="604" fill="#FFFFFF"/>
+<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">그림 3. 구조화 가능성 지도 — 대분류 × 기계 처리 특성 (파편화 지수 내림차순)</text>
+<text x="16" y="42" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">색은 열 안에서 상대적 위치(min–max). 템플릿 준수는 높을수록, 고유 비율·파편화·유형 불일치는 낮을수록 규칙 처리에 유리.</text>
+<text x="249.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">수행준거</text>
+<text x="249.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">템플릿 준수</text>
+<rect x="190" y="78" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="91" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="97" width="116" height="18" fill="#EAF3F1"/>
+<text x="249.0" y="110" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">87.0%</text>
+<rect x="190" y="116" width="116" height="18" fill="#0A5352"/>
+<text x="249.0" y="129" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.9%</text>
+<rect x="190" y="135" width="116" height="18" fill="#0F5655"/>
+<text x="249.0" y="148" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.6%</text>
+<rect x="190" y="154" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="167" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="173" width="116" height="18" fill="#0B5352"/>
+<text x="249.0" y="186" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="192" width="116" height="18" fill="#115857"/>
+<text x="249.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.5%</text>
+<rect x="190" y="211" width="116" height="18" fill="#0A5352"/>
+<text x="249.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.9%</text>
+<rect x="190" y="230" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="249" width="116" height="18" fill="#0F5655"/>
+<text x="249.0" y="262" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.6%</text>
+<rect x="190" y="268" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="287" width="116" height="18" fill="#125958"/>
+<text x="249.0" y="300" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.4%</text>
+<rect x="190" y="306" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="319" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="325" width="116" height="18" fill="#266766"/>
+<text x="249.0" y="338" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">98.3%</text>
+<rect x="190" y="344" width="116" height="18" fill="#0B5352"/>
+<text x="249.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="363" width="116" height="18" fill="#105756"/>
+<text x="249.0" y="376" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.6%</text>
+<rect x="190" y="382" width="116" height="18" fill="#105756"/>
+<text x="249.0" y="395" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.5%</text>
+<rect x="190" y="401" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="414" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="420" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="433" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="439" width="116" height="18" fill="#0A5352"/>
+<text x="249.0" y="452" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.9%</text>
+<rect x="190" y="458" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="477" width="116" height="18" fill="#125958"/>
+<text x="249.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.4%</text>
+<rect x="190" y="496" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="509" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="515" width="116" height="18" fill="#0B5453"/>
+<text x="249.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<text x="367.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">KSA</text>
+<text x="367.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">고유 비율</text>
+<rect x="308" y="78" width="116" height="18" fill="#538786"/>
+<text x="367.0" y="91" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">14.9%</text>
+<rect x="308" y="97" width="116" height="18" fill="#649392"/>
+<text x="367.0" y="110" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.8%</text>
+<rect x="308" y="116" width="116" height="18" fill="#93B5B3"/>
+<text x="367.0" y="129" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.1%</text>
+<rect x="308" y="135" width="116" height="18" fill="#538786"/>
+<text x="367.0" y="148" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">14.9%</text>
+<rect x="308" y="154" width="116" height="18" fill="#99B9B8"/>
+<text x="367.0" y="167" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.4%</text>
+<rect x="308" y="173" width="116" height="18" fill="#7AA3A1"/>
+<text x="367.0" y="186" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">16.8%</text>
+<rect x="308" y="192" width="116" height="18" fill="#0A5352"/>
+<text x="367.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">11.2%</text>
+<rect x="308" y="211" width="116" height="18" fill="#639291"/>
+<text x="367.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.7%</text>
+<rect x="308" y="230" width="116" height="18" fill="#5E8F8D"/>
+<text x="367.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.4%</text>
+<rect x="308" y="249" width="116" height="18" fill="#7BA3A2"/>
+<text x="367.0" y="262" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">16.9%</text>
+<rect x="308" y="268" width="116" height="18" fill="#568988"/>
+<text x="367.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.0%</text>
+<rect x="308" y="287" width="116" height="18" fill="#A0BEBC"/>
+<text x="367.0" y="300" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.8%</text>
+<rect x="308" y="306" width="116" height="18" fill="#81A8A7"/>
+<text x="367.0" y="319" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">17.2%</text>
+<rect x="308" y="325" width="116" height="18" fill="#CBDCDB"/>
+<text x="367.0" y="338" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20.9%</text>
+<rect x="308" y="344" width="116" height="18" fill="#578A88"/>
+<text x="367.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.1%</text>
+<rect x="308" y="363" width="116" height="18" fill="#BBD2D0"/>
+<text x="367.0" y="376" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20.1%</text>
+<rect x="308" y="382" width="116" height="18" fill="#B7CFCD"/>
+<text x="367.0" y="395" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">19.9%</text>
+<rect x="308" y="401" width="116" height="18" fill="#A1BEBD"/>
+<text x="367.0" y="414" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.8%</text>
+<rect x="308" y="420" width="116" height="18" fill="#EAF3F1"/>
+<text x="367.0" y="433" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">22.5%</text>
+<rect x="308" y="439" width="116" height="18" fill="#DCE9E7"/>
+<text x="367.0" y="452" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">21.8%</text>
+<rect x="308" y="458" width="116" height="18" fill="#649392"/>
+<text x="367.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.7%</text>
+<rect x="308" y="477" width="116" height="18" fill="#447D7B"/>
+<text x="367.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">14.1%</text>
+<rect x="308" y="496" width="116" height="18" fill="#C8DAD8"/>
+<text x="367.0" y="509" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20.8%</text>
+<rect x="308" y="515" width="116" height="18" fill="#598B8A"/>
+<text x="367.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.2%</text>
+<text x="485.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">파편화 지수</text>
+<text x="485.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">(표면형/키)</text>
+<rect x="426" y="78" width="116" height="18" fill="#EAF3F1"/>
+<text x="485.0" y="91" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.141</text>
+<rect x="426" y="97" width="116" height="18" fill="#B8CFCE"/>
+<text x="485.0" y="110" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.119</text>
+<rect x="426" y="116" width="116" height="18" fill="#8FB2B0"/>
+<text x="485.0" y="129" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.100</text>
+<rect x="426" y="135" width="116" height="18" fill="#7FA7A5"/>
+<text x="485.0" y="148" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.093</text>
+<rect x="426" y="154" width="116" height="18" fill="#699796"/>
+<text x="485.0" y="167" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.083</text>
+<rect x="426" y="173" width="116" height="18" fill="#689695"/>
+<text x="485.0" y="186" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.082</text>
+<rect x="426" y="192" width="116" height="18" fill="#689694"/>
+<text x="485.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.082</text>
+<rect x="426" y="211" width="116" height="18" fill="#619190"/>
+<text x="485.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.079</text>
+<rect x="426" y="230" width="116" height="18" fill="#548887"/>
+<text x="485.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.073</text>
+<rect x="426" y="249" width="116" height="18" fill="#508583"/>
+<text x="485.0" y="262" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.071</text>
+<rect x="426" y="268" width="116" height="18" fill="#4B8180"/>
+<text x="485.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.069</text>
+<rect x="426" y="287" width="116" height="18" fill="#49807E"/>
+<text x="485.0" y="300" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.068</text>
+<rect x="426" y="306" width="116" height="18" fill="#487F7E"/>
+<text x="485.0" y="319" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.068</text>
+<rect x="426" y="325" width="116" height="18" fill="#347170"/>
+<text x="485.0" y="338" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.059</text>
+<rect x="426" y="344" width="116" height="18" fill="#326F6E"/>
+<text x="485.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.058</text>
+<rect x="426" y="363" width="116" height="18" fill="#296968"/>
+<text x="485.0" y="376" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.054</text>
+<rect x="426" y="382" width="116" height="18" fill="#296968"/>
+<text x="485.0" y="395" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.054</text>
+<rect x="426" y="401" width="116" height="18" fill="#286867"/>
+<text x="485.0" y="414" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.053</text>
+<rect x="426" y="420" width="116" height="18" fill="#266766"/>
+<text x="485.0" y="433" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.052</text>
+<rect x="426" y="439" width="116" height="18" fill="#256665"/>
+<text x="485.0" y="452" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.052</text>
+<rect x="426" y="458" width="116" height="18" fill="#226463"/>
+<text x="485.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.051</text>
+<rect x="426" y="477" width="116" height="18" fill="#185D5B"/>
+<text x="485.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.046</text>
+<rect x="426" y="496" width="116" height="18" fill="#0A5352"/>
+<text x="485.0" y="509" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.039</text>
+<rect x="426" y="515" width="116" height="18" fill="#0A5352"/>
+<text x="485.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.039</text>
+<text x="603.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">유형 불일치</text>
+<text x="603.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">(K/S 혼재 키)</text>
+<rect x="544" y="78" width="116" height="18" fill="#49807F"/>
+<text x="603.0" y="91" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.9%</text>
+<rect x="544" y="97" width="116" height="18" fill="#EAF3F1"/>
+<text x="603.0" y="110" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">8.9%</text>
+<rect x="544" y="116" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="129" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="135" width="116" height="18" fill="#377372"/>
+<text x="603.0" y="148" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.3%</text>
+<rect x="544" y="154" width="116" height="18" fill="#306E6D"/>
+<text x="603.0" y="167" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.0%</text>
+<rect x="544" y="173" width="116" height="18" fill="#1F6261"/>
+<text x="603.0" y="186" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.3%</text>
+<rect x="544" y="192" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="211" width="116" height="18" fill="#33706F"/>
+<text x="603.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.1%</text>
+<rect x="544" y="230" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="249" width="116" height="18" fill="#2F6D6C"/>
+<text x="603.0" y="262" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.9%</text>
+<rect x="544" y="268" width="116" height="18" fill="#206261"/>
+<text x="603.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="287" width="116" height="18" fill="#4F8483"/>
+<text x="603.0" y="300" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3.1%</text>
+<rect x="544" y="306" width="116" height="18" fill="#558887"/>
+<text x="603.0" y="319" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3.4%</text>
+<rect x="544" y="325" width="116" height="18" fill="#2B6A69"/>
+<text x="603.0" y="338" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.8%</text>
+<rect x="544" y="344" width="116" height="18" fill="#1B5F5E"/>
+<text x="603.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.2%</text>
+<rect x="544" y="363" width="116" height="18" fill="#266766"/>
+<text x="603.0" y="376" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.6%</text>
+<rect x="544" y="382" width="116" height="18" fill="#326F6E"/>
+<text x="603.0" y="395" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.1%</text>
+<rect x="544" y="401" width="116" height="18" fill="#357170"/>
+<text x="603.0" y="414" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.2%</text>
+<rect x="544" y="420" width="116" height="18" fill="#397473"/>
+<text x="603.0" y="433" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.3%</text>
+<rect x="544" y="439" width="116" height="18" fill="#286867"/>
+<text x="603.0" y="452" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.7%</text>
+<rect x="544" y="458" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="477" width="116" height="18" fill="#155B5A"/>
+<text x="603.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.0%</text>
+<rect x="544" y="496" width="116" height="18" fill="#0A5352"/>
+<text x="603.0" y="509" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">0.6%</text>
+<rect x="544" y="515" width="116" height="18" fill="#1A5E5D"/>
+<text x="603.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.2%</text>
+<text x="182" y="91" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">식품가공 (21)</text>
+<text x="182" y="110" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">경비·청소 (4)</text>
+<text x="182" y="129" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">화학·바이오 (55)</text>
+<text x="182" y="148" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">재료 (48)</text>
+<text x="182" y="167" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">사회복지·종교 (18)</text>
+<text x="182" y="186" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">금융·보험 (36)</text>
+<text x="182" y="205" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">기계 (142)</text>
+<text x="182" y="224" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">음식서비스 (12)</text>
+<text x="182" y="243" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">전기·전자 (120)</text>
+<text x="182" y="262" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">정보통신 (120)</text>
+<text x="182" y="281" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">건설 (136)</text>
+<text x="182" y="300" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">인쇄·목재·공예 (23)</text>
+<text x="182" y="319" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">교육·자연·사회 (8)</text>
+<text x="182" y="338" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">문화·예술·방송 (61)</text>
+<text x="182" y="357" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">법률·경찰·소방 (16)</text>
+<text x="182" y="376" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">섬유·의복 (26)</text>
+<text x="182" y="395" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">농림어업 (54)</text>
+<text x="182" y="414" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">이용·숙박·여행 (46)</text>
+<text x="182" y="433" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">영업판매 (18)</text>
+<text x="182" y="452" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">경영·회계·사무 (30)</text>
+<text x="182" y="471" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">환경·에너지 (68)</text>
+<text x="182" y="490" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">운전·운송 (31)</text>
+<text x="182" y="509" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">사업관리 (5)</text>
+<text x="182" y="528" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">보건·의료 (11)</text>
+<text x="16" y="578" font-size="10.5" fill="#5C6B6E" text-anchor="start" font-weight="normal">진한 셀 = 그 열에서 규칙 기반 처리에 상대적으로 유리. 파편화 지수는 규칙 키 단계(임베딩 이전)의 값이다.</text>
+</svg>

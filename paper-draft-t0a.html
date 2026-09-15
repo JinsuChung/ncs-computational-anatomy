@@ -1,0 +1,1928 @@
+<title>The Computational Anatomy of a National Standard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{--ground:#FBFBF7;--paper:#FFFFFF;--ink:#212B30;--muted:#5D6B6E;--faint:#8A9698;--line:#DCE2DD;
+    --accent:#0E6E6D;--accent-deep:#0A5352;--accent-wash:#EDF4F2;
+    --ph-bg:#FDF3D7;--ph-ink:#7A5A1E;--ph-line:#E4C96A;
+    --serif:"Gowun Batang",Georgia,serif;--sans:"IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#14181A;--paper:#1B2124;--ink:#E6E9E4;--muted:#9FAAA9;--faint:#6F7C7C;
+    --line:#2C3538;--accent:#46A8A4;--accent-deep:#6BC2BE;--accent-wash:#1E2E2D;--ph-bg:#33290F;--ph-ink:#E3C36A;--ph-line:#6B5A22}}
+  :root[data-theme="dark"]{--ground:#14181A;--paper:#1B2124;--ink:#E6E9E4;--muted:#9FAAA9;--faint:#6F7C7C;
+    --line:#2C3538;--accent:#46A8A4;--accent-deep:#6BC2BE;--accent-wash:#1E2E2D;--ph-bg:#33290F;--ph-ink:#E3C36A;--ph-line:#6B5A22}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased}
+  .page{max-width:880px;margin:0 auto;padding:52px 28px 110px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  h1{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1.4;margin:10px 0 8px;text-wrap:balance}
+  .meta{font-size:13px;color:var(--muted)}
+  .ph{background:var(--ph-bg);color:var(--ph-ink);border-bottom:1.5px dashed var(--ph-line);padding:0 3px;border-radius:3px;font-variant-numeric:tabular-nums}
+  .ph sup{font-family:var(--mono);font-size:9.5px;font-weight:700;margin-left:1px}
+  .ph-block{background:var(--ph-bg);color:var(--ph-ink);border:1px dashed var(--ph-line);border-radius:6px;padding:2px 8px;font-size:13px;display:inline-block}
+  .guide{border:2px solid var(--accent);background:var(--accent-wash);padding:18px 22px;margin:26px 0}
+  .guide h2{margin-top:0}.guide p,.guide ul{font-size:13.5px;max-width:none}
+  .ms{background:var(--paper);border:1px solid var(--line);padding:44px 48px;margin-top:30px}
+  @media (max-width:700px){.ms{padding:26px 18px}}
+  .ms h2.ms-title{font-family:var(--serif);font-size:24px;line-height:1.45;margin:0 0 6px;text-wrap:balance}
+  .ms .authors{font-size:13.5px;color:var(--muted);margin-bottom:22px}
+  .ms h3{font-size:16.5px;font-weight:700;margin:34px 0 10px}
+  .ms h4{font-size:14px;font-weight:700;margin:22px 0 6px}
+  .ms p{max-width:none;margin:10px 0;text-align:justify}
+  .ms .abstract{border-left:3px solid var(--accent);padding:4px 0 4px 16px;margin:18px 0}
+  .ms .abstract p{font-size:14px}
+  .kw{font-size:13px;color:var(--muted)}
+  .ko-note{font-size:12.5px;color:var(--accent-deep);background:var(--accent-wash);padding:6px 12px;border-radius:6px;margin:6px 0 12px}
+  .table-wrap{overflow-x:auto;margin:14px 0}
+  table{border-collapse:collapse;width:100%;font-size:13px;background:var(--paper)}
+  caption{caption-side:top;text-align:left;font-size:12.5px;font-weight:700;padding:4px 0;color:var(--ink)}
+  th{text-align:left;font-size:11.5px;letter-spacing:.04em;color:var(--faint);font-weight:700;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:7px 10px}
+  td{border-bottom:1px solid var(--line);padding:7px 10px;vertical-align:top;line-height:1.6;font-variant-numeric:tabular-nums}
+  tbody tr:last-child td{border-bottom:2px solid var(--ink)}
+  td.mono,th.mono{font-family:var(--mono);font-size:12px}
+  td.num,th.num{text-align:right;font-family:var(--mono);white-space:nowrap}
+  /* .fit — 좁은 지면에서 가로 스크롤 없이 들어가도록 머리글·수치를 줄바꿈 허용 */
+  table.fit th.num,table.fit td.num{white-space:normal}
+  section.outer{margin-top:64px}
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--faint)}
+  section.outer>h2{font-family:var(--serif);font-size:22px;margin:4px 0 10px}
+  .reg td:first-child{font-family:var(--mono);font-size:11.5px;color:var(--accent-deep);white-space:nowrap}
+  code{font-family:var(--mono);font-size:.86em;background:var(--accent-wash);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  pre{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.6}
+  .footnote{margin-top:56px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+  .refs{font-size:13px}.refs li{margin:7px 0}
+  figure{margin:18px 0;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .bar{display:flex;align-items:center;gap:10px;margin:4px 0;font-size:12.5px}
+  .bar .lab{flex:0 0 210px;text-align:right;color:var(--muted)}
+  .bar .track{flex:1;height:15px;background:var(--ground);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .bar .fill{height:100%;background:var(--accent)}
+  .bar .fill.gy{background:#9AA6A4}
+  @media print{
+    .page{padding:0} .guide,section.outer,.ko-note{display:none} .ms{border:0;padding:0}
+    .table-wrap{overflow:visible} table{font-size:10.5px;table-layout:auto} td,th{padding:4px 6px;white-space:normal!important}
+    td.num,th.num{white-space:normal!important} figure,table,tr{break-inside:avoid} h3,h4{break-after:avoid}
+  }
+  .bar .val{flex:0 0 62px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+</style>
+
+<div class="page">
+<header>
+  <div class="eyebrow">Manuscript Draft · T0-a · Measured Data</div>
+  <h1>T0-a 논문 초안 — NCS의 계산적 해부</h1>
+  <div class="meta">타깃: <b>Information Processing &amp; Management</b> (Elsevier) · 초안 v1.3 · 2026-09-15 — 심사 3·4회차 반영(상한=산출물 기준 · 경계 발견 전면 · §4.4/Table 10 입력 차이 명시) · 투고 요건 정렬 완료</div>
+</header>
+
+<article class="ms">
+  <h2 class="ms-title">The Computational Anatomy of a National Competency Standard: Regularity, Redundancy, and Terminological Fragmentation in Korea's NCS</h2>
+  <div class="authors">Jinsu Chung<sup>a</sup>, Hanchul Ryu<sup>a,*</sup> — <sup>a</sup>Dept. of AI Convergence, Sahmyook University, Seoul, Republic of Korea. <sup>*</sup>Corresponding author.</div>
+
+  <div class="abstract" style="border-left-color:var(--faint)">
+    <h3 style="margin-top:0">Highlights</h3>
+    <ul style="margin:6px 0 0;padding-left:20px;font-size:14px">
+      <li>Template deviations are local: half of 859 sit in 26 of 1,109 occupations</li>
+      <li>Rules merge 8.2% of surface forms; embeddings propose 28.1%, 19.2–23.6% verified</li>
+      <li>Experts split on one boundary: &quot;same&quot; 28–48%, &quot;same or broader&quot; 62–66%</li>
+      <li>ESCO replication reproduces the rule ceiling, the knee and the chaining failure</li>
+      <li>Downweighting generic concepts, not the merge cap, governs occupation similarity</li>
+    </ul>
+  </div>
+  <div class="abstract">
+    <h3 style="margin-top:0">Abstract</h3>
+    <p>
+      National competency standards are increasingly raw material for skill taxonomies, knowledge graphs,
+      and LLM-assisted systems, yet the properties deciding how their text can be processed are rarely
+      measured. From that construction perspective we report a complete census of Korea's
+      National Competency Standards (1,109 occupations; 196,658 performance criteria; 2.46 million
+      knowledge/skill/attitude items). Hypotheses were registered before confirmatory testing, six of nine
+      after exploratory aggregates had been seen, and tested at occupation level with
+      split-half replication and false-discovery control. The syntactic residue rules cannot parse is small and
+      enumerable: 99.56% of criteria follow the mandated template, half the deviations in 26 occupations. Redundancy is an industry property, not a
+      size artifact. Terminological fragmentation resists rules: normalization merges 8.2% of surface forms
+      while embedding alignment proposes 28.1%, of which 19.2–23.6% survives validation by fourteen external
+      raters; cos ≥ .90 is the precision knee and transitive co-membership is weak. Experts disagree on one boundary
+      only: individually they span 28–48% on “same concept” but 62–66% once hierarchical pairs count. Shared vocabulary recovers the official taxonomy only partially. Replication on ESCO,
+      where alternative labels give an exact ground truth, reproduces the rule ceiling, the knee, the
+      transitive precision, and the chaining failure but not the template; a second encoder reproduces every
+      aggregate at matched pair counts. Three downstream tasks show the measurements change decisions: on ESCO,
+      query-time expansion by direct neighbours reaches F1 .74; on NCS, generic-concept downweighting, not
+      the merge policy, governs occupation similarity. We release the alias dictionary, candidate merges, metrics, and code.
+    </p>
+  </div>
+  <p class="kw"><b>Keywords:</b> competency standards; corpus profiling; terminology normalization; embedding alignment; knowledge graph construction; open government data</p>
+
+  <h3>1. Introduction</h3>
+  <p>
+    Governments have spent decades writing down what work requires. Korea's National Competency Standards
+    (NCS) describe 1,109 occupations through nearly 200,000 "can-do" performance criteria and 2.46 million
+    knowledge, skill, and attitude items; the European ESCO, the U.S. O*NET, and comparable frameworks
+    elsewhere play similar roles. These corpora are now routinely treated as inputs: to skill taxonomies, to
+    knowledge graphs, and — since large language models made extraction cheap — to automated ontology
+    construction [1, 2, 10, 11].
+  </p>
+  <p>
+    What is rarely done first is to measure the material. A pipeline designer needs to know, before choosing
+    tools, how regular the text is (can rules parse it?), how redundant it is (how large is the real work?),
+    how badly one concept is split across spellings (what must alignment repair?), and how much structure the
+    corpus already encodes independently of its official taxonomy. Without those numbers, the choice between
+    deterministic rules and learned models is made by fashion rather than by evidence, and the cost of a
+    full-scale build cannot be estimated at all.
+  </p>
+  <p>
+    This paper supplies those measurements for NCS as a complete census, with the analysis pre-registered
+    before confirmatory testing. We ask:
+  </p>
+  <p>
+    <b>RQ1.</b> How syntactically regular are performance criteria, and where does the residue live?<br>
+    <b>RQ2.</b> How redundant is the KSA layer, and is redundancy an artifact of corpus size or a property of industries?<br>
+    <b>RQ3.</b> How severely is a single concept fragmented across surface forms, and how much of that fragmentation can rule-based normalization repair versus embedding alignment?<br>
+    <b>RQ4.</b> How much of the official occupational taxonomy is recoverable from shared KSA vocabulary alone?<br>
+    <b>RQ5.</b> How are revision recency, competency level, and digital vocabulary distributed across industries?
+  </p>
+  <p>Contributions:</p>
+  <p>
+    (1) A complete-census profile of a national competency standard along five axes, with pre-registered
+    hypotheses, occupation-level tests, split-half replication, and FDR control.
+    (2) The empirical boundary between rule-based and model-based processing for this corpus type: the
+    syntactic residue that escapes rules is small and enumerable (859 criteria, half in 26 occupations), but
+    rules repair only 8.2% of terminological fragmentation, while
+    embeddings propose 28.1%, of which 19.2–23.6% survives human validation — a quantified division of labour
+    rather than a methodological preference.
+    (3) A methodological caution, measured rather than asserted: naive transitive closure over an embedding
+    similarity graph merges 5.2% of all keys into a single component at cos ≥ .90 (29.9% at cos ≥ .85);
+    modularity-based clustering removes the chain while leaving aggregate recovery unchanged (28.2% → 28.1%).
+    Both (2) and (3) are shown to be properties of the text type rather than of NCS: on ESCO, with an exact
+    ground truth, the rule ceiling, the .90 knee, the ~30% transitive precision and its size gradient, and the
+    chaining failure all reproduce, while the syntactic template does not.
+    (4) A downstream demonstration, in two corpora, that the measured quantities change decisions — and a
+    correction they force: downstream similarity is governed by downweighting generic concepts, and
+    query-time expansion by direct edges beats every persisted community policy, while the community-size
+    cap governs none of the three tasks we measured and instead sets the precision of what is written into
+    a published concept layer. Merge precision is therefore not a proxy for downstream utility, and a cap
+    is a standard for an artifact rather than a performance lever.
+    (5) A measured property of human judgment on this task: among four domain experts judging the same
+    pairs, agreement on whether two terms are related at all is near-identical (62.0–66.0%) while agreement
+    on whether they are the <em>same</em> concept is not (28.0–48.0%), so the disagreement that an
+    adjudication stage must absorb is concentrated at one boundary — a result a two-rater ceiling cannot
+    expose.
+    (6) Released artifacts: an alias dictionary (19,881 rule-stage entries); a separate <em>candidate</em> file of the embedding stage at cap ≤ 5 (27,721 groups covering 65,557 keys), each group carrying its size, direct-edge share, the expected precision implied by §4.6, and the human verdicts where a member pair was judged; per-occupation
+    metrics for all 1,109 occupations, a maintainer-facing audit list (typographical variants, template-deviant
+    occupations, revision-year dispersion), and the analysis code.
+  </p>
+  <p>
+    <b>Perspective and scope.</b> This paper looks at NCS from one side only: that of someone about to build a
+    knowledge resource from it. Every question above is a question about the standard as <em>input</em> — what
+    rules can parse, how much work deduplication removes, how much alignment must repair, how much structure
+    is already latent. We measure the text; we do not evaluate the standard. In particular we make no claims
+    about the labour market it describes, about the committees that author it, or about what it ought to
+    contain; where a result touches those questions (§4.5, §5), we report the distribution and stop. The
+    choice is deliberate: the decisions this paper informs — rules versus models, thresholds, merge policies,
+    adjudication design — are made today without measurement, and a single, explicit vantage point is what
+    makes the resulting numbers usable as design rules. Readings of the same corpus as a policy instrument or
+    as a genre of institutional writing are possible and, we think, worthwhile, but they need evidence this
+    paper does not collect and are left to separate work.
+  </p>
+
+  <h3>2. Related Work</h3>
+  <h4>2.1 Competency standards as data</h4>
+  <p>
+    National and international competency frameworks differ less in ambition than in data model. O*NET
+    was designed from the outset as a database of quantitative descriptors over occupations [1]; ESCO is
+    distributed as an RDF/SKOS ontology whose occupations, skills, and qualifications carry declared
+    relations across 27 languages [2]; sector frameworks such as SFIA maintain versioned skill hierarchies
+    with level descriptors. NCS occupies a different point in this space: its sentence-level content —
+    nearly 200,000 performance criteria and 2.46 million KSA items — is denser than any of these, but
+    beyond the classification tree it declares no relations, and the knowledge it encodes is reachable only
+    by reading. Korean scholarship has treated NCS as a policy instrument, as a curriculum input, or as a
+    target label set, but not as a corpus. Representative lines are reviews of its development and of its
+    integration with the national qualification framework [23]; an ontology hand-built for the competency
+    units of a single occupation [24]; network text analysis of NCS <em>application</em> case reports rather
+    than of the standard's own text [25]; and, closest to the present work, automatic mapping of job
+    postings onto NCS categories, evaluated on 284 postings against seven sub-categories with sentence
+    embeddings and a large language model [26]. That last line does use NCS computationally, but only as a
+    label inventory: the text being measured is the postings', not the standard's. The same holds for the
+    adjacent Korean work on skill extraction, where a domain-adapted language model trained on IT job
+    advertisements extracts skills and classifies tasks against a 59-category taxonomy [27]: again the
+    labour-market text is the object of measurement, and the standard is at most a reference vocabulary.
+    A complete-census computational profile of the standard's own text — its regularity, its redundancy, and the fragmentation
+    of its concepts — has not, to our knowledge, been published.
+  </p>
+  <h4>2.2 Corpus profiling before construction</h4>
+  <p>
+    The case for documenting a dataset before using it is now well established — datasheets [3] and data
+    statements [4] ask creators to record provenance, composition, and intended use. We specialise that norm
+    in one direction: rather than describing where a corpus came from, we <em>measure</em> the properties
+    that determine how it can be processed. Regularity, redundancy, and fragmentation are not provenance
+    facts; they are the quantities that decide whether a rule, a model, or a person is the right tool for
+    each layer, and they can be measured before any tool is built.
+  </p>
+  <h4>2.3 Terminology extraction and normalization</h4>
+  <p>
+    Term extraction from specialised text has a long lineage in frequency- and unithood-based methods such
+    as C-value [5]; the redundancy we report in §4.2 is precisely the property those methods exploit, and
+    the fragmentation we report in §4.3 is the property they leave unresolved. Joining variant surface
+    forms of one concept is an entity-resolution problem [6], and our two-stage design — a deterministic
+    normalization key followed by embedding-neighbour search above a threshold — is a blocking-then-matching
+    pipeline in the sense of [7]. The chaining artefact of §4.3 is the familiar failure mode of
+    single-linkage merging in record linkage, here observed at corpus scale and quantified against human
+    judgment.
+  </p>
+  <h4>2.4 Ontology learning with LLMs</h4>
+  <p>
+    Learning ontological structure from text predates large language models — Text2Onto [8] and the survey
+    of Wong et al. [9] map the classical pipeline of term, concept, taxonomy, and relation extraction — and
+    has been re-energised by them: LLMs4OL [10] benchmarks language models on those subtasks, and Pan et al.
+    [11] chart the design space for combining language models with knowledge graphs. This paper sits
+    <em>before</em> that pipeline rather than inside it. We do not compete on extraction accuracy; we measure
+    the size and character of the candidate space an extractor will face, and the precision of the cheapest
+    tools that reduce it, so that the expensive stages — model-based extraction and human or model
+    adjudication — are sized by evidence.
+  </p>
+
+  <h3>3. Data and Method</h3>
+  <h4>3.1 Corpus</h4>
+  <p>
+    We use the complete NCS release of February 2026 (the "NCS Information Network DB, by major category" export dated 2026-02, downloaded 5 June 2026) as loaded into a relational
+    store: 24 major categories, 81 middle, 274 minor, and 1,109 detailed categories (occupations); 13,435
+    competency units carrying levels L1–L8; 47,620 unit elements; 196,658 performance criteria; and 2,457,556
+    KSA items, of which 355,896 are distinct strings. A separate national framework of generic employability
+    skills (7 areas, 21 sub-abilities, 63 elements) is loaded but used only for context here.
+  </p>
+  <p>
+    Competency unit codes carry a suffix of the form <code>_YYvN</code>. Korean documentation defines this
+    field as the <em>development/revision year</em> and the version as the ordinal of development. We verified
+    this internally: mean year rises monotonically with version (v1 2017.2, v2 2018.4, v3 2020.7, v4 2021.9,
+    v5 2022.5, v6 2023.1, v7 2023.3; r = .470, n = 13,435). Were the year fixed at first development, units
+    with more revisions would carry <em>older</em> years, so the observed pattern is inconsistent with that
+    alternative; the year distribution is also spread evenly over 2013–2025, ruling out a one-off code
+    reissue. We therefore read the field as revision recency, while noting it records <em>when</em> a unit was
+    last touched, not <em>how much</em> changed.
+  </p>
+  <h4>3.2 Pre-registration and inference</h4>
+  <p>
+    Exploratory statistics at the major-category level were computed first and are logged as such
+    (log EA11 of 9 September 2026, released with the code as <code>scripts/ncs_corpus_stats_ea11.sql</code> and its output in the repository). Hypotheses formed after seeing those aggregates are
+    labelled <b>PEEK</b>; hypotheses about quantities not computed in exploration are labelled <b>CLEAN</b>, and
+    both labels appear in the results tables. To preserve inferential information, all confirmatory tests are
+    run at a resolution exploration did not see — the <b>occupation</b> (n = 1,109) — since within-major variance
+    was unobserved. Each test is additionally run on two halves formed by seeded random splitting of
+    occupations within each major category, and reported as replicating only when both halves agree in sign
+    and significance. The nine primary p-values are corrected together with Benjamini–Hochberg at q = .05.
+    Because n = 1,109 makes trivial differences significant, effect sizes (ε², Cramér's V, ρ, Kendall's W) are
+    reported as the primary quantities.
+  </p>
+  <h4>3.3 Measures</h4>
+  <p>
+    <b>Template compliance</b> is the proportion of performance criteria whose text ends in the canonical
+    "~할 수 있다 ('is able to …')" form, allowing whitespace and terminal-period variants; deviations are typed by their
+    ending. <b>Uniqueness rate</b> is distinct KSA strings over KSA items within an occupation. <b>Fragmentation</b>
+    is measured in two stages: a deterministic <em>normalization key</em> (NFKC, removal of role suffixes such as
+    "지식/기술/능력/방법 ('knowledge / skill / ability / method')", removal of whitespace and punctuation, case folding), then an <em>embedding stage</em>
+    described in §3.4. <b>Occupation similarity</b> is Jaccard overlap of normalization-key sets, over keys
+    appearing in at least two occupations. <b>Digital vocabulary</b> is the share of KSA items matching a
+    pre-declared lexicon (A: 디지털 ('digital'), 데이터 ('data'), 인공지능 ('artificial intelligence'), AI, 소프트웨어 ('software'), 자동화 ('automation'), 프로그램 ('program(me)'), 전산 ('computing'); B adds IoT,
+    빅데이터 ('big data'), 클라우드 ('cloud'), 정보시스템 ('information system'), 온라인 ('online'), 스마트 ('smart')), reported for both lexicons.
+  </p>
+  <h4>3.4 Embedding alignment</h4>
+  <p>
+    All 326,592 normalization keys were embedded with a multilingual open-weight model
+    (BAAI/bge-m3, Hugging Face revision 5617a9f6, dense output, L2-normalised, batch 128, sentence-transformers 5.1.2 / torch 2.8.0 on Apple M4 Max (MPS); the second encoder of §4.8 is intfloat/multilingual-e5-large, revision 3d7cfbda, with the "query: " prefix) run locally, and all pairs with cosine ≥ .85 were collected
+    (586,498 pairs). Clusters were formed at three thresholds (.85/.90/.95) by two methods: transitive closure
+    (single linkage) and Louvain community detection on the similarity graph. We report both because they
+    differ qualitatively (§4.3). Recovery is expressed against surface forms so that it is directly comparable
+    with the rule stage: <em>combined recovery</em> = (surface forms − final clusters) / surface forms.
+  </p>
+
+  <h4>3.5 Replication corpus</h4>
+  <p>
+    To test whether the rule/model boundary is a property of NCS or of competency standards as a text type,
+    we re-ran the fragmentation (RQ3) and taxonomy (RQ4) analyses, and a template analogue of RQ1, on the
+    European ESCO classification, version 1.2.1, English release [20] (official CSV distribution; 13,960
+    released skill concepts, 3,039 occupations, 619 ISCO groups; 67,600 essential and 58,451 optional
+    occupation–skill relations). We verified the release version against the published v1.2.0→v1.2.1 change
+    log: 1,105 of 1,105 English alternative labels added in v1.2.1 are present, and 38 of 1,182 removed labels
+    remain (3.2%). ESCO differs from NCS in one way that matters for this paper: it records for every skill
+    concept a preferred label <em>and</em> its alternative labels (86,690 English alternative labels), so the
+    fragmentation analysis has a ground truth. Two surface forms denote the same concept if and only if they are
+    labels of the same skill URI. Precision of rule and embedding merges can therefore be measured exhaustively
+    rather than sampled, and the NCS human-validation estimates of §4.6 can be checked against an exact
+    reference. ESCO has no "can-do" template; as the closest analogue we test the documented labelling
+    convention that skill/competence labels begin with a verb and knowledge labels with a noun, tagged with a
+    general-domain English part-of-speech model (spaCy <code>en_core_web_sm</code>). Rule normalization was
+    re-specified for English (R0: case-folding and punctuation removal; R1: R0 plus a crude inflectional
+    suffix strip). Everything else — encoder, similarity thresholds, pair collection, single-linkage and Louvain
+    clustering, the Jaccard occupation graph, and the permutation null — is the NCS code unchanged.
+  </p>
+
+  <h3>4. Results</h3>
+  <div class="table-wrap"><table>
+    <caption>Table 1. Pre-registered hypotheses and outcomes (occupation level, n = 1,109; BH-FDR q = .05).</caption>
+    <thead><tr><th>ID</th><th>Hypothesis (abbrev.)</th><th>Label</th><th>Test</th><th class="num">Effect</th><th class="num">p</th><th>Split-half</th><th>Expectation</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">H1</td><td>Template compliance ≥ 99%, deviations local</td><td>PEEK</td><td>binomial</td><td class="num">.9956</td><td class="num">&lt;.0001</td><td>n/a*</td><td>met</td></tr>
+      <tr><td class="mono">H2</td><td>Redundancy differs by industry net of size</td><td>PEEK</td><td>Kruskal (residuals)</td><td class="num">ε²=.191</td><td class="num">&lt;.0001</td><td>agree</td><td>met</td></tr>
+      <tr><td class="mono">H3</td><td>Fragmentation grows with frequency; rules recover 50–70%</td><td>CLEAN</td><td>Spearman / rate</td><td class="num">ρ=.539</td><td class="num">&lt;.0001</td><td>agree</td><td><b>partly rejected</b></td></tr>
+      <tr><td class="mono">H4</td><td>Data-driven clusters partially match taxonomy</td><td>CLEAN</td><td>permutation NMI</td><td class="num">.329</td><td class="num">.001</td><td>n/a†</td><td>met</td></tr>
+      <tr><td class="mono">H5</td><td>Revision recency uneven across industries (ε² ≥ .30)</td><td>PEEK</td><td>Kruskal</td><td class="num">ε²=.175</td><td class="num">&lt;.0001</td><td>agree</td><td><b>not met</b></td></tr>
+      <tr><td class="mono">H6</td><td>Within major, newer units carry more digital vocabulary (ρ &gt; .2)</td><td>PEEK/CLEAN</td><td>Spearman</td><td class="num">ρ=.077</td><td class="num">.010</td><td>disagree</td><td><b>not met</b></td></tr>
+      <tr><td class="mono">S1</td><td>Level distributions differ by industry</td><td>PEEK</td><td>Kruskal</td><td class="num">ε²=.242</td><td class="num">&lt;.0001</td><td>agree</td><td>met</td></tr>
+      <tr><td class="mono">S2</td><td>Compliance dominates the attitude lexicon</td><td>PEEK/CLEAN</td><td>χ²</td><td class="num">V=.125</td><td class="num">&lt;.0001</td><td>n/a†</td><td><b>not met</b></td></tr>
+      <tr><td class="mono">S4</td><td>Low-level, stale, low-digital industries coincide</td><td>CLEAN</td><td>Kendall's W</td><td class="num">W=.449</td><td class="num">.123</td><td>n/a†</td><td><b>not met</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="kw">* H1's claim is a census quantity, not a between-group contrast; the auxiliary test of between-major variation replicated inconsistently (ε² = .018, negligible). † Census or rank-agreement statistics; permutation or aggregate reporting used instead of split-half. The S2 row records the pre-registered test as it was run. Appendix A shows that the keyword list behind it draws 46.6% of the leading category's mass from three generic nominalizers, so the row is reported for completeness and no claim in this paper depends on which attitude category leads.</p>
+
+  <h4>4.1 Performance criteria are almost perfectly templated (RQ1)</h4>
+  <p>
+    Of 196,658 performance criteria, 195,799 (99.563%, 95% CI [99.534, 99.592]) end in the canonical form; the
+    median occupation is at 100%. The 859 deviations are typed as declarative endings (504), template variants
+    occurring mid-sentence (245), other (93), and nominal endings (17). Deviations are concentrated: half of
+    them lie in 26 occupations (2.3% of the corpus), and one occupation (환경미화 ('environmental sanitation'); we name it because the finding is about a public document, not a person)
+    has 0% compliance, indicating an occupation-level drafting convention rather than scattered noise.
+  </p>
+  <p>
+    <b>Implication.</b> The compliance rate itself is close to a tautology — the NCS drafting guideline
+    prescribes the "~할 수 있다" ending, so 99.56% measures how faithfully authors followed an explicit rule,
+    and we report it as a descriptive fact. The finding is the <em>locality</em> of what escaped: the 859
+    deviations are not scattered noise but concentrate in 26 occupations, and one occupation ignores the
+    template entirely. For a pipeline this means that syntactic parsing of performance criteria can be handled
+    by deterministic rules everywhere except at an enumerable list of locations, which can be routed to a
+    model or to review before any model is trained. It also means the list is a maintenance artifact: it
+    names where the standard departs from its own guideline.
+  </p>
+
+  <h4>4.2 Redundancy is an industry property, not a size artifact (RQ2)</h4>
+  <p>
+    Across the corpus only 16.07% of KSA items are distinct strings. Because uniqueness rate is mechanically
+    dependent on set size, we regressed it on log(KSA items) and log(competency units) (R² = .369) and tested
+    the between-major effect on the residuals. The effect does not shrink under control — it grows
+    (ε² = .158 → .191; Kruskal H = 229.9, p &lt; .0001), replicating in both halves. Industries whose residual
+    uniqueness is lowest are Finance & Insurance (금융·보험), Machinery (기계), Food Processing (식품가공); highest are Sales (영업판매), Business Management (사업관리), Textiles & Apparel (섬유·의복).
+  </p>
+  <p>
+    <b>Implication.</b> Deduplication yields a 5–10× reduction whose magnitude is predictable from the industry,
+    which is what a build-cost estimate for candidate judgment or human review actually needs.
+  </p>
+
+  <h4>4.3 Fragmentation defeats rules and only partly yields to embeddings (RQ3)</h4>
+  <p>
+    355,896 distinct surface forms reduce to 326,592 normalization keys — a fragmentation index of 1.09 and a
+    rule-stage recovery of just <b>8.2%</b> of surface forms, far below the pre-registered 50–70%. The other half
+    of H3 is strongly supported: fragmentation grows with how widely a concept is used
+    (ρ = .539 between a key's occupation count and its number of surface forms, p &lt; .0001, n = 326,592).
+    The most fragmented keys are ordinary shared competencies — 통계분석 ('statistical analysis') (25 surface forms across 101
+    occupations), 품질관리 ('quality control') (24/98), 도면해독 ('drawing interpretation') (23/104) — and 6,310 keys (1.9%) are assigned to more than one
+    KSA type, i.e. the same concept is filed as knowledge in one occupation and as skill in another.
+  </p>
+  <p>
+    The reason rules fail is structural: normalization keys absorb whitespace, punctuation, and role suffixes,
+    so "통계 분석 지식 ('knowledge of statistical analysis')" and "통계분석기법 ('statistical-analysis techniques')" merge, but variants with different stems — 안전사항 준수 ('compliance with safety matters'),
+    안전수칙 준수 ('compliance with safety rules'), 안전규정 준수 ('compliance with safety regulations') — do not. Embedding alignment addresses exactly this residue.
+  </p>
+  <p>
+    The 8.2% is not an artifact of the particular suffix list. Re-running the rule stage with the suffix list
+    removed, reduced, and extended in two directions moves recovery from 3.5% (whitespace and punctuation
+    only) through 4.8% (only the "에 대한 X ('X about/of Y')" phrase pattern) and 8.2% (pre-registered list) to 8.5%
+    (adding 이해도·숙지·파악·활용 능력 ('comprehension · familiarity · grasp · ability to apply')) and 9.0% (additionally stripping attitude tails such as
+    ~하려는 자세·의지·노력 ('attitude / will / effort to …')). The two extensions add 926 and 2,152 merge groups beyond the pre-registered
+    keys, and the added groups begin to include questionable merges — 설문조사 ('survey') with 설문 조사 의지 ('willingness to survey'), i.e. a
+    concept with an attitude toward it — while the type-mismatch rate rises from 0.3% to 2.0–2.1% as role
+    suffixes are stripped more aggressively. Rules in this corpus therefore saturate near 9% whatever the
+    list, and the last point is bought with precision. Rule-merge precision was not measured on NCS; on ESCO,
+    where a ground truth exists (§4.7), the corresponding rules are 97.8–98.9% precise.
+  </p>
+  <div class="table-wrap"><table>
+    <caption>Table 2. Fragmentation recovery by stage and threshold (complete census, 326,592 keys).</caption>
+    <thead><tr><th>Stage</th><th class="num">Combined recovery</th><th class="num">Key reduction</th><th class="num">Largest cluster</th><th>Character</th></tr></thead>
+    <tbody>
+      <tr><td>Rule keys only</td><td class="num">8.2%</td><td class="num">—</td><td class="num">—</td><td>whitespace, punctuation, role suffixes</td></tr>
+      <tr><td>+ embedding, cos ≥ .95</td><td class="num">13.6%</td><td class="num">5.9%</td><td class="num">183</td><td>conservative; near-identical concepts</td></tr>
+      <tr><td>+ embedding, cos ≥ .90</td><td class="num"><b>28.1%</b></td><td class="num">21.7%</td><td class="num">1,084</td><td>concept <em>families</em>; adjudication needed</td></tr>
+      <tr><td>+ embedding, cos ≥ .85</td><td class="num">51.3%</td><td class="num">47.0%</td><td class="num">5,860</td><td>over-merged; not recommended</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    At the pre-registered threshold the <em>candidate</em> gain is 8.2% → 28.1% (verified figures in §4.6),
+    with 6,339 cross-stratum
+    merges in which a key used by a single occupation joins a widely shared concept. Merge participation rises
+    with frequency exactly as the ρ = .539 relation predicts: 83.6% of keys used by ≥ 10 occupations are
+    merged, versus 64.5% (3–9), 48.8% (2), and 28.7% (1).
+  </p>
+  <p>
+    <b>A measured methodological caution.</b> Our first clustering used transitive closure. At cos ≥ .90 this
+    produced a single component of 17,118 keys spanning 1,106 of 1,109 occupations, containing items as
+    unrelated as "data 처리 및 분석 ('data processing and analysis')" and "HW 요구사항을 명확히 정의하고자 하는 자세 ('attitude of defining HW requirements clearly')"; at cos ≥ .85 a single
+    component absorbed 29.9% of all keys. Louvain community detection on the same similarity graph reduced the
+    largest cluster to 1,084 while leaving aggregate recovery essentially unchanged (28.2% → 28.1%). The chain
+    therefore corrupts <em>which</em> keys are merged without changing <em>how many</em> — an error that aggregate
+    recovery statistics alone cannot detect. We report both and use the modularity-based estimate.
+  </p>
+  <p>
+    Merging is somewhat more common among attitude items (38.2%) than skills (28.6%) or knowledge (27.9%), and
+    the largest clusters are attitude families — "기준·법규 준수 ('compliance with standards and regulations')" (1,084 keys, 636 occupations),
+    "개인보호구 착용·안전 준수 ('wearing protective equipment and safety compliance')" (1,016), "객관적 분석 ('objective analysis')" (992) — whose formulaic phrasing ("~하려는 자세/의지 ('attitude / will to …')")
+    plausibly lets syntactic similarity contribute. Roughly 70% of merged keys are nonetheless knowledge or
+    skill items. Manual precision of the merges is assessed in §4.6.
+  </p>
+<!--FIG:F3-->
+  <figure style="padding:10px 12px;overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 604" width="100%" role="img" aria-label="Figure 3. Structurability map" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<rect x="0" y="0" width="710" height="604" fill="#FFFFFF"/>
+<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 3. Structurability map — major categories × machine-processing properties (sorted by fragmentation index)</text>
+<text x="16" y="42" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">Colour is the relative position within each column (min–max). Higher template compliance, and lower uniqueness, fragmentation and type mismatch, favour rule-based processing.</text>
+<text x="249.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">Template</text>
+<text x="249.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">compliance</text>
+<rect x="190" y="78" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="91" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="97" width="116" height="18" fill="#EAF3F1"/>
+<text x="249.0" y="110" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">87.0%</text>
+<rect x="190" y="116" width="116" height="18" fill="#0A5352"/>
+<text x="249.0" y="129" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.9%</text>
+<rect x="190" y="135" width="116" height="18" fill="#0F5655"/>
+<text x="249.0" y="148" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.6%</text>
+<rect x="190" y="154" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="167" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="173" width="116" height="18" fill="#0B5352"/>
+<text x="249.0" y="186" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="192" width="116" height="18" fill="#115857"/>
+<text x="249.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.5%</text>
+<rect x="190" y="211" width="116" height="18" fill="#0A5352"/>
+<text x="249.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.9%</text>
+<rect x="190" y="230" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="249" width="116" height="18" fill="#0F5655"/>
+<text x="249.0" y="262" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.6%</text>
+<rect x="190" y="268" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="287" width="116" height="18" fill="#125958"/>
+<text x="249.0" y="300" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.4%</text>
+<rect x="190" y="306" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="319" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="325" width="116" height="18" fill="#266766"/>
+<text x="249.0" y="338" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">98.3%</text>
+<rect x="190" y="344" width="116" height="18" fill="#0B5352"/>
+<text x="249.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="363" width="116" height="18" fill="#105756"/>
+<text x="249.0" y="376" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.6%</text>
+<rect x="190" y="382" width="116" height="18" fill="#105756"/>
+<text x="249.0" y="395" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.5%</text>
+<rect x="190" y="401" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="414" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="420" width="116" height="18" fill="#0C5453"/>
+<text x="249.0" y="433" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<rect x="190" y="439" width="116" height="18" fill="#0A5352"/>
+<text x="249.0" y="452" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.9%</text>
+<rect x="190" y="458" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="477" width="116" height="18" fill="#125958"/>
+<text x="249.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.4%</text>
+<rect x="190" y="496" width="116" height="18" fill="#0D5554"/>
+<text x="249.0" y="509" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.7%</text>
+<rect x="190" y="515" width="116" height="18" fill="#0B5453"/>
+<text x="249.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">99.8%</text>
+<text x="367.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">KSA</text>
+<text x="367.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">uniqueness</text>
+<rect x="308" y="78" width="116" height="18" fill="#538786"/>
+<text x="367.0" y="91" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">14.9%</text>
+<rect x="308" y="97" width="116" height="18" fill="#649392"/>
+<text x="367.0" y="110" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.8%</text>
+<rect x="308" y="116" width="116" height="18" fill="#93B5B3"/>
+<text x="367.0" y="129" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.1%</text>
+<rect x="308" y="135" width="116" height="18" fill="#538786"/>
+<text x="367.0" y="148" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">14.9%</text>
+<rect x="308" y="154" width="116" height="18" fill="#99B9B8"/>
+<text x="367.0" y="167" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.4%</text>
+<rect x="308" y="173" width="116" height="18" fill="#7AA3A1"/>
+<text x="367.0" y="186" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">16.8%</text>
+<rect x="308" y="192" width="116" height="18" fill="#0A5352"/>
+<text x="367.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">11.2%</text>
+<rect x="308" y="211" width="116" height="18" fill="#639291"/>
+<text x="367.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.7%</text>
+<rect x="308" y="230" width="116" height="18" fill="#5E8F8D"/>
+<text x="367.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.4%</text>
+<rect x="308" y="249" width="116" height="18" fill="#7BA3A2"/>
+<text x="367.0" y="262" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">16.9%</text>
+<rect x="308" y="268" width="116" height="18" fill="#568988"/>
+<text x="367.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.0%</text>
+<rect x="308" y="287" width="116" height="18" fill="#A0BEBC"/>
+<text x="367.0" y="300" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.8%</text>
+<rect x="308" y="306" width="116" height="18" fill="#81A8A7"/>
+<text x="367.0" y="319" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">17.2%</text>
+<rect x="308" y="325" width="116" height="18" fill="#CBDCDB"/>
+<text x="367.0" y="338" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20.9%</text>
+<rect x="308" y="344" width="116" height="18" fill="#578A88"/>
+<text x="367.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.1%</text>
+<rect x="308" y="363" width="116" height="18" fill="#BBD2D0"/>
+<text x="367.0" y="376" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20.1%</text>
+<rect x="308" y="382" width="116" height="18" fill="#B7CFCD"/>
+<text x="367.0" y="395" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">19.9%</text>
+<rect x="308" y="401" width="116" height="18" fill="#A1BEBD"/>
+<text x="367.0" y="414" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18.8%</text>
+<rect x="308" y="420" width="116" height="18" fill="#EAF3F1"/>
+<text x="367.0" y="433" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">22.5%</text>
+<rect x="308" y="439" width="116" height="18" fill="#DCE9E7"/>
+<text x="367.0" y="452" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">21.8%</text>
+<rect x="308" y="458" width="116" height="18" fill="#649392"/>
+<text x="367.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.7%</text>
+<rect x="308" y="477" width="116" height="18" fill="#447D7B"/>
+<text x="367.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">14.1%</text>
+<rect x="308" y="496" width="116" height="18" fill="#C8DAD8"/>
+<text x="367.0" y="509" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20.8%</text>
+<rect x="308" y="515" width="116" height="18" fill="#598B8A"/>
+<text x="367.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">15.2%</text>
+<text x="485.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">Fragmentation</text>
+<text x="485.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">(surfaces/keys)</text>
+<rect x="426" y="78" width="116" height="18" fill="#EAF3F1"/>
+<text x="485.0" y="91" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.141</text>
+<rect x="426" y="97" width="116" height="18" fill="#B8CFCE"/>
+<text x="485.0" y="110" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.119</text>
+<rect x="426" y="116" width="116" height="18" fill="#8FB2B0"/>
+<text x="485.0" y="129" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.100</text>
+<rect x="426" y="135" width="116" height="18" fill="#7FA7A5"/>
+<text x="485.0" y="148" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.093</text>
+<rect x="426" y="154" width="116" height="18" fill="#699796"/>
+<text x="485.0" y="167" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.083</text>
+<rect x="426" y="173" width="116" height="18" fill="#689695"/>
+<text x="485.0" y="186" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.082</text>
+<rect x="426" y="192" width="116" height="18" fill="#689694"/>
+<text x="485.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.082</text>
+<rect x="426" y="211" width="116" height="18" fill="#619190"/>
+<text x="485.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.079</text>
+<rect x="426" y="230" width="116" height="18" fill="#548887"/>
+<text x="485.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.073</text>
+<rect x="426" y="249" width="116" height="18" fill="#508583"/>
+<text x="485.0" y="262" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.071</text>
+<rect x="426" y="268" width="116" height="18" fill="#4B8180"/>
+<text x="485.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.069</text>
+<rect x="426" y="287" width="116" height="18" fill="#49807E"/>
+<text x="485.0" y="300" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.068</text>
+<rect x="426" y="306" width="116" height="18" fill="#487F7E"/>
+<text x="485.0" y="319" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.068</text>
+<rect x="426" y="325" width="116" height="18" fill="#347170"/>
+<text x="485.0" y="338" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.059</text>
+<rect x="426" y="344" width="116" height="18" fill="#326F6E"/>
+<text x="485.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.058</text>
+<rect x="426" y="363" width="116" height="18" fill="#296968"/>
+<text x="485.0" y="376" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.054</text>
+<rect x="426" y="382" width="116" height="18" fill="#296968"/>
+<text x="485.0" y="395" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.054</text>
+<rect x="426" y="401" width="116" height="18" fill="#286867"/>
+<text x="485.0" y="414" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.053</text>
+<rect x="426" y="420" width="116" height="18" fill="#266766"/>
+<text x="485.0" y="433" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.052</text>
+<rect x="426" y="439" width="116" height="18" fill="#256665"/>
+<text x="485.0" y="452" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.052</text>
+<rect x="426" y="458" width="116" height="18" fill="#226463"/>
+<text x="485.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.051</text>
+<rect x="426" y="477" width="116" height="18" fill="#185D5B"/>
+<text x="485.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.046</text>
+<rect x="426" y="496" width="116" height="18" fill="#0A5352"/>
+<text x="485.0" y="509" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.039</text>
+<rect x="426" y="515" width="116" height="18" fill="#0A5352"/>
+<text x="485.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.039</text>
+<text x="603.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">Type mismatch</text>
+<text x="603.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">(K/S mixed keys)</text>
+<rect x="544" y="78" width="116" height="18" fill="#49807F"/>
+<text x="603.0" y="91" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.9%</text>
+<rect x="544" y="97" width="116" height="18" fill="#EAF3F1"/>
+<text x="603.0" y="110" font-size="10" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">8.9%</text>
+<rect x="544" y="116" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="129" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="135" width="116" height="18" fill="#377372"/>
+<text x="603.0" y="148" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.3%</text>
+<rect x="544" y="154" width="116" height="18" fill="#306E6D"/>
+<text x="603.0" y="167" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.0%</text>
+<rect x="544" y="173" width="116" height="18" fill="#1F6261"/>
+<text x="603.0" y="186" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.3%</text>
+<rect x="544" y="192" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="205" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="211" width="116" height="18" fill="#33706F"/>
+<text x="603.0" y="224" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.1%</text>
+<rect x="544" y="230" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="243" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="249" width="116" height="18" fill="#2F6D6C"/>
+<text x="603.0" y="262" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.9%</text>
+<rect x="544" y="268" width="116" height="18" fill="#206261"/>
+<text x="603.0" y="281" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="287" width="116" height="18" fill="#4F8483"/>
+<text x="603.0" y="300" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3.1%</text>
+<rect x="544" y="306" width="116" height="18" fill="#558887"/>
+<text x="603.0" y="319" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3.4%</text>
+<rect x="544" y="325" width="116" height="18" fill="#2B6A69"/>
+<text x="603.0" y="338" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.8%</text>
+<rect x="544" y="344" width="116" height="18" fill="#1B5F5E"/>
+<text x="603.0" y="357" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.2%</text>
+<rect x="544" y="363" width="116" height="18" fill="#266766"/>
+<text x="603.0" y="376" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.6%</text>
+<rect x="544" y="382" width="116" height="18" fill="#326F6E"/>
+<text x="603.0" y="395" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.1%</text>
+<rect x="544" y="401" width="116" height="18" fill="#357170"/>
+<text x="603.0" y="414" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.2%</text>
+<rect x="544" y="420" width="116" height="18" fill="#397473"/>
+<text x="603.0" y="433" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2.3%</text>
+<rect x="544" y="439" width="116" height="18" fill="#286867"/>
+<text x="603.0" y="452" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.7%</text>
+<rect x="544" y="458" width="116" height="18" fill="#216362"/>
+<text x="603.0" y="471" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.4%</text>
+<rect x="544" y="477" width="116" height="18" fill="#155B5A"/>
+<text x="603.0" y="490" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.0%</text>
+<rect x="544" y="496" width="116" height="18" fill="#0A5352"/>
+<text x="603.0" y="509" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">0.6%</text>
+<rect x="544" y="515" width="116" height="18" fill="#1A5E5D"/>
+<text x="603.0" y="528" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">1.2%</text>
+<text x="182" y="91" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Processing (21)</text>
+<text x="182" y="110" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Security &amp; Cleaning (4)</text>
+<text x="182" y="129" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Chemistry &amp; Bio (55)</text>
+<text x="182" y="148" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Materials (48)</text>
+<text x="182" y="167" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Social Welfare &amp; Religion (18)</text>
+<text x="182" y="186" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Finance &amp; Insurance (36)</text>
+<text x="182" y="205" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Machinery (142)</text>
+<text x="182" y="224" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Service (12)</text>
+<text x="182" y="243" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Electricity &amp; Electronics (120)</text>
+<text x="182" y="262" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">ICT (120)</text>
+<text x="182" y="281" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Construction (136)</text>
+<text x="182" y="300" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Printing, Wood &amp; Crafts (23)</text>
+<text x="182" y="319" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Education, Nat. &amp; Soc. Sci. (8)</text>
+<text x="182" y="338" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Culture, Arts &amp; Media (61)</text>
+<text x="182" y="357" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Law, Police, Fire &amp; Defense (16)</text>
+<text x="182" y="376" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Textiles &amp; Apparel (26)</text>
+<text x="182" y="395" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Agri., Forestry &amp; Fisheries (54)</text>
+<text x="182" y="414" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Beauty, Lodging, Travel &amp; Sports (46)</text>
+<text x="182" y="433" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Sales (18)</text>
+<text x="182" y="452" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Mgmt., Accounting &amp; Office (30)</text>
+<text x="182" y="471" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Environment, Energy &amp; Safety (68)</text>
+<text x="182" y="490" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Driving &amp; Transport (31)</text>
+<text x="182" y="509" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Business Management (5)</text>
+<text x="182" y="528" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Health &amp; Medical (11)</text>
+<text x="16" y="578" font-size="10.5" fill="#5C6B6E" text-anchor="start" font-weight="normal">Darker cell = relatively more amenable to rule-based processing within the column. Fragmentation index is the rule-key stage (before embedding).</text>
+</svg>
+    <figcaption>Figure 3. Structurability map: major categories by template compliance, KSA uniqueness, rule-stage fragmentation index, and K/S type inconsistency. Darker cells are relatively more amenable to rule-based processing within each column; rows sorted by fragmentation index.</figcaption>
+  </figure>
+<!--/FIG:F3-->
+
+  <h4>4.4 Shared vocabulary partially recovers the official taxonomy (RQ4)</h4>
+  <p>
+    An occupation graph built from the 25,078 normalization keys that occur in two or more occupations
+    (1,107 nodes — two occupations share no key with any other — and 190,355 weighted edges) yields 11
+    Louvain communities. Agreement with the 24 official major categories is NMI = .329 (ARI = .108),
+    against a permutation null of .041 ± .004 (p &lt; .001); agreement with the 81 middle categories is
+    NMI = .356. Removing generic keys that appear in ≥ 10% of occupations leaves the result intact
+    (NMI = .341), so the agreement is not an artifact of cross-industry boilerplate such as safety compliance.
+  </p>
+  <p>
+    The pre-registered expectation (NMI between .3 and .6) is met (Table 1), and we report it as registered.
+    It was, in hindsight, too permissive to be a sharp test, so we add — <em>and label as post-hoc
+    sharpening</em>, formed after the results were seen — the two one-sided rejections that give H4 its
+    falsifiable content. Against the
+    hypothesis that shared vocabulary carries <em>no</em> taxonomic information, the permutation null of
+    .041 ± .004 is exceeded by every cell of the sensitivity grid below (minimum non-degenerate NMI .33,
+    AMI .30). Against the hypothesis that shared vocabulary <em>is</em> the taxonomy — that the official
+    categories could be reconstructed from KSA overlap — the maximum agreement reached anywhere in the grid is
+    NMI .56 / AMI .51 / ARI .29, with 40% of occupations more similar to another major category's occupations
+    than to their own (below). "Partial" therefore means: far from chance, far from complete, and the
+    informative result is not the value but <em>which</em> categories fail to cohere.
+  </p>
+  <p>
+    Because NMI depends on the number of communities and Louvain's resolution parameter sets that number,
+    we re-ran the clustering over a 2 × 3 grid of similarity (Jaccard; TF-IDF cosine with binary term
+    weights and idf = log N/df) and resolution (0.5, 1.0, 2.0), reporting the chance-corrected AMI and a
+    per-cell permutation null alongside NMI (Table 3). Resolution 0.5 degenerates (one or three communities).
+    Across the four non-degenerate cells NMI against major categories ranges from .33 to .56 — inside the
+    pre-registered .3–.6 band in every case — and the chance-corrected AMI from .30 to .51, with ARI never
+    above .29. Two regularities are worth stating. Higher resolution raises NMI, but the permutation null
+    rises with it (.04 → .12), so the increase in AMI is smaller (.30 → .43 for Jaccard); and idf weighting
+    adds roughly .08 to AMI at each resolution, consistent with the boilerplate-removal result above: generic
+    vocabulary slightly blurs, rather than creates, the alignment. The conclusion of partial recovery is
+    therefore a property of the graph, not of a resolution setting, but the specific value .329 should be read
+    as one point on that range.
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table 3. Sensitivity of taxonomy recovery to similarity measure and Louvain resolution (1,107 occupations, 25,078 shared keys; permutation null from 200 shuffles of the major-category labels).</caption>
+    <thead><tr><th>Similarity @ resolution</th><th class="num">Communities</th><th class="num">Largest</th><th class="num">NMI, major (null)</th><th class="num">AMI, major</th><th class="num">ARI, major</th><th class="num">NMI, middle</th><th class="num">AMI, middle</th></tr></thead>
+    <tbody>
+      <tr><td>Jaccard @ 0.5</td><td class="num">1</td><td class="num">1,107</td><td class="num">— (degenerate)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>Jaccard @ 1.0 (pre-registered)</td><td class="num">11</td><td class="num">395</td><td class="num">.331 (.042 ± .004)</td><td class="num">.301</td><td class="num">.102</td><td class="num">.359</td><td class="num">.294</td></tr>
+      <tr><td>Jaccard @ 2.0</td><td class="num">41</td><td class="num">109</td><td class="num">.502 (.120 ± .005)</td><td class="num">.434</td><td class="num">.231</td><td class="num">.606</td><td class="num">.472</td></tr>
+      <tr><td>TF-IDF cosine @ 0.5</td><td class="num">3</td><td class="num">656</td><td class="num">.197 (.012 ± .002)</td><td class="num">.188</td><td class="num">.068</td><td class="num">.195</td><td class="num">.173</td></tr>
+      <tr><td>TF-IDF cosine @ 1.0</td><td class="num">12</td><td class="num">332</td><td class="num">.408 (.047 ± .004)</td><td class="num">.379</td><td class="num">.170</td><td class="num">.436</td><td class="num">.369</td></tr>
+      <tr><td>TF-IDF cosine @ 2.0</td><td class="num">36</td><td class="num">102</td><td class="num">.564 (.113 ± .005)</td><td class="num">.509</td><td class="num">.286</td><td class="num">.674</td><td class="num">.567</td></tr>
+    </tbody>
+  </table></div>
+  <p class="kw" style="font-size:12.5px">The Jaccard @ 1.0 cell reproduces the main analysis to within Louvain's ordering variance (NMI .331 vs. .329; the main run's 11 communities and null of .041 are otherwise identical).</p>
+  <p>
+    The systematic disagreements are interpretable rather than random: the Business Management (project/business
+    management) major category does not survive as a cluster — 프로젝트관리 ('project management') joins the Information & Communication Technology (정보통신) community,
+    while 공적개발원조Business Management, 산학협력관리 ('industry–academia cooperation management'), and 해외법인설립관리 ('overseas subsidiary establishment management') join the Culture, Arts, Design & Broadcasting (문화·예술·디자인·방송) community.
+    Counting an occupation as "misplaced" when its community's modal category differs from its own gives
+    736 occupations (66.5%), but that figure is inflated by there being fewer communities (11) than
+    categories (24). A definition that does not depend on the number of communities — an occupation is
+    <em>pulled</em> when its mean Jaccard similarity to occupations of some other major category exceeds
+    its mean similarity to its own — gives 447 occupations (40.4%); the strongest pulls are again
+    interpretable (아이돌봄 ('child care') toward Security & Cleaning (경비·청소), where 가사지원 ('housework support') sits; 염생산 ('salt production') and 농산물품질관리 ('agricultural product quality management') toward Food Processing;
+    문헌정보관리 ('library and information management') toward Education, Natural & Social Sciences (교육·자연·사회과학)).
+  </p>
+<!--FIG:F2-->
+  <figure style="padding:10px 12px;overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 612" width="100%" role="img" aria-label="Figure 2. Official major categories × data-driven communities" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<rect x="0" y="0" width="736" height="612" fill="#FFFFFF"/>
+<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 2. Official major categories (rows) × Louvain communities of the shared-KSA graph (columns) — each row is that category's distribution over communities</text>
+<text x="16" y="42" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">NMI (major) = .329 · permutation null .041 ± .004 · 11 communities · 1,107 occupations</text>
+<text x="213.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C6</text>
+<text x="213.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">398</text>
+<text x="259.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C0</text>
+<text x="259.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">343</text>
+<text x="305.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C5</text>
+<text x="305.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">170</text>
+<text x="351.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C2</text>
+<text x="351.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">84</text>
+<text x="397.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C8</text>
+<text x="397.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">37</text>
+<text x="443.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C9</text>
+<text x="443.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">26</text>
+<text x="489.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C4</text>
+<text x="489.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20</text>
+<text x="535.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C3</text>
+<text x="535.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">13</text>
+<text x="581.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C7</text>
+<text x="581.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">11</text>
+<text x="627.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C1</text>
+<text x="627.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3</text>
+<text x="673.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C10</text>
+<text x="673.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2</text>
+<text x="184" y="74" font-size="9" fill="#5C6B6E" text-anchor="end" font-weight="normal">community size</text>
+<text x="182" y="109" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Machinery (142)</text>
+<rect x="190" y="96" width="45" height="18" fill="#528685"/>
+<text x="213.0" y="109" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">68</text>
+<rect x="236" y="96" width="45" height="18" fill="#D7E5E3"/>
+<rect x="282" y="96" width="45" height="18" fill="#D3E3E1"/>
+<rect x="328" y="96" width="45" height="18" fill="#E6F0EE"/>
+<rect x="374" y="96" width="45" height="18" fill="#E8F1EF"/>
+<rect x="420" y="96" width="45" height="18" fill="#CFDFDD"/>
+<rect x="466" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="96" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="96" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="128" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Construction (136)</text>
+<rect x="190" y="115" width="45" height="18" fill="#A1BFBD"/>
+<text x="213.0" y="128" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">32</text>
+<rect x="236" y="115" width="45" height="18" fill="#CFE0DE"/>
+<rect x="282" y="115" width="45" height="18" fill="#E0EBE9"/>
+<rect x="328" y="115" width="45" height="18" fill="#8CAFAE"/>
+<text x="351.0" y="128" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">42</text>
+<rect x="374" y="115" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="115" width="45" height="18" fill="#E8F1EF"/>
+<rect x="466" y="115" width="45" height="18" fill="#E8F1EF"/>
+<rect x="512" y="115" width="45" height="18" fill="#D9E7E5"/>
+<rect x="558" y="115" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="115" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="115" width="45" height="18" fill="#E8F1EF"/>
+<text x="182" y="147" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Electricity &amp; Electronics (120)</text>
+<rect x="190" y="134" width="45" height="18" fill="#A4C1BF"/>
+<text x="213.0" y="147" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">31</text>
+<rect x="236" y="134" width="45" height="18" fill="#D1E1DF"/>
+<rect x="282" y="134" width="45" height="18" fill="#85ABA9"/>
+<text x="305.0" y="147" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">45</text>
+<rect x="328" y="134" width="45" height="18" fill="#D7E5E3"/>
+<rect x="374" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="134" width="45" height="18" fill="#E4EFED"/>
+<rect x="558" y="134" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="134" width="45" height="18" fill="#E4EFED"/>
+<rect x="650" y="134" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="166" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">ICT (120)</text>
+<rect x="190" y="153" width="45" height="18" fill="#CADCDA"/>
+<rect x="236" y="153" width="45" height="18" fill="#D1E1DF"/>
+<rect x="282" y="153" width="45" height="18" fill="#427B79"/>
+<text x="305.0" y="166" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">75</text>
+<rect x="328" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="153" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="153" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="185" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Environment, Energy &amp; Safety (67)</text>
+<rect x="190" y="172" width="45" height="18" fill="#719D9B"/>
+<text x="213.0" y="185" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">54</text>
+<rect x="236" y="172" width="45" height="18" fill="#C8DBD9"/>
+<rect x="282" y="172" width="45" height="18" fill="#E6F0EE"/>
+<rect x="328" y="172" width="45" height="18" fill="#C1D6D4"/>
+<text x="351.0" y="185" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">18</text>
+<rect x="374" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="172" width="45" height="18" fill="#D2E2E0"/>
+<rect x="604" y="172" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="172" width="45" height="18" fill="#E6F0EE"/>
+<text x="182" y="204" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Culture, Arts &amp; Media (61)</text>
+<rect x="190" y="191" width="45" height="18" fill="#D0E0DE"/>
+<rect x="236" y="191" width="45" height="18" fill="#2B6A69"/>
+<text x="259.0" y="204" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">85</text>
+<rect x="282" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="191" width="45" height="18" fill="#E6F0EE"/>
+<rect x="374" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="191" width="45" height="18" fill="#E6F0EE"/>
+<rect x="512" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="191" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="191" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="223" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Chemistry &amp; Bio (55)</text>
+<rect x="190" y="210" width="45" height="18" fill="#367371"/>
+<text x="213.0" y="223" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">80</text>
+<rect x="236" y="210" width="45" height="18" fill="#D9E7E5"/>
+<rect x="282" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="210" width="45" height="18" fill="#D5E4E2"/>
+<rect x="420" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="210" width="45" height="18" fill="#E1EDEB"/>
+<rect x="604" y="210" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="210" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="242" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Agri., Forestry &amp; Fisheries (54)</text>
+<rect x="190" y="229" width="45" height="18" fill="#AFC9C7"/>
+<text x="213.0" y="242" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">26</text>
+<rect x="236" y="229" width="45" height="18" fill="#9FBDBC"/>
+<text x="259.0" y="242" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">33</text>
+<rect x="282" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="229" width="45" height="18" fill="#E5F0EE"/>
+<rect x="374" y="229" width="45" height="18" fill="#DDEAE8"/>
+<rect x="420" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="229" width="45" height="18" fill="#9FBDBC"/>
+<text x="489.0" y="242" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">33</text>
+<rect x="512" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="229" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="229" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="261" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Materials (48)</text>
+<rect x="190" y="248" width="45" height="18" fill="#387473"/>
+<text x="213.0" y="261" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">79</text>
+<rect x="236" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="282" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="248" width="45" height="18" fill="#DCE9E7"/>
+<rect x="420" y="248" width="45" height="18" fill="#C9DBD9"/>
+<rect x="466" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="248" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="248" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="280" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Beauty, Lodging, Travel &amp; Sports (46)</text>
+<rect x="190" y="267" width="45" height="18" fill="#E5EFED"/>
+<rect x="236" y="267" width="45" height="18" fill="#0E5655"/>
+<text x="259.0" y="280" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">98</text>
+<rect x="282" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="267" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="267" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="299" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Finance &amp; Insurance (36)</text>
+<rect x="190" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="286" width="45" height="18" fill="#0A5352"/>
+<text x="259.0" y="299" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">100</text>
+<rect x="282" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="286" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="286" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="318" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Mgmt., Accounting &amp; Office (30)</text>
+<rect x="190" y="305" width="45" height="18" fill="#DBE8E6"/>
+<rect x="236" y="305" width="45" height="18" fill="#185D5C"/>
+<text x="259.0" y="318" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">93</text>
+<rect x="282" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="305" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="305" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="337" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Driving &amp; Transport (30)</text>
+<rect x="190" y="324" width="45" height="18" fill="#7AA3A1"/>
+<text x="213.0" y="337" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">50</text>
+<rect x="236" y="324" width="45" height="18" fill="#90B3B1"/>
+<text x="259.0" y="337" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">40</text>
+<rect x="282" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="324" width="45" height="18" fill="#E2EDEB"/>
+<rect x="466" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="324" width="45" height="18" fill="#DBE8E6"/>
+<rect x="604" y="324" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="324" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="356" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Textiles &amp; Apparel (26)</text>
+<rect x="190" y="343" width="45" height="18" fill="#7AA3A1"/>
+<text x="213.0" y="356" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">50</text>
+<rect x="236" y="343" width="45" height="18" fill="#82A9A7"/>
+<text x="259.0" y="356" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">46</text>
+<rect x="282" y="343" width="45" height="18" fill="#E1ECEA"/>
+<rect x="328" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="343" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="343" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="375" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Printing, Wood &amp; Crafts (23)</text>
+<rect x="190" y="362" width="45" height="18" fill="#4E8382"/>
+<text x="213.0" y="375" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">70</text>
+<rect x="236" y="362" width="45" height="18" fill="#A5C2C0"/>
+<text x="259.0" y="375" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">30</text>
+<rect x="282" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="362" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="362" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="394" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Processing (21)</text>
+<rect x="190" y="381" width="45" height="18" fill="#DFEBE9"/>
+<rect x="236" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="282" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="381" width="45" height="18" fill="#145A59"/>
+<text x="397.0" y="394" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">95</text>
+<rect x="420" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="381" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="381" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="413" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Social Welfare &amp; Religion (18)</text>
+<rect x="190" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="400" width="45" height="18" fill="#0A5352"/>
+<text x="259.0" y="413" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">100</text>
+<rect x="282" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="400" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="400" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="432" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Sales (18)</text>
+<rect x="190" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="419" width="45" height="18" fill="#165B5A"/>
+<text x="259.0" y="432" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">94</text>
+<rect x="282" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="419" width="45" height="18" fill="#DDEAE8"/>
+<rect x="374" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="419" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="419" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="451" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Law, Police, Fire &amp; Defense (16)</text>
+<rect x="190" y="438" width="45" height="18" fill="#6C9997"/>
+<text x="213.0" y="451" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">56</text>
+<rect x="236" y="438" width="45" height="18" fill="#A4C1BF"/>
+<text x="259.0" y="451" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">31</text>
+<rect x="282" y="438" width="45" height="18" fill="#CEDFDD"/>
+<rect x="328" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="438" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="438" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="470" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Service (12)</text>
+<rect x="190" y="457" width="45" height="18" fill="#B2CBC9"/>
+<text x="213.0" y="470" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">25</text>
+<rect x="236" y="457" width="45" height="18" fill="#9FBDBC"/>
+<text x="259.0" y="470" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">33</text>
+<rect x="282" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="457" width="45" height="18" fill="#8CB0AE"/>
+<text x="397.0" y="470" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">42</text>
+<rect x="420" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="457" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="457" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="489" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Health &amp; Medical (11)</text>
+<rect x="190" y="476" width="45" height="18" fill="#84AAA8"/>
+<text x="213.0" y="489" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">45</text>
+<rect x="236" y="476" width="45" height="18" fill="#6F9B9A"/>
+<text x="259.0" y="489" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">55</text>
+<rect x="282" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="476" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="476" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="508" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Education, Nat. &amp; Soc. Sci. (8)</text>
+<rect x="190" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="495" width="45" height="18" fill="#266765"/>
+<text x="259.0" y="508" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">88</text>
+<rect x="282" y="495" width="45" height="18" fill="#CEDFDD"/>
+<rect x="328" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="495" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="495" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="527" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Business Management (5)</text>
+<rect x="190" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="514" width="45" height="18" fill="#367371"/>
+<text x="259.0" y="527" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">80</text>
+<rect x="282" y="514" width="45" height="18" fill="#BDD3D1"/>
+<text x="305.0" y="527" font-size="9.5" fill="#1F2A2E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20</text>
+<rect x="328" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="514" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="514" width="45" height="18" fill="#EAF3F1"/>
+<text x="182" y="546" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Security &amp; Cleaning (4)</text>
+<rect x="190" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="236" y="533" width="45" height="18" fill="#0A5352"/>
+<text x="259.0" y="546" font-size="9.5" fill="#FFFFFF" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">100</text>
+<rect x="282" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="328" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="374" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="420" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="466" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="512" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="558" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="604" y="533" width="45" height="18" fill="#EAF3F1"/>
+<rect x="650" y="533" width="45" height="18" fill="#EAF3F1"/>
+<text x="16" y="590" font-size="10.5" fill="#5C6B6E" text-anchor="start" font-weight="normal">Cell = share (%) of the category's occupations in that community. The more a row concentrates in one column, the better the official category and the data agree.</text>
+</svg>
+    <figcaption>Figure 2. Official major categories (rows) against Louvain communities of the shared-KSA occupation graph (columns; column headers give community size). Cells are the share of a category's occupations falling in each community; NMI = .329 against a permutation null of .041 ± .004.</figcaption>
+  </figure>
+<!--/FIG:F2-->
+
+  <h4>4.5 Level, revision recency, and digital vocabulary (RQ5)</h4>
+  <p>
+    The three remaining pre-registered hypotheses (H5, H6, S4) and the two descriptive ones (S1, S2) concern
+    how competency level, revision recency, digital vocabulary, and the attitude lexicon are distributed
+    across industries. They are reported in full in Appendix A so that the pre-registration record stays
+    complete, and summarised here because they matter to a pipeline only as stratification variables. Level
+    differs sharply by industry (ε² = .242; L5+ share from 71.6% in Finance & Insurance to 7.3% in Security & Cleaning); revision
+    recency is uneven but less than pre-registered (ε² = .175 against .30); digital vocabulary varies by an
+    order of magnitude across industries but is unrelated to recency within them (ρ = .077 lexicon A,
+    .098 for a lexicon with the ambiguous terms 프로그램 and 전산 removed), so the amount of digital language is
+    a property of the industry rather than of when the standard was last revised; the pre-registered expectation that compliance
+    dominates the attitude lexicon is not met, though neither does volition dominate once a coding artifact is
+    removed (Appendix A); and
+    the pre-registered coincidence of low level, stale revision, and low digital vocabulary is not supported
+    (W = .449, p = .123). We report these as corpus properties a pipeline should expect — inputs to sampling,
+    stratification, and coverage — and stop there: whether they reflect or shape labour-market conditions
+    cannot be decided from the standard alone; answering it requires external wage, qualification, and
+    employment data that this study does not use.
+  </p>
+
+  <h4>4.6 Manual precision of embedding merges</h4>
+  <p>
+    Recovery counts what the embedding stage <em>proposes</em>; whether the proposals are correct requires
+    human judgment. We sampled 200 merged pairs in two arms: 120 <em>directly linked</em> pairs stratified by
+    cosine band (.85–.90, .90–.95, .95–1.0; 40 each), which measure the similarity signal itself and ground the
+    threshold choice, and 80 <em>transitively linked</em> pairs — co-members of a cos ≥ .90 Louvain cluster with
+    no direct edge — which measure what cluster membership implies. Eight raters external to the authorship
+    (two PhDs in educational technology, three university staff, three students of unrelated majors) each
+    judged a common anchor set of 50 pairs plus a 30-pair block balanced across strata (80 pairs each; 640
+    judgments); the first author judged all 200 for a bias check only. Raters saw, for each side, up to four surface forms of the key, its KSA type, its occupation count, and the
+    names of up to three major categories in which it occurs; they did not see similarity, cluster size, or
+    arm. The instruction defined identity relative to the construction task — "if merging the two would lose
+    information, they are not the same concept" — so the construct is mergeability into one node, not synonymy in
+    general. Judgments used five categories —
+    same concept, hierarchical, related-but-distinct, unrelated, unsure — from which we derive <em>strict</em>
+    precision (same) and <em>lenient</em> precision (same or hierarchical, since a hierarchical pair belongs in
+    the ontology as a relation rather than a merge). Confidence intervals are bootstrapped over items, because
+    judgments of the same pair are not independent.
+  </p>
+  <div class="table-wrap"><table>
+    <caption>Table 4. Merge precision by similarity band and linkage (external raters, n = 640 judgments on 200 pairs).</caption>
+    <thead><tr><th>Stratum</th><th class="num">Judgments</th><th class="num">Strict</th><th class="num">95% CI</th><th class="num">Lenient</th><th class="num">Unsure</th></tr></thead>
+    <tbody>
+      <tr><td>Direct edge, cos .85–.90</td><td class="num">128</td><td class="num">43.8%</td><td class="num">[31.4, 57.1]</td><td class="num">59.4%</td><td class="num">2.3%</td></tr>
+      <tr><td>Direct edge, cos .90–.95</td><td class="num">128</td><td class="num">71.1%</td><td class="num">[57.1, 83.9]</td><td class="num">82.8%</td><td class="num">1.6%</td></tr>
+      <tr><td>Direct edge, cos .95–1.0</td><td class="num">128</td><td class="num">73.4%</td><td class="num">[59.6, 84.7]</td><td class="num">87.5%</td><td class="num">2.3%</td></tr>
+      <tr><td>Transitive (same cluster, no direct edge)</td><td class="num">256</td><td class="num"><b>30.1%</b></td><td class="num">[21.3, 39.3]</td><td class="num">53.5%</td><td class="num">2.7%</td></tr>
+      <tr><td>All</td><td class="num">640</td><td class="num">49.7%</td><td class="num">[42.8, 56.4]</td><td class="num">67.3%</td><td class="num">2.3%</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    <b>The pre-registered threshold is the precision knee.</b> Cumulatively, accepting pairs at cos ≥ .85 yields
+    62.8% strict precision, at cos ≥ .90 72.3%, and at cos ≥ .95 73.4%: raising the threshold from .90 to .95
+    buys 1.1 points of precision at the cost of half the recovery (28.1% → 13.6%), while lowering it to .85
+    costs 9.5 points. <b>Transitive membership does not imply identity.</b> Pairs that share a cluster without a
+    direct edge are the same concept only 30.1% of the time in the first round (32.9% in clusters of 3–5
+    keys, 26.5% in 6–20; the eight items above 20 keys gave 19%). Because that last stratum carries the most
+    absorbed keys (22,874) on the fewest items, we ran a second, targeted round: 60 new transitive pairs from
+    communities of 21–100 and above 100 keys (30 each), judged by three of four new non-author raters each
+    (180 judgments). Precision there is 41.7% strict [32.2, 50.6] and 80.6% lenient — 41.1% and 42.2% strict
+    in the two strata — so in NCS transitive precision does <em>not</em> fall with community size; it sits at
+    30–42% throughout. The large communities are dominated by attitude sentences (20 of the 60 pairs are
+    attitude–attitude, 60% strict) and paraphrase families ("검사 방법 절차 ('inspection method procedure')" / "테스트 절차 ('test procedure')", "타 부서와
+    협동하려는 태도 ('attitude of cooperating with other departments')" / "관련 부서간의 협력적 태도 ('cooperative attitude among related departments')"), not by chained unrelated concepts. Modularity
+    clustering removed the chaining artefact of §4.3, but a community is still a concept <em>family</em>, not a
+    concept. Cosine does not transfer across that boundary: transitive pairs are the same concept 29.8% of the
+    time below cos .85 and 30.3% between .85 and .90, while direct-edge precision over the same similarity
+    range climbs from 43.8% to 73.4%. The signal that ranks candidate edges carries no information once a pair
+    is joined only through a path, so a similarity cut-off cannot be used to prune inside a community.
+  </p>
+  <p>
+    To convert candidate recovery into verified recovery, we partitioned the 70,869 keys absorbed at cos ≥ .90
+    by cluster size, weighted direct-edge precision (72.3%) and transitive precision (per size band) by each
+    band's share of within-cluster pairs that are direct edges (100% at size 2, 67% at 3–5, 31% at 6–20, 8% at
+    21–100, 1.4% above 100), and summed over absorbed keys. The 21–100 and above-100 strata use the
+    second-round transitive precision (41.1% / 42.2% strict, 85.6% / 75.6% lenient); with the first-round
+    pooled value (19%) instead, verified recovery is 17.8% strict / 21.1% lenient.
+  </p>
+  <p>
+    We report the strict figure as the headline for a reason worth stating, because the lenient one is the
+    more stable of the two. Where raters divide is the boundary between "same" and "hierarchical", not the
+    question of whether a pair is related at all: individually the four experts span 28.0–48.0% on "same"
+    and only 62.0–66.0% once hierarchical pairs are counted. A lenient estimate therefore rests on the part
+    of the judgment that experts agree about. We nonetheless lead with the strict figure because a merge
+    written into a concept layer is not reversed by a later reader, so the quantity a builder needs is the
+    conservative one; both are reported throughout, and the gap between them is the size of the decision a
+    builder is making when they choose whether a broader term may absorb a narrower one.
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table 5. Verified recovery under alternative acceptance policies (cos ≥ .90, Louvain; second-round precision for communities above 20 keys). 95% CIs propagate item-level bootstrap resampling of every precision stratum (4,000 replicates) through the size-band weighting.</caption>
+    <thead><tr><th style="width:30%">Policy</th><th class="num">Keys<br>absorbed</th><th class="num">Candidate<br>recovery</th><th class="num">Merge precision<br>(strict)</th><th class="num">Verified, strict<br>[95% CI]</th><th class="num">Verified, lenient<br>[95% CI]</th></tr></thead>
+    <tbody>
+      <tr><td>Rule keys only (stage 1)</td><td class="num">—</td><td class="num">8.2%</td><td class="num">n/a</td><td class="num">8.2%</td><td class="num">8.2%</td></tr>
+      <tr><td>+ clusters of size 2 only</td><td class="num">20,788</td><td class="num">14.1%</td><td class="num">72%</td><td class="num">12.5% [11.9,&nbsp;13.0]</td><td class="num">13.2% [12.8,&nbsp;13.6]</td></tr>
+      <tr><td>+ clusters of size ≤ 5</td><td class="num">37,836</td><td class="num">18.9%</td><td class="num">66%</td><td class="num"><b>15.3%</b> [14.4,&nbsp;16.1]</td><td class="num">16.8% [16.2,&nbsp;17.4]</td></tr>
+      <tr><td>+ clusters of size ≤ 20</td><td class="num">47,995</td><td class="num">21.7%</td><td class="num">61%</td><td class="num">16.5% [15.5,&nbsp;17.4]</td><td class="num">18.6% [17.8,&nbsp;19.3]</td></tr>
+      <tr><td>+ all clusters</td><td class="num">70,869</td><td class="num">28.1%</td><td class="num">55%</td><td class="num"><b>19.2%</b> [18.1,&nbsp;20.3]</td><td class="num">23.6% [22.7,&nbsp;24.5]</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    The honest contribution of embedding alignment is therefore <b>8.2% → 19.2% (strict) to 23.6% (lenient)</b>
+    of surface forms, not 28.1%. A size cap of 5 for automatic merging keeps 80% of the verified gain
+    (15.3 of 19.2 points) at 66% precision and hands the larger communities — where fewer than one pair in
+    ten is a direct edge and strict precision is about 42% — to adjudication rather than to the merge. The cap
+    is a precision instrument for what is written into the layer; §4.9 shows that it is not what governs
+    similarity computed over the layer, and that the task-optimal cap (≤ 20) differs from this precision-optimal
+    one.
+    The intervals are narrow because the estimate is a weighted sum over many strata whose errors are
+    independent; the widest single stratum, transitive precision in 6–20-key communities, spans
+    [15.7, 41.3] on 23 items and still moves the total by under a point.
+  </p>
+  <p>
+    <b>How much weight does the thinnest evidence carry?</b> The communities above 20 keys hold 22,874 of
+    the 70,869 absorbed keys, and their transitive precision comes from four raters whose mutual agreement is
+    low (§4.6, α = .17). Because fewer than one pair in ten inside those communities is a direct edge, the
+    figure that this stratum can move is bounded: fixing its transitive precision at 0% gives a verified
+    recovery of 16.6%, at the lower and upper 95% limits of the second-round estimate 18.4% and 20.1%, and at
+    100% 22.8%. The headline is therefore 19.2% under the measured value and lies between 16.6% and 22.8%
+    under any value at all; a pooled proportion is unbiased under low inter-rater agreement, which widens its
+    interval but does not shift it. The stratum carries a visible, not a decisive, share of the conclusion.
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table 6. Inter-rater reliability (Krippendorff's α, nominal; bootstrap CIs over items). All expert and first-round rows are computed on the same 50 anchor pairs; the second-round row covers 70 items (10 shared anchors + 60 pairs judged by three of the four raters).</caption>
+    <thead><tr><th>Raters</th><th class="num">n</th><th class="num">α, five categories</th><th class="num">95% CI</th><th class="num">α, merge decision (same vs. not)</th><th class="num">95% CI</th></tr></thead>
+    <tbody>
+      <tr><td><b>Four educational-technology PhDs (ceiling)</b></td><td class="num">4</td><td class="num"><b>.408</b></td><td class="num">[.285, .520]</td><td class="num"><b>.503</b></td><td class="num">[.352, .635]</td></tr>
+      <tr><td style="padding-left:22px">— the first pair alone (round 1)</td><td class="num">2</td><td class="num">.569</td><td class="num">[.373, .741]</td><td class="num">.683</td><td class="num">[.475, .873]</td></tr>
+      <tr><td style="padding-left:22px">— the second pair alone (round 3)</td><td class="num">2</td><td class="num">.401</td><td class="num">[.211, .585]</td><td class="num">.471</td><td class="num">[.183, .720]</td></tr>
+      <tr><td>Three staff</td><td class="num">3</td><td class="num">.422</td><td class="num">[.281, .554]</td><td class="num">.575</td><td class="num">[.389, .734]</td></tr>
+      <tr><td>Three students</td><td class="num">3</td><td class="num">.289</td><td class="num">[.148, .412]</td><td class="num">.437</td><td class="num">[.235, .603]</td></tr>
+      <tr><td>All eight external raters</td><td class="num">8</td><td class="num">.315</td><td class="num">[.239, .378]</td><td class="num">.487</td><td class="num">[.363, .596]</td></tr>
+      <tr><td>Second round: four new raters, no domain experience</td><td class="num">4</td><td class="num">.174</td><td class="num">[.075, .270]</td><td class="num">.258</td><td class="num">[.111, .390]</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    Concept identity in this corpus is a contested judgment even for domain experts, and more so than a
+    two-rater estimate suggested. The first round measured the ceiling with one pair of educational-technology
+    PhDs (α = .569 five-way, .683 merge). A third round put the same 50 anchor items to two further PhDs from
+    outside the university under identical conditions, giving four experts and six pairs: the ceiling falls to
+    α = .408 [.285, .520] five-way and .503 [.352, .635] for the merge decision, and the original pair turns
+    out to be the <em>most</em> concordant of the six (pairwise five-way α ranges .335–.569, median .396).
+    A two-rater ceiling is therefore optimistic by construction — it estimates one draw from the space of
+    expert pairs, and we drew a good one. Nor does reliability order neatly by expertise: the four experts
+    (.408) are indistinguishable from the three staff (.422, overlapping intervals) on the same items, and
+    both exceed the students (.289) and the second-round raters without domain exposure (.174). What
+    experience separates is having some domain exposure from having none, not experts from administrators.
+    The unsure rate is low (2.3%), so raters committed rather than abstained.
+    The second-round raters, none with domain experience, agree with each other least (α = .17 / .26); on the
+    ten anchor pairs they share with the first round their strict rate is 45% against 50% for the first-round
+    raters on the same items, and their lenient rate 85% against 75% — they reach for "hierarchical" more
+    often (31–50% of verdicts vs. 18%) but not for "same", so the strict second-round estimate is not inflated
+    by rater leniency.
+    The two expert pairs disagree in a specific and systematic way rather than randomly. On the anchor items
+    the first pair calls 48.0% of pairs the same concept and the second 29.0%, yet both reach almost the same
+    figure once hierarchical pairs are added (63.0% and 65.0%): they place the boundary between "same" and
+    "hierarchical" in different places while agreeing on what is unrelated. The effect is individual rather
+    than a property of the two pairs: taken one by one the four experts span 28.0–48.0% on "same" yet only
+    62.0–66.0% once hierarchical pairs are counted, so what separates them is a single boundary and not their
+    reading of the corpus. This is the kind of systematic
+    rater effect that two raters cannot expose, and it has a consequence for the precision estimates. Experts
+    are stricter than the other groups: on the same 50 anchors the four PhDs call 38.5% of pairs the same
+    concept, against 52.7% for staff and 44.7% for students. Restricted to the 20 anchor items at cos ≥ .90,
+    expert strict precision is 62.5% against the 72.3% pooled over all eight first-round raters and 120
+    direct-edge items. The expert subsample is small, but it points one way: if expert judgment is taken as
+    the standard, verified recovery falls from 19.2% to 18.2%, and to 16.9% if transitive precision is scaled
+    down in the same proportion. We retain the pooled estimates as the headline because they rest on the
+    larger sample and the pre-registered design, and record the expert-only figures as the lower end of the
+    range.
+  </p>
+  <p>
+    The first author's judgments do not indicate leniency toward the method: strict precision 55.5%
+    [48.5, 62.0] against the external 49.7% [42.8, 56.4], merge-decision agreement with the external majority
+    74.3% (κ = .475), and symmetric disagreements (18 pairs the externals called the same and the author did not;
+    21 the reverse). Author judgments are excluded from all estimates above. Contested pairs are genuinely hard
+    near-misses — <em>whole-genome</em> versus <em>whole-exome</em> sequencing data analysis (cos .884),
+    <em>3D modelling</em> versus <em>3D analysis</em> software (cos .890) — while one unanimous "same" pair,
+    <em>ISO/IEC 27009 (인증섹터 ('certification sector'))</em> versus <em>(인증센터 ('certification centre'))</em>, is a typographical error in the standard that the
+    alignment surfaced and the raters confirmed, an instance of the quality-audit use in §1.
+  </p>
+  <p>
+    <b>Did the displayed context steer the judgments?</b> Because raters saw the major categories of each key, a
+    reviewer may ask whether pairs from different industries were judged "different" on that cue rather than on
+    meaning. The data do not show that bias: pairs whose keys share no major category were judged "same" at least
+    as often as pairs that share one, in every stratum (direct edges .85–.90: 50.0% vs. 36.2%; .90–.95: 72.4% vs.
+    68.3%; ≥ .95: 70.2% vs. 75.3%; transitive, first round: 34.8% vs. 22.8%; second round: 41.7% vs. 41.7%), and
+    the per-rater direction is inconsistent (four of eight raters were stricter on cross-category pairs, four
+    more lenient). The comparison is confounded — keys used by many occupations list more categories and are more
+    often generic — so it shows the absence of the feared direction rather than the absence of any context effect.
+    The displayed cue that does track judgments is KSA type: direct pairs whose keys carry the same type are
+    judged the same concept 65.4% of the time against 31.0% when the types differ (transitive: 35.5% vs. 15.7%).
+    Under the instruction above a knowledge item and a skill item about the same object are legitimately
+    distinct, so this may be content rather than label; the two cannot be separated in this design. How much of
+    the hierarchy — none, the category, or the competency unit — a judge should see is a design variable, and we
+    leave its manipulation to future work, where it can be tested on human and model judges alike.
+  </p>
+
+  <h4>4.7 Replication on ESCO: which findings are properties of the text type</h4>
+  <p>
+    Table 7 places the NCS measurements beside the same measurements on ESCO v1.2.1 (§3.5). The ESCO
+    precision figures are exact — every pair is scored against the skill URI — whereas the NCS figures are
+    human estimates on 200 sampled pairs, so the two columns should be compared for <em>shape</em> rather
+    than for level.
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table 7. NCS versus ESCO on the same pipeline. ESCO figures are exact (scored against the skill URI); NCS precision is the strict external-rater estimate of §4.6. In the last column ✓ marks a finding that reproduces, ✗ one that does not, and — a row given for context rather than comparison. The prose of §4.7 gives sample sizes and the reasoning for each verdict.</caption>
+    <thead><tr><th style="width:30%">Measure</th><th class="num">NCS<br>(Korean)</th><th class="num">ESCO v1.2.1<br>(English)</th><th>Trans-<br>fers</th></tr></thead>
+    <tbody>
+      <tr><td>Template regularity</td><td class="num">99.56% templated</td><td class="num">79.9% verb-initial; 92.3% noun-initial</td><td>✗ NCS-specific</td></tr>
+      <tr><td>Surface forms · concepts</td><td class="num">326,592 rule keys</td><td class="num">99,676 · 13,939 (7.2 labels each)</td><td>—</td></tr>
+      <tr><td>Rule normalization recovery</td><td class="num">8.2%</td><td class="num">0.9% (R0) · 9.3% (R1)</td><td>✓ ~9% ceiling</td></tr>
+      <tr><td>Direct-edge precision, cos .85–.90 / .90–.95 / ≥ .95</td><td class="num">43.8 / 71.1 / 73.4%</td><td class="num">57.0 / 88.6 / 98.7%</td><td>✓ knee at .90</td></tr>
+      <tr><td>Cumulative precision at cos ≥ .90 (recall)</td><td class="num">72.3%</td><td class="num">92.8% (34.8%)</td><td>—</td></tr>
+      <tr><td>Candidate recovery, Louvain @ .90</td><td class="num">28.1%</td><td class="num">62.7%</td><td>✗ corpus level</td></tr>
+      <tr><td>Merge precision, Louvain @ .90</td><td class="num">48% strict · 65% lenient</td><td class="num">95.0%</td><td>✗ corpus level</td></tr>
+      <tr><td>Verified recovery, Louvain @ .90</td><td class="num">19.2 · 23.6%</td><td class="num">59.5%</td><td>✗ corpus level</td></tr>
+      <tr><td>Transitive-pair precision @ .90</td><td class="num">30.1% round 1 · 41.7% round 2 (&gt; 20 keys)</td><td class="num">29.2%</td><td>✓ low everywhere</td></tr>
+      <tr><td>… by community size 3–5 / 6–20 / 21–100 / &gt; 100</td><td class="num">32.9 / 26.5 / 41.1 / 42.2%</td><td class="num">90.0 / 60.3 / 11.2 / 1.7%</td><td>✗ collapse is ESCO-only</td></tr>
+      <tr><td>Single-linkage giant component @ .85</td><td class="num">29.9% of keys</td><td class="num">34.0% of surfaces</td><td>✓</td></tr>
+      <tr><td>Louvain largest cluster @ .90</td><td class="num">1,084 (0.3%)</td><td class="num">170 (0.2%)</td><td>✓</td></tr>
+      <tr><td>Occupation graph vs. official taxonomy, NMI (null)</td><td class="num">.329 vs. 24 major (.041) · .356 vs. 81 middle</td><td class="num">.263 vs. ISCO-1 (.008) · .401 vs. ISCO-2</td><td>✓ partial</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    <b>What transfers.</b> Five of the structural findings reproduce. (i) Rule normalization has the same
+    ceiling: case-folding and punctuation alone merge 0.9% of ESCO surface forms, and an inflectional strip
+    lifts this to 9.3% — the same order as the 8.2% obtained in Korean by stripping role suffixes — at 98–99%
+    precision. Rules are safe and shallow in both languages. (ii) The pre-registered threshold is the precision
+    knee in both corpora: direct-edge precision rises from 57.0% in the .85–.90 band to 88.6% in .90–.95 on
+    ESCO, mirroring the 43.8% → 71.1% step estimated by raters on NCS. (iii) Pairs joined only transitively within a Louvain community are the same concept 29.2% of the time
+    on ESCO against 30–42% on NCS: transitive membership is a weak signal in both corpora. What does not
+    transfer is the size dependence. On ESCO precision collapses with community size (90.0% at 3–5, 60.3% at
+    6–20, 11.2% at 21–100, 1.7% above 100) because large communities chain distinct concepts through shared
+    words; on NCS it is flat (32.9%, 26.5%, 41.1%, 42.2%) because large communities are paraphrase families of
+    attitude and generic-skill sentences. The size-capped merge policy of §4.6 is therefore justified
+    differently in the two corpora — by collapse on ESCO, by uniformly low transitive precision on NCS — but
+    it is justified in both. (iv) Single-linkage closure at cos ≥ .85 produces a giant component in both corpora
+    (34.0% of ESCO surfaces, 29.9% of NCS keys); at cos ≥ .90 Louvain and single-linkage coincide on ESCO
+    (largest 170), so the chaining failure is a property of the threshold rather than of the corpus.
+    (v) An occupation graph built from shared skill vocabulary alone partially recovers the official taxonomy
+    (NMI .263 against ISCO major groups and .401 against sub-major groups, permutation null .008), as it did
+    for NCS (.329, null .041); removing skills essential to more than 10% of occupations changes nothing on
+    ESCO because no skill reaches that share (maximum 261 of 3,039), and changed NMI from .329 to .341 on NCS.
+  </p>
+  <p>
+    <b>What does not transfer.</b> Two findings are NCS-specific. The 99.56% syntactic template has no
+    counterpart: ESCO skill labels begin with a verb 79.9% of the time under a general-domain tagger, so the
+    near-total regularity of NCS performance criteria is a property of how NCS was authored, not of competency
+    text as such. And the absolute recovery figures are corpus-level: ESCO is far more fragmented by design
+    (7.2 labels per concept, registered as such), so Louvain at .90 absorbs 62.7% of its surfaces at 95%
+    precision, against 28.1% at 48% on NCS. The ESCO result also bounds the encoder from the other side: with
+    an exact reference, cos ≥ .90 retrieves only 34.8% of true synonym pairs, so even where precision is high,
+    two-thirds of the registered synonymy is invisible to embedding similarity at the safe threshold. Both
+    corpora therefore agree that the residual fragmentation is the work of the concept layer, not a
+    calibration problem.
+  </p>
+  <p>
+    The replication also calibrates the NCS rater estimates. ESCO's exact precision exceeds the NCS strict
+    estimate in every band by 13–25 points, and its lenient counterpart (§4.6: 59.4 / 82.8 / 87.5%) lies
+    closer to the ESCO values (57.0 / 88.6 / 98.7%). The likeliest reading is that ESCO's alternative labels
+    are curated paraphrases of one concept, whereas NCS surface forms are independently authored sentences
+    that raters legitimately place in "related" or "hierarchical" rather than "same"; the strict NCS figures
+    are conservative for that corpus, not evidence of rater harshness.
+  </p>
+
+  <h4>4.8 Encoder sensitivity: the knee is a property of the task, not of bge-m3</h4>
+  <p>
+    All embedding results above use one encoder. To test whether the .90 knee, the transitive-precision
+    collapse, and the attitude skew are properties of bge-m3 or of the task, we re-embedded the NCS
+    validation pairs, the full ESCO surface set, and all 326,592 NCS keys with an encoder from a different
+    training lineage and of comparable size, <code>multilingual-e5-large</code> (with its recommended
+    <code>query:</code> prefix). Its cosine scale is compressed relative to bge-m3 (the 200 validated NCS
+    pairs span .83–.999 under e5 against .45–.997 under bge-m3), so absolute thresholds are not comparable;
+    we instead compare at <em>matched pair counts</em> — the e5 threshold that admits exactly as many pairs as
+    bge-m3 admits at .85, .90, and .95 — which equalizes recall by construction and lets precision be compared
+    directly.
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table 8. bge-m3 versus multilingual-e5-large at matched pair counts. ESCO precision is exact (skill URI); NCS precision on the 200 validated pairs is the strict external-rater estimate.</caption>
+    <thead><tr><th>Measure</th><th class="num">bge-m3</th><th class="num">e5-large (matched)</th></tr></thead>
+    <tbody>
+      <tr><td>NCS 200 pairs: rank correlation of cosines</td><td class="num" colspan="2">Spearman .877 · Pearson .914</td></tr>
+      <tr><td>NCS 200 pairs: precision of the 80 direct pairs above the .90-equivalent cut</td><td class="num">72.3% (cut .90)</td><td class="num">70.4% (cut .958; 90% of the same pairs)</td></tr>
+      <tr><td>ESCO cumulative precision (recall) at .85 / .90 / .95-equivalent</td><td class="num">76.1 (53.5) / 92.8 (34.8) / 98.7% (15.3)</td><td class="num">76.5 (53.8) / 93.0 (34.9) / 99.0% (15.4) — cuts .936 / .958 / .982</td></tr>
+      <tr><td>ESCO band precision .85–.90 / .90–.95 / ≥ .95-equivalent</td><td class="num">57.0 / 88.6 / 98.7%</td><td class="num">57.7 / 88.7 / 99.0%</td></tr>
+      <tr><td>ESCO Louvain at .90-equivalent: verified recovery · merge precision · transitive precision</td><td class="num">59.5% · 95.0% · 29.2%</td><td class="num">58.6% · 95.1% · 35.8%</td></tr>
+      <tr><td>ESCO transitive precision by community size 3–5 / 6–20 / 21–100 / &gt; 100</td><td class="num">90.0 / 60.3 / 11.2 / 1.7%</td><td class="num">88.7 / 57.4 / 11.4 / 4.0%</td></tr>
+      <tr><td>ESCO single-linkage giant component at .85-equivalent</td><td class="num">34.0%</td><td class="num">28.3%</td></tr>
+      <tr><td>NCS candidate recovery at .85 / .90 / .95-equivalent (Louvain)</td><td class="num">51.3 / 28.1 / 13.6%</td><td class="num">51.7 / 28.4 / 13.7%</td></tr>
+      <tr><td>NCS largest community at .90-equivalent</td><td class="num">1,084</td><td class="num">918</td></tr>
+      <tr><td>NCS merge participation, attitude / skill / knowledge at .90-equivalent</td><td class="num">38.2 / 28.6 / 27.9%</td><td class="num">38.7 / 28.6 / 29.3%</td></tr>
+      <tr><td>NCS single-linkage giant component at .85-equivalent</td><td class="num">29.9%</td><td class="num">29.0%</td></tr>
+      <tr><td>Overlap of the pair sets selected at .90-equivalent (Jaccard)</td><td class="num" colspan="2">ESCO .73 · NCS .50</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    Every aggregate reproduces to within a point. On ESCO, where precision is exact, the two encoders agree
+    on cumulative precision and recall at all three matched thresholds to within 0.5 points, on the band
+    precisions to within 0.7 points, and on the size gradient of transitive precision; the largest
+    precision drop across twenty rank bands falls for both models between the .90- and .85-equivalent ranks.
+    On NCS, matched recovery differs by 0.1–0.4 points, the attitude skew is unchanged (38.7% vs. 38.2%),
+    and the chaining component at .85-equivalent is 29.0% vs. 29.9%. The knee and the failure modes are thus
+    properties of the corpus–task pair; only the number that names the knee is model-specific (.90 for
+    bge-m3, .958 for e5-large), so the recommendation of §4.6 should be read as "the precision knee, located
+    per encoder" rather than as a constant.
+  </p>
+  <p>
+    The agreement is at the level of aggregates, not of pairs: at the .90-equivalent cut the two encoders
+    select the same pairs only 73% of the time on ESCO and 50% on NCS. This disagreement is exploitable.
+    On ESCO, pairs selected by <em>both</em> encoders at the .85-equivalent cut are 83.1% precise against
+    76% for either alone, while pairs selected by only one are 42–45% precise — coin flips; at the
+    .90-equivalent cut the intersection reaches 95.1% (vs. 92.8%) at the cost of 15% of the pairs. On the
+    NCS validated pairs the same pattern holds (72.7% strict for pairs above the cut in both encoders, 50–68%
+    for pairs above it in one). Requiring two-encoder agreement is therefore a cheap precision lever for the
+    alignment stage, most valuable in the .85–.90 band where single-encoder precision is lowest.
+  </p>
+
+  <h4>4.9 Does the measurement change a decision? Three downstream tasks in two corpora</h4>
+  <p>
+    The numbers above are only useful if a pipeline built with them differs from one built without them. We
+    therefore expressed each corpus under several concept-layer policies — normalization keys only (the rule
+    stage); embedding merges accepted at cos ≥ .90 with community-size caps of 2, 5, 20, or none; and the
+    two-encoder-agreement variant of §4.8 — and ran a task that a knowledge resource built from a competency
+    standard is actually asked to do. The primary evidence is on ESCO, where the reference is external and
+    exact: <em>skill-label search</em>, in which one registered alternative label per skill is removed from
+    the index and used as the query, and the system must return the occupations for which that skill is
+    essential. On NCS no external reference exists, so the two tasks there — <em>occupation similarity
+    search</em> (the five nearest occupations by overlap of concept sets; precision at 5 for sharing the minor
+    and the middle category) and <em>taxonomy recovery</em> (the community procedure of §4.4) — score
+    <em>agreement with the official classification</em>, the same classification §4.4 showed to be only
+    partially reflected in the vocabulary. We therefore read the NCS results as coherence with the taxonomy a
+    practitioner must navigate, not as quality, and place them second.
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table 9. ESCO skill-label search with a held-out alternative label as the query (5,000 queries; reference = essential occupations of the label's skill URI; 95% CIs by bootstrap over queries).</caption>
+    <thead><tr><th>Expansion policy</th><th class="num">Skill found [95% CI]</th><th class="num">Answered</th><th class="num">Occupation F1 [95% CI]</th><th class="num">Precision when answered [95% CI]</th></tr></thead>
+    <tbody>
+      <tr><td>Exact string only (0 by construction)</td><td class="num">0.0%</td><td class="num">0.0%</td><td class="num">0.0%</td><td class="num">—</td></tr>
+      <tr><td>Rule key (R1)</td><td class="num">15.8% [14.9, 16.9]</td><td class="num">16.0%</td><td class="num">15.9% [14.9, 17.0]</td><td class="num">99.2% [98.7, 99.7]</td></tr>
+      <tr><td>Character 3-gram TF-IDF cosine ≥ .5 (lexical baseline)</td><td class="num">94.4% [93.8, 95.1]</td><td class="num">98.8%</td><td class="num">37.2% [36.3, 38.2]</td><td class="num">29.6% [28.7, 30.6]</td></tr>
+      <tr><td>Character 3-gram TF-IDF cosine ≥ .6</td><td class="num">90.7% [89.9, 91.5]</td><td class="num">95.9%</td><td class="num">58.2% [57.2, 59.2]</td><td class="num">54.2% [53.2, 55.3]</td></tr>
+      <tr><td>Direct embedding neighbours, cos ≥ .90</td><td class="num">77.0% [75.8, 78.2]</td><td class="num">78.1%</td><td class="num"><b>74.2%</b> [73.0, 75.3]</td><td class="num">93.8% [93.2, 94.5]</td></tr>
+      <tr><td>Community, size ≤ 5</td><td class="num">32.2% [31.0, 33.5]</td><td class="num">32.9%</td><td class="num">31.9% [30.6, 33.2]</td><td class="num"><b>96.7%</b> [95.9, 97.4]</td></tr>
+      <tr><td>Community, size ≤ 20</td><td class="num">70.7% [69.4, 72.0]</td><td class="num">71.5%</td><td class="num">67.3% [66.0, 68.5]</td><td class="num">92.4% [91.7, 93.1]</td></tr>
+      <tr><td>Community, all</td><td class="num">77.2% [76.0, 78.4]</td><td class="num">78.1%</td><td class="num">70.1% [69.0, 71.3]</td><td class="num">87.5% [86.6, 88.3]</td></tr>
+      <tr><td>Two-encoder agreement, size ≤ 5</td><td class="num">38.1% [36.8, 39.4]</td><td class="num">38.9%</td><td class="num">37.9% [36.5, 39.1]</td><td class="num">96.8% [96.1, 97.4]</td></tr>
+      <tr><td>Two-encoder agreement, all</td><td class="num">71.9% [70.7, 73.1]</td><td class="num">72.9%</td><td class="num">68.6% [67.3, 69.8]</td><td class="num">92.7% [91.9, 93.4]</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    <b>ESCO: merging and expanding are different operations.</b> Rules alone answer 16% of queries. A lexical
+    baseline without embeddings — character 3-gram TF-IDF cosine — finds the right skill for 91–94% of queries
+    but at 30–54% precision, because near-identical strings often belong to different skills. Direct embedding
+    neighbours at cos ≥ .90 give the best F1, 74.2% [73.0, 75.3], at 93.8% precision. Community expansion with
+    the ≤ 5 cap is more precise still (96.7%) but answers only a third of queries; expanding through whole
+    communities matches the coverage of direct neighbours while losing six points of precision (87.5%), and
+    two-encoder agreement recovers five of those six (92.7%) at a 5% loss of coverage, as §4.8 predicted. A
+    query-time lookup pays for coverage, not for the irreversible cost of a wrong merge, so the design rule
+    is: <em>write the concept layer conservatively and expand at query time by direct edges, not by community
+    membership.</em> (The 78% of queries answered here is not in tension with the 34.8% pair recall of §4.7:
+    a query succeeds if it reaches <em>any</em> other label of its skill, whereas pair recall counts every
+    registered synonym pair.)
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table 10. NCS: agreement with the official classification under concept-layer policies and two similarity measures (1,109 occupations). The "rules only" row is <em>not</em> the §4.4 graph and the two are not expected to match: §4.4 answers how much of the taxonomy is latent in <em>shared</em> vocabulary and therefore drops the keys that occur in a single occupation — 92.3% of all keys — and keeps 25,078 (1,107 nodes, NMI .329), whereas the concept-layer comparison must score every key a merge policy can act on (326,592 keys, all 1,109 occupations, NMI .301). Both figures and both key counts are in the released JSON. P@5 carries bootstrap CIs over occupations; NMI is the main run (seed 20260909) with the range over ten Louvain seeds and the permutation null. Seed-to-seed variation never exceeds .056 NMI (widest: TF-IDF at size ≤ 20) and AMI ranges track it within .03; AMI against the 81 middle categories orders the layers identically and is reported in <code>t0_downstream_ncs.json</code>.</caption>
+    <thead><tr><th>Simi-<br>larity</th><th style="width:20%">Concept layer</th><th class="num">P@5, same<br>minor [CI]</th><th class="num">P@5, same<br>middle [CI]</th><th class="num">Com-<br>munities</th><th class="num">NMI major<br>(seeds; null)</th><th class="num">AMI<br>major</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="7">Jaccard</td><td>Rules only</td><td class="num">28.6% [26.9,&nbsp;30.3]</td><td class="num">47.8% [45.6,&nbsp;50.0]</td><td class="num">12</td><td class="num">.301 (.296–.315; .043)</td><td class="num">.270</td></tr>
+      <tr><td>+ merges, size 2</td><td class="num">30.9% [29.3,&nbsp;32.7]</td><td class="num">50.6% [48.5,&nbsp;52.7]</td><td class="num">9</td><td class="num">.304 (.304–.330; .037)</td><td class="num">.278</td></tr>
+      <tr><td>+ merges, size ≤ 5</td><td class="num">31.8% [30.2,&nbsp;33.5]</td><td class="num">52.2% [50.1,&nbsp;54.3]</td><td class="num">9</td><td class="num"><b>.360</b> (.342–.360; .036)</td><td class="num">.336</td></tr>
+      <tr><td>+ merges, size ≤ 20</td><td class="num"><b>32.1%</b> [30.4,&nbsp;33.9]</td><td class="num"><b>53.3%</b> [51.2,&nbsp;55.4]</td><td class="num">10</td><td class="num">.345 (.331–.356; .040)</td><td class="num">.318</td></tr>
+      <tr><td>+ all merges</td><td class="num">28.1% [26.2,&nbsp;29.8]</td><td class="num">46.8% [44.7,&nbsp;49.1]</td><td class="num">4</td><td class="num">.169 (.154–.175; .015)</td><td class="num">.157</td></tr>
+      <tr><td>Two-encoder, ≤ 5</td><td class="num">31.5% [29.8,&nbsp;33.3]</td><td class="num">51.8% [49.6,&nbsp;54.0]</td><td class="num">11</td><td class="num">.346 (.336–.355; .043)</td><td class="num">.317</td></tr>
+      <tr><td>Two-encoder, all</td><td class="num">29.9% [28.2,&nbsp;31.6]</td><td class="num">49.2% [46.9,&nbsp;51.4]</td><td class="num">5</td><td class="num">.163 (.163–.171; .017)</td><td class="num">.148</td></tr>
+      <tr><td rowspan="7">TF-IDF cosine</td><td>Rules only</td><td class="num">31.2% [29.5,&nbsp;32.9]</td><td class="num">51.7% [49.7,&nbsp;53.8]</td><td class="num">15</td><td class="num">.393 (.391–.407; .053)</td><td class="num">.359</td></tr>
+      <tr><td>+ merges, size 2</td><td class="num">32.7% [31.0,&nbsp;34.3]</td><td class="num">53.5% [51.4,&nbsp;55.5]</td><td class="num">11</td><td class="num">.420 (.387–.420; .045)</td><td class="num">.393</td></tr>
+      <tr><td>+ merges, size ≤ 5</td><td class="num">33.8% [32.2,&nbsp;35.4]</td><td class="num">55.1% [53.0,&nbsp;57.0]</td><td class="num">10</td><td class="num">.412 (.396–.426; .041)</td><td class="num">.387</td></tr>
+      <tr><td>+ merges, size ≤ 20</td><td class="num"><b>34.4%</b> [32.8,&nbsp;36.1]</td><td class="num"><b>56.1%</b> [54.0,&nbsp;58.1]</td><td class="num">8</td><td class="num">.407 (.384–.440; .033)</td><td class="num">.387</td></tr>
+      <tr><td>+ all merges</td><td class="num">33.5% [31.9,&nbsp;35.2]</td><td class="num">54.8% [52.7,&nbsp;56.8]</td><td class="num">7</td><td class="num">.391 (.383–.406; .028)</td><td class="num">.373</td></tr>
+      <tr><td>Two-encoder, ≤ 5</td><td class="num">33.9% [32.3,&nbsp;35.5]</td><td class="num">54.9% [52.9,&nbsp;57.0]</td><td class="num">12</td><td class="num"><b>.428</b> (.406–.428; .047)</td><td class="num">.400</td></tr>
+      <tr><td>Two-encoder, all</td><td class="num">33.5% [31.9,&nbsp;35.2]</td><td class="num">54.7% [52.6,&nbsp;56.8]</td><td class="num">8</td><td class="num">.385 (.378–.404; .033)</td><td class="num">.364</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    <b>NCS: the collapse is a weighting artifact, and the cap is not what governs similarity.</b> Under
+    unweighted Jaccard, accepting every community makes agreement with the classification <em>worse than
+    using no embedding at all</em>: taxonomy recovery collapses to four communities (NMI .17 against .30 for
+    rules) and P@5 falls back to the rule level. The mechanism is mechanical: once an attitude family such as
+    "기준·법규 준수" (1,084 keys, 636 occupations) becomes one node, nearly every pair of occupations shares it
+    and unweighted overlap flattens. Weighting concepts by inverse document frequency removes the collapse
+    entirely — under TF-IDF cosine the all-merges layer scores NMI .391 against .393 for rules and P@5 33.5%
+    against 31.2% — and lifts every policy by about three P@5 points and .09 NMI. With weighting, the seven
+    layers lie within overlapping confidence intervals; capped merging keeps a small edge (size ≤ 20: P@5 34.4%
+    [32.8, 36.1] vs. 33.5% [31.9, 35.2] for all merges) that the intervals do not separate. Two-encoder
+    agreement does not change this picture.
+  </p>
+  <p>
+    <b>Where the gain comes from, and how large it is.</b> Two facts about the key inventory decide what the
+    embedding stage can do downstream. First, 92.3% of the 326,592 normalization keys occur in a single
+    occupation, and a key that occurs in one occupation contributes to the denominator of every Jaccard
+    comparison involving that occupation but never to a numerator. Second, single-occupation keys are merged in proportion to
+    their share of the inventory, not more: at cap ≤ 5, 65,557 keys are merged and 89.8% of them (58,873)
+    are single-occupation keys, slightly <em>below</em> their 92.3% share — consistent with the merge
+    participation of 28.7% for single-occupation keys against 83.6% for widely used ones in §4.3. There is
+    no enrichment to read the effect off; only an ablation can show whether these keys carry it. We therefore re-ran the cap ≤ 5 and ≤ 20 policies with single-occupation keys excluded from
+    merging. The entire downstream gain disappears: under Jaccard, P@5 falls from 31.8% to 28.8% (rules 28.6%)
+    and NMI from .360 to .293 (rules .301); under TF-IDF, P@5 falls from 33.8% to 31.4% (rules 31.2%), and
+    the paired difference between merging and not merging single-occupation keys is +2.42 points
+    [+1.80, +3.05] over the same 1,109 occupations. What embedding alignment does for a downstream consumer
+    of this corpus is therefore specific: it pulls expressions that appear once into concepts that are shared,
+    and it does almost nothing else — keys that are merged at no more than their base rate carry the whole
+    of the downstream effect, which is why the ablation, not the merge counts, is the informative test.
+    The size of that effect, stated plainly, is small on the similarity task and nil on taxonomy recovery.
+    Under TF-IDF the paired gain of cap ≤ 5 over rules alone is +2.63 P@5 points [+1.97, +3.32] and of
+    cap ≤ 20 +3.25 [+2.49, +4.00], both clearly non-zero; NMI moves from .393 to .412, inside the
+    seed-to-seed range of either policy. On NCS, then, the concept layer is worth two to three points of
+    retrieval precision once generic concepts are downweighted, and the evidence that the layer changes a
+    decision rests on ESCO, where the reference is external — which is why Table 9 is placed first.
+  </p>
+  <p>
+    The single-occupation keys that merge go to three places, and the three are not alike. At cap ≤ 5,
+    29,712 of them merge with another key of the <em>same</em> occupation, 21,083 with a single-occupation
+    key of a <em>different</em> occupation — creating a shared concept that did not exist — and 8,078 join a
+    concept some other occupation already holds. Adding each path alone to the no-singleton policy shows
+    that the cross-occupation path carries the gain (+2.04 P@5 points [+1.48, +2.60] under TF-IDF, 84% of
+    the total), joining an existing concept adds a little (+0.49 [+0.02, +0.96]), and merging within an
+    occupation adds nothing (+0.07 [−0.04, +0.20]). Classifying the first-round judged pairs the same way
+    gives the precision of each operation on direct edges — 72.5% [60.2, 82.7] for joining an existing
+    concept (37 items), 61.1% [47.2, 76.1] for a cross-occupation single-key pair (46), and 43.9%
+    [29.5, 60.3] for a pair within one occupation (28) — so the operation that carries the downstream gain is
+    also the one that creates an edge where none existed and does so at the lower precision, while
+    within-occupation merging is both useless downstream and the least precise, plausibly because an author
+    who wrote two similar items for one occupation had already distinguished them. The item counts per
+    path are small and the intervals wide; the ordering, not the point values, is what we rely on.
+  </p>
+  <p>
+    <b>What the cap is for.</b> The community-size cap therefore governs one thing and not another. It governs
+    the precision of merges written into the concept layer: 66% at size ≤ 5 against 55% for all merges
+    (§4.6). That is a claim about the artifact, not about a task — under weighting none of the three tasks
+    we measured separates the caps — so we do not offer the cap as a performance lever but as a quality
+    standard for what a builder ships. We therefore release the two stages as two files. The alias
+    dictionary contains rule-stage groups only, one per normalization key carrying at least two surface
+    forms, and the corresponding rules are 97.8–98.9% precise on ESCO (§4.7). The embedding stage is
+    released separately, built at cap ≤ 5 and labelled as what it is: 27,721 <em>candidate</em> groups
+    covering 65,557 keys (20,788 of size 2; 746 of size 5), each row carrying the group's size, which of the three merge
+    paths it belongs to (5,460 join an existing shared concept, 8,724 join single-occupation keys across
+    occupations, 13,537 lie within one occupation and are flagged as not recommended), its share of
+    member pairs that are direct edges (mean .93), the expected strict and lenient precision that the §4.6
+    strata imply for that share, the number of single-occupation members, and — for the 80 groups in which a
+    member pair was judged — the raters' verdicts. The 66% of Table 5 is thus attached to a file rather than
+    to a sentence, and the risk of an unreviewed merge being consumed as an identity is carried by the
+    label and the per-row metadata rather than by the reader's caution. It does not govern
+    downstream similarity once generic concepts are downweighted, and the task-optimal cap (≤ 20 in both NCS
+    tasks) is not the precision-optimal one (≤ 5). Merge precision is thus not a proxy for downstream utility,
+    which is the third methodological lesson of this paper alongside the chaining artifact of §4.3 and the
+    resolution caution of §5. The recommendation that follows is in four parts: downweight generic concepts
+    in any similarity computed over the layer; never merge two keys of the same occupation, since that
+    path has no downstream value and the lowest precision; accept a merge that joins single-occupation keys
+    <em>across</em> occupations only on a direct edge, at cap ≤ 5 where the layer is published or written
+    unreviewed and ≤ 20 where a reviewer or a weighted consumer follows, because that path carries the gain
+    and creates the edges that are wrong when it errs; and expand at query time by direct edges rather than by community membership.
+    The strongest retrieval result in this paper uses no concept layer at all (Table 9), and it is worth
+    saying plainly what a persisted layer is then for. It is not justified by retrieval performance but by
+    what a query-time neighbour lookup cannot give: a deduplication estimate before a build is costed
+    (§4.2), taxonomy recovery and the categories that fail to cohere (§4.4), the maintainer-facing audit
+    list (§4.1), a stable target for mapping one corpus onto another, and the released dictionary itself.
+  </p>
+  <h3>5. Discussion</h3>
+  <p>
+    The four measurements compose into a single design rule for this corpus type: <em>structure to rules,
+    concepts to models</em>. Syntax is 99.56% regular and its residue is confined to 26 occupations, so rules
+    parse it and a model is needed only at named locations. Concepts are the opposite: rules repair 8.2% of
+    fragmentation because the variation lives in stems, not in affixes, and even a strong multilingual encoder
+    proposes 28.1%, of which human raters confirm 19.2–23.6%; the remainder is concept <em>families</em>, not
+    concepts. The residual fragmentation is not noise to be tuned away; it is the actual work of building a
+    concept layer, and its size — and the precision of the tools that attack it — is now known before that
+    work begins. §4.9 shows what knowing it buys — and what it does not. The cap protects the precision of what is
+    written into the layer; downstream similarity over that layer is governed by downweighting generic
+    concepts, without which unrestricted merging flattens every occupation onto the same attitude families;
+    and a query-time index built on communities rather than direct edges gives away six points of precision
+    for nothing.
+  </p>
+  <p>
+    A second lesson concerns the resolution at which such corpora are described. Every exploratory pattern in
+    this study looked dramatic at the level of 24 major categories and shrank when tested across 1,109
+    occupations: revision recency (ε² = .175 against a pre-registered .30), the digital-recency association
+    (ρ = .077 against .2), and the coincidence of disadvantages (W = .449, n.s.). Aggregate views of national
+    standards — the form in which they are usually discussed — systematically overstate between-industry
+    contrasts because within-industry variance is invisible in them. This is a caution for policy analyses
+    built on category-level summaries as much as for pipeline design.
+  </p>
+  <p>
+    Third, the clustering artifact reported in §4.3 has a general moral for pipelines that align terminology by
+    embedding similarity. Single-linkage merging is the default in many practical systems because it is cheap
+    and order-independent; here it silently produced a component containing a third of the corpus while the
+    headline recovery statistic barely moved. Aggregate recovery is therefore not a sufficient quality signal
+    for an alignment stage, and cluster-size distribution should be reported alongside it.
+  </p>
+  <p>
+    The ESCO replication (§4.7) settles which of these lessons are about NCS and which are about competency
+    standards. The division of labour and the alignment cautions transfer with the same shape in a second
+    language and a second framework, and with an exact rather than sampled reference: rules top out near 9%,
+    precision breaks at .90, transitive merges are right only 30–40% of the time, and single-linkage at .85
+    swallows a third of the corpus. The template finding does
+    not transfer, and the absolute recovery figures do not either — ESCO's registered synonymy is five times
+    denser and its merges are twice as precise. A pipeline designer can therefore carry the <em>rules</em>
+    of this paper to another framework, but must re-measure the <em>levels</em>; the released code makes
+    that measurement a matter of hours.
+  </p>
+  <p>
+    Finally, the results bound what a downstream construction pipeline must do. Candidate concepts number in
+    the hundreds of thousands even after normalization; deduplication is worth 5–10× and its size is
+    industry-predictable; alignment at a safe threshold is automatable, while the larger recovery band produces
+    families whose merger is a judgment rather than a computation. Human judgment of that question is itself
+    only moderately reliable — α = .41 for the five-way distinction and .50 for the merge decision among four
+    domain experts, with pairwise values ranging from .34 to .57 — so the adjudication stage must be designed
+    for disagreement: majority voting over
+    several judges and an explicit abstention category rather than single verdicts. That judgment — not the
+    extraction — is where human or model adjudication belongs.
+  </p>
+  <p>
+    <b>What the measurements say about the input itself.</b> Read strictly from the construction side, three
+    of the results also describe where the corpus's properties come from, and a pipeline designer should know
+    this because it predicts how the numbers will move across releases and across sectors. First, redundancy
+    and the attitude vocabulary are authored, not accidental: KSA duplication is an industry-level property
+    that survives size control (§4.2), and compliance sentences are a small set replicated across occupations
+    while volition sentences are written afresh (§4.5). NCS is drafted sector by sector, and the corpus carries
+    the fingerprints of separate authoring practices; a pipeline should therefore expect its deduplication
+    factor and its alignment load to vary by sector, not by corpus size. Second, the large embedding
+    communities are not chains of unrelated concepts, as they are on ESCO, but families of sentences that
+    express one generic disposition in occupation-specific wording (§4.6, §4.7): the standard produces
+    <em>apparent</em> specificity at the attitude layer. For construction this means that attitude items
+    should be aligned to a small shared inventory rather than treated as occupation-specific concepts. Third,
+    the contrast with ESCO is a contrast of design, not only of language: ESCO is a curated, label-centred
+    concept graph, NCS an authored, sentence-centred hierarchy, and that difference — not the encoder and not
+    the threshold — explains why rule normalization, transitive precision, and the size gradient behave as they
+    do in each. Finally, the by-products of the analysis (the alias dictionary, the 26 template-deviant
+    occupations, the typographical variants the alignment surfaced, the revision-year dispersion) constitute a
+    quality-audit list for whoever maintains the standard; we release it as an artifact and draw no evaluative
+    conclusion from it here.
+  </p>
+
+  <h3>6. Threats to Validity</h3>
+  <p>
+    <b>Construct.</b> "Same concept" was judged as mergeability into one node under the stated
+    instruction, with the category context described in §4.6; a different purpose (job matching, curriculum
+    mapping) could draw the line elsewhere, and the amount of hierarchy shown to judges was fixed rather than
+    varied. The code-year field records when a unit was last developed or revised, not the magnitude of
+    the revision; "freshness" therefore means recency of attention, not extent of change. The digital lexicon
+    is keyword-based; a lexicon with the ambiguous terms (프로그램, 전산) removed gives the same conclusions
+    (Appendix A). The attitude codebook is rule-coded, and we report a failure of it: its categories overlap by construction
+    (43.7% of sentences match more than one), and although the ranking is invariant to the priority order that
+    resolves the overlap, it is <em>not</em> invariant to the keyword lists — 46.6% of the volition category's
+    mass rests on three generic nominalizers, and removing them levels the top two categories (Appendix A).
+    We therefore treat the S2 distribution as a description of the pre-registered instrument rather than of
+    the corpus, and rest no claim on which category leads. Because no conclusion in this paper depends on that
+    instrument, we did not run a double-coded validity check of the keyword lists: an inter-coder κ would
+    add evidence about a tool whose output we deliberately do not use.
+    <b>Internal.</b> Normalization-key rules are a design choice; the code is released and suffix-list
+    sensitivity is reported (§4.3: 3.5–9.0% across five lists, saturating near 9%); rule-merge precision is
+    measured only on ESCO (97.8–98.9%), not on NCS. Taxonomy-recovery statistics depend on Louvain's
+    resolution; §4.4 reports the grid, and the chance-corrected range (AMI .30–.51) rather than the single
+    pre-registered cell is the defensible summary. Embedding results are
+    reported for one encoder, but §4.8 shows that a second encoder of a different lineage reproduces every
+    aggregate at matched pair counts; the encoder's tendency to score formulaic attitude sentences as similar
+    is quantified in §4.3, tested manually in §4.6, and unchanged under the second encoder (38.7% vs. 38.2%).
+    Matching by pair count equalizes recall, not the pairs themselves — the two encoders share only half
+    the NCS pairs they select — so per-pair conclusions remain encoder-specific. Manual validation rests on fourteen
+    non-author raters over three rounds with an expert reliability ceiling of α = .41 (five-way) / .50 (merge
+    decision) over four experts — a figure we could only obtain by adding the third round, and one that is
+    lower than the .57 / .68 the first expert pair alone produced; the second round, which supplies the precision for communities above 20 keys (60 items,
+    three judgments each), used four raters without domain experience whose mutual agreement is low
+    (α = .17 / .26), so that stratum's estimate is a pooled rate with a ±9-point interval rather than a
+    consensus label; raters did not use the free-text memo field, so disagreements are quantified but not
+    explained. One of the 50 anchor items also appears as a worked example in the rater instructions, which
+    could prime it; dropping it moves the expert α from .569 to .554 (five-way) and from .683 to .677 (merge
+    decision), and the eight-rater α by at most .010, so the effect is negligible and we keep the item for
+    comparability across rounds. Items were shuffled once and then shown in the same fixed order to every
+    rater, so any fatigue or position effect is common to all raters and cannot be separated from item
+    difficulty; median time per judgment fell from 12.0 s in the first quarter of a session to 8.0 s in the
+    last.
+    <b>Inferential.</b> Six of nine hypotheses were formed after seeing major-category aggregates (PEEK) and are
+    labelled as such; confirmatory tests use a resolution exploration did not observe, split-half replication,
+    and FDR, but this is weaker than a fully blind pre-registration.
+    <b>External.</b> The primary corpus is one framework, one language, one release. The ESCO replication
+    (§4.7) extends the fragmentation and taxonomy findings to a second language and framework, but it is a
+    replication of RQ3 and RQ4 only: ESCO has no performance-criteria layer, so RQ1 is tested by a weaker
+    analogue (label-initial part of speech under a general-domain tagger, whose errors on imperative-form
+    labels are unmeasured), and RQ2 and RQ5 have no counterpart. ESCO's ground truth is also a different
+    construct from the NCS raters' judgment — registered alternative labels of one URI rather than a
+    five-way human verdict — which is the likeliest reason its precision runs 13–25 points above the strict
+    NCS estimates. O*NET remains untested.
+  </p>
+
+  <h3>7. Conclusion</h3>
+  <p>
+    Measuring a national competency standard before building on it changes what one builds. In Korea's NCS,
+    the syntactic residue that rules cannot parse is small and enumerable (859 criteria, half in 26
+    occupations), while concept identity is not a rule-tractable problem: rules repair 8.2% of terminological fragmentation and
+    embedding alignment proposes 28.1%, of which 19.2–23.6% survives human validation; the remainder are
+    concept families whose merger requires adjudication, and the .90 threshold is confirmed as the precision knee.
+    Occupational structure is partially latent in shared vocabulary alone (NMI = .329 vs. .041 null), and
+    industry differences in level, revision recency, and digital language are real but considerably smaller at
+    occupation resolution than category-level summaries suggest. On ESCO, with an exact reference, the rule
+    ceiling, the .90 knee, the ~30% transitive precision, the chaining failure, and partial taxonomy recovery
+    reproduce; the syntactic template does not. Concept identity is contested in a specific way rather than
+    generally: across four educational-technology PhDs judging the same 50 pairs, the share called the same
+    concept spans 28.0–48.0% while the share called related at all spans only 62.0–66.0%, so what separates
+    expert from expert is a single boundary and not a reading of the corpus — a property of the instrument
+    that anyone designing human adjudication for an alignment pipeline inherits. The measured policies
+    change outcomes: generic-concept downweighting governs downstream similarity, query-time expansion
+    should use direct edges rather than communities, and the merge cap governs not those tasks but the
+    precision of what is written into a published concept layer. We release the metrics, the alias dictionary, the embedding-stage candidate file,
+    the ESCO replication, the downstream tasks, and the code.
+  </p>
+
+
+  <h3>Appendix A. Level, revision recency, and digital vocabulary (RQ5) — full report</h3>
+  <p class="kw">Pre-registered hypotheses H5, H6, S4 and descriptive S1, S2; summarised in §4.5. Reported in full for completeness of the pre-registration record.</p>
+  <p>
+    Competency levels differ sharply by industry (ε² = .242): the share of units at L5 or above ranges from
+    71.6% (Finance & Insurance), 67.2% (Education, Natural & Social Sciences), 65.4% (Information & Communication Technology) down to 10.8% (Food Processing), 8.6%
+    (Food Service (음식서비스)), 7.3% (Security & Cleaning).
+  </p>
+
+  <p>
+    Revision recency is uneven but less so than pre-registered: mean code year ranges from 2021.7
+    (Management, Accounting & Office Work (경영·회계·사무)) to 2015.3 (Finance & Insurance), Gini = .314, with a clear but moderate between-industry effect
+    (ε² = .175, below the pre-registered .30). Digital vocabulary varies by an order of magnitude across
+    industries (10.9% Information & Communication Technology to 0.24% Security & Cleaning; ε² = .208 for the distribution), but the pre-registered
+    within-industry association between recency and digital vocabulary is negligible (ρ = .077, p = .010) and
+    did not replicate across halves; lexicon B gives the same conclusion (ρ = .078, p = .009). The amount of
+    digital language a standard contains is thus a property of the industry, not of when the standard was last
+    revised; the three industries that combine high digital vocabulary with old code years are Information & Communication Technology,
+    Finance & Insurance, and Culture, Arts, Design & Broadcasting.
+  </p>
+  <p>
+    The attitude lexicon did <em>not</em> behave as pre-registered. By item mass the leading category is
+    volition/effort (38.5%), with compliance/safety second (20.4%), then cognition (13.6%), quality (9.9%),
+    interpersonal (6.7%), and ethics (6.0%); between-industry differences are significant but small
+    (V = .125). That ranking is registered as computed, but it does not survive inspection of what drives it.
+    Decomposing the volition category by the keyword that placed each sentence there, 46.6% of its mass comes
+    from sentences matched only on 자세 ('stance'), 마음 ('mind') or 태도 ('attitude') — the conventional
+    nominalizers with which attitude statements are written in this corpus, not expressions of volition.
+    Setting those three aside leaves volition at 20.6% against compliance at 20.4%: the two are level, and the
+    honest reading is that the pre-registered expectation fails because <em>no</em> category dominates, not
+    because volition displaces compliance. The exploratory impression that compliance dominates came from a different weighting — by
+    <em>occupational breadth</em>, where 안전사항 준수 (172 occupations) and 안전수칙 준수 (134) lead. The two
+    weightings answer different questions, and the difference can be seen without any categorisation at all.
+    Among the 82,700 distinct attitude sentences (95,237 occupation–sentence items), sentences containing
+    준수 ('compliance') number 10,502 and carry 13,481 items — 1.28 items per sentence, with the five
+    commonest accounting for 4.0% of them. Sentences containing 노력 ('effort') number 12,079 and carry
+    13,131 items — 1.09 per sentence, top five 0.9%. 안전 ('safety') sits at 1.34 per sentence and 6.9%.
+    Compliance vocabulary is thus carried by fewer, more widely replicated sentences and volition vocabulary
+    by more, rarely repeated ones, which is what the two weightings pick up; the effect is real but modest,
+    and much smaller than the 38.5%-versus-20.4% category split suggested. The codebook assigns each sentence
+    to the first matching category, so its priority order is a design choice that matters: 43.7% of the
+    95,237 attitude sentences match more than one category. The reported ranking does not depend on that
+    choice, and the pre-registered order is in fact the one least favourable to it — compliance is first in
+    the list and volition last, yet volition leads 38.5% to 20.4%. Reversing the order gives 79.4% to 6.4%,
+    counting only sentences that match exactly one category gives 75.0% to 12.5% (n = 48,949), and volition
+    is the leading category in all 200 random orderings of the six. The priority order is therefore not what
+    produces the ranking; the keyword list is. Finally, the pre-registered
+    coincidence of low level, stale revision, and low digital vocabulary was not supported
+    (Kendall's W = .449, p = .123 — the only hypothesis not surviving FDR), although the same five industries
+    occupy the bottom of the composite index (Security & Cleaning, Food Processing, Textiles & Apparel, Agriculture, Forestry & Fisheries (농림어업), Driving & Transport (운전·운송)).
+  </p>
+  <p>
+    <b>Lexicon robustness.</b> Lexicon B is a superset of lexicon A, so their agreement is not a test. A third
+    lexicon, C, removes from A the two ambiguous terms (프로그램, which also denotes an educational programme,
+    and 전산): the between-industry effect is if anything larger (ε² = .256 vs. .208), the within-industry
+    association with recency remains negligible (ρ = .098, p = .001), and per-occupation shares under A and C
+    correlate at ρ = .83. The conclusion does not depend on the ambiguous terms.
+  </p>
+
+<!--FIG:F1-->
+  <figure style="padding:10px 12px;overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="100%" role="img" aria-label="Figure 1. Revision year, level and digital vocabulary by major category" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<rect x="0" y="0" width="920" height="560" fill="#FFFFFF"/>
+<line x1="117.64705882352942" y1="40" x2="117.64705882352942" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="117.64705882352942" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2015</text>
+<line x1="212.94117647058823" y1="40" x2="212.94117647058823" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="212.94117647058823" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2016</text>
+<line x1="308.2352941176471" y1="40" x2="308.2352941176471" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="308.2352941176471" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2017</text>
+<line x1="403.52941176470586" y1="40" x2="403.52941176470586" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="403.52941176470586" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2018</text>
+<line x1="498.8235294117647" y1="40" x2="498.8235294117647" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="498.8235294117647" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2019</text>
+<line x1="594.1176470588235" y1="40" x2="594.1176470588235" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="594.1176470588235" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2020</text>
+<line x1="689.4117647058823" y1="40" x2="689.4117647058823" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="689.4117647058823" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2021</text>
+<line x1="784.7058823529411" y1="40" x2="784.7058823529411" y2="500" stroke="#DEE4DF" stroke-width="1"/>
+<text x="784.7058823529411" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2022</text>
+<line x1="70" y1="500.0" x2="880" y2="500.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="504.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">0%</text>
+<line x1="70" y1="385.0" x2="880" y2="385.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="389.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">20%</text>
+<line x1="70" y1="270.0" x2="880" y2="270.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="274.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">40%</text>
+<line x1="70" y1="155.00000000000006" x2="880" y2="155.00000000000006" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="159.00000000000006" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">60%</text>
+<line x1="70" y1="40.0" x2="880" y2="40.0" stroke="#DEE4DF" stroke-width="1"/>
+<text x="62" y="44.0" font-size="11" fill="#5C6B6E" text-anchor="end" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">80%</text>
+<text x="475.0" y="542" font-size="12" fill="#5C6B6E" text-anchor="middle" font-weight="normal">Mean development/revision year (unit-code suffix, weighted by units)</text>
+<text x="18" y="270.0" font-size="12" fill="#5C6B6E" text-anchor="middle" font-weight="normal" transform="rotate(-90 18 270.0)">Share of competency units at L5 or above</text>
+<circle cx="523.6" cy="310.0" r="17.8" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="509.3" cy="285.0" r="20.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="503.0" cy="253.3" r="17.4" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="680.4" cy="133.6" r="28.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="301.2" cy="210.7" r="21.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="425.1" cy="357.9" r="13.2" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="515.1" cy="207.8" r="17.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="565.3" cy="190.5" r="17.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="637.4" cy="429.3" r="12.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="477.7" cy="356.9" r="19.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="256.6" cy="276.5" r="16.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="151.2" cy="90.3" r="20.6" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="437.3" cy="441.0" r="17.8" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="351.6" cy="337.4" r="15.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="537.8" cy="432.8" r="11.4" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="750.6" cy="246.5" r="19.3" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="706.3" cy="170.0" r="19.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="312.3" cy="191.9" r="18.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="388.6" cy="235.0" r="18.0" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="719.6" cy="444.5" r="9.3" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="618.3" cy="203.1" r="18.5" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="417.0" cy="138.7" r="19.9" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="238.9" cy="447.7" r="9.3" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<circle cx="198.0" cy="173.0" r="16.2" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352" stroke-width="1"/>
+<text x="254.23010770811877" y="451.72727272727275" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Security &amp; Cleaning</text>
+<text x="704.3137394201885" y="448.48275862068965" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Service</text>
+<text x="461.17125017783343" y="444.9824046920821" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Printing, Wood &amp; Crafts</text>
+<text x="520.4125333364073" y="436.7922077922078" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Food Processing</text>
+<text x="618.7106258505936" y="472.3103448275862" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Materials</text>
+<text x="444.32184984513447" y="361.9065300896287" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Agri., Forestry &amp; Fisheries</text>
+<text x="452.65609915951694" y="360.9377990430622" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Beauty, Lodging, Travel &amp; Sports</text>
+<text x="372.6748874241237" y="341.42559523809524" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Textiles &amp; Apparel</text>
+<text x="499.80594658804677" y="313.9635479951397" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Machinery</text>
+<text x="482.84803619198556" y="288.990125082291" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Electricity &amp; Electronics</text>
+<text x="278.60753339926345" y="280.5470297029703" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Driving &amp; Transport</text>
+<text x="479.599176414405" y="257.2965194109772" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Construction</text>
+<text x="725.2655545515754" y="250.50537634408605" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Mgmt., Accounting &amp; Office</text>
+<text x="412.59235002874243" y="239.04901960784315" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Law, Police, Fire &amp; Defense</text>
+<text x="328.9163910957228" y="214.68268015170673" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Culture, Arts &amp; Media</text>
+<text x="491.3088017333547" y="211.79972752043597" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Chemistry &amp; Bio</text>
+<text x="593.8166190937986" y="233.07377049180332" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Health &amp; Medical</text>
+<text x="337.0767028282737" y="195.86602870813402" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Sales</text>
+<text x="541.8586129331698" y="194.5054644808743" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Environment, Energy &amp; Safety</text>
+<text x="220.16668529244546" y="177.03921568627453" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Business Management</text>
+<text x="680.7816580447364" y="174.04219409282706" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Social Welfare &amp; Religion</text>
+<text x="442.87259841943404" y="142.71681415929208" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Education, Nat. &amp; Soc. Sci.</text>
+<text x="646.3687025049211" y="137.63237639553432" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">ICT</text>
+<text x="177.78494118700576" y="94.34974093264253" font-size="11" fill="#1F2A2E" text-anchor="start" font-weight="normal">Finance &amp; Insurance</text>
+<text x="680" y="50" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">Bubble size = share of KSA items with digital vocabulary</text>
+<circle cx="692" cy="76" r="10.7" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352"/>
+<text x="692" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">0.5%</text>
+<circle cx="750" cy="76" r="17.6" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352"/>
+<text x="750" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3%</text>
+<circle cx="808" cy="76" r="27.1" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352"/>
+<text x="808" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">10%</text>
+<text x="70" y="22" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 1. 24 major categories: revision year × level × digital vocabulary (census, 2026-02 release)</text>
+</svg>
+    <figcaption>Figure 1. Revision recency, competency level, and digital vocabulary by major category (24 categories; bubble area ∝ share of KSA items matching lexicon A). Census data, 2026-02 release.</figcaption>
+  </figure>
+<!--/FIG:F1-->
+
+  <h4>Acknowledgements</h4>
+  <p class="kw">
+    We thank the fourteen colleagues, students and outside specialists who contributed the 960 concept-merge
+    judgments analysed in §4.6 across three rounds, without compensation and without access to the similarity
+    scores their judgments were used to evaluate. They are not named: the paper reports agreement statistics
+    for groups as small as two, so naming would attach a measured reliability figure to identifiable
+    individuals, and the released judgment data therefore carry rater codes only.
+  </p>
+
+  <h4>Statements</h4>
+  <p class="kw">
+    <b>Data availability.</b> Per-occupation metrics, the alias dictionary (rule-stage groups), the embedding-stage candidate file (<code>t0_embedding_candidates_le5.csv</code> with a metadata sidecar; every row is labelled <code>candidate</code> or <code>human_validated</code> and no row asserts identity), the maintainer-facing audit
+    list, and all analysis code are released at <a href="https://github.com/JinsuChung/ncs-computational-anatomy">https://github.com/JinsuChung/ncs-computational-anatomy</a> (public; a release is tagged for the submitted version).
+    The source standard is a public work of the Human Resources Development Service of Korea distributed
+    under the Korea Open Government Licence Type 1 (attribution), which permits redistribution and derivative
+    works with attribution; the derived tables are released under the same terms and carry the required
+    attribution. (NCS learning modules, distributed under Type 2 with a non-commercial condition, are not
+    used in this study.)
+    The ESCO replication uses the official ESCO v1.2.1 English CSV distribution [20]; the replication code
+    and aggregate results are released, and the ESCO files themselves are obtained from the European
+    Commission. This publication uses the ESCO classification of the European Commission.
+    <b>Funding.</b> This research did not receive any specific grant from funding agencies in the public,
+    commercial, or not-for-profit sectors. <b>Declaration of competing interest.</b> None.
+    <b>CRediT authorship contribution statement.</b> <i>Jinsu Chung:</i> Conceptualization, Methodology,
+    Software, Formal analysis, Data curation, Validation, Visualization, Writing – original draft.
+    <i>Hanchul Ryu:</i> Conceptualization, Supervision, Writing – review &amp; editing.
+    <b>Ethics.</b> The fourteen external raters acted as annotators of published text, not as research
+    subjects: each task was to judge whether two publicly released NCS phrases denote the same concept. No
+    personal data were collected; the database stores a rater code, the verdict, the elapsed time, and a
+    self-declared level of domain exposure, and the code-to-name table was never committed to the
+    repository. Participation was voluntary and uncompensated, and raters could stop at any point. Group
+    labels (domain expert, staff, student) are reported only as instrument-robustness information and are
+    not analysed as attributes of the individuals.
+    [Institutional review status: the authors' institution has been asked to confirm that this annotation task is exempt; the confirmation is pending at the time of writing.].
+    <b>Generative AI.</b> During the preparation of this work the author used a large language model
+    assistant (Anthropic Claude) to draft and review analysis code, to run and cross-check the statistical
+    procedures reported in §4, and to edit the manuscript text. All hypotheses, the pre-registration, the
+    choice of measures, and every reported conclusion are the authors'; the authors verified all outputs
+    against the released code and data and take full responsibility for the content of the publication.
+  </p>
+
+  <h4>References</h4>
+  <ol class="refs">
+    <li>Peterson, N. G., Mumford, M. D., Borman, W. C., Jeanneret, P. R., Fleishman, E. A., Levin, K. Y., Campion, M. A., Mayfield, M. S., Morgeson, F. P., Pearlman, K., Gowing, M. K., Lancaster, A. R., Silver, M. B., &amp; Dye, D. M. (2001). Understanding work using the Occupational Information Network (O*NET): Implications for practice and research. <i>Personnel Psychology</i>, 54(2), 451–492. https://doi.org/10.1111/j.1744-6570.2001.tb00100.x</li>
+    <li>European Commission. (2019). <i>ESCO handbook: European Skills, Competences, Qualifications and Occupations</i> (2nd ed.). Publications Office of the European Union. ISBN 978-92-79-72148-9. https://doi.org/10.2767/934956</li>
+    <li>Gebru, T., Morgenstern, J., Vecchione, B., Vaughan, J. W., Wallach, H., Daumé III, H., &amp; Crawford, K. (2021). Datasheets for datasets. <i>Communications of the ACM</i>, 64(12), 86–92. https://doi.org/10.1145/3458723</li>
+    <li>Bender, E. M., &amp; Friedman, B. (2018). Data statements for natural language processing: Toward mitigating system bias and enabling better science. <i>Transactions of the Association for Computational Linguistics</i>, 6, 587–604. https://doi.org/10.1162/tacl_a_00041</li>
+    <li>Frantzi, K., Ananiadou, S., &amp; Mima, H. (2000). Automatic recognition of multi-word terms: The C-value/NC-value method. <i>International Journal on Digital Libraries</i>, 3(2), 115–130. https://doi.org/10.1007/s007999900023</li>
+    <li>Christen, P. (2012). <i>Data matching: Concepts and techniques for record linkage, entity resolution, and duplicate detection</i>. Springer. https://doi.org/10.1007/978-3-642-31164-2</li>
+    <li>Papadakis, G., Skoutas, D., Thanos, E., &amp; Palpanas, T. (2020). Blocking and filtering techniques for entity resolution: A survey. <i>ACM Computing Surveys</i>, 53(2), Article 31. https://doi.org/10.1145/3377455</li>
+    <li>Cimiano, P., &amp; Völker, J. (2005). Text2Onto: A framework for ontology learning and data-driven change discovery. In <i>Natural Language Processing and Information Systems (NLDB 2005)</i>, LNCS 3513, 227–238. Springer. https://doi.org/10.1007/11428817_21</li>
+    <li>Wong, W., Liu, W., &amp; Bennamoun, M. (2012). Ontology learning from text: A look back and into the future. <i>ACM Computing Surveys</i>, 44(4), Article 20. https://doi.org/10.1145/2333112.2333115</li>
+    <li>Babaei Giglou, H., D'Souza, J., &amp; Auer, S. (2023). LLMs4OL: Large language models for ontology learning. In <i>The Semantic Web – ISWC 2023</i>, LNCS 14265, 408–427. Springer. https://doi.org/10.1007/978-3-031-47240-4_22</li>
+    <li>Pan, S., Luo, L., Wang, Y., Chen, C., Wang, J., &amp; Wu, X. (2024). Unifying large language models and knowledge graphs: A roadmap. <i>IEEE Transactions on Knowledge and Data Engineering</i>, 36(7), 3580–3599. https://doi.org/10.1109/TKDE.2024.3352100</li>
+    <li>Krippendorff, K. (2019). <i>Content analysis: An introduction to its methodology</i> (4th ed.). Sage. See also Krippendorff, K. (2011). Computing Krippendorff's alpha-reliability. University of Pennsylvania, Annenberg School for Communication. https://doi.org/10.4135/9781071878781</li>
+    <li>Blondel, V. D., Guillaume, J.-L., Lambiotte, R., &amp; Lefebvre, E. (2008). Fast unfolding of communities in large networks. <i>Journal of Statistical Mechanics: Theory and Experiment</i>, 2008(10), P10008. https://doi.org/10.1088/1742-5468/2008/10/P10008</li>
+    <li>Vinh, N. X., Epps, J., &amp; Bailey, J. (2010). Information theoretic measures for clusterings comparison: Variants, properties, normalization and correction for chance. <i>Journal of Machine Learning Research</i>, 11, 2837–2854. https://jmlr.org/papers/v11/vinh10a.html</li>
+    <li>Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. <i>Journal of the Royal Statistical Society: Series B</i>, 57(1), 289–300. https://doi.org/10.1111/j.2517-6161.1995.tb02031.x</li>
+    <li>Chen, J., Xiao, S., Zhang, P., Luo, K., Lian, D., &amp; Liu, Z. (2024). M3-Embedding: Multi-linguality, multi-functionality, multi-granularity text embeddings through self-knowledge distillation. In <i>Findings of the Association for Computational Linguistics: ACL 2024</i> (pp. 2318–2335). Association for Computational Linguistics. https://doi.org/10.18653/v1/2024.findings-acl.137</li>
+    <li>Tomczak, M., &amp; Tomczak, E. (2014). The need to report effect size estimates revisited: An overview of some recommended measures of effect size. <i>Trends in Sport Sciences</i>, 21(1), 19–25. (no DOI; ISSN 2299-9590) https://tss.awf.poznan.pl/The-need-to-report-effect-size-estimates-revisited-An-overview-of-some-recommended,188960,0,2.html</li>
+    <li>Gelman, A., &amp; Loken, E. (2014). The statistical crisis in science. <i>American Scientist</i>, 102(6), 460–465. https://doi.org/10.1511/2014.111.460</li>
+    <li>Nosek, B. A., Ebersole, C. R., DeHaven, A. C., &amp; Mellor, D. T. (2018). The preregistration revolution. <i>Proceedings of the National Academy of Sciences</i>, 115(11), 2600–2606. https://doi.org/10.1073/pnas.1708274114</li>
+    <li>European Commission. (2024). <i>ESCO — European Skills, Competences, Qualifications and Occupations</i>, version 1.2.1 [classification dataset, English CSV]. Directorate-General for Employment, Social Affairs and Inclusion. Accessed 10 September 2026. https://esco.ec.europa.eu</li>
+    <li>Honnibal, M., Montani, I., Van Landeghem, S., &amp; Boyd, A. (2020). spaCy: Industrial-strength natural language processing in Python. Zenodo. https://doi.org/10.5281/zenodo.1212303 (spaCy 3.8.11; model <code>en_core_web_sm</code> 3.8.0)</li>
+    <li>Wang, L., Yang, N., Huang, X., Yang, L., Majumder, R., &amp; Wei, F. (2024). Multilingual E5 text embeddings: A technical report. arXiv:2402.05672 [cs.CL]. https://doi.org/10.48550/arXiv.2402.05672</li>
+    <li>어수봉, 이승, 전승환 (2020). 국가직무능력표준(NCS) 및 국가역량체계(KQF)의 과거, 현재 및 미래 [The past, present and future of the National Competency Standards and the Korean Qualification Framework]. <i>직업과 자격 연구 [Journal of Skills and Qualifications]</i>, 9(2), 129–149. https://doi.org/10.35125/jsq.2020.9.2.129</li>
+    <li>진영근, 이원구 (2017). NCS "응용SW엔지니어링" 직무의 지식 관리 및 검색추론 지원을 위한 온톨로지 설계 연구 [A study on ontology design for the NCS "Application SW Engineering" job supporting knowledge management and search reasoning]. <i>한국융합학회논문지 [Journal of the Korea Convergence Society]</i>, 8(9), 17–23. https://doi.org/10.15207/JKCS.2017.8.9.017</li>
+    <li>유경옥, 최지원 (2019). 네트워크 텍스트 분석을 활용한 NCS 기업활용 컨설팅 우수사례 성과 분석 [An analytical review of performance for best practices in NCS (National Competency Standards) consulting by network text analysis]. <i>직업능력개발연구 [Journal of Vocational Education &amp; Training]</i>, 22(2), 129–154. https://doi.org/10.36907/krivet.2019.22.2.129</li>
+    <li>Kim, K., Kim, D., &amp; Ryu, K. (2026). 텍스트 임베딩 및 대규모 언어모델 기반 채용공고–NCS 직무 자동 매핑 방법의 성능 비교 연구 [A comparative study of text embedding and large language model-based methods for automatic mapping between job postings and NCS job categories]. <i>The Journal of Korean Institute of Information Technology</i>, 24(8), 217–230. https://doi.org/10.14801/jkiit.2026.24.8.217</li>
+    <li>Sim, J., &amp; Chung, Y. (2026). Skill extraction and task classification from Korean IT job postings: An LLM-based framework with domain-adaptive pre-training. <i>Expert Systems with Applications</i>, <i>332</i>, 133402. https://doi.org/10.1016/j.eswa.2026.133402 (advance online publication 24 June 2026; issue dated January 2027)</li>
+  </ol>
+</article>
+
+<!-- ═════ 레지스트리 ═════ -->
+<div class="footnote">
+  <p>· 본문 수치는 전부 <b>원천 실측</b>(LLM 미개입)이며 §4.3의 임베딩 단계만 모델 보조다. 노란 표시는 데이터가 아니라 <b>설계 결정·서지·그림</b>이다.</p>
+  <p>· 초안 작성 2026-09-09. 국문본은 실측 치환이 끝난 뒤 T1·T3와 같은 방식으로 별도 작성한다.</p>
+</div>
+</div>

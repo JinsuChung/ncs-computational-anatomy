@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the manuscript and this repository."
+title: "The Computational Anatomy of a National Competency Standard: code and results"
+authors:
+  - family-names: Chung
+    given-names: Jinsu
+    affiliation: "Dept. of AI Convergence, Sahmyook University"
+  - family-names: Ryu
+    given-names: Hanchul
+    affiliation: "Dept. of AI Convergence, Sahmyook University"
+version: "1.3"
+date-released: "2026-09-15"
+repository-code: "https://github.com/JinsuChung/ncs-computational-anatomy"
+license: MIT
+preferred-citation:
+  type: article
+  title: "The Computational Anatomy of a National Competency Standard: Regularity, Redundancy, and Terminological Fragmentation in Korea's NCS"
+  authors:
+    - family-names: Chung
+      given-names: Jinsu
+    - family-names: Ryu
+      given-names: Hanchul
+  year: 2026
+  notes: "Manuscript v1.3, prepared for Information Processing & Management."

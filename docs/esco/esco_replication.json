@@ -1,0 +1,308 @@
+{
+  "meta": {
+    "run_at": "2026-09-10T17:17:15+09:00",
+    "seed": 20260909,
+    "n_skills": 13960,
+    "n_occupations": 3039,
+    "device": "mps",
+    "ground_truth": "같은 개념 = 같은 ESCO 스킬 URI 아래 등록된 영문 preferredLabel/altLabels"
+  },
+  "EH1_template": {
+    "skill/competence": {
+      "n": 10734,
+      "template": "VERB-initial",
+      "rate": 0.7990497484628284
+    },
+    "knowledge": {
+      "n": 3221,
+      "template": "NOUN-initial",
+      "rate": 0.9230052778640174
+    }
+  },
+  "EH2_reuse": {
+    "n_skills": 13960,
+    "n_essential_links": 67600,
+    "strata": {
+      "jobs 3-9": 3629,
+      "jobs=1": 4247,
+      "jobs>=10": 1388,
+      "jobs=2": 2130,
+      "jobs=0": 2566
+    },
+    "mean_occupations_per_skill": 4.850787965616046,
+    "share_used_by_ge10": 0.0994269340974212
+  },
+  "EH3_rules": {
+    "n_surface_forms": 99676,
+    "n_concepts": 13939,
+    "ambiguous_surfaces": 683,
+    "R0_lower_punct": {
+      "n_keys": 98759,
+      "surface_reduction": 0.009199807375897909,
+      "merged_pairs": 963,
+      "pair_precision": 0.9781931464174455
+    },
+    "R1_plus_inflection": {
+      "n_keys": 90442,
+      "surface_reduction": 0.09264015409928167,
+      "merged_pairs": 10477,
+      "pair_precision": 0.9892144697909707
+    }
+  },
+  "EH3_embedding": {
+    "n_surface_forms": 99676,
+    "n_pairs_ge_min": 265350,
+    "n_true_same_concept_pairs": 377539,
+    "direct_precision_by_band": {
+      "0.85-0.90": {
+        "n_pairs": 123681,
+        "precision": 0.5696913834784647
+      },
+      "0.90-0.95": {
+        "n_pairs": 82966,
+        "precision": 0.8858448038955716
+      },
+      "0.95-1.01": {
+        "n_pairs": 58703,
+        "precision": 0.9868831235200927
+      }
+    },
+    "cumulative_precision": {
+      "0.85": {
+        "n_pairs": 265350,
+        "precision": 0.7608366308648954,
+        "recall_of_true_pairs": 0.5347474035794978
+      },
+      "0.9": {
+        "n_pairs": 141669,
+        "precision": 0.9277117788648187,
+        "recall_of_true_pairs": 0.34811767790877235
+      },
+      "0.95": {
+        "n_pairs": 58703,
+        "precision": 0.9868831235200927,
+        "recall_of_true_pairs": 0.15344904764805756
+      }
+    },
+    "clusters": {
+      "louvain@0.85": {
+        "n_clusters": 18495,
+        "largest": 1453,
+        "largest_share": 0.01457723022593202,
+        "candidate_recovery": 0.8144488141578715,
+        "verified_recovery": 0.7237349010794976,
+        "merge_precision": 0.8886192582008106,
+        "transitive_pairs": 6887952,
+        "transitive_precision": 0.009888715833095236,
+        "transitive_precision_by_size": {
+          "100+": {
+            "n_pairs": 6655594,
+            "precision": 0.004950121657060211
+          },
+          "21-100": {
+            "n_pairs": 179172,
+            "precision": 0.052245886634072286
+          },
+          "3-5": {
+            "n_pairs": 3117,
+            "precision": 0.8530638434392044
+          },
+          "6-20": {
+            "n_pairs": 50069,
+            "precision": 0.462302023207973
+          }
+        }
+      },
+      "single_linkage@0.85": {
+        "n_clusters": 18325,
+        "largest": 33891,
+        "largest_share": 0.340011637706168,
+        "candidate_recovery": 0.8161543400618002,
+        "verified_recovery": 0.7290521288976283,
+        "merge_precision": 0.8932772799350961,
+        "transitive_pairs": 574826897,
+        "transitive_precision": 0.00012830645257714862,
+        "transitive_precision_by_size": {
+          "100+": {
+            "n_pairs": 574666017,
+            "precision": 7.211319057343876e-05
+          },
+          "21-100": {
+            "n_pairs": 108282,
+            "precision": 0.0613675403114091
+          },
+          "3-5": {
+            "n_pairs": 3117,
+            "precision": 0.8530638434392044
+          },
+          "6-20": {
+            "n_pairs": 49481,
+            "precision": 0.4650067702754593
+          }
+        }
+      },
+      "louvain@0.9": {
+        "n_clusters": 37214,
+        "largest": 170,
+        "largest_share": 0.001705525903928729,
+        "candidate_recovery": 0.6266503471246839,
+        "verified_recovery": 0.5953388980296159,
+        "merge_precision": 0.9500336204412283,
+        "transitive_pairs": 190756,
+        "transitive_precision": 0.29211663066954646,
+        "transitive_precision_by_size": {
+          "100+": {
+            "n_pairs": 34602,
+            "precision": 0.017311138084503786
+          },
+          "21-100": {
+            "n_pairs": 83786,
+            "precision": 0.11242928412861337
+          },
+          "3-5": {
+            "n_pairs": 6867,
+            "precision": 0.8995194408038445
+          },
+          "6-20": {
+            "n_pairs": 65501,
+            "precision": 0.6034564357796064
+          }
+        }
+      },
+      "single_linkage@0.9": {
+        "n_clusters": 37214,
+        "largest": 170,
+        "largest_share": 0.001705525903928729,
+        "candidate_recovery": 0.6266503471246839,
+        "verified_recovery": 0.5953388980296159,
+        "merge_precision": 0.9500336204412283,
+        "transitive_pairs": 190756,
+        "transitive_precision": 0.29211663066954646,
+        "transitive_precision_by_size": {
+          "100+": {
+            "n_pairs": 34602,
+            "precision": 0.017311138084503786
+          },
+          "21-100": {
+            "n_pairs": 83786,
+            "precision": 0.11242928412861337
+          },
+          "3-5": {
+            "n_pairs": 6867,
+            "precision": 0.8995194408038445
+          },
+          "6-20": {
+            "n_pairs": 65501,
+            "precision": 0.6034564357796064
+          }
+        }
+      },
+      "louvain@0.95": {
+        "n_clusters": 61408,
+        "largest": 22,
+        "largest_share": 0.000220715116979012,
+        "candidate_recovery": 0.38392391347967414,
+        "verified_recovery": 0.3773325574862555,
+        "merge_precision": 0.9828316086547507,
+        "transitive_pairs": 27170,
+        "transitive_precision": 0.9148693411851306,
+        "transitive_precision_by_size": {
+          "21-100": {
+            "n_pairs": 156,
+            "precision": 0.4358974358974359
+          },
+          "3-5": {
+            "n_pairs": 9697,
+            "precision": 0.9718469629782407
+          },
+          "6-20": {
+            "n_pairs": 17317,
+            "precision": 0.887278396950973
+          }
+        }
+      },
+      "single_linkage@0.95": {
+        "n_clusters": 61408,
+        "largest": 22,
+        "largest_share": 0.000220715116979012,
+        "candidate_recovery": 0.38392391347967414,
+        "verified_recovery": 0.3773325574862555,
+        "merge_precision": 0.9828316086547507,
+        "transitive_pairs": 27170,
+        "transitive_precision": 0.9148693411851306,
+        "transitive_precision_by_size": {
+          "21-100": {
+            "n_pairs": 156,
+            "precision": 0.4358974358974359
+          },
+          "3-5": {
+            "n_pairs": 9697,
+            "precision": 0.9718469629782407
+          },
+          "6-20": {
+            "n_pairs": 17317,
+            "precision": 0.887278396950973
+          }
+        }
+      }
+    }
+  },
+  "EH4_taxonomy": {
+    "n_nodes": 3039,
+    "n_edges": 536567,
+    "n_skills_used": 7133,
+    "n_clusters": 12,
+    "cluster_sizes_top10": [
+      673,
+      553,
+      366,
+      263,
+      244,
+      184,
+      177,
+      157,
+      146,
+      143
+    ],
+    "n_isco1": 10,
+    "n_isco2": 42,
+    "nmi_isco1": 0.26307623195101226,
+    "ari_isco1": 0.1343952050745595,
+    "nmi_isco2": 0.4011549951764765,
+    "permutation_null": {
+      "mean": 0.008155555870522475,
+      "sd": 0.0010945875849990702,
+      "p": 0.000999000999000999
+    },
+    "drop_top_pct": null
+  },
+  "EH4_taxonomy_idf": {
+    "n_nodes": 3039,
+    "n_edges": 536567,
+    "n_skills_used": 7133,
+    "n_clusters": 12,
+    "cluster_sizes_top10": [
+      673,
+      553,
+      366,
+      263,
+      244,
+      184,
+      177,
+      157,
+      146,
+      143
+    ],
+    "n_isco1": 10,
+    "n_isco2": 42,
+    "nmi_isco1": 0.26307623195101226,
+    "ari_isco1": 0.1343952050745595,
+    "nmi_isco2": 0.4011549951764765,
+    "permutation_null": {
+      "mean": 0.008060994643114541,
+      "sd": 0.00101148386041026,
+      "p": 0.004975124378109453
+    },
+    "drop_top_pct": 0.1
+  }
+}

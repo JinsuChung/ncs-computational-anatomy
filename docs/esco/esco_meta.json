@@ -1,0 +1,26 @@
+{
+  "loaded_at": "2026-09-10T17:16:43+09:00",
+  "source": "ESCO 공식 CSV (esco.ec.europa.eu 다운로드, 사용자 수령)",
+  "source_file": "ESCO dataset - v1.2.1 - classification - en - csv.zip",
+  "version": "1.2.1",
+  "language": "en",
+  "n_skills": 13960,
+  "n_occupations": 3039,
+  "n_isco_groups": 619,
+  "n_en_altlabels": 86690,
+  "n_essential_links": 67600,
+  "n_optional_links": 58451,
+  "license_note": "ESCO — European Commission, free reuse with attribution. 원본 CSV 비추적.",
+  "version_check": {
+    "added_en_altlabels_present": [
+      1105,
+      1105
+    ],
+    "removed_en_altlabels_still_present": [
+      38,
+      1182
+    ],
+    "verdict": "v1.2.1 이상",
+    "delta_source": "ESCO dataset - v1.2.1 - delta (사용자 다운로드)"
+  }
+}
