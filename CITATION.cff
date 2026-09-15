@@ -8,7 +8,7 @@ authors:
   - family-names: Ryu
     given-names: Han-Cheol
     affiliation: "Dept. of AI Convergence, Sahmyook University"
-version: "1.4"
+version: "1.5"
 date-released: "2026-09-15"
 repository-code: "https://github.com/JinsuChung/ncs-computational-anatomy"
 doi: 10.5281/zenodo.22763642
@@ -18,7 +18,7 @@ identifiers:
     description: "Concept DOI (all versions)"
   - type: doi
     value: 10.5281/zenodo.22763642
-    description: "Version DOI (v1.4)"
+    description: "Version DOI (v1.4; v1.5 archived as a new version under the concept DOI)"
 license: MIT
 preferred-citation:
   type: article
@@ -29,4 +29,4 @@ preferred-citation:
     - family-names: Ryu
       given-names: Han-Cheol
   year: 2026
-  notes: "Manuscript v1.4, prepared for Information Processing & Management."
+  notes: "Manuscript v1.5, prepared for Information Processing & Management."

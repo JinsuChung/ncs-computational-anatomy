@@ -69,7 +69,7 @@
 <header>
   <div class="eyebrow">Manuscript Draft · T0-a · Measured Data</div>
   <h1>T0-a 논문 초안 — NCS의 계산적 해부</h1>
-  <div class="meta">타깃: <b>Information Processing &amp; Management</b> (Elsevier) · 초안 v1.4 · 2026-09-15 — 심사 5·6회차 반영(단일 키 세 경로 · 네 갈래 권고를 초록·§5·결론까지) · 투고 요건 정렬 완료</div>
+  <div class="meta">타깃: <b>Information Processing &amp; Management</b> (Elsevier) · 초안 v1.5 · 2026-09-15 — 편집 개정 7항목(프레임워크 명명 · 탐색/확증 경계 · 전수/추론 구분 · 19.2% 조건화 · 권고 완화 · 관련연구 §2.5 · 보충자료 S1–S4 분리, 본문 15% 감량)</div>
 </header>
 
 <article class="ms">
@@ -90,23 +90,24 @@
     <h3 style="margin-top:0">Abstract</h3>
     <p>
       National competency standards increasingly feed skill taxonomies, knowledge graphs, and LLM-assisted
-      systems, yet the properties deciding how their text can be processed are rarely measured. From that
-      construction perspective we report a complete census of Korea's National Competency Standards (1,109
-      occupations; 196,658 performance criteria; 2.46 million knowledge/skill/attitude items). Hypotheses
-      were pre-registered (six of nine after exploratory aggregates were seen) and tested at occupation
-      level with split-half replication and false-discovery control. The syntactic residue rules cannot
+      systems, yet the properties deciding how their text can be processed are rarely measured first. We
+      report a complete census of Korea's National Competency Standards (1,109
+      occupations; 196,658 performance criteria; 2.46 million knowledge/skill/attitude items). Exploratory
+      aggregates and confirmatory tests are kept apart: hypotheses were registered before occupation-level
+      testing and labelled by whether aggregates had been seen, with split-half replication and
+      false-discovery control. The syntactic residue rules cannot
       parse is small and enumerable: 99.56% of criteria follow the mandated template, half the deviations in
       26 occupations. Redundancy is an industry property, not a size artifact. Terminological fragmentation
-      resists rules: normalization merges 8.2% of surface forms while embedding alignment proposes 28.1%,
-      19.2–23.6% of it surviving fourteen external raters; cos ≥ .90 is the precision knee, transitive
+      resists rules: normalization merges 8.2% of surface forms while embedding alignment proposes 28.1%, of which
+      an estimated 19.2–23.6% survives fourteen external raters under a conservative mergeability definition; cos ≥ .90 is the precision knee, transitive
       co-membership weak. Experts disagree on one boundary only: individually they span 28–48% on “same
       concept” but 62–66% once hierarchical pairs count. Shared vocabulary recovers the official taxonomy
       only partially. ESCO, where alternative labels give exact ground truth, reproduces the rule ceiling,
       the knee, the transitive precision and the chaining failure but not the template; a second encoder
-      reproduces every aggregate at matched pair counts. Downstream, query-time expansion by direct
+      reproduces every aggregate. Downstream, query-time expansion by direct
       neighbours beats every persisted concept layer on ESCO; on NCS, generic-concept downweighting, not the
       merge policy, governs similarity, and alignment's whole gain comes from linking single-occupation
-      expressions across occupations, while within-occupation merges add nothing and are least precise. We
+      expressions across occupations; within-occupation merges add nothing. We
       release the alias dictionary, candidate merges, metrics, and code.
     </p>
   </div>
@@ -130,9 +131,58 @@
     full-scale build cannot be estimated at all.
   </p>
   <p>
-    This paper supplies those measurements for NCS as a complete census, with the analysis pre-registered
-    before confirmatory testing. We ask:
+    We call the missing step <b>computational profiling</b>: measuring, before any construction, the
+    properties of a standard's text that decide where rules end, where a model is needed, and where a
+    person must adjudicate. The framework has four measurements — regularity, redundancy, fragmentation,
+    and latent structure — and one output, a division of labour between rules, models, and human judgment
+    that is stated in numbers rather than chosen by preference. This paper applies it to Korea's NCS as a
+    complete census, checks which of its findings transfer to ESCO, and shows that the numbers change
+    decisions downstream. Its principal contribution is the third measurement and what surrounds it: how
+    badly one concept is split across surface forms, how much of that split rules and embeddings each
+    repair, and how human judges behave at the boundary where "same concept" has to be decided. The other
+    measurements set that result up (RQ1, RQ2), corroborate it structurally (RQ4), or describe the corpus
+    for completeness (RQ5, reported in Appendix A). We ask:
   </p>
+  <figure style="padding:10px 12px;overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" width="100%" role="img" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#fff">
+<rect x="20.0" y="22" width="220" height="232" rx="10" fill="#fff" stroke="#0E6E6D" stroke-width="2"/>
+<rect x="20.0" y="22" width="220" height="46" rx="10" fill="#0E6E6D"/><rect x="20.0" y="46" width="220" height="22" fill="#0E6E6D"/>
+<text x="32.0" y="41" font-size="10.5" fill="#fff" letter-spacing="2" font-weight="bold">MEASURE</text>
+<text x="32.0" y="60" font-size="13" fill="#fff" font-weight="bold">Profile the corpus</text>
+<text x="34.0" y="96" font-size="11.5" fill="#1F2A2E">• 99.56% templated; residue in 26 occupations</text>
+<text x="34.0" y="132" font-size="11.5" fill="#1F2A2E">• 16% unique KSA; redundancy is industry-bound</text>
+<text x="34.0" y="168" font-size="11.5" fill="#1F2A2E">• 326,592 keys; rules merge 8.2%</text>
+<text x="34.0" y="204" font-size="11.5" fill="#1F2A2E">• NMI .33 vs .04 null</text>
+<path d="M244.0,138 L262.6666666666667,138" stroke="#8A9698" stroke-width="2"/><path d="M256.6666666666667,131 L264.6666666666667,138 L256.6666666666667,145" fill="none" stroke="#8A9698" stroke-width="2"/>
+<rect x="266.66666666666663" y="22" width="220" height="232" rx="10" fill="#fff" stroke="#2E6F9E" stroke-width="2"/>
+<rect x="266.66666666666663" y="22" width="220" height="46" rx="10" fill="#2E6F9E"/><rect x="266.66666666666663" y="46" width="220" height="22" fill="#2E6F9E"/>
+<text x="278.66666666666663" y="41" font-size="10.5" fill="#fff" letter-spacing="2" font-weight="bold">PROPOSE</text>
+<text x="278.66666666666663" y="60" font-size="13" fill="#fff" font-weight="bold">Embedding alignment</text>
+<text x="280.66666666666663" y="96" font-size="11.5" fill="#1F2A2E">• bge-m3, cos &#8805; .90, Louvain</text>
+<text x="280.66666666666663" y="132" font-size="11.5" fill="#1F2A2E">• 28.1% candidate recovery</text>
+<text x="280.66666666666663" y="168" font-size="11.5" fill="#1F2A2E">• chaining removed (5.2% → 1,084 keys)</text>
+<text x="280.66666666666663" y="204" font-size="11.5" fill="#1F2A2E">• two encoders agree at matched pair counts</text>
+<path d="M490.66666666666663,138 L509.33333333333326,138" stroke="#8A9698" stroke-width="2"/><path d="M503.33333333333326,131 L511.33333333333326,138 L503.33333333333326,145" fill="none" stroke="#8A9698" stroke-width="2"/>
+<rect x="513.3333333333333" y="22" width="220" height="232" rx="10" fill="#fff" stroke="#8A3B5C" stroke-width="2"/>
+<rect x="513.3333333333333" y="22" width="220" height="46" rx="10" fill="#8A3B5C"/><rect x="513.3333333333333" y="46" width="220" height="22" fill="#8A3B5C"/>
+<text x="525.3333333333333" y="41" font-size="10.5" fill="#fff" letter-spacing="2" font-weight="bold">VALIDATE</text>
+<text x="525.3333333333333" y="60" font-size="13" fill="#fff" font-weight="bold">Human judgment</text>
+<text x="527.3333333333333" y="96" font-size="11.5" fill="#1F2A2E">• 14 raters · 960 judgments</text>
+<text x="527.3333333333333" y="132" font-size="11.5" fill="#1F2A2E">• direct 72% · transitive ~30%</text>
+<text x="527.3333333333333" y="168" font-size="11.5" fill="#1F2A2E">• verified 19.2–23.6% (conditional)</text>
+<text x="527.3333333333333" y="204" font-size="11.5" fill="#1F2A2E">• experts split at one boundary</text>
+<path d="M737.3333333333333,138 L755.9999999999999,138" stroke="#8A9698" stroke-width="2"/><path d="M749.9999999999999,131 L757.9999999999999,138 L749.9999999999999,145" fill="none" stroke="#8A9698" stroke-width="2"/>
+<rect x="760.0" y="22" width="220" height="232" rx="10" fill="#fff" stroke="#3E7A3A" stroke-width="2"/>
+<rect x="760.0" y="22" width="220" height="46" rx="10" fill="#3E7A3A"/><rect x="760.0" y="46" width="220" height="22" fill="#3E7A3A"/>
+<text x="772.0" y="41" font-size="10.5" fill="#fff" letter-spacing="2" font-weight="bold">DECIDE</text>
+<text x="772.0" y="60" font-size="13" fill="#fff" font-weight="bold">Policy for the layer</text>
+<text x="774.0" y="96" font-size="11.5" fill="#1F2A2E">• downweight generic concepts</text>
+<text x="774.0" y="132" font-size="11.5" fill="#1F2A2E">• expand at query time by direct edges</text>
+<text x="774.0" y="168" font-size="11.5" fill="#1F2A2E">• cross-occupation single keys carry the gain</text>
+<text x="774.0" y="204" font-size="11.5" fill="#1F2A2E">• within-occupation merges: not by default</text>
+<text x="500.0" y="286" font-size="11" fill="#5D6B6E" text-anchor="middle">Figure 1. The profiling pipeline of this paper: each stage's headline result and the section that reports it (§4.1–4.4 · §4.3/4.8 · §4.6 · §4.9).</text></svg>
+  </figure>
+
   <p>
     <b>RQ1.</b> How syntactically regular are performance criteria, and where does the residue live?<br>
     <b>RQ2.</b> How redundant is the KSA layer, and is redundancy an artifact of corpus size or a property of industries?<br>
@@ -140,32 +190,33 @@
     <b>RQ4.</b> How much of the official occupational taxonomy is recoverable from shared KSA vocabulary alone?<br>
     <b>RQ5.</b> How are revision recency, competency level, and digital vocabulary distributed across industries?
   </p>
-  <p>Contributions:</p>
+  <p>Contributions, in order of weight:</p>
   <p>
-    (1) A complete-census profile of a national competency standard along five axes, with pre-registered
-    hypotheses, occupation-level tests, split-half replication, and FDR control.
-    (2) The empirical boundary between rule-based and model-based processing for this corpus type: the
-    syntactic residue that escapes rules is small and enumerable (859 criteria, half in 26 occupations), but
-    rules repair only 8.2% of terminological fragmentation, while
-    embeddings propose 28.1%, of which 19.2–23.6% survives human validation — a quantified division of labour
-    rather than a methodological preference.
-    (3) A methodological caution, measured rather than asserted: naive transitive closure over an embedding
-    similarity graph merges 5.2% of all keys into a single component at cos ≥ .90 (29.9% at cos ≥ .85);
-    modularity-based clustering removes the chain while leaving aggregate recovery unchanged (28.2% → 28.1%).
-    Both (2) and (3) are shown to be properties of the text type rather than of NCS: on ESCO, with an exact
-    ground truth, the rule ceiling, the .90 knee, the ~30% transitive precision and its size gradient, and the
-    chaining failure all reproduce, while the syntactic template does not.
-    (4) A downstream demonstration, in two corpora, that the measured quantities change decisions — and a
-    correction they force: downstream similarity is governed by downweighting generic concepts, and
-    query-time expansion by direct edges beats every persisted community policy, while the community-size
-    cap governs none of the three tasks we measured and instead sets the precision of what is written into
-    a published concept layer. Merge precision is therefore not a proxy for downstream utility, and a cap
-    is a standard for an artifact rather than a performance lever.
-    (5) A measured property of human judgment on this task: among four domain experts judging the same
-    pairs, agreement on whether two terms are related at all is near-identical (62.0–66.0%) while agreement
-    on whether they are the <em>same</em> concept is not (28.0–48.0%), so the disagreement that an
-    adjudication stage must absorb is concentrated at one boundary — a result a two-rater ceiling cannot
-    expose.
+    (1) <b>The framework and its first complete application.</b> A computational profile of a national
+    competency standard along four axes, run as a census with the boundary between exploratory aggregates
+    and confirmatory tests managed explicitly (§3.2): hypotheses registered before occupation-level testing,
+    labelled by whether they were formed before or after exploratory aggregates were seen, with split-half
+    replication and FDR control.
+    (2) <b>The rule/model boundary for this corpus type, in numbers.</b> The syntactic residue that escapes
+    rules is small and enumerable (859 criteria, half in 26 occupations), but rules repair only 8.2% of
+    terminological fragmentation while embeddings propose 28.1%, of which an estimated 19.2–23.6% survives
+    human validation under the study's conservative mergeability definition — a quantified division of
+    labour rather than a methodological preference. On ESCO, with an exact ground truth, the rule ceiling,
+    the .90 knee, the ~30% transitive precision and the chaining failure reproduce; the syntactic template
+    does not.
+    (3) <b>Where human judgment divides.</b> Among four domain experts judging the same pairs, agreement on
+    whether two terms are related at all is near-identical (62.0–66.0%) while agreement on whether they are
+    the <em>same</em> concept is not (28.0–48.0%): the disagreement an adjudication stage must absorb is
+    concentrated at one boundary — a result a two-rater ceiling cannot expose.
+    (4) <b>A measured methodological caution.</b> Naive transitive closure over an embedding similarity graph
+    merges 5.2% of all keys into a single component at cos ≥ .90 (29.9% at cos ≥ .85); modularity-based
+    clustering removes the chain while leaving aggregate recovery unchanged (28.2% → 28.1%), so the
+    aggregate statistic cannot detect the failure.
+    (5) <b>Evidence that the measurements change decisions</b>, in two corpora: downstream similarity is
+    governed by downweighting generic concepts; query-time expansion by direct edges beats every persisted
+    community policy; the downstream value of the embedding stage lies in linking single-occupation
+    expressions across occupations; and the community-size cap governs none of the three tasks we measured
+    but sets the precision of what is written into a published concept layer.
     (6) Released artifacts: an alias dictionary (19,881 rule-stage entries); a separate <em>candidate</em> file of the embedding stage at cap ≤ 5 (27,721 groups covering 65,557 keys), each group carrying its size, direct-edge share, the expected precision implied by §4.6, and the human verdicts where a member pair was judged; per-occupation
     metrics for all 1,109 occupations, a maintainer-facing audit list (typographical variants, template-deviant
     occupations, revision-year dispersion), and the analysis code.
@@ -177,11 +228,9 @@
     is already latent. We measure the text; we do not evaluate the standard. In particular we make no claims
     about the labour market it describes, about the committees that author it, or about what it ought to
     contain; where a result touches those questions (§4.5, §5), we report the distribution and stop. The
-    choice is deliberate: the decisions this paper informs — rules versus models, thresholds, merge policies,
-    adjudication design — are made today without measurement, and a single, explicit vantage point is what
-    makes the resulting numbers usable as design rules. Readings of the same corpus as a policy instrument or
-    as a genre of institutional writing are possible and, we think, worthwhile, but they need evidence this
-    paper does not collect and are left to separate work.
+    choice is deliberate: a single, explicit vantage point is what makes the numbers usable as design rules.
+    Readings of the same corpus as a policy instrument or as a genre of institutional writing are worthwhile
+    but need evidence this paper does not collect.
   </p>
 
   <h3>2. Related Work</h3>
@@ -239,6 +288,27 @@
     tools that reduce it, so that the expensive stages — model-based extraction and human or model
     adjudication — are sized by evidence.
   </p>
+  <h4>2.5 Computational profiling as a framework</h4>
+  <p>
+    The four measurements of §1 are not new individually; what is new is running them together, before
+    construction, as the basis for assigning work to rules, models, and people. Each has a home literature.
+    Regularity and redundancy are <em>fitness-for-use</em> questions in the data-quality sense of Wang and
+    Strong [28] and Pipino et al. [29]: a text's quality is not intrinsic but relative to the processing it
+    is about to receive, and profiling is the act of measuring that fitness. Fragmentation is the
+    entity-resolution problem [6, 7] seen from the vocabulary side, and its resolution is the ontology
+    alignment problem of Euzenat and Shvaiko [30] restricted to one corpus; the concept layer such a
+    resolution produces is what SKOS-style vocabularies [31] and thesaurus standards [32] exist to hold, and
+    their notions of preferred and alternative labels are the reason ESCO can serve as an exact reference in
+    §4.7. The human validation of §4.6 belongs to human-in-the-loop entity resolution, where systems such as
+    Magellan [33] and CrowdER [34] treat the adjudication budget as a design variable — precisely the
+    quantity our precision-by-band and inter-rater results are meant to size. The chaining artefact of §4.3
+    is the single-linkage pathology long documented in cluster analysis [35], and the distinction that
+    organises §4.9 — between an irreversible canonicalisation written into a resource and a reversible
+    query-time expansion — is the distinction the query-expansion literature draws between index-time and
+    query-time term substitution [36]. Read together, these literatures already contain every operation this
+    paper performs; what they do not contain is a measured account of what happens when they are applied,
+    in sequence, to a national standard. That account is the contribution, and the framework is its name.
+  </p>
 
   <h3>3. Data and Method</h3>
   <h4>3.1 Corpus</h4>
@@ -271,6 +341,17 @@
     and significance. The nine primary p-values are corrected together with Benjamini–Hochberg at q = .05.
     Because n = 1,109 makes trivial differences significant, effect sizes (ε², Cramér's V, ρ, Kendall's W) are
     reported as the primary quantities.
+  </p>
+  <p>
+    <b>What the statistics refer to.</b> The corpus is a census of one release, so three kinds of number
+    appear and should not be read alike. <em>Census quantities</em> (the 99.56% template rate, the 8.2% rule
+    recovery, the 28.1% candidate recovery) describe the February 2026 release exactly and carry no
+    interval. <em>Structural tests</em> (Kruskal–Wallis, Spearman, the permutation null for NMI, split-half
+    replication) do not estimate a super-population; they ask whether a pattern across occupations survives
+    random partition and chance composition, and their p-values and effect sizes are read in that sense.
+    <em>Sampled estimates</em> (merge precision, verified recovery, inter-rater α) rest on judged samples and
+    carry bootstrap intervals over items. Generalisation beyond the release is argued separately, by
+    replication on ESCO (§4.7) and a second encoder (§4.8), not by inference from the census.
   </p>
   <h4>3.3 Measures</h4>
   <p>
@@ -335,7 +416,7 @@
 
   <h4>4.1 Performance criteria are almost perfectly templated (RQ1)</h4>
   <p>
-    Of 196,658 performance criteria, 195,799 (99.563%, 95% CI [99.534, 99.592]) end in the canonical form; the
+    Of 196,658 performance criteria, 195,799 (99.563%; a census quantity, reported without an interval) end in the canonical form; the
     median occupation is at 100%. The 859 deviations are typed as declarative endings (504), template variants
     occurring mid-sentence (245), other (93), and nominal endings (17). Deviations are concentrated: half of
     them lie in 26 occupations (2.3% of the corpus), and one occupation (환경미화 ('environmental sanitation'); we name it because the finding is about a public document, not a person)
@@ -381,16 +462,7 @@
     안전수칙 준수 ('compliance with safety rules'), 안전규정 준수 ('compliance with safety regulations') — do not. Embedding alignment addresses exactly this residue.
   </p>
   <p>
-    The 8.2% is not an artifact of the particular suffix list. Re-running the rule stage with the suffix list
-    removed, reduced, and extended in two directions moves recovery from 3.5% (whitespace and punctuation
-    only) through 4.8% (only the "에 대한 X ('X about/of Y')" phrase pattern) and 8.2% (pre-registered list) to 8.5%
-    (adding 이해도·숙지·파악·활용 능력 ('comprehension · familiarity · grasp · ability to apply')) and 9.0% (additionally stripping attitude tails such as
-    ~하려는 자세·의지·노력 ('attitude / will / effort to …')). The two extensions add 926 and 2,152 merge groups beyond the pre-registered
-    keys, and the added groups begin to include questionable merges — 설문조사 ('survey') with 설문 조사 의지 ('willingness to survey'), i.e. a
-    concept with an attitude toward it — while the type-mismatch rate rises from 0.3% to 2.0–2.1% as role
-    suffixes are stripped more aggressively. Rules in this corpus therefore saturate near 9% whatever the
-    list, and the last point is bought with precision. Rule-merge precision was not measured on NCS; on ESCO,
-    where a ground truth exists (§4.7), the corresponding rules are 97.8–98.9% precise.
+    The 8.2% is not an artifact of the particular suffix list: five list variants move rule recovery only from 3.5% to 9.0%, saturating near 9% while type-mismatch rises, so rules in this corpus saturate whatever the list (Supplementary S1).
   </p>
   <div class="table-wrap"><table>
     <caption>Table 2. Fragmentation recovery by stage and threshold (complete census, 326,592 keys).</caption>
@@ -427,9 +499,9 @@
   </p>
 <!--FIG:F3-->
   <figure style="padding:10px 12px;overflow-x:auto">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 604" width="100%" role="img" aria-label="Figure 3. Structurability map" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 604" width="100%" role="img" aria-label="Figure 4. Structurability map" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
 <rect x="0" y="0" width="710" height="604" fill="#FFFFFF"/>
-<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 3. Structurability map — major categories × machine-processing properties (sorted by fragmentation index)</text>
+<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 4. Structurability map — major categories × machine-processing properties (sorted by fragmentation index)</text>
 <text x="16" y="42" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">Colour is the relative position within each column (min–max). Higher template compliance, and lower uniqueness, fragmentation and type mismatch, favour rule-based processing.</text>
 <text x="249.0" y="54" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">Template</text>
 <text x="249.0" y="67" font-size="10.5" fill="#5C6B6E" text-anchor="middle" font-weight="normal">compliance</text>
@@ -657,7 +729,7 @@
 <text x="182" y="528" font-size="11" fill="#1F2A2E" text-anchor="end" font-weight="normal">Health &amp; Medical (11)</text>
 <text x="16" y="578" font-size="10.5" fill="#5C6B6E" text-anchor="start" font-weight="normal">Darker cell = relatively more amenable to rule-based processing within the column. Fragmentation index is the rule-key stage (before embedding).</text>
 </svg>
-    <figcaption>Figure 3. Structurability map: major categories by template compliance, KSA uniqueness, rule-stage fragmentation index, and K/S type inconsistency. Darker cells are relatively more amenable to rule-based processing within each column; rows sorted by fragmentation index.</figcaption>
+    <figcaption>Figure 4. Structurability map: major categories by template compliance, KSA uniqueness, rule-stage fragmentation index, and K/S type inconsistency. Darker cells are relatively more amenable to rule-based processing within each column; rows sorted by fragmentation index.</figcaption>
   </figure>
 <!--/FIG:F3-->
 
@@ -671,7 +743,7 @@
     (NMI = .341), so the agreement is not an artifact of cross-industry boilerplate such as safety compliance.
   </p>
   <p>
-    The pre-registered expectation (NMI between .3 and .6) is met (Table 1), and we report it as registered.
+    The pre-registered expectation (NMI between .3 and .6) is met (Table 1), and we report it as registered. The result is stable across similarity measure and Louvain resolution (NMI .33–.56, AMI .30–.51; Supplementary S1).
     It was, in hindsight, too permissive to be a sharp test, so we add — <em>and label as post-hoc
     sharpening</em>, formed after the results were seen — the two one-sided rejections that give H4 its
     falsifiable content. Against the
@@ -683,32 +755,8 @@
     than to their own (below). "Partial" therefore means: far from chance, far from complete, and the
     informative result is not the value but <em>which</em> categories fail to cohere.
   </p>
-  <p>
-    Because NMI depends on the number of communities and Louvain's resolution parameter sets that number,
-    we re-ran the clustering over a 2 × 3 grid of similarity (Jaccard; TF-IDF cosine with binary term
-    weights and idf = log N/df) and resolution (0.5, 1.0, 2.0), reporting the chance-corrected AMI and a
-    per-cell permutation null alongside NMI (Table 3). Resolution 0.5 degenerates (one or three communities).
-    Across the four non-degenerate cells NMI against major categories ranges from .33 to .56 — inside the
-    pre-registered .3–.6 band in every case — and the chance-corrected AMI from .30 to .51, with ARI never
-    above .29. Two regularities are worth stating. Higher resolution raises NMI, but the permutation null
-    rises with it (.04 → .12), so the increase in AMI is smaller (.30 → .43 for Jaccard); and idf weighting
-    adds roughly .08 to AMI at each resolution, consistent with the boilerplate-removal result above: generic
-    vocabulary slightly blurs, rather than creates, the alignment. The conclusion of partial recovery is
-    therefore a property of the graph, not of a resolution setting, but the specific value .329 should be read
-    as one point on that range.
-  </p>
-  <div class="table-wrap"><table class="fit">
-    <caption>Table 3. Sensitivity of taxonomy recovery to similarity measure and Louvain resolution (1,107 occupations, 25,078 shared keys; permutation null from 200 shuffles of the major-category labels).</caption>
-    <thead><tr><th>Similarity @ resolution</th><th class="num">Communities</th><th class="num">Largest</th><th class="num">NMI, major (null)</th><th class="num">AMI, major</th><th class="num">ARI, major</th><th class="num">NMI, middle</th><th class="num">AMI, middle</th></tr></thead>
-    <tbody>
-      <tr><td>Jaccard @ 0.5</td><td class="num">1</td><td class="num">1,107</td><td class="num">— (degenerate)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-      <tr><td>Jaccard @ 1.0 (pre-registered)</td><td class="num">11</td><td class="num">395</td><td class="num">.331 (.042 ± .004)</td><td class="num">.301</td><td class="num">.102</td><td class="num">.359</td><td class="num">.294</td></tr>
-      <tr><td>Jaccard @ 2.0</td><td class="num">41</td><td class="num">109</td><td class="num">.502 (.120 ± .005)</td><td class="num">.434</td><td class="num">.231</td><td class="num">.606</td><td class="num">.472</td></tr>
-      <tr><td>TF-IDF cosine @ 0.5</td><td class="num">3</td><td class="num">656</td><td class="num">.197 (.012 ± .002)</td><td class="num">.188</td><td class="num">.068</td><td class="num">.195</td><td class="num">.173</td></tr>
-      <tr><td>TF-IDF cosine @ 1.0</td><td class="num">12</td><td class="num">332</td><td class="num">.408 (.047 ± .004)</td><td class="num">.379</td><td class="num">.170</td><td class="num">.436</td><td class="num">.369</td></tr>
-      <tr><td>TF-IDF cosine @ 2.0</td><td class="num">36</td><td class="num">102</td><td class="num">.564 (.113 ± .005)</td><td class="num">.509</td><td class="num">.286</td><td class="num">.674</td><td class="num">.567</td></tr>
-    </tbody>
-  </table></div>
+  
+  
   <p class="kw" style="font-size:12.5px">The Jaccard @ 1.0 cell reproduces the main analysis to within Louvain's ordering variance (NMI .331 vs. .329; the main run's 11 communities and null of .041 are otherwise identical).</p>
   <p>
     The systematic disagreements are interpretable rather than random: the Business Management (project/business
@@ -724,9 +772,9 @@
   </p>
 <!--FIG:F2-->
   <figure style="padding:10px 12px;overflow-x:auto">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 612" width="100%" role="img" aria-label="Figure 2. Official major categories × data-driven communities" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 612" width="100%" role="img" aria-label="Figure 3. Official major categories × data-driven communities" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
 <rect x="0" y="0" width="736" height="612" fill="#FFFFFF"/>
-<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 2. Official major categories (rows) × Louvain communities of the shared-KSA graph (columns) — each row is that category's distribution over communities</text>
+<text x="16" y="24" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 3. Official major categories (rows) × Louvain communities of the shared-KSA graph (columns) — each row is that category's distribution over communities</text>
 <text x="16" y="42" font-size="11" fill="#5C6B6E" text-anchor="start" font-weight="normal">NMI (major) = .329 · permutation null .041 ± .004 · 11 communities · 1,107 occupations</text>
 <text x="213.0" y="88" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">C6</text>
 <text x="213.0" y="74" font-size="9" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">398</text>
@@ -1078,7 +1126,7 @@
 <rect x="650" y="533" width="45" height="18" fill="#EAF3F1"/>
 <text x="16" y="590" font-size="10.5" fill="#5C6B6E" text-anchor="start" font-weight="normal">Cell = share (%) of the category's occupations in that community. The more a row concentrates in one column, the better the official category and the data agree.</text>
 </svg>
-    <figcaption>Figure 2. Official major categories (rows) against Louvain communities of the shared-KSA occupation graph (columns; column headers give community size). Cells are the share of a category's occupations falling in each community; NMI = .329 against a permutation null of .041 ± .004.</figcaption>
+    <figcaption>Figure 3. Official major categories (rows) against Louvain communities of the shared-KSA occupation graph (columns; column headers give community size). Cells are the share of a category's occupations falling in each community; NMI = .329 against a permutation null of .041 ± .004.</figcaption>
   </figure>
 <!--/FIG:F2-->
 
@@ -1122,7 +1170,7 @@
     judgments of the same pair are not independent.
   </p>
   <div class="table-wrap"><table>
-    <caption>Table 4. Merge precision by similarity band and linkage (external raters, n = 640 judgments on 200 pairs).</caption>
+    <caption>Table 3. Merge precision by similarity band and linkage (external raters, n = 640 judgments on 200 pairs).</caption>
     <thead><tr><th>Stratum</th><th class="num">Judgments</th><th class="num">Strict</th><th class="num">95% CI</th><th class="num">Lenient</th><th class="num">Unsure</th></tr></thead>
     <tbody>
       <tr><td>Direct edge, cos .85–.90</td><td class="num">128</td><td class="num">43.8%</td><td class="num">[31.4, 57.1]</td><td class="num">59.4%</td><td class="num">2.3%</td></tr>
@@ -1138,14 +1186,7 @@
     buys 1.1 points of precision at the cost of half the recovery (28.1% → 13.6%), while lowering it to .85
     costs 9.5 points. <b>Transitive membership does not imply identity.</b> Pairs that share a cluster without a
     direct edge are the same concept only 30.1% of the time in the first round (32.9% in clusters of 3–5
-    keys, 26.5% in 6–20; the eight items above 20 keys gave 19%). Because that last stratum carries the most
-    absorbed keys (22,874) on the fewest items, we ran a second, targeted round: 60 new transitive pairs from
-    communities of 21–100 and above 100 keys (30 each), judged by three of four new non-author raters each
-    (180 judgments). Precision there is 41.7% strict [32.2, 50.6] and 80.6% lenient — 41.1% and 42.2% strict
-    in the two strata — so in NCS transitive precision does <em>not</em> fall with community size; it sits at
-    30–42% throughout. The large communities are dominated by attitude sentences (20 of the 60 pairs are
-    attitude–attitude, 60% strict) and paraphrase families ("검사 방법 절차 ('inspection method procedure')" / "테스트 절차 ('test procedure')", "타 부서와
-    협동하려는 태도 ('attitude of cooperating with other departments')" / "관련 부서간의 협력적 태도 ('cooperative attitude among related departments')"), not by chained unrelated concepts. Modularity
+    keys, 26.5% in 6–20; the eight items above 20 keys gave 19%). Because that last stratum carries the most absorbed keys (22,874) on the fewest items, a second, targeted round judged 60 new transitive pairs from communities above 20 keys (three of four new raters each): precision there is 41.7% strict [32.2, 50.6] and 80.6% lenient, so in NCS transitive precision does <em>not</em> fall with community size — it sits at 30–42% throughout, and the large communities are paraphrase families rather than chains (details in Supplementary S2). Modularity
     clustering removed the chaining artefact of §4.3, but a community is still a concept <em>family</em>, not a
     concept. Cosine does not transfer across that boundary: transitive pairs are the same concept 29.8% of the
     time below cos .85 and 30.3% between .85 and .90, while direct-edge precision over the same similarity
@@ -1168,10 +1209,13 @@
     of the judgment that experts agree about. We nonetheless lead with the strict figure because a merge
     written into a concept layer is not reversed by a later reader, so the quantity a builder needs is the
     conservative one; both are reported throughout, and the gap between them is the size of the decision a
-    builder is making when they choose whether a broader term may absorb a narrower one.
+    builder is making when they choose whether a broader term may absorb a narrower one. Neither figure is a
+    fixed property of the corpus: each is an estimate conditional on the study's mergeability definition,
+    the size-band weighting of §4.6, and the measured distribution of the fourteen raters, and the
+    intervals in Table 4 carry the sampling part of that uncertainty but not the definitional part.
   </p>
   <div class="table-wrap"><table class="fit">
-    <caption>Table 5. Verified recovery under alternative acceptance policies (cos ≥ .90, Louvain; second-round precision for communities above 20 keys). 95% CIs propagate item-level bootstrap resampling of every precision stratum (4,000 replicates) through the size-band weighting.</caption>
+    <caption>Table 4. Verified recovery under alternative acceptance policies (cos ≥ .90, Louvain; second-round precision for communities above 20 keys). 95% CIs propagate item-level bootstrap resampling of every precision stratum (4,000 replicates) through the size-band weighting.</caption>
     <thead><tr><th style="width:30%">Policy</th><th class="num">Keys<br>absorbed</th><th class="num">Candidate<br>recovery</th><th class="num">Merge precision<br>(strict)</th><th class="num">Verified, strict<br>[95% CI]</th><th class="num">Verified, lenient<br>[95% CI]</th></tr></thead>
     <tbody>
       <tr><td>Rule keys only (stage 1)</td><td class="num">—</td><td class="num">8.2%</td><td class="num">n/a</td><td class="num">8.2%</td><td class="num">8.2%</td></tr>
@@ -1193,18 +1237,9 @@
     independent; the widest single stratum, transitive precision in 6–20-key communities, spans
     [15.7, 41.3] on 23 items and still moves the total by under a point.
   </p>
-  <p>
-    <b>How much weight does the thinnest evidence carry?</b> The communities above 20 keys hold 22,874 of
-    the 70,869 absorbed keys, and their transitive precision comes from four raters whose mutual agreement is
-    low (§4.6, α = .17). Because fewer than one pair in ten inside those communities is a direct edge, the
-    figure that this stratum can move is bounded: fixing its transitive precision at 0% gives a verified
-    recovery of 16.6%, at the lower and upper 95% limits of the second-round estimate 18.4% and 20.1%, and at
-    100% 22.8%. The headline is therefore 19.2% under the measured value and lies between 16.6% and 22.8%
-    under any value at all; a pooled proportion is unbiased under low inter-rater agreement, which widens its
-    interval but does not shift it. The stratum carries a visible, not a decisive, share of the conclusion.
-  </p>
+  
   <div class="table-wrap"><table class="fit">
-    <caption>Table 6. Inter-rater reliability (Krippendorff's α, nominal; bootstrap CIs over items). All expert and first-round rows are computed on the same 50 anchor pairs; the second-round row covers 70 items (10 shared anchors + 60 pairs judged by three of the four raters).</caption>
+    <caption>Table 5. Inter-rater reliability (Krippendorff's α, nominal; bootstrap CIs over items). All expert and first-round rows are computed on the same 50 anchor pairs; the second-round row covers 70 items (10 shared anchors + 60 pairs judged by three of the four raters).</caption>
     <thead><tr><th>Raters</th><th class="num">n</th><th class="num">α, five categories</th><th class="num">95% CI</th><th class="num">α, merge decision (same vs. not)</th><th class="num">95% CI</th></tr></thead>
     <tbody>
       <tr><td><b>Four educational-technology PhDs (ceiling)</b></td><td class="num">4</td><td class="num"><b>.408</b></td><td class="num">[.285, .520]</td><td class="num"><b>.503</b></td><td class="num">[.352, .635]</td></tr>
@@ -1217,76 +1252,31 @@
     </tbody>
   </table></div>
   <p>
-    Concept identity in this corpus is a contested judgment even for domain experts, and more so than a
-    two-rater estimate suggested. The first round measured the ceiling with one pair of educational-technology
-    PhDs (α = .569 five-way, .683 merge). A third round put the same 50 anchor items to two further PhDs from
-    outside the university under identical conditions, giving four experts and six pairs: the ceiling falls to
-    α = .408 [.285, .520] five-way and .503 [.352, .635] for the merge decision, and the original pair turns
-    out to be the <em>most</em> concordant of the six (pairwise five-way α ranges .335–.569, median .396).
-    A two-rater ceiling is therefore optimistic by construction — it estimates one draw from the space of
-    expert pairs, and we drew a good one. Nor does reliability order neatly by expertise: the four experts
-    (.408) are indistinguishable from the three staff (.422, overlapping intervals) on the same items, and
-    both exceed the students (.289) and the second-round raters without domain exposure (.174). What
-    experience separates is having some domain exposure from having none, not experts from administrators.
-    The unsure rate is low (2.3%), so raters committed rather than abstained.
-    The second-round raters, none with domain experience, agree with each other least (α = .17 / .26); on the
-    ten anchor pairs they share with the first round their strict rate is 45% against 50% for the first-round
-    raters on the same items, and their lenient rate 85% against 75% — they reach for "hierarchical" more
-    often (31–50% of verdicts vs. 18%) but not for "same", so the strict second-round estimate is not inflated
-    by rater leniency.
-    The two expert pairs disagree in a specific and systematic way rather than randomly. On the anchor items
-    the first pair calls 48.0% of pairs the same concept and the second 29.0%, yet both reach almost the same
-    figure once hierarchical pairs are added (63.0% and 65.0%): they place the boundary between "same" and
-    "hierarchical" in different places while agreeing on what is unrelated. The effect is individual rather
-    than a property of the two pairs: taken one by one the four experts span 28.0–48.0% on "same" yet only
-    62.0–66.0% once hierarchical pairs are counted, so what separates them is a single boundary and not their
-    reading of the corpus. This is the kind of systematic
-    rater effect that two raters cannot expose, and it has a consequence for the precision estimates. Experts
-    are stricter than the other groups: on the same 50 anchors the four PhDs call 38.5% of pairs the same
-    concept, against 52.7% for staff and 44.7% for students. Restricted to the 20 anchor items at cos ≥ .90,
-    expert strict precision is 62.5% against the 72.3% pooled over all eight first-round raters and 120
-    direct-edge items. The expert subsample is small, but it points one way: if expert judgment is taken as
-    the standard, verified recovery falls from 19.2% to 18.2%, and to 16.9% if transitive precision is scaled
-    down in the same proportion. We retain the pooled estimates as the headline because they rest on the
-    larger sample and the pre-registered design, and record the expert-only figures as the lower end of the
-    range.
+    Concept identity in this corpus is a contested judgment even for domain experts. The first round measured
+    the ceiling with one pair of educational-technology PhDs (α = .569 five-way, .683 merge); a third round
+    put the same 50 anchor items to two further PhDs from outside the university, giving four experts and
+    six pairs, and the ceiling falls to α = .408 [.285, .520] five-way and .503 [.352, .635] for the merge
+    decision — the original pair was the <em>most</em> concordant of the six (pairwise α .335–.569). Where
+    the experts divide is specific: taken one by one they span 28.0–48.0% on "same" yet only 62.0–66.0% once
+    hierarchical pairs are counted, so what separates them is a single boundary and not their reading of the
+    corpus. Experts are also stricter than the other groups (38.5% "same" on the anchors against 52.7% for
+    staff and 44.7% for students), which places an expert-only lower bound on verified recovery of 18.2%
+    against the 19.2% headline. The unsure rate is low (2.3%). Group-by-group reliability, the systematic
+    rater effect between the two expert pairs, the author's own judgments, and the check for context-driven
+    bias are reported in Supplementary S2.
   </p>
-  <p>
-    The first author's judgments do not indicate leniency toward the method: strict precision 55.5%
-    [48.5, 62.0] against the external 49.7% [42.8, 56.4], merge-decision agreement with the external majority
-    74.3% (κ = .475), and symmetric disagreements (18 pairs the externals called the same and the author did not;
-    21 the reverse). Author judgments are excluded from all estimates above. Contested pairs are genuinely hard
-    near-misses — <em>whole-genome</em> versus <em>whole-exome</em> sequencing data analysis (cos .884),
-    <em>3D modelling</em> versus <em>3D analysis</em> software (cos .890) — while one unanimous "same" pair,
-    <em>ISO/IEC 27009 (인증섹터 ('certification sector'))</em> versus <em>(인증센터 ('certification centre'))</em>, is a typographical error in the standard that the
-    alignment surfaced and the raters confirmed, an instance of the quality-audit use in §1.
-  </p>
-  <p>
-    <b>Did the displayed context steer the judgments?</b> Because raters saw the major categories of each key, a
-    reviewer may ask whether pairs from different industries were judged "different" on that cue rather than on
-    meaning. The data do not show that bias: pairs whose keys share no major category were judged "same" at least
-    as often as pairs that share one, in every stratum (direct edges .85–.90: 50.0% vs. 36.2%; .90–.95: 72.4% vs.
-    68.3%; ≥ .95: 70.2% vs. 75.3%; transitive, first round: 34.8% vs. 22.8%; second round: 41.7% vs. 41.7%), and
-    the per-rater direction is inconsistent (four of eight raters were stricter on cross-category pairs, four
-    more lenient). The comparison is confounded — keys used by many occupations list more categories and are more
-    often generic — so it shows the absence of the feared direction rather than the absence of any context effect.
-    The displayed cue that does track judgments is KSA type: direct pairs whose keys carry the same type are
-    judged the same concept 65.4% of the time against 31.0% when the types differ (transitive: 35.5% vs. 15.7%).
-    Under the instruction above a knowledge item and a skill item about the same object are legitimately
-    distinct, so this may be content rather than label; the two cannot be separated in this design. How much of
-    the hierarchy — none, the category, or the competency unit — a judge should see is a design variable, and we
-    leave its manipulation to future work, where it can be tested on human and model judges alike.
-  </p>
+  
+  
 
   <h4>4.7 Replication on ESCO: which findings are properties of the text type</h4>
   <p>
-    Table 7 places the NCS measurements beside the same measurements on ESCO v1.2.1 (§3.5). The ESCO
+    Table 6 places the NCS measurements beside the same measurements on ESCO v1.2.1 (§3.5). The ESCO
     precision figures are exact — every pair is scored against the skill URI — whereas the NCS figures are
     human estimates on 200 sampled pairs, so the two columns should be compared for <em>shape</em> rather
     than for level.
   </p>
   <div class="table-wrap"><table class="fit">
-    <caption>Table 7. NCS versus ESCO on the same pipeline. ESCO figures are exact (scored against the skill URI); NCS precision is the strict external-rater estimate of §4.6. In the last column ✓ marks a finding that reproduces, ✗ one that does not, and — a row given for context rather than comparison. The prose of §4.7 gives sample sizes and the reasoning for each verdict.</caption>
+    <caption>Table 6. NCS versus ESCO on the same pipeline. ESCO figures are exact (scored against the skill URI); NCS precision is the strict external-rater estimate of §4.6. In the last column ✓ marks a finding that reproduces, ✗ one that does not, and — a row given for context rather than comparison. The prose of §4.7 gives sample sizes and the reasoning for each verdict.</caption>
     <thead><tr><th style="width:30%">Measure</th><th class="num">NCS<br>(Korean)</th><th class="num">ESCO v1.2.1<br>(English)</th><th>Trans-<br>fers</th></tr></thead>
     <tbody>
       <tr><td>Template regularity</td><td class="num">99.56% templated</td><td class="num">79.9% verb-initial; 92.3% noun-initial</td><td>✗ NCS-specific</td></tr>
@@ -1346,59 +1336,17 @@
     are conservative for that corpus, not evidence of rater harshness.
   </p>
 
-  <h4>4.8 Encoder sensitivity: the knee is a property of the task, not of bge-m3</h4>
+  <h4>4.8 Encoder sensitivity: the knee is a property of the task</h4>
   <p>
-    All embedding results above use one encoder. To test whether the .90 knee, the transitive-precision
-    collapse, and the attitude skew are properties of bge-m3 or of the task, we re-embedded the NCS
-    validation pairs, the full ESCO surface set, and all 326,592 NCS keys with an encoder from a different
-    training lineage and of comparable size, <code>multilingual-e5-large</code> (with its recommended
-    <code>query:</code> prefix). Its cosine scale is compressed relative to bge-m3 (the 200 validated NCS
-    pairs span .83–.999 under e5 against .45–.997 under bge-m3), so absolute thresholds are not comparable;
-    we instead compare at <em>matched pair counts</em> — the e5 threshold that admits exactly as many pairs as
-    bge-m3 admits at .85, .90, and .95 — which equalizes recall by construction and lets precision be compared
-    directly.
+    All embedding results above use one encoder. Re-running the alignment with a second, unrelated encoder
+    (multilingual-e5-large) and comparing at matched pair counts — because cosine scales are not comparable
+    across encoders — reproduces every aggregate to within a point: the precision knee, the transitive
+    collapse, the chaining failure, the ESCO precision bands, and the NCS recovery. The agreement is at the
+    level of aggregates, not pairs: the two encoders share about half of the NCS pairs they select, and
+    pairs chosen by both are markedly more precise (83% against 76% for one encoder), a cheap precision
+    lever. Full tables are in Supplementary S3.
   </p>
-  <div class="table-wrap"><table class="fit">
-    <caption>Table 8. bge-m3 versus multilingual-e5-large at matched pair counts. ESCO precision is exact (skill URI); NCS precision on the 200 validated pairs is the strict external-rater estimate.</caption>
-    <thead><tr><th>Measure</th><th class="num">bge-m3</th><th class="num">e5-large (matched)</th></tr></thead>
-    <tbody>
-      <tr><td>NCS 200 pairs: rank correlation of cosines</td><td class="num" colspan="2">Spearman .877 · Pearson .914</td></tr>
-      <tr><td>NCS 200 pairs: precision of the 80 direct pairs above the .90-equivalent cut</td><td class="num">72.3% (cut .90)</td><td class="num">70.4% (cut .958; 90% of the same pairs)</td></tr>
-      <tr><td>ESCO cumulative precision (recall) at .85 / .90 / .95-equivalent</td><td class="num">76.1 (53.5) / 92.8 (34.8) / 98.7% (15.3)</td><td class="num">76.5 (53.8) / 93.0 (34.9) / 99.0% (15.4) — cuts .936 / .958 / .982</td></tr>
-      <tr><td>ESCO band precision .85–.90 / .90–.95 / ≥ .95-equivalent</td><td class="num">57.0 / 88.6 / 98.7%</td><td class="num">57.7 / 88.7 / 99.0%</td></tr>
-      <tr><td>ESCO Louvain at .90-equivalent: verified recovery · merge precision · transitive precision</td><td class="num">59.5% · 95.0% · 29.2%</td><td class="num">58.6% · 95.1% · 35.8%</td></tr>
-      <tr><td>ESCO transitive precision by community size 3–5 / 6–20 / 21–100 / &gt; 100</td><td class="num">90.0 / 60.3 / 11.2 / 1.7%</td><td class="num">88.7 / 57.4 / 11.4 / 4.0%</td></tr>
-      <tr><td>ESCO single-linkage giant component at .85-equivalent</td><td class="num">34.0%</td><td class="num">28.3%</td></tr>
-      <tr><td>NCS candidate recovery at .85 / .90 / .95-equivalent (Louvain)</td><td class="num">51.3 / 28.1 / 13.6%</td><td class="num">51.7 / 28.4 / 13.7%</td></tr>
-      <tr><td>NCS largest community at .90-equivalent</td><td class="num">1,084</td><td class="num">918</td></tr>
-      <tr><td>NCS merge participation, attitude / skill / knowledge at .90-equivalent</td><td class="num">38.2 / 28.6 / 27.9%</td><td class="num">38.7 / 28.6 / 29.3%</td></tr>
-      <tr><td>NCS single-linkage giant component at .85-equivalent</td><td class="num">29.9%</td><td class="num">29.0%</td></tr>
-      <tr><td>Overlap of the pair sets selected at .90-equivalent (Jaccard)</td><td class="num" colspan="2">ESCO .73 · NCS .50</td></tr>
-    </tbody>
-  </table></div>
-  <p>
-    Every aggregate reproduces to within a point. On ESCO, where precision is exact, the two encoders agree
-    on cumulative precision and recall at all three matched thresholds to within 0.5 points, on the band
-    precisions to within 0.7 points, and on the size gradient of transitive precision; the largest
-    precision drop across twenty rank bands falls for both models between the .90- and .85-equivalent ranks.
-    On NCS, matched recovery differs by 0.1–0.4 points, the attitude skew is unchanged (38.7% vs. 38.2%),
-    and the chaining component at .85-equivalent is 29.0% vs. 29.9%. The knee and the failure modes are thus
-    properties of the corpus–task pair; only the number that names the knee is model-specific (.90 for
-    bge-m3, .958 for e5-large), so the recommendation of §4.6 should be read as "the precision knee, located
-    per encoder" rather than as a constant.
-  </p>
-  <p>
-    The agreement is at the level of aggregates, not of pairs: at the .90-equivalent cut the two encoders
-    select the same pairs only 73% of the time on ESCO and 50% on NCS. This disagreement is exploitable.
-    On ESCO, pairs selected by <em>both</em> encoders at the .85-equivalent cut are 83.1% precise against
-    76% for either alone, while pairs selected by only one are 42–45% precise — coin flips; at the
-    .90-equivalent cut the intersection reaches 95.1% (vs. 92.8%) at the cost of 15% of the pairs. On the
-    NCS validated pairs the same pattern holds (72.7% strict for pairs above the cut in both encoders, 50–68%
-    for pairs above it in one). Requiring two-encoder agreement is therefore a cheap precision lever for the
-    alignment stage, most valuable in the .85–.90 band where single-encoder precision is lowest.
-  </p>
-
-  <h4>4.9 Does the measurement change a decision? Three downstream tasks in two corpora</h4>
+<h4>4.9 Does the measurement change a decision? Three downstream tasks in two corpora</h4>
   <p>
     The numbers above are only useful if a pipeline built with them differs from one built without them. We
     therefore expressed each corpus under several concept-layer policies — normalization keys only (the rule
@@ -1415,7 +1363,7 @@
     practitioner must navigate, not as quality, and place them second.
   </p>
   <div class="table-wrap"><table class="fit">
-    <caption>Table 9. ESCO skill-label search with a held-out alternative label as the query (5,000 queries; reference = essential occupations of the label's skill URI; 95% CIs by bootstrap over queries).</caption>
+    <caption>Table 7. ESCO skill-label search with a held-out alternative label as the query (5,000 queries; reference = essential occupations of the label's skill URI; 95% CIs by bootstrap over queries).</caption>
     <thead><tr><th>Expansion policy</th><th class="num">Skill found [95% CI]</th><th class="num">Answered</th><th class="num">Occupation F1 [95% CI]</th><th class="num">Precision when answered [95% CI]</th></tr></thead>
     <tbody>
       <tr><td>Exact string only (0 by construction)</td><td class="num">0.0%</td><td class="num">0.0%</td><td class="num">0.0%</td><td class="num">—</td></tr>
@@ -1444,38 +1392,24 @@
     a query succeeds if it reaches <em>any</em> other label of its skill, whereas pair recall counts every
     registered synonym pair.)
   </p>
+  
+  
   <div class="table-wrap"><table class="fit">
-    <caption>Table 10. NCS: agreement with the official classification under concept-layer policies and two similarity measures (1,109 occupations). The "rules only" row is <em>not</em> the §4.4 graph and the two are not expected to match: §4.4 answers how much of the taxonomy is latent in <em>shared</em> vocabulary and therefore drops the keys that occur in a single occupation — 92.3% of all keys — and keeps 25,078 (1,107 nodes, NMI .329), whereas the concept-layer comparison must score every key a merge policy can act on (326,592 keys, all 1,109 occupations, NMI .301). Both figures and both key counts are in the released JSON. P@5 carries bootstrap CIs over occupations; NMI is the main run (seed 20260909) with the range over ten Louvain seeds and the permutation null. Seed-to-seed variation never exceeds .056 NMI (widest: TF-IDF at size ≤ 20) and AMI ranges track it within .03; AMI against the 81 middle categories orders the layers identically and is reported in <code>t0_downstream_ncs.json</code>.</caption>
-    <thead><tr><th>Simi-<br>larity</th><th style="width:20%">Concept layer</th><th class="num">P@5, same<br>minor [CI]</th><th class="num">P@5, same<br>middle [CI]</th><th class="num">Com-<br>munities</th><th class="num">NMI major<br>(seeds; null)</th><th class="num">AMI<br>major</th></tr></thead>
+    <caption>Table 8. NCS: concept-layer policies under TF-IDF cosine (1,109 occupations). P@5 = share of the five nearest occupations in the same minor category, bootstrap CI over occupations; NMI against the 24 major categories, main seed with the range over ten Louvain seeds. The unweighted-Jaccard panel, the two-encoder rows, and the middle-category results are in Supplementary S4.</caption>
+    <thead><tr><th>Concept layer</th><th class="num">P@5, same minor [CI]</th><th class="num">NMI major (seed range)</th></tr></thead>
     <tbody>
-      <tr><td rowspan="7">Jaccard</td><td>Rules only</td><td class="num">28.6% [26.9,&nbsp;30.3]</td><td class="num">47.8% [45.6,&nbsp;50.0]</td><td class="num">12</td><td class="num">.301 (.296–.315; .043)</td><td class="num">.270</td></tr>
-      <tr><td>+ merges, size 2</td><td class="num">30.9% [29.3,&nbsp;32.7]</td><td class="num">50.6% [48.5,&nbsp;52.7]</td><td class="num">9</td><td class="num">.304 (.304–.330; .037)</td><td class="num">.278</td></tr>
-      <tr><td>+ merges, size ≤ 5</td><td class="num">31.8% [30.2,&nbsp;33.5]</td><td class="num">52.2% [50.1,&nbsp;54.3]</td><td class="num">9</td><td class="num"><b>.360</b> (.342–.360; .036)</td><td class="num">.336</td></tr>
-      <tr><td>+ merges, size ≤ 20</td><td class="num"><b>32.1%</b> [30.4,&nbsp;33.9]</td><td class="num"><b>53.3%</b> [51.2,&nbsp;55.4]</td><td class="num">10</td><td class="num">.345 (.331–.356; .040)</td><td class="num">.318</td></tr>
-      <tr><td>+ all merges</td><td class="num">28.1% [26.2,&nbsp;29.8]</td><td class="num">46.8% [44.7,&nbsp;49.1]</td><td class="num">4</td><td class="num">.169 (.154–.175; .015)</td><td class="num">.157</td></tr>
-      <tr><td>Two-encoder, ≤ 5</td><td class="num">31.5% [29.8,&nbsp;33.3]</td><td class="num">51.8% [49.6,&nbsp;54.0]</td><td class="num">11</td><td class="num">.346 (.336–.355; .043)</td><td class="num">.317</td></tr>
-      <tr><td>Two-encoder, all</td><td class="num">29.9% [28.2,&nbsp;31.6]</td><td class="num">49.2% [46.9,&nbsp;51.4]</td><td class="num">5</td><td class="num">.163 (.163–.171; .017)</td><td class="num">.148</td></tr>
-      <tr><td rowspan="7">TF-IDF cosine</td><td>Rules only</td><td class="num">31.2% [29.5,&nbsp;32.9]</td><td class="num">51.7% [49.7,&nbsp;53.8]</td><td class="num">15</td><td class="num">.393 (.391–.407; .053)</td><td class="num">.359</td></tr>
-      <tr><td>+ merges, size 2</td><td class="num">32.7% [31.0,&nbsp;34.3]</td><td class="num">53.5% [51.4,&nbsp;55.5]</td><td class="num">11</td><td class="num">.420 (.387–.420; .045)</td><td class="num">.393</td></tr>
-      <tr><td>+ merges, size ≤ 5</td><td class="num">33.8% [32.2,&nbsp;35.4]</td><td class="num">55.1% [53.0,&nbsp;57.0]</td><td class="num">10</td><td class="num">.412 (.396–.426; .041)</td><td class="num">.387</td></tr>
-      <tr><td>+ merges, size ≤ 20</td><td class="num"><b>34.4%</b> [32.8,&nbsp;36.1]</td><td class="num"><b>56.1%</b> [54.0,&nbsp;58.1]</td><td class="num">8</td><td class="num">.407 (.384–.440; .033)</td><td class="num">.387</td></tr>
-      <tr><td>+ all merges</td><td class="num">33.5% [31.9,&nbsp;35.2]</td><td class="num">54.8% [52.7,&nbsp;56.8]</td><td class="num">7</td><td class="num">.391 (.383–.406; .028)</td><td class="num">.373</td></tr>
-      <tr><td>Two-encoder, ≤ 5</td><td class="num">33.9% [32.3,&nbsp;35.5]</td><td class="num">54.9% [52.9,&nbsp;57.0]</td><td class="num">12</td><td class="num"><b>.428</b> (.406–.428; .047)</td><td class="num">.400</td></tr>
-      <tr><td>Two-encoder, all</td><td class="num">33.5% [31.9,&nbsp;35.2]</td><td class="num">54.7% [52.6,&nbsp;56.8]</td><td class="num">8</td><td class="num">.385 (.378–.404; .033)</td><td class="num">.364</td></tr>
+      <tr><td>Rules only</td><td class="num">31.2% [29.5, 32.9]</td><td class="num">.393 (.391–.407)</td></tr>
+      <tr><td>+ merges, size ≤ 5</td><td class="num">33.8% [32.2, 35.4]</td><td class="num">.412 (.396–.426)</td></tr>
+      <tr><td>+ merges, size ≤ 20</td><td class="num">34.4% [32.8, 36.1]</td><td class="num">.407 (.384–.440)</td></tr>
+      <tr><td>+ all merges</td><td class="num">33.5% [31.9, 35.2]</td><td class="num">.391 (.383–.406)</td></tr>
     </tbody>
   </table></div>
   <p>
-    <b>NCS: the collapse is a weighting artifact, and the cap is not what governs similarity.</b> Under
-    unweighted Jaccard, accepting every community makes agreement with the classification <em>worse than
-    using no embedding at all</em>: taxonomy recovery collapses to four communities (NMI .17 against .30 for
-    rules) and P@5 falls back to the rule level. The mechanism is mechanical: once an attitude family such as
-    "기준·법규 준수" (1,084 keys, 636 occupations) becomes one node, nearly every pair of occupations shares it
-    and unweighted overlap flattens. Weighting concepts by inverse document frequency removes the collapse
-    entirely — under TF-IDF cosine the all-merges layer scores NMI .391 against .393 for rules and P@5 33.5%
-    against 31.2% — and lifts every policy by about three P@5 points and .09 NMI. With weighting, the seven
-    layers lie within overlapping confidence intervals; capped merging keeps a small edge (size ≤ 20: P@5 34.4%
-    [32.8, 36.1] vs. 33.5% [31.9, 35.2] for all merges) that the intervals do not separate. Two-encoder
-    agreement does not change this picture.
+    Under unweighted Jaccard the picture is different and misleading: accepting every community collapses
+    taxonomy recovery to four communities (NMI .17 against .30 for rules) because an attitude family such as
+    "기준·법규 준수" (1,084 keys, 636 occupations) becomes one node shared by nearly every pair of occupations.
+    Weighting concepts by inverse document frequency removes the collapse entirely (Supplementary S4); all
+    NCS results below are under TF-IDF.
   </p>
   <p>
     <b>Where the gain comes from, and how large it is.</b> Two facts about the key inventory decide what the
@@ -1498,7 +1432,7 @@
     cap ≤ 20 +3.25 [+2.49, +4.00], both clearly non-zero; NMI moves from .393 to .412, inside the
     seed-to-seed range of either policy. On NCS, then, the concept layer is worth two to three points of
     retrieval precision once generic concepts are downweighted, and the evidence that the layer changes a
-    decision rests on ESCO, where the reference is external — which is why Table 9 is placed first.
+    decision rests on ESCO, where the reference is external — which is why Table 7 is placed first.
   </p>
   <p>
     The single-occupation keys that merge go to three places, and the three are not alike. At cap ≤ 5,
@@ -1523,26 +1457,17 @@
     we measured separates the caps — so we do not offer the cap as a performance lever but as a quality
     standard for what a builder ships. We therefore release the two stages as two files. The alias
     dictionary contains rule-stage groups only, one per normalization key carrying at least two surface
-    forms, and the corresponding rules are 97.8–98.9% precise on ESCO (§4.7). The embedding stage is
-    released separately, built at cap ≤ 5 and labelled as what it is: 27,721 <em>candidate</em> groups
-    covering 65,557 keys (20,788 of size 2; 746 of size 5), each row carrying the group's size, which of the three merge
-    paths it belongs to (5,460 join an existing shared concept, 8,724 join single-occupation keys across
-    occupations, 13,537 lie within one occupation and are flagged as not recommended), its share of
-    member pairs that are direct edges (mean .93), the expected strict and lenient precision that the §4.6
-    strata imply for that share, the number of single-occupation members, and — for the 80 groups in which a
-    member pair was judged — the raters' verdicts. The 66% of Table 5 is thus attached to a file rather than
-    to a sentence, and the risk of an unreviewed merge being consumed as an identity is carried by the
-    label and the per-row metadata rather than by the reader's caution. It does not govern
+    forms, and the corresponding rules are 97.8–98.9% precise on ESCO (§4.7). The embedding stage is released separately as a labelled <em>candidate</em> file built at cap ≤ 5 (27,721 groups, 65,557 keys), each row carrying its merge path, direct-edge share, the precision the §4.6 strata imply, and the raters' verdicts where a member pair was judged, so that the 66% of Table 4 is attached to the artifact rather than to a sentence. It does not govern
     downstream similarity once generic concepts are downweighted, and the task-optimal cap (≤ 20 in both NCS
     tasks) is not the precision-optimal one (≤ 5). Merge precision is thus not a proxy for downstream utility,
     which is the third methodological lesson of this paper alongside the chaining artifact of §4.3 and the
     resolution caution of §5. The recommendation that follows is in four parts: downweight generic concepts
-    in any similarity computed over the layer; never merge two keys of the same occupation, since that
-    path has no downstream value and the lowest precision; accept a merge that joins single-occupation keys
+    in any similarity computed over the layer; exclude within-occupation merges from the default automatic
+    policy, since in the tasks we measured that path has no downstream value and the lowest precision; accept a merge that joins single-occupation keys
     <em>across</em> occupations only on a direct edge, at cap ≤ 5 where the layer is published or written
     unreviewed and ≤ 20 where a reviewer or a weighted consumer follows, because that path carries the gain
     and creates the edges that are wrong when it errs; and expand at query time by direct edges rather than by community membership.
-    The strongest retrieval result in this paper uses no concept layer at all (Table 9), and it is worth
+    The strongest retrieval result in this paper uses no concept layer at all (Table 7), and it is worth
     saying plainly what a persisted layer is then for. It is not justified by retrieval performance but by
     what a query-time neighbour lookup cannot give: a deduplication estimate before a build is costed
     (§4.2), taxonomy recovery and the categories that fail to cohere (§4.4), the maintainer-facing audit
@@ -1562,8 +1487,9 @@
     concepts, without which unrestricted merging flattens every occupation onto the same attitude families;
     and a query-time index built on communities rather than direct edges gives away six points of precision
     for nothing. What the embedding stage adds downstream is specific and small: it links expressions that
-    occur in one occupation to concepts held by others, and it should never merge two expressions of the
-    same occupation, a path that adds nothing and is the least precise of the three (§4.9).
+    occur in one occupation to concepts held by others, and within-occupation variants should not be merged
+    automatically without independent evidence, since that path adds nothing downstream and is the least
+    precise of the three (§4.9).
   </p>
   <p>
     A second lesson concerns the resolution at which such corpora are described. Every exploratory pattern in
@@ -1682,7 +1608,8 @@
     Measuring a national competency standard before building on it changes what one builds. In Korea's NCS,
     the syntactic residue that rules cannot parse is small and enumerable (859 criteria, half in 26
     occupations), while concept identity is not a rule-tractable problem: rules repair 8.2% of terminological fragmentation and
-    embedding alignment proposes 28.1%, of which 19.2–23.6% survives human validation; the remainder are
+    embedding alignment proposes 28.1%, of which an estimated 19.2–23.6% survives human validation under
+    the study's conservative mergeability definition and rater panel; the remainder are
     concept families whose merger requires adjudication, and the .90 threshold is confirmed as the precision knee.
     Occupational structure is partially latent in shared vocabulary alone (NMI = .329 vs. .041 null), and
     industry differences in level, revision recency, and digital language are real but considerably smaller at
@@ -1695,8 +1622,8 @@
     that anyone designing human adjudication for an alignment pipeline inherits. The measured policies
     change outcomes: generic-concept downweighting governs downstream similarity; query-time expansion
     should use direct edges rather than communities; the downstream value of embedding alignment lies in
-    linking single-occupation expressions across occupations, so within-occupation merges should not be
-    made at all; and the merge cap governs not those tasks but the precision of what is written into a
+    linking single-occupation expressions across occupations, so within-occupation merges belong outside the
+    default automatic policy; and the merge cap governs not those tasks but the precision of what is written into a
     published concept layer. We release the metrics, the alias dictionary, the embedding-stage candidate file,
     the ESCO replication, the downstream tasks, and the code.
   </p>
@@ -1762,7 +1689,7 @@
 
 <!--FIG:F1-->
   <figure style="padding:10px 12px;overflow-x:auto">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="100%" role="img" aria-label="Figure 1. Revision year, level and digital vocabulary by major category" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="100%" role="img" aria-label="Figure 2. Revision year, level and digital vocabulary by major category" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
 <rect x="0" y="0" width="920" height="560" fill="#FFFFFF"/>
 <line x1="117.64705882352942" y1="40" x2="117.64705882352942" y2="500" stroke="#DEE4DF" stroke-width="1"/>
 <text x="117.64705882352942" y="518" font-size="11" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">2015</text>
@@ -1847,9 +1774,9 @@
 <text x="750" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">3%</text>
 <circle cx="808" cy="76" r="27.1" fill="#0E6E6D" fill-opacity="0.55" stroke="#0A5352"/>
 <text x="808" y="104" font-size="10" fill="#5C6B6E" text-anchor="middle" font-weight="normal" font-family="'IBM Plex Mono',ui-monospace,Menlo,monospace">10%</text>
-<text x="70" y="22" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 1. 24 major categories: revision year × level × digital vocabulary (census, 2026-02 release)</text>
+<text x="70" y="22" font-size="13" fill="#1F2A2E" text-anchor="start" font-weight="bold">Figure 2. 24 major categories: revision year × level × digital vocabulary (census, 2026-02 release)</text>
 </svg>
-    <figcaption>Figure 1. Revision recency, competency level, and digital vocabulary by major category (24 categories; bubble area ∝ share of KSA items matching lexicon A). Census data, 2026-02 release.</figcaption>
+    <figcaption>Figure 2. Revision recency, competency level, and digital vocabulary by major category (24 categories; bubble area ∝ share of KSA items matching lexicon A). Census data, 2026-02 release.</figcaption>
   </figure>
 <!--/FIG:F1-->
 
@@ -1894,6 +1821,219 @@
     against the released code and data and take full responsibility for the content of the publication.
   </p>
 
+  
+  <h3>Supplementary material</h3>
+  <p class="kw">Robustness analyses referred to from the main text. Numbering S1–S4 follows the section that cites each.</p>
+  <h4>S1. Sensitivity analyses: the suffix list (§4.3) and the resolution grid (§4.4)</h4>
+<p>
+    The 8.2% is not an artifact of the particular suffix list. Re-running the rule stage with the suffix list
+    removed, reduced, and extended in two directions moves recovery from 3.5% (whitespace and punctuation
+    only) through 4.8% (only the "에 대한 X ('X about/of Y')" phrase pattern) and 8.2% (pre-registered list) to 8.5%
+    (adding 이해도·숙지·파악·활용 능력 ('comprehension · familiarity · grasp · ability to apply')) and 9.0% (additionally stripping attitude tails such as
+    ~하려는 자세·의지·노력 ('attitude / will / effort to …')). The two extensions add 926 and 2,152 merge groups beyond the pre-registered
+    keys, and the added groups begin to include questionable merges — 설문조사 ('survey') with 설문 조사 의지 ('willingness to survey'), i.e. a
+    concept with an attitude toward it — while the type-mismatch rate rises from 0.3% to 2.0–2.1% as role
+    suffixes are stripped more aggressively. Rules in this corpus therefore saturate near 9% whatever the
+    list, and the last point is bought with precision. Rule-merge precision was not measured on NCS; on ESCO,
+    where a ground truth exists (§4.7), the corresponding rules are 97.8–98.9% precise.
+  </p>
+<p>
+    Because NMI depends on the number of communities and Louvain's resolution parameter sets that number,
+    we re-ran the clustering over a 2 × 3 grid of similarity (Jaccard; TF-IDF cosine with binary term
+    weights and idf = log N/df) and resolution (0.5, 1.0, 2.0), reporting the chance-corrected AMI and a
+    per-cell permutation null alongside NMI (Table S1). Resolution 0.5 degenerates (one or three communities).
+    Across the four non-degenerate cells NMI against major categories ranges from .33 to .56 — inside the
+    pre-registered .3–.6 band in every case — and the chance-corrected AMI from .30 to .51, with ARI never
+    above .29. Two regularities are worth stating. Higher resolution raises NMI, but the permutation null
+    rises with it (.04 → .12), so the increase in AMI is smaller (.30 → .43 for Jaccard); and idf weighting
+    adds roughly .08 to AMI at each resolution, consistent with the boilerplate-removal result above: generic
+    vocabulary slightly blurs, rather than creates, the alignment. The conclusion of partial recovery is
+    therefore a property of the graph, not of a resolution setting, but the specific value .329 should be read
+    as one point on that range.
+  </p>
+<div class="table-wrap"><table class="fit">
+    <caption>Table S1. Sensitivity of taxonomy recovery to similarity measure and Louvain resolution (1,107 occupations, 25,078 shared keys; permutation null from 200 shuffles of the major-category labels).</caption>
+    <thead><tr><th>Similarity @ resolution</th><th class="num">Communities</th><th class="num">Largest</th><th class="num">NMI, major (null)</th><th class="num">AMI, major</th><th class="num">ARI, major</th><th class="num">NMI, middle</th><th class="num">AMI, middle</th></tr></thead>
+    <tbody>
+      <tr><td>Jaccard @ 0.5</td><td class="num">1</td><td class="num">1,107</td><td class="num">— (degenerate)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>Jaccard @ 1.0 (pre-registered)</td><td class="num">11</td><td class="num">395</td><td class="num">.331 (.042 ± .004)</td><td class="num">.301</td><td class="num">.102</td><td class="num">.359</td><td class="num">.294</td></tr>
+      <tr><td>Jaccard @ 2.0</td><td class="num">41</td><td class="num">109</td><td class="num">.502 (.120 ± .005)</td><td class="num">.434</td><td class="num">.231</td><td class="num">.606</td><td class="num">.472</td></tr>
+      <tr><td>TF-IDF cosine @ 0.5</td><td class="num">3</td><td class="num">656</td><td class="num">.197 (.012 ± .002)</td><td class="num">.188</td><td class="num">.068</td><td class="num">.195</td><td class="num">.173</td></tr>
+      <tr><td>TF-IDF cosine @ 1.0</td><td class="num">12</td><td class="num">332</td><td class="num">.408 (.047 ± .004)</td><td class="num">.379</td><td class="num">.170</td><td class="num">.436</td><td class="num">.369</td></tr>
+      <tr><td>TF-IDF cosine @ 2.0</td><td class="num">36</td><td class="num">102</td><td class="num">.564 (.113 ± .005)</td><td class="num">.509</td><td class="num">.286</td><td class="num">.674</td><td class="num">.567</td></tr>
+    </tbody>
+  </table></div>
+  <h4>S2. Human validation in detail: rater groups, the author's judgments, and context bias (§4.6)</h4>
+<p>
+    <b>The second round in detail.</b> Because that last stratum carries the most
+    absorbed keys (22,874) on the fewest items, we ran a second, targeted round: 60 new transitive pairs from
+    communities of 21–100 and above 100 keys (30 each), judged by three of four new non-author raters each
+    (180 judgments). Precision there is 41.7% strict [32.2, 50.6] and 80.6% lenient — 41.1% and 42.2% strict
+    in the two strata — so in NCS transitive precision does <em>not</em> fall with community size; it sits at
+    30–42% throughout. The large communities are dominated by attitude sentences (20 of the 60 pairs are
+    attitude–attitude, 60% strict) and paraphrase families ("검사 방법 절차 ('inspection method procedure')" / "테스트 절차 ('test procedure')", "타 부서와
+    협동하려는 태도 ('attitude of cooperating with other departments')" / "관련 부서간의 협력적 태도 ('cooperative attitude among related departments')"), not by chained unrelated concepts.
+  </p>
+<p>
+    Concept identity in this corpus is a contested judgment even for domain experts, and more so than a
+    two-rater estimate suggested. The first round measured the ceiling with one pair of educational-technology
+    PhDs (α = .569 five-way, .683 merge). A third round put the same 50 anchor items to two further PhDs from
+    outside the university under identical conditions, giving four experts and six pairs: the ceiling falls to
+    α = .408 [.285, .520] five-way and .503 [.352, .635] for the merge decision, and the original pair turns
+    out to be the <em>most</em> concordant of the six (pairwise five-way α ranges .335–.569, median .396).
+    A two-rater ceiling is therefore optimistic by construction — it estimates one draw from the space of
+    expert pairs, and we drew a good one. Nor does reliability order neatly by expertise: the four experts
+    (.408) are indistinguishable from the three staff (.422, overlapping intervals) on the same items, and
+    both exceed the students (.289) and the second-round raters without domain exposure (.174). What
+    experience separates is having some domain exposure from having none, not experts from administrators.
+    The unsure rate is low (2.3%), so raters committed rather than abstained.
+    The second-round raters, none with domain experience, agree with each other least (α = .17 / .26); on the
+    ten anchor pairs they share with the first round their strict rate is 45% against 50% for the first-round
+    raters on the same items, and their lenient rate 85% against 75% — they reach for "hierarchical" more
+    often (31–50% of verdicts vs. 18%) but not for "same", so the strict second-round estimate is not inflated
+    by rater leniency.
+    The two expert pairs disagree in a specific and systematic way rather than randomly. On the anchor items
+    the first pair calls 48.0% of pairs the same concept and the second 29.0%, yet both reach almost the same
+    figure once hierarchical pairs are added (63.0% and 65.0%): they place the boundary between "same" and
+    "hierarchical" in different places while agreeing on what is unrelated. The effect is individual rather
+    than a property of the two pairs: taken one by one the four experts span 28.0–48.0% on "same" yet only
+    62.0–66.0% once hierarchical pairs are counted, so what separates them is a single boundary and not their
+    reading of the corpus. This is the kind of systematic
+    rater effect that two raters cannot expose, and it has a consequence for the precision estimates. Experts
+    are stricter than the other groups: on the same 50 anchors the four PhDs call 38.5% of pairs the same
+    concept, against 52.7% for staff and 44.7% for students. Restricted to the 20 anchor items at cos ≥ .90,
+    expert strict precision is 62.5% against the 72.3% pooled over all eight first-round raters and 120
+    direct-edge items. The expert subsample is small, but it points one way: if expert judgment is taken as
+    the standard, verified recovery falls from 19.2% to 18.2%, and to 16.9% if transitive precision is scaled
+    down in the same proportion. We retain the pooled estimates as the headline because they rest on the
+    larger sample and the pre-registered design, and record the expert-only figures as the lower end of the
+    range.
+  </p>
+<p>
+    <b>How much weight does the thinnest evidence carry?</b> The communities above 20 keys hold 22,874 of
+    the 70,869 absorbed keys, and their transitive precision comes from four raters whose mutual agreement is
+    low (§4.6, α = .17). Because fewer than one pair in ten inside those communities is a direct edge, the
+    figure that this stratum can move is bounded: fixing its transitive precision at 0% gives a verified
+    recovery of 16.6%, at the lower and upper 95% limits of the second-round estimate 18.4% and 20.1%, and at
+    100% 22.8%. The headline is therefore 19.2% under the measured value and lies between 16.6% and 22.8%
+    under any value at all; a pooled proportion is unbiased under low inter-rater agreement, which widens its
+    interval but does not shift it. The stratum carries a visible, not a decisive, share of the conclusion.
+  </p>
+<p>
+    The first author's judgments do not indicate leniency toward the method: strict precision 55.5%
+    [48.5, 62.0] against the external 49.7% [42.8, 56.4], merge-decision agreement with the external majority
+    74.3% (κ = .475), and symmetric disagreements (18 pairs the externals called the same and the author did not;
+    21 the reverse). Author judgments are excluded from all estimates above. Contested pairs are genuinely hard
+    near-misses — <em>whole-genome</em> versus <em>whole-exome</em> sequencing data analysis (cos .884),
+    <em>3D modelling</em> versus <em>3D analysis</em> software (cos .890) — while one unanimous "same" pair,
+    <em>ISO/IEC 27009 (인증섹터 ('certification sector'))</em> versus <em>(인증센터 ('certification centre'))</em>, is a typographical error in the standard that the
+    alignment surfaced and the raters confirmed, an instance of the quality-audit use in §1.
+  </p>
+<p>
+    <b>Did the displayed context steer the judgments?</b> Because raters saw the major categories of each key, a
+    reviewer may ask whether pairs from different industries were judged "different" on that cue rather than on
+    meaning. The data do not show that bias: pairs whose keys share no major category were judged "same" at least
+    as often as pairs that share one, in every stratum (direct edges .85–.90: 50.0% vs. 36.2%; .90–.95: 72.4% vs.
+    68.3%; ≥ .95: 70.2% vs. 75.3%; transitive, first round: 34.8% vs. 22.8%; second round: 41.7% vs. 41.7%), and
+    the per-rater direction is inconsistent (four of eight raters were stricter on cross-category pairs, four
+    more lenient). The comparison is confounded — keys used by many occupations list more categories and are more
+    often generic — so it shows the absence of the feared direction rather than the absence of any context effect.
+    The displayed cue that does track judgments is KSA type: direct pairs whose keys carry the same type are
+    judged the same concept 65.4% of the time against 31.0% when the types differ (transitive: 35.5% vs. 15.7%).
+    Under the instruction above a knowledge item and a skill item about the same object are legitimately
+    distinct, so this may be content rather than label; the two cannot be separated in this design. How much of
+    the hierarchy — none, the category, or the competency unit — a judge should see is a design variable, and we
+    leave its manipulation to future work, where it can be tested on human and model judges alike.
+  </p>
+  <h4>S3. Encoder sensitivity: full comparison of bge-m3 and multilingual-e5-large (§4.8)</h4>
+
+  <p>
+    All embedding results above use one encoder. To test whether the .90 knee, the transitive-precision
+    collapse, and the attitude skew are properties of bge-m3 or of the task, we re-embedded the NCS
+    validation pairs, the full ESCO surface set, and all 326,592 NCS keys with an encoder from a different
+    training lineage and of comparable size, <code>multilingual-e5-large</code> (with its recommended
+    <code>query:</code> prefix). Its cosine scale is compressed relative to bge-m3 (the 200 validated NCS
+    pairs span .83–.999 under e5 against .45–.997 under bge-m3), so absolute thresholds are not comparable;
+    we instead compare at <em>matched pair counts</em> — the e5 threshold that admits exactly as many pairs as
+    bge-m3 admits at .85, .90, and .95 — which equalizes recall by construction and lets precision be compared
+    directly.
+  </p>
+  <div class="table-wrap"><table class="fit">
+    <caption>Table S2. bge-m3 versus multilingual-e5-large at matched pair counts. ESCO precision is exact (skill URI); NCS precision on the 200 validated pairs is the strict external-rater estimate.</caption>
+    <thead><tr><th>Measure</th><th class="num">bge-m3</th><th class="num">e5-large (matched)</th></tr></thead>
+    <tbody>
+      <tr><td>NCS 200 pairs: rank correlation of cosines</td><td class="num" colspan="2">Spearman .877 · Pearson .914</td></tr>
+      <tr><td>NCS 200 pairs: precision of the 80 direct pairs above the .90-equivalent cut</td><td class="num">72.3% (cut .90)</td><td class="num">70.4% (cut .958; 90% of the same pairs)</td></tr>
+      <tr><td>ESCO cumulative precision (recall) at .85 / .90 / .95-equivalent</td><td class="num">76.1 (53.5) / 92.8 (34.8) / 98.7% (15.3)</td><td class="num">76.5 (53.8) / 93.0 (34.9) / 99.0% (15.4) — cuts .936 / .958 / .982</td></tr>
+      <tr><td>ESCO band precision .85–.90 / .90–.95 / ≥ .95-equivalent</td><td class="num">57.0 / 88.6 / 98.7%</td><td class="num">57.7 / 88.7 / 99.0%</td></tr>
+      <tr><td>ESCO Louvain at .90-equivalent: verified recovery · merge precision · transitive precision</td><td class="num">59.5% · 95.0% · 29.2%</td><td class="num">58.6% · 95.1% · 35.8%</td></tr>
+      <tr><td>ESCO transitive precision by community size 3–5 / 6–20 / 21–100 / &gt; 100</td><td class="num">90.0 / 60.3 / 11.2 / 1.7%</td><td class="num">88.7 / 57.4 / 11.4 / 4.0%</td></tr>
+      <tr><td>ESCO single-linkage giant component at .85-equivalent</td><td class="num">34.0%</td><td class="num">28.3%</td></tr>
+      <tr><td>NCS candidate recovery at .85 / .90 / .95-equivalent (Louvain)</td><td class="num">51.3 / 28.1 / 13.6%</td><td class="num">51.7 / 28.4 / 13.7%</td></tr>
+      <tr><td>NCS largest community at .90-equivalent</td><td class="num">1,084</td><td class="num">918</td></tr>
+      <tr><td>NCS merge participation, attitude / skill / knowledge at .90-equivalent</td><td class="num">38.2 / 28.6 / 27.9%</td><td class="num">38.7 / 28.6 / 29.3%</td></tr>
+      <tr><td>NCS single-linkage giant component at .85-equivalent</td><td class="num">29.9%</td><td class="num">29.0%</td></tr>
+      <tr><td>Overlap of the pair sets selected at .90-equivalent (Jaccard)</td><td class="num" colspan="2">ESCO .73 · NCS .50</td></tr>
+    </tbody>
+  </table></div>
+  <p>
+    Every aggregate reproduces to within a point. On ESCO, where precision is exact, the two encoders agree
+    on cumulative precision and recall at all three matched thresholds to within 0.5 points, on the band
+    precisions to within 0.7 points, and on the size gradient of transitive precision; the largest
+    precision drop across twenty rank bands falls for both models between the .90- and .85-equivalent ranks.
+    On NCS, matched recovery differs by 0.1–0.4 points, the attitude skew is unchanged (38.7% vs. 38.2%),
+    and the chaining component at .85-equivalent is 29.0% vs. 29.9%. The knee and the failure modes are thus
+    properties of the corpus–task pair; only the number that names the knee is model-specific (.90 for
+    bge-m3, .958 for e5-large), so the recommendation of §4.6 should be read as "the precision knee, located
+    per encoder" rather than as a constant.
+  </p>
+  <p>
+    The agreement is at the level of aggregates, not of pairs: at the .90-equivalent cut the two encoders
+    select the same pairs only 73% of the time on ESCO and 50% on NCS. This disagreement is exploitable.
+    On ESCO, pairs selected by <em>both</em> encoders at the .85-equivalent cut are 83.1% precise against
+    76% for either alone, while pairs selected by only one are 42–45% precise — coin flips; at the
+    .90-equivalent cut the intersection reaches 95.1% (vs. 92.8%) at the cost of 15% of the pairs. On the
+    NCS validated pairs the same pattern holds (72.7% strict for pairs above the cut in both encoders, 50–68%
+    for pairs above it in one). Requiring two-encoder agreement is therefore a cheap precision lever for the
+    alignment stage, most valuable in the .85–.90 band where single-encoder precision is lowest.
+  </p>
+
+  
+  <h4>S4. Concept-layer policies under unweighted Jaccard and with two-encoder agreement (§4.9)</h4>
+<div class="table-wrap"><table class="fit">
+    <caption>Table S3. NCS: agreement with the official classification under concept-layer policies and two similarity measures (1,109 occupations). The "rules only" row is <em>not</em> the §4.4 graph and the two are not expected to match: §4.4 answers how much of the taxonomy is latent in <em>shared</em> vocabulary and therefore drops the keys that occur in a single occupation — 92.3% of all keys — and keeps 25,078 (1,107 nodes, NMI .329), whereas the concept-layer comparison must score every key a merge policy can act on (326,592 keys, all 1,109 occupations, NMI .301). Both figures and both key counts are in the released JSON. P@5 carries bootstrap CIs over occupations; NMI is the main run (seed 20260909) with the range over ten Louvain seeds and the permutation null. Seed-to-seed variation never exceeds .056 NMI (widest: TF-IDF at size ≤ 20) and AMI ranges track it within .03; AMI against the 81 middle categories orders the layers identically and is reported in <code>t0_downstream_ncs.json</code>.</caption>
+    <thead><tr><th>Simi-<br>larity</th><th style="width:20%">Concept layer</th><th class="num">P@5, same<br>minor [CI]</th><th class="num">P@5, same<br>middle [CI]</th><th class="num">Com-<br>munities</th><th class="num">NMI major<br>(seeds; null)</th><th class="num">AMI<br>major</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="7">Jaccard</td><td>Rules only</td><td class="num">28.6% [26.9,&nbsp;30.3]</td><td class="num">47.8% [45.6,&nbsp;50.0]</td><td class="num">12</td><td class="num">.301 (.296–.315; .043)</td><td class="num">.270</td></tr>
+      <tr><td>+ merges, size 2</td><td class="num">30.9% [29.3,&nbsp;32.7]</td><td class="num">50.6% [48.5,&nbsp;52.7]</td><td class="num">9</td><td class="num">.304 (.304–.330; .037)</td><td class="num">.278</td></tr>
+      <tr><td>+ merges, size ≤ 5</td><td class="num">31.8% [30.2,&nbsp;33.5]</td><td class="num">52.2% [50.1,&nbsp;54.3]</td><td class="num">9</td><td class="num"><b>.360</b> (.342–.360; .036)</td><td class="num">.336</td></tr>
+      <tr><td>+ merges, size ≤ 20</td><td class="num"><b>32.1%</b> [30.4,&nbsp;33.9]</td><td class="num"><b>53.3%</b> [51.2,&nbsp;55.4]</td><td class="num">10</td><td class="num">.345 (.331–.356; .040)</td><td class="num">.318</td></tr>
+      <tr><td>+ all merges</td><td class="num">28.1% [26.2,&nbsp;29.8]</td><td class="num">46.8% [44.7,&nbsp;49.1]</td><td class="num">4</td><td class="num">.169 (.154–.175; .015)</td><td class="num">.157</td></tr>
+      <tr><td>Two-encoder, ≤ 5</td><td class="num">31.5% [29.8,&nbsp;33.3]</td><td class="num">51.8% [49.6,&nbsp;54.0]</td><td class="num">11</td><td class="num">.346 (.336–.355; .043)</td><td class="num">.317</td></tr>
+      <tr><td>Two-encoder, all</td><td class="num">29.9% [28.2,&nbsp;31.6]</td><td class="num">49.2% [46.9,&nbsp;51.4]</td><td class="num">5</td><td class="num">.163 (.163–.171; .017)</td><td class="num">.148</td></tr>
+      <tr><td rowspan="7">TF-IDF cosine</td><td>Rules only</td><td class="num">31.2% [29.5,&nbsp;32.9]</td><td class="num">51.7% [49.7,&nbsp;53.8]</td><td class="num">15</td><td class="num">.393 (.391–.407; .053)</td><td class="num">.359</td></tr>
+      <tr><td>+ merges, size 2</td><td class="num">32.7% [31.0,&nbsp;34.3]</td><td class="num">53.5% [51.4,&nbsp;55.5]</td><td class="num">11</td><td class="num">.420 (.387–.420; .045)</td><td class="num">.393</td></tr>
+      <tr><td>+ merges, size ≤ 5</td><td class="num">33.8% [32.2,&nbsp;35.4]</td><td class="num">55.1% [53.0,&nbsp;57.0]</td><td class="num">10</td><td class="num">.412 (.396–.426; .041)</td><td class="num">.387</td></tr>
+      <tr><td>+ merges, size ≤ 20</td><td class="num"><b>34.4%</b> [32.8,&nbsp;36.1]</td><td class="num"><b>56.1%</b> [54.0,&nbsp;58.1]</td><td class="num">8</td><td class="num">.407 (.384–.440; .033)</td><td class="num">.387</td></tr>
+      <tr><td>+ all merges</td><td class="num">33.5% [31.9,&nbsp;35.2]</td><td class="num">54.8% [52.7,&nbsp;56.8]</td><td class="num">7</td><td class="num">.391 (.383–.406; .028)</td><td class="num">.373</td></tr>
+      <tr><td>Two-encoder, ≤ 5</td><td class="num">33.9% [32.3,&nbsp;35.5]</td><td class="num">54.9% [52.9,&nbsp;57.0]</td><td class="num">12</td><td class="num"><b>.428</b> (.406–.428; .047)</td><td class="num">.400</td></tr>
+      <tr><td>Two-encoder, all</td><td class="num">33.5% [31.9,&nbsp;35.2]</td><td class="num">54.7% [52.6,&nbsp;56.8]</td><td class="num">8</td><td class="num">.385 (.378–.404; .033)</td><td class="num">.364</td></tr>
+    </tbody>
+  </table></div>
+<p>
+    <b>NCS: the collapse is a weighting artifact, and the cap is not what governs similarity.</b> Under
+    unweighted Jaccard, accepting every community makes agreement with the classification <em>worse than
+    using no embedding at all</em>: taxonomy recovery collapses to four communities (NMI .17 against .30 for
+    rules) and P@5 falls back to the rule level. The mechanism is mechanical: once an attitude family such as
+    "기준·법규 준수" (1,084 keys, 636 occupations) becomes one node, nearly every pair of occupations shares it
+    and unweighted overlap flattens. Weighting concepts by inverse document frequency removes the collapse
+    entirely — under TF-IDF cosine the all-merges layer scores NMI .391 against .393 for rules and P@5 33.5%
+    against 31.2% — and lifts every policy by about three P@5 points and .09 NMI. With weighting, the seven
+    layers lie within overlapping confidence intervals; capped merging keeps a small edge (size ≤ 20: P@5 34.4%
+    [32.8, 36.1] vs. 33.5% [31.9, 35.2] for all merges) that the intervals do not separate. Two-encoder
+    agreement does not change this picture.
+  </p>
+
   <h4>References</h4>
   <ol class="refs">
     <li>Peterson, N. G., Mumford, M. D., Borman, W. C., Jeanneret, P. R., Fleishman, E. A., Levin, K. Y., Campion, M. A., Mayfield, M. S., Morgeson, F. P., Pearlman, K., Gowing, M. K., Lancaster, A. R., Silver, M. B., &amp; Dye, D. M. (2001). Understanding work using the Occupational Information Network (O*NET): Implications for practice and research. <i>Personnel Psychology</i>, 54(2), 451–492. https://doi.org/10.1111/j.1744-6570.2001.tb00100.x</li>
@@ -1923,6 +2063,15 @@
     <li>유경옥, 최지원 (2019). 네트워크 텍스트 분석을 활용한 NCS 기업활용 컨설팅 우수사례 성과 분석 [An analytical review of performance for best practices in NCS (National Competency Standards) consulting by network text analysis]. <i>직업능력개발연구 [Journal of Vocational Education &amp; Training]</i>, 22(2), 129–154. https://doi.org/10.36907/krivet.2019.22.2.129</li>
     <li>Kim, K., Kim, D., &amp; Ryu, K. (2026). 텍스트 임베딩 및 대규모 언어모델 기반 채용공고–NCS 직무 자동 매핑 방법의 성능 비교 연구 [A comparative study of text embedding and large language model-based methods for automatic mapping between job postings and NCS job categories]. <i>The Journal of Korean Institute of Information Technology</i>, 24(8), 217–230. https://doi.org/10.14801/jkiit.2026.24.8.217</li>
     <li>Sim, J., &amp; Chung, Y. (2026). Skill extraction and task classification from Korean IT job postings: An LLM-based framework with domain-adaptive pre-training. <i>Expert Systems with Applications</i>, <i>332</i>, 133402. https://doi.org/10.1016/j.eswa.2026.133402 (advance online publication 24 June 2026; issue dated January 2027)</li>
+    <li>Wang, R. Y., &amp; Strong, D. M. (1996). Beyond accuracy: What data quality means to data consumers. <i>Journal of Management Information Systems</i>, 12(4), 5–33. https://doi.org/10.1080/07421222.1996.11518099</li>
+    <li>Pipino, L. L., Lee, Y. W., &amp; Wang, R. Y. (2002). Data quality assessment. <i>Communications of the ACM</i>, 45(4), 211–218. https://doi.org/10.1145/505248.506010</li>
+    <li>Euzenat, J., &amp; Shvaiko, P. (2013). <i>Ontology matching</i> (2nd ed.). Springer. https://doi.org/10.1007/978-3-642-38721-0</li>
+    <li>Miles, A., &amp; Bechhofer, S. (Eds.). (2009). <i>SKOS Simple Knowledge Organization System reference</i> (W3C Recommendation). World Wide Web Consortium. https://www.w3.org/TR/skos-reference/</li>
+    <li>International Organization for Standardization. (2011). <i>ISO 25964-1:2011 Information and documentation — Thesauri and interoperability with other vocabularies — Part 1: Thesauri for information retrieval</i>. ISO.</li>
+    <li>Konda, P., Das, S., Suganthan G. C., P., Doan, A., Ardalan, A., Ballard, J. R., Li, H., Panahi, F., Zhang, H., Naughton, J., Prasad, S., Krishnan, G., Deep, R., &amp; Raghavendra, V. (2016). Magellan: Toward building entity matching management systems. <i>Proceedings of the VLDB Endowment</i>, 9(12), 1197–1208. https://doi.org/10.14778/2994509.2994535</li>
+    <li>Wang, J., Kraska, T., Franklin, M. J., &amp; Feng, J. (2012). CrowdER: Crowdsourcing entity resolution. <i>Proceedings of the VLDB Endowment</i>, 5(11), 1483–1494. https://doi.org/10.14778/2350229.2350263</li>
+    <li>Everitt, B. S., Landau, S., Leese, M., &amp; Stahl, D. (2011). <i>Cluster analysis</i> (5th ed.). Wiley. https://doi.org/10.1002/9780470977811</li>
+    <li>Carpineto, C., &amp; Romano, G. (2012). A survey of automatic query expansion in information retrieval. <i>ACM Computing Surveys</i>, 44(1), Article 1. https://doi.org/10.1145/2071389.2071390</li>
   </ol>
 </article>
 

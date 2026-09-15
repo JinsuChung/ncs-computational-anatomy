@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22763642.svg)](https://doi.org/10.5281/zenodo.22763642)
 
-Code, aggregate results, and manuscripts for **"The Computational Anatomy of a National Competency Standard: Regularity, Redundancy, and Terminological Fragmentation in Korea's NCS"** (Jinsu Chung & Han-Cheol Ryu, Sahmyook University; manuscript v1.4, September 2026, prepared for *Information Processing & Management*).
+Code, aggregate results, and manuscripts for **"The Computational Anatomy of a National Competency Standard: Regularity, Redundancy, and Terminological Fragmentation in Korea's NCS"** (Jinsu Chung & Han-Cheol Ryu, Sahmyook University; manuscript v1.5, September 2026, prepared for *Information Processing & Management*).
 
 The paper measures Korea's National Competency Standards (NCS) as *input material* for knowledge resources: how regular its sentences are, how redundant its knowledge/skill/attitude items are, how badly one concept is split across surface forms, and how much of the official taxonomy is latent in shared vocabulary. Every hypothesis was pre-registered before confirmatory testing, replicated on ESCO v1.2.1, and validated by fourteen external raters (960 judgments).
 
