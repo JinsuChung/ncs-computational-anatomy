@@ -104,7 +104,7 @@
 <!-- ═══════════════════════════ 2 ═══════════════════════════ -->
 <h2><span class="n">1½ · MAP</span>취지와 경과, 그리고 한 장의 지도</h2>
 <p><b>취지.</b> NCS를 온톨로지·지식 그래프·LLM 보조 시스템의 재료로 쓰기 전에, 그 텍스트가 어떤 재료인지를 전수로 잰다. 관점은 하나 — 지식 자원을 지으려는 사람의 자리 — 이고, 표준을 평가하거나 노동시장을 주장하지 않는다. 지도교수의 세 말씀(NCS 자체를 먼저, 가설을 세분화해서, 가설마다 공학적 기여를 분명히)이 설계 원칙이다.</p>
-<p><b>경과.</b> 9월 9일 사전 등록을 동결하고 전수 확증 분석(가설 9개, 5 충족·4 미충족)을 했다. 9~10일에 사람 판정 1차(8인·200쌍), ESCO 재현, 규칙·군집 민감도, 두 번째 인코더를 마쳤고, 11일에 판정 2차(4인·60쌍)와 다운스트림 시연을 더해 첫 보고를 냈다. 12~14일에 관점을 명시하고 국문본을 만들고 외부 심사 1·2회차(15항목)를 반영했다. 15일에 판정 3차(교외 박사 2인)로 전문가 천장을 4인으로 넓히고, 설계를 다시 뜯어 재현성 결함 하나와 해석 교란 하나를 고쳤으며, 외부 심사 3·4·5회차를 반영하고, IP&amp;M 투고 요건에 맞추고, 임베딩 단계 후보 파일을 공개 자산으로 만들고, 재현용 공개 저장소를 준비했다. 초안은 v1.3이다.</p>
+<p><b>경과.</b> 9월 9일 사전 등록을 동결하고 전수 확증 분석(가설 9개, 5 충족·4 미충족)을 했다. 9~10일에 사람 판정 1차(8인·200쌍), ESCO 재현, 규칙·군집 민감도, 두 번째 인코더를 마쳤고, 11일에 판정 2차(4인·60쌍)와 다운스트림 시연을 더해 첫 보고를 냈다. 12~14일에 관점을 명시하고 국문본을 만들고 외부 심사 1·2회차(15항목)를 반영했다. 15일에 판정 3차(교외 박사 2인)로 전문가 천장을 4인으로 넓히고, 설계를 다시 뜯어 재현성 결함 하나와 해석 교란 하나를 고쳤으며, 외부 심사 3·4·5회차를 반영하고, IP&amp;M 투고 요건에 맞추고, 임베딩 단계 후보 파일을 공개 자산으로 만들고, 재현용 공개 저장소를 준비했다. 초안은 v1.4다.</p>
 <p><b>지도.</b> 아래 그림은 논문의 뼈대다. 가지는 논문이 답하는 질문의 순서(왜·무엇·어떻게·결과·함의·사람 판정·자산)이고, 잎은 각 절의 한 줄 요약이다. 본문 §5·§6이 잎 하나하나를 푼다.</p>
 <figure style="margin:14px 0;background:#fff;border:1px solid #DCE2DD;border-radius:8px;padding:10px;overflow-x:auto">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 860" width="100%" role="img" aria-label="논문 마인드맵" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#FFFFFF">
@@ -227,7 +227,7 @@
 <text x="590.0" y="438.0" font-size="13" fill="#FFFFFF" text-anchor="middle" font-weight="bold" dominant-baseline="middle">(T0-a)</text>
 <text x="1168" y="848" font-size="10" fill="#8A9698" text-anchor="end">가지 = 논문의 뼈대 · 잎 = 한 줄 요약 · 수치는 v1.3 기준 (2026-09-15)</text>
 </svg>
-<figcaption style="font-size:12.5px;color:#5D6B6E;margin-top:6px">그림 M. 「NCS의 계산적 해부」 마인드맵 — 수치는 v1.3(2026-09-15) 기준.</figcaption>
+<figcaption style="font-size:12.5px;color:#5D6B6E;margin-top:6px">그림 M. 「NCS의 계산적 해부」 마인드맵 — 수치는 v1.4(2026-09-15) 기준.</figcaption>
 </figure>
 <h2 id="s2"><span class="k">2 · INTENT</span>연구의 의도 — 왜 이 논문이 먼저인가</h2>
 <h3>2.1 프로그램 안에서의 자리</h3>
@@ -628,7 +628,7 @@
     <tr><td>CI·어휘</td><td><code>t0_verified_recovery_ci.py</code> · <code>t0_lexicon_c.py</code></td><td>Table 5 CI 전파·경계 · 어휘 C</td></tr>
     <tr><td>인코더</td><td><code>t0_encoder_sensitivity.py</code> → <code>docs/t0/t0_encoder_sensitivity.json</code></td><td>e5-large 쌍 수 일치 비교(A 판정 200쌍 · B ESCO · C NCS · D 두 모델 합의). 캐시 npz 비추적</td></tr>
     <tr><td>ESCO 재현</td><td><code>esco_load_csv.py</code> · <code>esco_version_check.py</code> · <code>esco_replication.py</code> → <code>docs/esco/esco_replication.json</code></td><td>공식 CSV 변환 · delta 대조 버전 확인 · E-H1~E-H4 (원본·캐시 비추적)</td></tr>
-    <tr><td>문서</td><td><code>docs/t0-results-2026-09-09.html</code> · <code>docs/t0-validation-plan.md</code> · <code>paper-draft-t0a.html</code></td><td>결과(§5 ESCO 포함) · 판정 계획·윤리 · 초안 v1.3(IP&amp;M 투고 요건 정렬) — 공개본은 https://github.com/JinsuChung/ncs-computational-anatomy</td></tr>
+    <tr><td>문서</td><td><code>docs/t0-results-2026-09-09.html</code> · <code>docs/t0-validation-plan.md</code> · <code>paper-draft-t0a.html</code></td><td>결과(§5 ESCO 포함) · 판정 계획·윤리 · 초안 v1.4(IP&amp;M 투고 요건 정렬) — 공개본은 https://github.com/JinsuChung/ncs-computational-anatomy</td></tr>
   </tbody>
 </table></div>
 <h3>남은 결정 (M-T0)</h3>

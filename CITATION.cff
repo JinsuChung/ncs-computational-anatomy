@@ -8,7 +8,7 @@ authors:
   - family-names: Ryu
     given-names: Hanchul
     affiliation: "Dept. of AI Convergence, Sahmyook University"
-version: "1.3"
+version: "1.4"
 date-released: "2026-09-15"
 repository-code: "https://github.com/JinsuChung/ncs-computational-anatomy"
 license: MIT
@@ -21,4 +21,4 @@ preferred-citation:
     - family-names: Ryu
       given-names: Hanchul
   year: 2026
-  notes: "Manuscript v1.3, prepared for Information Processing & Management."
+  notes: "Manuscript v1.4, prepared for Information Processing & Management."

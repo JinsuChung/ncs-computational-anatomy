@@ -69,7 +69,7 @@
 <header>
   <div class="eyebrow">Manuscript Draft · T0-a · Measured Data</div>
   <h1>T0-a 논문 초안 — NCS의 계산적 해부</h1>
-  <div class="meta">타깃: <b>Information Processing &amp; Management</b> (Elsevier) · 초안 v1.3 · 2026-09-15 — 심사 3·4회차 반영(상한=산출물 기준 · 경계 발견 전면 · §4.4/Table 10 입력 차이 명시) · 투고 요건 정렬 완료</div>
+  <div class="meta">타깃: <b>Information Processing &amp; Management</b> (Elsevier) · 초안 v1.4 · 2026-09-15 — 심사 5·6회차 반영(단일 키 세 경로 · 네 갈래 권고를 초록·§5·결론까지) · 투고 요건 정렬 완료</div>
 </header>
 
 <article class="ms">
@@ -89,23 +89,25 @@
   <div class="abstract">
     <h3 style="margin-top:0">Abstract</h3>
     <p>
-      National competency standards are increasingly raw material for skill taxonomies, knowledge graphs,
-      and LLM-assisted systems, yet the properties deciding how their text can be processed are rarely
-      measured. From that construction perspective we report a complete census of Korea's
-      National Competency Standards (1,109 occupations; 196,658 performance criteria; 2.46 million
-      knowledge/skill/attitude items). Hypotheses were registered before confirmatory testing, six of nine
-      after exploratory aggregates had been seen, and tested at occupation level with
-      split-half replication and false-discovery control. The syntactic residue rules cannot parse is small and
-      enumerable: 99.56% of criteria follow the mandated template, half the deviations in 26 occupations. Redundancy is an industry property, not a
-      size artifact. Terminological fragmentation resists rules: normalization merges 8.2% of surface forms
-      while embedding alignment proposes 28.1%, of which 19.2–23.6% survives validation by fourteen external
-      raters; cos ≥ .90 is the precision knee and transitive co-membership is weak. Experts disagree on one boundary
-      only: individually they span 28–48% on “same concept” but 62–66% once hierarchical pairs count. Shared vocabulary recovers the official taxonomy only partially. Replication on ESCO,
-      where alternative labels give an exact ground truth, reproduces the rule ceiling, the knee, the
-      transitive precision, and the chaining failure but not the template; a second encoder reproduces every
-      aggregate at matched pair counts. Three downstream tasks show the measurements change decisions: on ESCO,
-      query-time expansion by direct neighbours reaches F1 .74; on NCS, generic-concept downweighting, not
-      the merge policy, governs occupation similarity. We release the alias dictionary, candidate merges, metrics, and code.
+      National competency standards increasingly feed skill taxonomies, knowledge graphs, and LLM-assisted
+      systems, yet the properties deciding how their text can be processed are rarely measured. From that
+      construction perspective we report a complete census of Korea's National Competency Standards (1,109
+      occupations; 196,658 performance criteria; 2.46 million knowledge/skill/attitude items). Hypotheses
+      were pre-registered (six of nine after exploratory aggregates were seen) and tested at occupation
+      level with split-half replication and false-discovery control. The syntactic residue rules cannot
+      parse is small and enumerable: 99.56% of criteria follow the mandated template, half the deviations in
+      26 occupations. Redundancy is an industry property, not a size artifact. Terminological fragmentation
+      resists rules: normalization merges 8.2% of surface forms while embedding alignment proposes 28.1%,
+      19.2–23.6% of it surviving fourteen external raters; cos ≥ .90 is the precision knee, transitive
+      co-membership weak. Experts disagree on one boundary only: individually they span 28–48% on “same
+      concept” but 62–66% once hierarchical pairs count. Shared vocabulary recovers the official taxonomy
+      only partially. ESCO, where alternative labels give exact ground truth, reproduces the rule ceiling,
+      the knee, the transitive precision and the chaining failure but not the template; a second encoder
+      reproduces every aggregate at matched pair counts. Downstream, query-time expansion by direct
+      neighbours beats every persisted concept layer on ESCO; on NCS, generic-concept downweighting, not the
+      merge policy, governs similarity, and alignment's whole gain comes from linking single-occupation
+      expressions across occupations, while within-occupation merges add nothing and are least precise. We
+      release the alias dictionary, candidate merges, metrics, and code.
     </p>
   </div>
   <p class="kw"><b>Keywords:</b> competency standards; corpus profiling; terminology normalization; embedding alignment; knowledge graph construction; open government data</p>
@@ -1559,7 +1561,9 @@
     written into the layer; downstream similarity over that layer is governed by downweighting generic
     concepts, without which unrestricted merging flattens every occupation onto the same attitude families;
     and a query-time index built on communities rather than direct edges gives away six points of precision
-    for nothing.
+    for nothing. What the embedding stage adds downstream is specific and small: it links expressions that
+    occur in one occupation to concepts held by others, and it should never merge two expressions of the
+    same occupation, a path that adds nothing and is the least precise of the three (§4.9).
   </p>
   <p>
     A second lesson concerns the resolution at which such corpora are described. Every exploratory pattern in
@@ -1689,9 +1693,11 @@
     concept spans 28.0–48.0% while the share called related at all spans only 62.0–66.0%, so what separates
     expert from expert is a single boundary and not a reading of the corpus — a property of the instrument
     that anyone designing human adjudication for an alignment pipeline inherits. The measured policies
-    change outcomes: generic-concept downweighting governs downstream similarity, query-time expansion
-    should use direct edges rather than communities, and the merge cap governs not those tasks but the
-    precision of what is written into a published concept layer. We release the metrics, the alias dictionary, the embedding-stage candidate file,
+    change outcomes: generic-concept downweighting governs downstream similarity; query-time expansion
+    should use direct edges rather than communities; the downstream value of embedding alignment lies in
+    linking single-occupation expressions across occupations, so within-occupation merges should not be
+    made at all; and the merge cap governs not those tasks but the precision of what is written into a
+    published concept layer. We release the metrics, the alias dictionary, the embedding-stage candidate file,
     the ESCO replication, the downstream tasks, and the code.
   </p>
 
