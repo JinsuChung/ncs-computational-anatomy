@@ -6,7 +6,7 @@ authors:
     given-names: Jinsu
     affiliation: "Dept. of AI Convergence, Sahmyook University"
   - family-names: Ryu
-    given-names: Hanchul
+    given-names: Han-Cheol
     affiliation: "Dept. of AI Convergence, Sahmyook University"
 version: "1.4"
 date-released: "2026-09-15"
@@ -27,6 +27,6 @@ preferred-citation:
     - family-names: Chung
       given-names: Jinsu
     - family-names: Ryu
-      given-names: Hanchul
+      given-names: Han-Cheol
   year: 2026
   notes: "Manuscript v1.4, prepared for Information Processing & Management."

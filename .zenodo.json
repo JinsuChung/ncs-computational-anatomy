@@ -4,7 +4,7 @@
   "description": "<p>Code, aggregate results, and manuscripts for <em>The Computational Anatomy of a National Competency Standard: Regularity, Redundancy, and Terminological Fragmentation in Korea's NCS</em> (Chung &amp; Ryu, Sahmyook University). Pre-registered complete-census analysis of Korea's National Competency Standards (1,109 occupations; 196,658 performance criteria; 2.46 million KSA items), replicated on ESCO v1.2.1 and validated by fourteen external raters (960 judgments). Row-level NCS derivatives (per-occupation metrics, alias dictionary, candidate-merge file) are deposited as a separate dataset record.</p><p>This publication uses the ESCO classification of the European Commission. NCS-derived tables are subject to the Korea Open Government License Type 1 (attribution; source: Human Resources Development Service of Korea).</p>",
   "creators": [
     {"name": "Chung, Jinsu", "affiliation": "Dept. of AI Convergence, Sahmyook University"},
-    {"name": "Ryu, Hanchul", "affiliation": "Dept. of AI Convergence, Sahmyook University"}
+    {"name": "Ryu, Han-Cheol", "affiliation": "Dept. of AI Convergence, Sahmyook University"}
   ],
   "license": "MIT",
   "keywords": ["National Competency Standards", "NCS", "ESCO", "competency standards", "corpus profiling", "terminology normalization", "embedding alignment", "knowledge graph construction", "open government data", "pre-registration"],
