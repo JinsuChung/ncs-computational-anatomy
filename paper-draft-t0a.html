@@ -80,7 +80,7 @@
     <h3 style="margin-top:0">Highlights</h3>
     <ul style="margin:6px 0 0;padding-left:20px;font-size:14px">
       <li>Template deviations are local: half of 859 sit in 26 of 1,109 occupations</li>
-      <li>Rules merge 8.2% of surface forms; embeddings propose 28.1%, 19.2–23.6% verified</li>
+      <li>Rules merge 8.2%; embeddings propose 28.1%; estimated verified recovery 19.2–23.6%</li>
       <li>Experts split on one boundary: &quot;same&quot; 28–48%, &quot;same or broader&quot; 62–66%</li>
       <li>ESCO replication reproduces the rule ceiling, the knee and the chaining failure</li>
       <li>Downweighting generic concepts, not the merge cap, governs occupation similarity</li>
@@ -139,70 +139,72 @@
     decisions downstream (Figure 1, Table 1). We ask:
   </p>
   <figure style="padding:10px 12px;overflow-x:auto">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 330" width="100%" role="img" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#fff">
-<rect x="15.0" y="14" width="205" height="226" rx="10" fill="#fff" stroke="#0E6E6D" stroke-width="2.5"/>
-<path d="M15.0,24 a10,10 0 0 1 10,-10 h185 a10,10 0 0 1 10,10 v52 h-205 z" fill="#0E6E6D"/>
-<text x="29.0" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">MEASURE</text>
-<text x="29.0" y="58" font-size="15.5" fill="#fff" font-weight="bold">Profile the corpus</text>
-<text x="31.0" y="104" font-size="14" fill="#1F2A2E">regularity · redundancy</text>
-<text x="31.0" y="136" font-size="14" fill="#1F2A2E">fragmentation · latent structure</text>
-<text x="31.0" y="168" font-size="14" fill="#1F2A2E">census, no construction yet</text>
-<line x1="29.0" y1="198" x2="206.0" y2="198" stroke="#0E6E6D" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="29.0" y="218" font-size="10.5" fill="#0E6E6D" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
-<text x="206.0" y="219" font-size="14" fill="#1F2A2E" text-anchor="end" font-weight="bold">profile</text>
-<path d="M223.0,127 L237.33333333333334,127" stroke="#4B5A5E" stroke-width="2.5"/><path d="M230.33333333333334,119 L239.33333333333334,127 L230.33333333333334,135" fill="none" stroke="#4B5A5E" stroke-width="2.5"/>
-<rect x="243.33333333333334" y="14" width="205" height="226" rx="10" fill="#fff" stroke="#2E6F9E" stroke-width="2.5"/>
-<path d="M243.33333333333334,24 a10,10 0 0 1 10,-10 h185 a10,10 0 0 1 10,10 v52 h-205 z" fill="#2E6F9E"/>
-<text x="257.33333333333337" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">PROPOSE</text>
-<text x="257.33333333333337" y="58" font-size="15.5" fill="#fff" font-weight="bold">Align by embedding</text>
-<text x="259.33333333333337" y="104" font-size="14" fill="#1F2A2E">cos &#8805; .90 neighbours</text>
-<text x="259.33333333333337" y="136" font-size="14" fill="#1F2A2E">modularity communities, not chains</text>
-<text x="259.33333333333337" y="168" font-size="14" fill="#1F2A2E">candidates, not identities</text>
-<line x1="257.33333333333337" y1="198" x2="434.33333333333337" y2="198" stroke="#2E6F9E" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="257.33333333333337" y="218" font-size="10.5" fill="#2E6F9E" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
-<text x="434.33333333333337" y="219" font-size="14" fill="#1F2A2E" text-anchor="end" font-weight="bold">candidate graph</text>
-<path d="M451.33333333333337,127 L465.6666666666667,127" stroke="#4B5A5E" stroke-width="2.5"/><path d="M458.6666666666667,119 L467.6666666666667,127 L458.6666666666667,135" fill="none" stroke="#4B5A5E" stroke-width="2.5"/>
-<rect x="471.6666666666667" y="14" width="205" height="226" rx="10" fill="#fff" stroke="#8A3B5C" stroke-width="2.5"/>
-<path d="M471.6666666666667,24 a10,10 0 0 1 10,-10 h185 a10,10 0 0 1 10,10 v52 h-205 z" fill="#8A3B5C"/>
-<text x="485.6666666666667" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">VALIDATE</text>
-<text x="485.6666666666667" y="58" font-size="15.5" fill="#fff" font-weight="bold">Judge samples</text>
-<text x="487.6666666666667" y="104" font-size="14" fill="#1F2A2E">precision by band and path</text>
-<text x="487.6666666666667" y="136" font-size="14" fill="#1F2A2E">reliability of the judges</text>
-<text x="487.6666666666667" y="168" font-size="14" fill="#1F2A2E">conditional recovery estimate</text>
-<line x1="485.6666666666667" y1="198" x2="662.6666666666667" y2="198" stroke="#8A3B5C" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="485.6666666666667" y="218" font-size="10.5" fill="#8A3B5C" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
-<text x="662.6666666666667" y="219" font-size="14" fill="#1F2A2E" text-anchor="end" font-weight="bold">validated estimates</text>
-<path d="M679.6666666666667,127 L694.0000000000001,127" stroke="#4B5A5E" stroke-width="2.5"/><path d="M687.0000000000001,119 L696.0000000000001,127 L687.0000000000001,135" fill="none" stroke="#4B5A5E" stroke-width="2.5"/>
-<rect x="700.0" y="14" width="205" height="226" rx="10" fill="#fff" stroke="#3E7A3A" stroke-width="2.5"/>
-<path d="M700.0,24 a10,10 0 0 1 10,-10 h185 a10,10 0 0 1 10,10 v52 h-205 z" fill="#3E7A3A"/>
-<text x="714.0" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">DECIDE</text>
-<text x="714.0" y="58" font-size="15.5" fill="#fff" font-weight="bold">Set the layer's policy</text>
-<text x="716.0" y="104" font-size="14" fill="#1F2A2E">downweight generic concepts</text>
-<text x="716.0" y="136" font-size="14" fill="#1F2A2E">expand at query time by direct edges</text>
-<text x="716.0" y="168" font-size="14" fill="#1F2A2E">cap and label what is written</text>
-<line x1="714.0" y1="198" x2="891.0" y2="198" stroke="#3E7A3A" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="714.0" y="218" font-size="10.5" fill="#3E7A3A" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
-<text x="891.0" y="219" font-size="14" fill="#1F2A2E" text-anchor="end" font-weight="bold">construction policy</text>
-<rect x="15" y="262" width="890" height="46" rx="8" fill="#F3F6F5" stroke="#DCE2DD"/>
-<text x="460.0" y="291" font-size="13" fill="#2C3538" text-anchor="middle">Irreversible: what DECIDE writes into the resource   ·   Reversible: query-time expansion over the candidate graph</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" width="100%" role="img" style="font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#fff">
+<rect x="12.0" y="14" width="218" height="248" rx="10" fill="#fff" stroke="#0E6E6D" stroke-width="2.5"/>
+<path d="M12.0,24 a10,10 0 0 1 10,-10 h198 a10,10 0 0 1 10,10 v52 h-218 z" fill="#0E6E6D"/>
+<text x="26.0" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">MEASURE</text>
+<text x="26.0" y="58" font-size="15.5" fill="#fff" font-weight="bold">Profile the corpus</text>
+<text x="26.0" y="102" font-size="14" fill="#1F2A2E">regularity, redundancy</text>
+<text x="26.0" y="132" font-size="14" fill="#1F2A2E">fragmentation, structure</text>
+<text x="26.0" y="162" font-size="14" fill="#1F2A2E">census before building</text>
+<line x1="26.0" y1="196" x2="216.0" y2="196" stroke="#0E6E6D" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="26.0" y="216" font-size="10.5" fill="#0E6E6D" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
+<text x="26.0" y="242" font-size="15" fill="#1F2A2E" font-weight="bold">profile</text>
+<path d="M232.0,138 L245.33333333333334,138" stroke="#4B5A5E" stroke-width="2.5"/><path d="M238.33333333333334,130 L247.33333333333334,138 L238.33333333333334,146" fill="none" stroke="#4B5A5E" stroke-width="2.5"/>
+<rect x="251.33333333333334" y="14" width="218" height="248" rx="10" fill="#fff" stroke="#2E6F9E" stroke-width="2.5"/>
+<path d="M251.33333333333334,24 a10,10 0 0 1 10,-10 h198 a10,10 0 0 1 10,10 v52 h-218 z" fill="#2E6F9E"/>
+<text x="265.33333333333337" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">PROPOSE</text>
+<text x="265.33333333333337" y="58" font-size="15.5" fill="#fff" font-weight="bold">Align by embedding</text>
+<text x="265.33333333333337" y="102" font-size="14" fill="#1F2A2E">cos &#8805; .90 neighbours</text>
+<text x="265.33333333333337" y="132" font-size="14" fill="#1F2A2E">modular communities</text>
+<text x="265.33333333333337" y="162" font-size="14" fill="#1F2A2E">candidates only</text>
+<line x1="265.33333333333337" y1="196" x2="455.33333333333337" y2="196" stroke="#2E6F9E" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="265.33333333333337" y="216" font-size="10.5" fill="#2E6F9E" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
+<text x="265.33333333333337" y="242" font-size="15" fill="#1F2A2E" font-weight="bold">candidate graph</text>
+<path d="M471.33333333333337,138 L484.6666666666667,138" stroke="#4B5A5E" stroke-width="2.5"/><path d="M477.6666666666667,130 L486.6666666666667,138 L477.6666666666667,146" fill="none" stroke="#4B5A5E" stroke-width="2.5"/>
+<rect x="490.6666666666667" y="14" width="218" height="248" rx="10" fill="#fff" stroke="#8A3B5C" stroke-width="2.5"/>
+<path d="M490.6666666666667,24 a10,10 0 0 1 10,-10 h198 a10,10 0 0 1 10,10 v52 h-218 z" fill="#8A3B5C"/>
+<text x="504.6666666666667" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">VALIDATE</text>
+<text x="504.6666666666667" y="58" font-size="15.5" fill="#fff" font-weight="bold">Judge samples</text>
+<text x="504.6666666666667" y="102" font-size="14" fill="#1F2A2E">stratified precision</text>
+<text x="504.6666666666667" y="132" font-size="14" fill="#1F2A2E">rater reliability</text>
+<text x="504.6666666666667" y="162" font-size="14" fill="#1F2A2E">verified recovery</text>
+<line x1="504.6666666666667" y1="196" x2="694.6666666666667" y2="196" stroke="#8A3B5C" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="504.6666666666667" y="216" font-size="10.5" fill="#8A3B5C" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
+<text x="504.6666666666667" y="242" font-size="15" fill="#1F2A2E" font-weight="bold">validated estimates</text>
+<path d="M710.6666666666667,138 L724.0000000000001,138" stroke="#4B5A5E" stroke-width="2.5"/><path d="M717.0000000000001,130 L726.0000000000001,138 L717.0000000000001,146" fill="none" stroke="#4B5A5E" stroke-width="2.5"/>
+<rect x="730.0" y="14" width="218" height="248" rx="10" fill="#fff" stroke="#3E7A3A" stroke-width="2.5"/>
+<path d="M730.0,24 a10,10 0 0 1 10,-10 h198 a10,10 0 0 1 10,10 v52 h-218 z" fill="#3E7A3A"/>
+<text x="744.0" y="36" font-size="12.5" fill="#fff" letter-spacing="2.5" font-weight="bold">DECIDE</text>
+<text x="744.0" y="58" font-size="15.5" fill="#fff" font-weight="bold">Set the layer's policy</text>
+<text x="744.0" y="102" font-size="14" fill="#1F2A2E">weight generic terms</text>
+<text x="744.0" y="132" font-size="14" fill="#1F2A2E">direct-edge expansion</text>
+<text x="744.0" y="162" font-size="14" fill="#1F2A2E">cap and label merges</text>
+<line x1="744.0" y1="196" x2="934.0" y2="196" stroke="#3E7A3A" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="744.0" y="216" font-size="10.5" fill="#3E7A3A" letter-spacing="1.5" font-weight="bold">OUTPUT</text>
+<text x="744.0" y="242" font-size="15" fill="#1F2A2E" font-weight="bold">construction policy</text>
+<rect x="12" y="284" width="936" height="46" rx="8" fill="#F3F6F5" stroke="#DCE2DD"/>
+<text x="480.0" y="313" font-size="13" fill="#2C3538" text-anchor="middle">Irreversible: what DECIDE writes into the resource  ·  Reversible: query-time expansion over the candidate graph</text></svg>
   <figcaption>Figure 1. Computational profiling as run in this paper: four stages, each with its output. Headline values in this study — template compliance 99.56%; rule recovery 8.2%, candidate recovery 28.1%, verified recovery 19.2–23.6%; four-expert reliability α .41 / .50; downstream, query-time expansion F1 .74 on ESCO and a paired TF-IDF P@5 gain of +2.6 points on NCS (§4.1–4.9).</figcaption>
   </figure>
   <div class="table-wrap"><table class="fit">
-    <caption>Table 1. The computational-profiling framework: what each measurement diagnoses, which construction decision it informs, and where this paper reports it. The procedure is re-run unchanged on a second standard in §4.7.</caption>
+    <caption>Table 1. The computational-profiling framework: what each measurement diagnoses, which construction decision it informs, and where this paper reports it. The core procedure is applied to a second standard in §4.7, with corpus- and language-specific preprocessing described in §3.5.</caption>
     <thead><tr><th style="width:15%">Measurement</th><th style="width:33%">Diagnostic</th><th style="width:37%">Decision it informs</th><th>Reported</th></tr></thead>
     <tbody>
       <tr><td>Regularity</td><td>Template compliance; concentration of deviations</td><td>Parse with rules; route the enumerated exceptions to a model or a reviewer</td><td>§4.1</td></tr>
       <tr><td>Redundancy</td><td>Size-adjusted uniqueness, by industry</td><td>Size the build and the review budget; predict it from the industry</td><td>§4.2</td></tr>
       <tr><td>Fragmentation</td><td>Rule, candidate, and verified recovery; precision by similarity band and merge path; rater reliability</td><td>Threshold, community cap, what is merged automatically, what goes to adjudication, what is expanded only at query time</td><td>§4.3, §4.6, §4.9</td></tr>
-      <tr><td>Latent structure</td><td>Agreement of data-driven communities with the official taxonomy against a permutation null, over a resolution range</td><td>Whether to rely on the official taxonomy, the data's own structure, or both; which categories fail to cohere</td><td>§4.4</td></tr>
+      <tr><td>Latent structure</td><td>Agreement of data-driven communities with the official taxonomy against a permutation null, over a resolution range</td><td>Whether data-driven structure can complement the official taxonomy; where the two diverge; which categories require review</td><td>§4.4</td></tr>
     </tbody>
   </table></div>
   <p>
     None of the four operations is new; each has a home literature (§2.5). What the framework adds is the
     ordering — measure before building — the coupling of each measurement to a specific construction
-    decision (Table 1), the check that the decisions change downstream outcomes (§4.9), and a procedure that
-    re-runs on another standard with only the corpus loader replaced (§3.5, §4.7). Its principal
+    decision (Table 1), the check that the decisions change downstream outcomes (§4.9), and a procedure whose
+    reusable part is not any individual rule but the measurement sequence, the reported indicators, the
+    validation logic, and the coupling to decisions: on ESCO it is re-run with corpus-specific loading,
+    language-specific normalization, and the closest available analogue for template regularity (§3.5,
+    §4.7). Its principal
     contribution is the third row and what surrounds it: how badly one concept is split across surface
     forms, how much of that split rules and embeddings each repair, and how human judges behave at the
     boundary where "same concept" has to be decided. The other rows set that result up (RQ1, RQ2),
@@ -1615,12 +1617,15 @@
     comparability across rounds. Items were shuffled once and then shown in the same fixed order to every
     rater, so any fatigue or position effect is common to all raters and cannot be separated from item
     difficulty; median time per judgment fell from 12.0 s in the first quarter of a session to 8.0 s in the
-    last. Taken together these limits point to one further check rather than to more analysis: a fully
-    crossed panel of three or more domain experts judging the same set of cos ≥ .90 direct edges and
-    large-community transitive pairs, each verdict with a one-line rationale. The present design crosses
-    all raters only on the 50 anchors, and the large-community precision rests on raters without domain
-    exposure; that panel would test the 19.2% headline directly, and we regard it as the natural next
-    validation.
+    last. Future validation could use a fully crossed panel of domain experts judging a shared sample of direct
+    and large-community transitive pairs, ideally with brief rationales; the present design crosses all
+    raters only on the 50 anchors, and the large-community precision rests on raters without domain
+    exposure. Such a panel would tighten the conditional recovery estimate, while the sensitivity bounds
+    already reported (16.6–22.8% for the extreme values of the thinnest stratum; 18.2% expert-only) show
+    that it would not move the qualitative rule/model boundary established here. The claims we make in
+    general — the rule ceiling, the .90 knee, the low transitive precision, the chaining failure, and the
+    superiority of query-time expansion — are established on ESCO against an exact reference and do not
+    depend on the human validation; what depends on it is the NCS-specific verified-recovery estimate.
     <b>Inferential.</b> Six of nine hypotheses were formed after seeing major-category aggregates (PEEK) and are
     labelled as such; confirmatory tests use a resolution exploration did not observe, split-half replication,
     and FDR, but this is weaker than a fully blind pre-registration.
