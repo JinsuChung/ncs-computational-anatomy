@@ -92,7 +92,7 @@
       National competency standards increasingly feed skill taxonomies, knowledge graphs, and LLM-assisted
       systems, yet the properties deciding how their text can be processed are rarely measured. We
       propose <em>computational profiling</em> — measuring, before construction, the regularity, redundancy,
-      fragmentation, and latent structure of a standard's text to assign work to rules, models, and human
+      fragmentation, and taxonomy recoverability of a standard's text to assign work to rules, models, and human
       judgment — and apply it as a complete census of Korea's National Competency Standards
       (1,109 occupations; 196,658 performance criteria; 2.46 million knowledge/skill/attitude items), with
       exploratory aggregates and confirmatory tests kept explicitly apart. Three results follow. First,
@@ -133,7 +133,7 @@
     We call the missing step <b>computational profiling</b>: measuring, before any construction, the
     properties of a standard's text that decide where rules end, where a model is needed, and where a
     person must adjudicate. The framework has four measurements — regularity, redundancy, fragmentation,
-    and latent structure — and one output, a division of labour between rules, models, and human judgment
+    and taxonomy recoverability — and one output, a division of labour between rules, models, and human judgment
     that is stated in numbers rather than chosen by preference. This paper applies it to Korea's NCS as a
     complete census, checks which of its findings transfer to ESCO, and shows that the numbers change
     decisions downstream (Figure 1, Table 1). We ask:
@@ -192,9 +192,9 @@
     <thead><tr><th style="width:15%">Measurement</th><th style="width:33%">Diagnostic</th><th style="width:37%">Decision it informs</th><th>Reported</th></tr></thead>
     <tbody>
       <tr><td>Regularity</td><td>Template compliance; concentration of deviations</td><td>Parse with rules; route the enumerated exceptions to a model or a reviewer</td><td>§4.1</td></tr>
-      <tr><td>Redundancy</td><td>Size-adjusted uniqueness, by industry</td><td>Size the build and the review budget; predict it from the industry</td><td>§4.2</td></tr>
+      <tr><td>Redundancy</td><td>Size-adjusted uniqueness of strings, by industry</td><td>Size the build and the review budget; predict it from the industry</td><td>§4.2</td></tr>
       <tr><td>Fragmentation</td><td>Rule, candidate, and verified recovery; precision by similarity band and merge path; rater reliability</td><td>Threshold, community cap, what is merged automatically, what goes to adjudication, what is expanded only at query time</td><td>§4.3, §4.6, §4.9</td></tr>
-      <tr><td>Latent structure</td><td>Agreement of data-driven communities with the official taxonomy against a permutation null, over a resolution range</td><td>Whether data-driven structure can complement the official taxonomy; where the two diverge; which categories require review</td><td>§4.4</td></tr>
+      <tr><td>Taxonomy recoverability</td><td>Agreement of data-driven communities with the official taxonomy against a permutation null, over a resolution range</td><td>Whether data-driven structure can complement the official taxonomy; where the two diverge; which categories require review</td><td>§4.4</td></tr>
     </tbody>
   </table></div>
   <p>
@@ -385,7 +385,7 @@
   <p>
     <b>Template compliance</b> is the proportion of performance criteria whose text ends in the canonical
     "~할 수 있다 ('is able to …')" form, allowing whitespace and terminal-period variants; deviations are typed by their
-    ending. <b>Uniqueness rate</b> is distinct KSA strings over KSA items within an occupation. <b>Fragmentation</b>
+    ending. <b>Uniqueness rate</b> is distinct KSA strings over KSA items within an occupation; it is a surface-form measure, and duplication across differing strings is the subject of RQ3. <b>Fragmentation</b>
     is measured in two stages: a deterministic <em>normalization key</em> (NFKC, removal of role suffixes such as
     "지식/기술/능력/방법 ('knowledge / skill / ability / method')", removal of whitespace and punctuation, case folding), then an <em>embedding stage</em>
     described in §3.4. <b>Occupation similarity</b> is Jaccard overlap of normalization-key sets, over keys
@@ -1660,7 +1660,7 @@
     should use direct edges rather than communities; the downstream value of embedding alignment lies in
     linking single-occupation expressions across occupations, so within-occupation merges belong outside the
     default automatic policy; and the merge cap governs not those tasks but the precision of what is written into a
-    published concept layer. We release the metrics, the alias dictionary, the embedding-stage candidate file,
+    published concept layer. The profile is deliberately silent on three things: whether the standard's content is accurate and complete for the work it describes, what kind of relation an edge between two concepts denotes (Table 4 separates hierarchical pairs from merges without typing them), and how the profile moves between releases; relation typing is the next stage of this programme. We release the metrics, the alias dictionary, the embedding-stage candidate file,
     the ESCO replication, the downstream tasks, and the code.
   </p>
 
