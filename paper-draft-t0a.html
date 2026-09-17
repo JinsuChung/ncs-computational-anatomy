@@ -96,7 +96,7 @@
       judgment — and apply it as a complete census of Korea's National Competency Standards
       (1,109 occupations; 196,658 performance criteria; 2.46 million knowledge/skill/attitude items), with
       exploratory aggregates and confirmatory tests kept explicitly apart. Three results follow. First,
-      structure is rule-tractable: 99.56% of criteria follow the mandated template, deviations concentrate
+      the sentence frame is rule-tractable: 99.56% of criteria end in the mandated template, deviations concentrate
       in 26 occupations, and redundancy is an industry property rather than a size artifact. Second, concept
       alignment is not: rules merge 8.2% of surface forms, embedding alignment proposes 28.1% at the
       pre-registered cos ≥ .90 knee, and an estimated 19.2–23.6% survives fourteen external raters under a
@@ -123,7 +123,7 @@
   </p>
   <p>
     What is rarely done first is to measure the material. A pipeline designer needs to know, before choosing
-    tools, how regular the text is (can rules parse it?), how redundant it is (how large is the real work?),
+    tools, how regular the text is (can rules segment it?), how redundant it is (how large is the real work?),
     how badly one concept is split across spellings (what must alignment repair?), and how much structure the
     corpus already encodes independently of its official taxonomy. Without those numbers, the choice between
     deterministic rules and learned models is made by fashion rather than by evidence, and the cost of a
@@ -191,7 +191,7 @@
     <caption>Table 1. The computational-profiling framework: what each measurement diagnoses, which construction decision it informs, and where this paper reports it. The core procedure is applied to a second standard in §4.7, with corpus- and language-specific preprocessing described in §3.5.</caption>
     <thead><tr><th style="width:15%">Measurement</th><th style="width:33%">Diagnostic</th><th style="width:37%">Decision it informs</th><th>Reported</th></tr></thead>
     <tbody>
-      <tr><td>Regularity</td><td>Template compliance; concentration of deviations</td><td>Parse with rules; route the enumerated exceptions to a model or a reviewer</td><td>§4.1</td></tr>
+      <tr><td>Regularity</td><td>Template compliance; concentration of deviations</td><td>Segment with rules (template and hierarchy); route the enumerated exceptions to a model or a reviewer</td><td>§4.1</td></tr>
       <tr><td>Redundancy</td><td>Size-adjusted uniqueness of strings, by industry</td><td>Size the build and the review budget; predict it from the industry</td><td>§4.2</td></tr>
       <tr><td>Fragmentation</td><td>Rule, candidate, and verified recovery; precision by similarity band and merge path; rater reliability</td><td>Threshold, community cap, what is merged automatically, what goes to adjudication, what is expanded only at query time</td><td>§4.3, §4.6, §4.9</td></tr>
       <tr><td>Taxonomy recoverability</td><td>Agreement of data-driven communities with the official taxonomy against a permutation null, over a resolution range</td><td>Whether data-driven structure can complement the official taxonomy; where the two diverge; which categories require review</td><td>§4.4</td></tr>
@@ -252,7 +252,7 @@
   <p>
     <b>Perspective and scope.</b> This paper looks at NCS from one side only: that of someone about to build a
     knowledge resource from it. Every question above is a question about the standard as <em>input</em> — what
-    rules can parse, how much work deduplication removes, how much alignment must repair, how much structure
+    rules can segment, how much work deduplication removes, how much alignment must repair, how much structure
     is already latent. We measure the text; we do not evaluate the standard. In particular we make no claims
     about the labour market it describes, about the committees that author it, or about what it ought to
     contain; where a result touches those questions (§4.5, §5), we report the distribution and stop. The
@@ -455,9 +455,10 @@
     prescribes the "~할 수 있다" ending, so 99.56% measures how faithfully authors followed an explicit rule,
     and we report it as a descriptive fact. The finding is the <em>locality</em> of what escaped: the 859
     deviations are not scattered noise but concentrate in 26 occupations, and one occupation ignores the
-    template entirely. For a pipeline this means that syntactic parsing of performance criteria can be handled
+    template entirely. For a pipeline this means that template segmentation of performance criteria can be handled
     by deterministic rules everywhere except at an enumerable list of locations, which can be routed to a
-    model or to review before any model is trained. It also means the list is a maintenance artifact: it
+    model or to review before any model is trained. What rules deliver here is the sentence frame and the
+    containment tree, not concept nodes or typed edges; those are the subject of §4.3–4.4. It also means the list is a maintenance artifact: it
     names where the standard departs from its own guideline.
   </p>
 
@@ -1503,9 +1504,9 @@
   </p>
   <h3>5. Discussion</h3>
   <p>
-    The four measurements compose into a single design rule for this corpus type: <em>structure to rules,
-    concepts to models</em>. Syntax is 99.56% regular and its residue is confined to 26 occupations, so rules
-    parse it and a model is needed only at named locations. Concepts are the opposite: rules repair 8.2% of
+    The four measurements compose into a single design rule for this corpus type: <em>document structure to rules,
+    concepts to models</em>. The sentence frame is 99.56% regular and its residue is confined to 26 occupations, so rules
+    strip it and a model is needed only at named locations. Concepts are the opposite: rules repair 8.2% of
     fragmentation because the variation lives in stems, not in affixes, and even a strong multilingual encoder
     proposes 28.1%, of which human raters confirm 19.2–23.6%; the remainder is concept <em>families</em>, not
     concepts. The residual fragmentation is not noise to be tuned away; it is the actual work of building a
@@ -1642,7 +1643,7 @@
   <h3>7. Conclusion</h3>
   <p>
     Measuring a national competency standard before building on it changes what one builds. In Korea's NCS,
-    the syntactic residue that rules cannot parse is small and enumerable (859 criteria, half in 26
+    the residue that escapes the template is small and enumerable (859 criteria, half in 26
     occupations), while concept identity is not a rule-tractable problem: rules repair 8.2% of terminological fragmentation and
     embedding alignment proposes 28.1%, of which an estimated 19.2–23.6% survives human validation under
     the study's conservative mergeability definition and rater panel; the remainder are
